@@ -1,0 +1,1333 @@
+<style type="text/css">
+	/*banner*/
+	
+	#banner,
+	.ban {
+		width: 3.2rem;
+		height: 1.5rem;
+		position: relative;
+	}
+	
+	.ban-img {
+		width: 3.2rem;
+	}
+	
+	.ban-img a {
+		width: 3.2rem;
+		height: 1rem;
+	}
+	
+	#banner .swiper-container .swiper-slide a img,
+	.ban-img img {
+		width: 3.2rem;
+		height: 100%;
+	}
+	
+	.banner-sw{
+		position: absolute;
+		top: 0.3rem;
+		left: 0;
+	}
+	
+	.swiper-pagination-bullet-active {
+		background: #fe6c9c;
+	}
+	/*new*/
+	
+	.ban-bot {
+		width: 3.2rem;
+		height: 1.15rem;
+		overflow: hidden;
+	}
+	
+	.activityRi {
+		margin-top: 0.1rem;
+	}
+	
+	.new ul {
+		width: 3.2rem;
+		height: 0.8rem;
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	.new ul li {
+		width: 25%;
+		font-size: 0.14rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.new ul li img {
+		width: 0.5rem;
+		height: 0.5rem;
+	}
+	
+	.new ul li p {
+		color: #666;
+		width: 1rem;
+		text-align: center;
+	}
+	
+	.swiper-slide {
+		display: flex;
+	}
+	
+	.swiper-slide a {
+		display: flex;
+		font-size: 0.12rem;
+		justify-content: center;
+	}
+	
+	.swiper-slide a {}
+	
+	.swiper-slide span {
+		font-size: 0.14rem;
+		color: red;
+	}
+	
+	.swiper-slide em {
+		margin-top: 0.02rem;
+		color: #666;
+	}
+	
+	.activity {
+		display: flex;
+		flex-flow: row nowrap;
+		border-top: 1px solid #ccc;
+	}
+	
+	.activityLi {
+		width: 0.5rem;
+		height: 0.3rem;
+	}
+	
+	.activityLi img {
+		display: block;
+		width: 0.5rem;
+		height: 0.3rem;
+	}
+	
+	.main {
+		width: 3.2rem;
+		height: 1.85rem;
+		background: #f0f0f0;
+		padding-top: 0.1rem;
+	}
+	
+	.main .main-time {
+		width: 3rem;
+		height: 0.23rem;
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.14rem;
+		color: #666;
+		padding: 0 0.1rem 0 0.1rem;
+		background: #fff;
+		align-items: center;
+	}
+	
+	.main .main-time .mt-le {
+		display: flex;
+	}
+	
+	.main .main-time .mt-ri {
+		font-size: 0.12rem;
+		color: #999;
+	}
+	
+	.time {
+		width: 0.8rem;
+		height: 0.14rem;
+		display: flex;
+		font-size: 0.14rem;
+		color: #000;
+	}
+	
+	.time span {
+		height: 0.16rem;
+		font-size: 0.14rem;
+		color: #fff;
+		font-weight: 600;
+		background: #484850;
+		padding: 0 0.02rem;
+		border-radius: 0.04rem;
+		line-height: 0.14rem;
+		margin: 0 0.03rem;
+	}
+	
+	.cm-bot {
+		width: 3rem;
+		height: 1.5rem;
+		background-color: #fff;
+		padding: 0 0.1rem 0;
+	}
+	
+	.cm-bot .cmb-main {
+		margin: 0 0.05rem;
+		width: 3.2rem;
+		display: flex;
+		background: #fff;
+	}
+	
+	.cm-bot .cmb-main a {
+		font-size: 0.14rem;
+		color: #666;
+		height: 1.8rem;
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		text-align: center;
+	}
+	
+	.cm-bot .cmb-main a p:nth-of-type(1) {
+		width: 1rem;
+		height: 0.2rem;
+		line-height: 0.2rem;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 0.14rem;
+		color: #333;
+		margin-top: 0.05rem;
+	}
+	
+	.cm-bot .cmb-main a p:nth-of-type(2) {
+		margin-top: 0.05rem;
+		color: #f25;
+	}
+	
+	.cm-bot img {
+		width: 0.64rem;
+		height: 0.64rem;
+	}
+	
+	.popular div {
+		margin-bottom: 0.05rem;
+	}
+	
+	.popular-cont img {
+		width: 0.64rem;
+		height: 0.64rem;
+	}
+	.mainCon{
+		width: 3.2rem;
+		height: 0.4rem;
+		background: #f0f0f0;
+	
+	}
+	.mainCon .mainTit{
+		width: 3.2rem;
+		height: 0.3rem;
+		padding: 0 0.08rem;
+		font-size: 0.16rem;
+		background: #fff;
+		display: flex;
+		align-items: center;	
+		position: relative;		
+		justify-content: center;
+	}
+	
+	.mainCon .mainTit a {
+		position: absolute;
+		right: 0.2rem;
+	}
+	.mainCon .mainTit h3 img{
+		width: 1.12rem;
+		height: 0.3rem;
+	}
+	.mainCon .mainTit a img{
+		width: 0.3rem;
+		height: 0.15rem;
+	}
+	.mainCon .mainTit h3::before{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 100%;
+	    width: 0.3rem;		
+	    height: 1px;
+	    background: #949494;
+	    left: 55%;
+	    top: 50%;
+	    margin-left: -1.2rem;
+	}
+	.mainCon .mainTit h3::after{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 100%;
+	    width: 0.3rem;		
+	    height: 1px;
+	    background: #949494;
+	    right: 20%;
+	    top: 50%;
+	  
+	}
+    .mainTuan{
+    	width: 3.2rem;
+    	height: 2.4rem;
+    	background: #f0f0f0;
+    }
+    .mainTuan .mainTuan-con{
+    	padding: 0.08rem 0.1rem;
+    	background: #fff;
+    }
+    .mainTuan .mT-top img{
+    	height: 1.3rem;
+    	width: 3.2rem;
+    }
+    .mainTuan .mT-con {
+    	height: 0.4rem;
+    	width: 3.2rem;
+    	background: #fff;
+    	font-size: 0.14rem;
+    	color: #666;
+    }
+    .mainTuan .mT-con p{
+    		line-height: 0.2rem;
+    	margin:  0.05rem 0;
+    }
+    .mainTuan .mT-bot {
+    	font-size: 0.14rem;
+    	width: 3rem;
+    	height: 0.3rem;
+    	background: #ff5c61;
+    	border-radius: 0.7rem;
+    
+    }
+    .mainTuan .mT-two {
+    	font-size: 0.14rem;
+    	color: #fff;
+    	
+    	line-height: 0.3rem;
+    	width: 3rem;
+    	height: 0.3rem;
+    
+    overflow: hidden;
+    	margin: 0 0.02rem;
+    }
+    .mainTuan .mT-two .mtb-le{
+    	font-size: 0.12rem;
+    	color: #ff5c61;
+    	text-align: center;
+    	line-height: 0.25rem;
+    	width: 0.5rem;
+    	height: 0.25rem;
+    	background: #fff;
+    	border-radius: 0.7rem;
+    	margin: 0.03rem 0 0.05rem;
+    	float: left;
+    }
+    .mainTuan .mT-two .mtb-price{
+   		 margin-left: 0.05rem;
+    	float: left;
+    }
+     .mainTuan .mT-two .mtb-ri{
+    	float: right;
+    	margin-right: 0.1rem;
+    }
+    .cont-qu{
+    	width: 3.2rem;
+    	height: 1.75rem;
+    	background-color: #f0f0f0;
+    	
+    }
+    .cont-qu .cq-main{
+    	width: 3.2rem;
+    	height: 1.65rem;
+    	background-color: #fff;
+    
+    	margin: 0.1rem 0;
+    	position: relative;
+    }
+    .cont-qu .cq-main p{
+    	width: 3rem;
+    	height: 0.35rem;
+    	color: #333;
+    	background-color: #fff;
+    	font-size: 0.14rem;
+    	text-align: center;
+    	line-height: 0.35rem;
+    	padding-bottom: 0.1rem;
+    }
+    .cont-qu .cq-main p::before{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 100%;
+	    width: 0.3rem;		
+	    height: 1px;
+	    background: #949494;
+	    left: 60%;
+	    top: 10%;
+	    margin-left: -1.2rem;
+	}
+	.cont-qu .cq-main p::after{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 100%;
+	    width: 0.3rem;		
+	    height: 1px;
+	    background: #949494;
+	    right: 28%;
+	    top: 10%;
+	}
+    .cont-qu .cq-main .cqm-cont{
+    	width: 3.18rem;
+    	height: 1.2rem;
+    	display: flex;
+    	border: 1px solid #ccc;
+    }
+    .cont-qu .cq-main .cqm-cont .cqm-le{
+    	width: 1.6rem;
+    	height: 1.2rem;
+    	border-right: 1px solid #ccc;   
+    }
+    .cont-qu .cq-main .cqm-cont .cqm-le img{
+    	width: 1.6rem;
+    	height: 1.2rem;
+    }
+    .cont-qu .cq-main .cqm-ri{
+    	width: 1.57rem;
+    	height: 1.2rem;
+    	display: flex;
+    	flex-direction: column;      
+    }
+     .cont-qu .cq-main .cqm-ri img{
+    	width: 0.78rem;
+    	height: 0.6rem;
+        
+    }
+    .cont-qu .cq-main .cqm-ri div{
+    	width: 1.57rem;
+    	height: 0.60rem;
+    	display: flex;
+    	flex-flow: row nowrap;        
+    }
+    .cont-qu .cq-main .cqm-ri div:nth-of-type(2) img{
+    	height: 0.59rem;      
+    }
+    .borderRi{
+   		 border-right: 1px solid #ccc;        
+    }
+    .borderTop{
+   		 border-top: 1px solid #ccc; 
+   		 border-bottom: 1px solid #ccc;               
+    }
+    .national {
+    	width: 3.2rem;
+    	height: 1.5rem;
+    	background: #f0f0f0;
+    	text-align: center;
+    	padding: 0.2rem 0;
+    }
+     .national img{
+    	width: 2rem;
+    	height: 1.5rem;
+    }
+    .today{
+    	width: 3.2rem;
+    	height: 2.1rem;
+    	background: #f0f0f0;
+    }
+    .today .today-main{
+    	width: 3.1rem;
+    	height: 2rem;
+    	background: #fff;
+    	margin: 0.1rem 0;
+    	padding: 0 0.05rem;
+    }
+    .today-top{
+    	width: 3.1rem;
+    	height: 0.35rem;
+		line-height: 0.35rem;
+    	color: #666;
+    	font-size: 0.14rem;
+    	position: relative;
+    	text-align: center;
+    }
+    .today-top::before{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 100%;
+	    width: 0.3rem;		
+	    height: 1px;
+	    background: #949494;
+	    left: 62%;
+	    top: 50%;
+	    margin-left: -1.2rem;
+	}
+	.today-top::after{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    width: 100%;
+	    width: 0.3rem;		
+	    height: 1px;
+	    background: #949494;
+	    right: 25%;
+	   	top: 50%;
+	}
+	.today .today-main .today-bot{
+		width: 3.1rem;
+    	height: 1.4rem;
+	}
+	.today .today-main .today-bot .today-le{
+		width: 3.1rem;
+    	height: 0.75rem;
+    	display: flex;
+    	justify-content: space-around;
+    	margin-bottom: 0.1rem;
+	}
+	.today .today-main .today-bot .today-cont{
+		width: 1.5rem;
+    	height: 0.75rem;
+    	display: flex;
+	}
+	.today .today-main .today-bot .today-cont img{
+		width: 0.6rem;
+    	height: 0.7rem;
+    	margin-right: 0.05rem;
+	}
+	.today .today-main .today-bot .today-cont .today-p{
+		width: 0.8rem;
+   		height: 0.75rem;
+    	display: flex;
+    	flex-direction: column;
+	}
+	.today .today-main .today-bot .today-cont .today-p p{
+		width: 0.8rem;
+    	height: 0.4rem;
+    	overflow: hidden;
+    	font-size: 0.14rem;
+    	line-height: 0.2rem;	
+ 		text-overflow: ellipsis;
+ 		display: -webkit-box;
+ 		-webkit-line-clamp: 2;
+ 		-webkit-box-orient: vertical;
+    	color: #666;
+    	margin: 0.05rem 0;
+	}
+	.today .today-main .today-bot .today-cont .today-p span{
+		display: flex;
+    	font-size: 0.14rem;
+    	color: #db0c1f;
+	}
+	.today .today-main .today-bot .today-cont .today-p span i{
+    	font-size: 0.12rem;
+	}
+	.list .list-main{
+		display: flex;
+		flex-direction: column;
+	}
+	.list .list-main div{
+		width: 0.7rem;
+		height: 0.55rem;
+    	display: flex;
+		justify-content: center;
+	}
+	.list .list-main img{
+		width: 0.5rem;
+    	height: 0.5rem;
+	}
+	.list .list-main span{
+		width: 0.7rem;
+    	font-size: 0.12rem;
+    	color: #666;
+    	text-align: center;
+	}
+	.clear-head{
+		position: relative;
+		height: 0.42rem;
+		background: #f0f0f0;
+	}
+	.clear-head p{
+		width: 3.2rem;
+		height: 0.35rem;
+		background: #fff;
+	}
+	.clear-head span{
+		font-size: 0.12rem;
+		color: #999;
+		position: absolute;
+		right: 0.1rem;
+		top: 0.12rem;
+	}
+	
+	.clear-main{
+		width: 3.2rem;
+		height: 4.8rem;
+		background: #f0f0f0;
+		position: relative;
+	}
+	.clear-main .clear-count ,.clear-main .swiper-wrapper{
+		height: 4.8rem;
+		
+	}
+	.clear-main .clear-count .swiper-slide{
+		width: 1.5rem;
+		height: 2rem;
+	}
+	.clear-main .clear-count .swiper-slide a{
+		display: flex;
+		flex-flow: column;
+		width: 1.6rem;
+		height: 2.15rem;
+		background: #fff;
+	}
+	.clear-main .clear-count .swiper-slide a:nth-of-type(1){
+		margin: 0 0.1rem 0 0;
+	}
+	.clear-main .clear-count .swiper-slide a img{
+		width: 1.2rem;
+		margin: 0.1rem 0.15rem 0.05rem;
+	}
+	.clear-main .clear-count .swiper-slide a div{
+		width: 1.2rem;
+		height: 1rem;
+		margin-left: 0.2rem;
+	}
+	.clear-main .clear-count .swiper-slide a .d1 p{
+		line-height: 0.2rem;
+		font-size: 0.14rem;
+		color: #666;
+	}
+	.clear-main .clear-count .swiper-slide a .d1 .p1{
+		color: #333;
+	}
+	.clear-main .clear-count .swiper-slide a .d1 .p2{
+		width: 1.2rem;
+		height: 0.4rem;
+		font-size: 0.12rem;
+		text-overflow: ellipsis;
+ 		display: -webkit-box;
+ 		-webkit-line-clamp: 2;
+ 		-webkit-box-orient: vertical;
+	}
+	.clear-main .clear-count .swiper-slide a .d2 {
+		font-size: 0.12rem;
+		color: #666;
+	}
+	.clear-main .clear-count .swiper-slide a .d2 span{
+		color: #db0c1f;
+	}
+	.clear-main .clear-count .swiper-slide a .d2 del{
+		font-size: 0.1rem;
+		color: #ccc;
+		text-decoration: line-through;
+	}
+	.clear-main .clear-count .swiper-slide a p{
+		font-size: 0.12rem;
+	}
+	
+	.buy .buy-img{
+		width: 3.2rem;
+		height: 1rem;
+	}
+	.buy .buy-img img{
+		display: block;
+		width: 3.2rem;
+		height: 1rem;
+	}
+	.buy li{
+		width: 3.2rem;
+		height: 2.6rem;
+		background: #f0f0f0;
+	}
+	#shop li a{
+		height: 1.4rem;
+	}
+	#shop li a p:nth-of-type(2) {
+		display: flex;
+		justify-content: space-between;
+	}
+	#shop li a p:nth-of-type(2) .iconfont{
+		line-height: 0.16rem;
+		font-size: 0.16rem;
+		text-align: center;
+		color: #fff;
+		background: #e5376c;
+		border-radius: 0.1rem;
+		padding: 0.03rem;
+		margin-left: 0.15rem;
+	}
+</style>
+<div id="iscroll">
+	<div class="body-html">
+		<div id="banner">
+			<div class="swiper-container ban">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<a href="javascript:;"><img src="img/b-1.jpg" alt=""></a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;"><img src="img/b-2.jpg" alt=""></a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;"><img src="img/b-3.jpg" alt=""></a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;"><img src="img/b-4.jpg" alt=""></a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;"><img src="img/b-5.jpg" alt=""></a>
+					</div>
+				</div>
+				<div class="swiper-pagination " style="width: 1.2rem;left: 0.03rem;bottom: 0;"></div>
+			</div>
+		</div>
+	
+		<div class="ban-bot">
+			<div class="new">
+				<ul>
+					<li>
+						<img src="img/n-1.jpg" alt="" />
+						<p>新人专享 </p>
+					</li>
+					<li>
+						<img src="img/n-2.jpg" alt="" />
+						<p>神马值得买 </p>
+					</li>
+					<li>
+						<img src="img/n-3.jpg" alt="" />
+						<p>拼团 </p>
+					</li>
+					<li>
+						<img src="img/n-4.jpg" alt="" />
+						<p>海外直邮 </p>
+					</li>
+				</ul>
+			</div>
+			<div class="activity">
+				<div class="activityLi"><img src="img/active.jpg" alt="" /></div>
+				<div class="activityRi">
+					<div class="swiper-container new">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<span>第二件0元</span>
+									<em>剁手党必抢</em>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<span>11.11狂欢返场</span>
+									<em>最高领卷减200元</em>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="main">
+			<div class="main-time">
+				<div class="mt-le">
+					<span>整点抢</span>
+					<div class="time">
+						<span>00</span>:<span>16</span>:<span>43</span>
+					</div>
+				</div>
+				<div class="mt-ri">
+					更多＞
+				</div>
+			</div>
+			<div class="swiper-container cm-bot">
+				<div class="swiper-wrapper cmb-main">
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-0.png" alt="">
+							<p>【强强瘦身减肥组合】买3送1</p>
+							<p>¥39.00</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-1.png" alt="">
+							<p>美肤宝秋冬水份源5件套</p>
+							<p>¥129</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-2.png" alt="">
+							<p>纯色2米长仿羊绒厚版围巾</p>
+							<p>¥17.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-3.png" alt="">
+							<p>牛奶巧克力涂饰蛋糕750g</p>
+							<p>¥29.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-4.png" alt="">
+							<p>全套12本 送12色蜡笔</p>
+							<p>¥19.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-8.png" alt="">
+							<p>学院风石头纹雪地靴</p>
+							<p>¥99.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-6.png" alt="">
+							<p>blings入冬必备身体乳2支</p>
+							<p>¥23.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-11.png" alt="">
+							<p>撕除99%顽固黑头！0差评！</p>
+							<p>¥39.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-12.png" alt="">
+							<p>冬款加厚打底裤【可改码数】</p>
+							<p>¥49.90</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-13.png" alt="">
+							<p>条纹KT法兰绒家居服套装</p>
+							<p>¥49.00</p>
+						</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+							<img src="img/cont-14.png" alt="">
+							<p>秋冬新款撞色双肩包</p>
+							<p>¥149.9</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="mainCon">
+			<div class="mainTit">	
+				<h3>
+					<img src="img/titImg.png">
+				</h3>
+				<a href="javascript:;" class="titmore">
+					<img src="img/moreImg.png">
+				</a>
+			</div>
+		</div>
+		
+		<div class="mainTuan">
+			<div class="mainTuan-con">
+				<div class="mT-top">
+					<img src="img/mainTit.jpg" alt="" />
+				</div>
+				<div class="mT-con">
+					<span>强补水收毛孔</span>
+					<p>韩国AHC高浓度B5玻尿酸第三代面膜5片/盒  </p>
+				</div>
+				<div class="mT-bot">
+					<div class="mT-two">
+						<div class="mtb-le">3 人团</div>
+						<div class="mtb-price"><i>￥</i>96</div>
+						<div class="mtb-ri">去拼团></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="cont-qu">
+			<div class="cq-main">	
+				<p>特惠专区</p>
+				<div class="cqm-cont">
+					<div class="cqm-le">
+						<img src="img/cq-1.jpg" alt="" />
+					</div>
+					<div class="cqm-ri">
+						<div>
+							<img src="img/cq-2.jpg" alt="" class="borderRi borderBot"/>
+							<img src="img/cq-3.jpg" alt="" />
+						</div>
+						<div>
+							<img src="img/cq-4.jpg" alt="" class="borderRi borderTop"/>
+							<img src="img/cq-5.jpg" alt="" class="borderTop"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cont-qu">
+			<div class="cq-main">	
+				<p>热销奶粉</p>
+				<div class="cqm-cont">
+					<div class="cqm-le">
+						<img src="img/cr-1.jpg" alt="" />
+					</div>
+					<div class="cqm-ri">
+						<div>
+							<img src="img/cr-2.jpg" alt="" class="borderRi borderBot"/>
+							<img src="img/cr-3.jpg" alt="" />
+						</div>
+						<div>
+							<img src="img/cr-4.jpg" alt="" class="borderRi borderTop"/>
+							<img src="img/cr-5.jpg" alt="" class="borderTop"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cont-qu">
+			<div class="cq-main">	
+				<p class="p-zhi">热销纸尿裤</p>
+				<div class="cqm-cont">
+					<div class="cqm-le">
+						<img src="img/cz-1.jpg" alt="" />
+					</div>
+					<div class="cqm-ri">
+						<div>
+							<img src="img/cz-2.jpg" alt="" class="borderRi borderBot"/>
+							<img src="img/cz-3.png" alt="" />
+						</div>
+						<div>
+							<img src="img/cz-4.jpg" alt="" class="borderRi borderTop"/>
+							<img src="img/cz-5.jpg" alt="" class="borderTop"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cont-qu">
+			<div class="cq-main">	
+				<p class="p-zhi">热销营养品</p>
+				<div class="cqm-cont">
+					<div class="cqm-le">
+						<img src="img/cy-1.jpg" alt="" />
+					</div>
+					<div class="cqm-ri">
+						<div>
+							<img src="img/cy-2.jpg" alt="" class="borderRi borderBot"/>
+							<img src="img/cy-3.jpg" alt="" />
+						</div>
+						<div>
+							<img src="img/cy-4.jpg" alt="" class="borderRi borderTop"/>
+							<img src="img/cy-5.jpg" alt="" class="borderTop"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cont-qu">
+			<div class="cq-main">	
+				<p class="p-zhi">热销美妆</p>
+				<div class="cqm-cont">
+					<div class="cqm-le">
+						<img src="img/cm-1.jpg" alt="" />
+					</div>
+					<div class="cqm-ri">
+						<div>
+							<img src="img/cm-2.jpg" alt="" class="borderRi borderBot"/>
+							<img src="img/cm-3.jpg" alt="" />
+						</div>
+						<div>
+							<img src="img/cm-4.jpg" alt="" class="borderRi borderTop"/>
+							<img src="img/cm-5.jpg" alt="" class="borderTop"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cont-qu">
+			<div class="cq-main">	
+				<p class="p-zhi">直邮好货</p>
+				<div class="cqm-cont">
+					<div class="cqm-le">
+						<img src="img/co-1.jpg" alt="" />
+					</div>
+					<div class="cqm-ri">
+						<div>
+							<img src="img/co-2.jpg" alt="" class="borderRi borderBot"/>
+							<img src="img/co-3.jpg" alt="" />
+						</div>
+						<div>
+							<img src="img/co-4.jpg" alt="" class="borderRi borderTop"/>
+							<img src="img/co-5.jpg" alt="" class="borderTop"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="swiper-container national">
+			<div class="swiper-wrapper ">
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-1.jpg" alt=""></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-2.jpg" alt=""></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-3.jpg" alt=""></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-4.jpg" alt=""></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-5.jpg" alt=""></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-6.jpg" alt=""></a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;"><img src="img/nat-7.jpg" alt=""></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="today">
+			<div class="today-main">	
+				<p class="today-top">今日半价</p>
+				<div class="today-bot">
+					<div class="today-le">
+						<div class="today-cont">
+							<img src="img/t-1.jpg" alt="" />
+							<div class="today-p">
+								<p>德国舒氏Snug电子速热暖奶器（双瓶装）</p>
+								<span><i>￥</i>65</span>
+							</div>
+						</div>
+						<div class="today-cont">
+							<img src="img/t-2.jpg" alt="" />
+							<div class="today-p">
+								<p>德国碧然德Brita净水器一壶一芯白色（海外版）</p>
+								<span><i>￥</i>155</span>
+							</div>
+						</div>
+					</div>
+					<div class="today-le">
+						<div class="today-cont">
+							<img src="img/t-3.jpg" alt="" />
+							<div class="today-p">
+								<p>比那氏Propolinse 蜂胶除口臭漱口水 600ml（海外版）</p>
+								<span><i>￥</i>49</span>
+							</div>
+						</div>
+						<div class="today-cont">
+							<img src="img/t-4.jpg" alt="" />
+							<div class="today-p">
+								<p>德国贝娜婷Penaten洗发沐浴露 400ml+舒缓护肤面霜 100ml（海外版）</p>
+								<span><i>￥</i>79</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="today list">
+			<div class="today-main">	
+				<p class="today-top">精选分类</p>
+				<div class="today-bot">
+					<div class="today-le">
+						<div class="list-main">
+							<div><img src="img/bao-1.jpg" alt="" /></div>
+							<span>宝宝吃什么<span>
+						</div>
+						<div class="list-main">
+							<div><img src="img/bao-2.jpg" alt="" /></div>
+							<span>宝宝补什么<span>
+						</div>
+						<div class="list-main">
+							<div><img src="img/bao-3.jpg" alt="" /></div>
+							<span>宝宝用什么<span>
+						</div>
+						<div class="list-main">
+							<div><img src="img/bao-4.jpg" alt="" /></div>
+							<span>宝宝玩什么<span>
+						</div>
+					</div>
+					<div class="today-le">
+						<div class="list-main">
+							<div><img src="img/bao-5.jpg" alt="" /></div>
+							<span>宝宝穿什么<span>
+						</div>
+						<div class="list-main">
+							<div><img src="img/bao-6.jpg" alt="" /></div>
+							<span>孕产用品<span>
+						</div>
+						<div class="list-main">
+							<div><img src="img/bao-7.jpg" alt="" /></div>
+							<span>个护美妆<span>
+						</div>
+						<div class="list-main">
+							<div><img src="img/bao-8.jpg" alt="" /></div>
+							<span>品质专家<span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="clear-head">
+			<p class="today-top clear-p">爆款推荐</p>
+			<span> 更多＞ </span>
+		</div>
+		
+		<div class="clear-main">
+			<div class="swiper-container clear-count clear1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<a href="javascript:;">
+	                    	<img src="img/cle-5.jpg">
+		                    <div class="d1">
+		                        <p class="p1">婴儿磨牙棒</p>
+		                        <p class="p2">美国嘉宝Gerber磨牙饼干婴儿磨牙棒</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>129</span>价格<del>¥66</del></div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-2.jpg">
+		                    <div class="d1">
+		                        <p class="p1">易溶解易吞咽</p>
+		                        <p class="p2">美国嘉宝Gerber番茄泡芙条</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>39</span>价格<del>¥66</del></div>
+	                    </a>
+					</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						<a href="javascript:;">
+	                    	<img src="img/cle-1.jpg">
+		                    <div class="d1">
+		                        <p class="p1">缓解疲劳</p>
+		                        <p class="p2">雀巢咖啡Nescafe醇品瓶装  两瓶套装  </p>
+		                    </div>
+		                    <div class="d2">
+		                    	<span><em>¥</em>45</span>价格<del>¥66</del>
+		                    </div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-4.jpg">
+		                    <div class="d1">
+		                        <p class="p1">茶树精华 镇静舒缓</p>
+		                        <p class="p2">韩国可莱丝Clinie茶树油精华面膜</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>39</span>价格<del>¥66</del></div>
+	                    </a> 
+					</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						<a href="javascript:;">
+	                    	<img src="img/cle-1.jpg">
+		                    <div class="d1">
+		                        <p class="p1">缓解疲劳</p>
+		                        <p class="p2">雀巢咖啡Nescafe醇品瓶装  两瓶套装  </p>
+		                    </div>
+		                    <div class="d2">
+		                    	<span><em>¥</em>45</span>价格<del>¥66</del>
+		                    </div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-4.jpg">
+		                    <div class="d1">
+		                        <p class="p1">茶树精华 镇静舒缓</p>
+		                        <p class="p2">韩国可莱丝Clinie茶树油精华面膜</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>39</span>价格<del>¥66</del></div>
+	                    </a> 
+					</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						<a href="javascript:;">
+	                    	<img src="img/cle-1.jpg">
+		                    <div class="d1">
+		                        <p class="p1">缓解疲劳</p>
+		                        <p class="p2">雀巢咖啡Nescafe醇品瓶装  两瓶套装  </p>
+		                    </div>
+		                    <div class="d2">
+		                    	<span><em>¥</em>45</span>价格<del>¥66</del>
+		                    </div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-4.jpg">
+		                    <div class="d1">
+		                        <p class="p1">茶树精华 镇静舒缓</p>
+		                        <p class="p2">韩国可莱丝Clinie茶树油精华面膜</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>39</span>价格<del>¥66</del></div>
+	                    </a> 
+					</div>
+				</div>
+				<div class="swiper-pagination" style="width: 1.2rem;left: 1rem;bottom: 0rem;"></div>
+			</div>
+		</div>
+		
+		<div class="clear-head">
+			<p class="today-top clear-p">为您推荐</p>
+			<span> ∨ </span>
+		</div>
+		<div class="clear-main">
+			<div class="swiper-container clear-count clear2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<a href="javascript:;">
+	                    	<img src="img/cle-5.jpg">
+		                    <div class="d1">
+		                        <p class="p1">婴儿磨牙棒</p>
+		                        <p class="p2">美国嘉宝Gerber磨牙饼干婴儿磨牙棒</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>129</span>价格<del>¥66</del></div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-6.jpg">
+		                    <div class="d1">
+		                        <p class="p1">超干爽不侧漏</p>
+		                        <p class="p2">日本花王Merries纸尿裤 L54片</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>209</span>价格<del>¥66</del></div>
+	                    </a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+	                    	<img src="img/cle-5.jpg">
+		                    <div class="d1">
+		                        <p class="p1">婴儿磨牙棒</p>
+		                        <p class="p2">美国嘉宝Gerber磨牙饼干婴儿磨牙棒</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>129</span>价格<del>¥66</del></div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-6.jpg">
+		                    <div class="d1">
+		                        <p class="p1">超干爽不侧漏</p>
+		                        <p class="p2">日本花王Merries纸尿裤 L54片</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>209</span>价格<del>¥66</del></div>
+	                    </a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+	                    	<img src="img/cle-5.jpg">
+		                    <div class="d1">
+		                        <p class="p1">婴儿磨牙棒</p>
+		                        <p class="p2">美国嘉宝Gerber磨牙饼干婴儿磨牙棒</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>129</span>价格<del>¥66</del></div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-6.jpg">
+		                    <div class="d1">
+		                        <p class="p1">超干爽不侧漏</p>
+		                        <p class="p2">日本花王Merries纸尿裤 L54片</p>
+		                    </div>
+		                    <div class="d2"><span><em>¥</em>209</span>价格<del>¥66</del></div>
+	                    </a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;">
+	                   		 <img src="img/cle-7.jpg">
+		                    <div class="d1">
+		                        <p class="p1 clamp1">北美红宝石</p>
+		                        <p class="p2 clamp2">Ocean Spray纯天然蔓越莓干</p>
+		                    </div>
+		                    <div class="d2"><span class="s1"><em>¥</em>139</span>价格<del>¥66</del></div>
+	                    </a>
+	                    <a href="javascript:;">
+		                    <img src="img/cle-8.jpg">
+		                    <div class="d1">
+		                        <p class="p1 clamp1">买3免1</p>
+		                        <p class="p2 clamp2">【澳洲直邮 包邮包税】澳洲德运</p>
+		                    </div>
+		                    <div class="d2"><span class="s1"><em>¥</em>45</span>价格<del>¥66</del></div>
+	                    </a>
+					</div>
+				</div>
+				<div class="swiper-pagination" style="width: 1.2rem;left: 1rem;bottom: 0rem;"></div>
+			</div>
+		</div>
+		
+		
+		<div class="clear-head">
+			<p class="today-top clear-p">限时特卖</p>
+			<span> 预告＞ </span>
+		</div>
+		
+		<div id="shop" class="buy">
+			<ul class="ul-item">
+				<li class="ul-list">
+					<div class="buy-img"><img src="img/buy-1.jpg" alt="" /></div>
+					<div class="swiper-container cm-bot">
+						<div class="swiper-wrapper cmb-main">
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-0.png" alt="">
+									<p>【强强瘦身减肥组合】买3送1</p>
+									<p>¥39.00<em class="iconfont">&#xe653;</em></p>
+									
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-1.png" alt="">
+									<p>美肤宝秋冬水份源5件套</p>
+									<p>¥129<em class="iconfont">&#xe653;</em></p>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-2.png" alt="">
+									<p>纯色2米长仿羊绒厚版围巾</p>
+									<p>¥17.90<em class="iconfont">&#xe653;</em></p>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-3.png" alt="">
+									<p>牛奶巧克力涂饰蛋糕750g</p>
+									<p>¥29.90<em class="iconfont">&#xe653;</em></p>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-4.png" alt="">
+									<p>全套12本 送12色蜡笔</p>
+									<p>¥19.90<em class="iconfont">&#xe653;</em></p>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-8.png" alt="">
+									<p>学院风石头纹雪地靴</p>
+									<p>¥99.90<em class="iconfont">&#xe653;</em></p>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:;">
+									<img src="img/cont-6.png" alt="">
+									<p>blings入冬必备身体乳2支</p>
+									<p>¥23.90<em class="iconfont">&#xe653;</em></p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+			
+		</div>
+		<div class=""> 
+			
+		</div>
+		
+	</div>
+
+</div>

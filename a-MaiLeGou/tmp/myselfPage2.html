@@ -1,0 +1,77 @@
+	
+	<style>
+    	#wrapper{
+    		width: 2rem;
+    		margin: 0.5rem auto;
+    		font-size: 0.14rem;
+    		display: flex;
+    		flex-flow: column;
+    	}
+    	#wrapper div{
+    		width: 2rem;
+    		height: 0.6rem;
+    		display: flex;
+    		flex-flow: column;
+    		margin: 0.1rem 0;
+    		text-align: center;
+    	}
+    	#wrapper input{
+    		width: 2rem;
+    		height: 0.3rem;
+    		outline: none;
+    		border-radius: 0.1rem;
+    		margin-bottom: 0.1rem;
+    		text-indent: 0.05rem;
+    		
+    	}
+    	p.error{
+    		color: #a10;
+    	}
+    	#wrapper button{
+    		width: 1.6rem;
+    		height: 0.3rem;
+    		border-radius: 0.1rem;
+    		color: #fff;
+    		background: #e5376c;
+    		font-size: 0.16rem;
+    		border: 0;
+    		outline: none;
+    	}
+    	input.error{
+    	
+    		border: 1px solid #a10;
+    	}
+    </style>
+
+		<div id="wrapper">
+			<form name="singUpForm" ng-submit="submitForm()">
+				<div>
+				<input type="text" id="userName" 
+					name="username"
+					ng-model = "username"
+					ng-class = '{error: singUpForm.username.$invalid && singUpForm.username.$touched}'
+					placeholder="请输入账号/手机号" 
+					ng-minlength = "6" 
+	    			ng-maxlength = "11" 
+	    			required 
+	    			autocomplete="off"
+					/>
+					<p class="error" 
+	    			ng-if="singUpForm.username.$error.required && singUpForm.username.$touched"
+	    			>用户名不能为空</p>
+	    			<p class="error" ng-if="(singUpForm.username.$error.minlength|| singUpForm.username.$error.maxlength) && username.$touched"
+	    			>用户名长度应在6至11位之间</p>
+			</div>
+			<div>
+				<input type="password" id="psw" placeholder="请输入密码" />
+			</div>
+			<div>
+				<input type="password" id="pswSure" placeholder="请输入确认密码" />
+			</div>
+			</form>
+			
+			<div>
+				<button id="btn">同意服务协议并注册</button>
+			</div>
+			
+		</div>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title> 
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/swiper-min.css">
+    <link rel="stylesheet" href="css/style-main.css" />
+    <script type="text/javascript" src="js/angular.min.js" ></script>
+	<script type="text/javascript" src="js/angular-sanitize.min.js" ></script>
+    <script type="text/javascript" src="js/angular-route.min.js" ></script>
+    <script src="js/jquery.js"></script>
+	<script src="js/swiper-jquery.js"></script>
+	<script src="js/iscroll.js"></script>
+	
+    <style>
+    	
+    	
+			
+    </style>
+    
+    
+</head>
+<body ng-app="myApp">
+	<div id="box">
+		
+		<header ng-include="'tmp/header.html'"></header>
+			
+		<section  ng-view></section>
+
+		<footer ng-include="'tmp/footer.html'"></footer>
+	</div>
+		
+	
+	
+	
+	<script type="text/javascript">
+    	
+   		var myApp = angular.module('myApp',['ngRoute']);
+    	myApp.config(['$routeProvider',function($routeProvider){
+    		$routeProvider
+    			.when('/',{
+    				templateUrl:'tmp/homePage.html',
+    				controller:'mainCtrl',
+    			})
+    			.when('/tmp/listPage',{
+    				templateUrl:'tmp/listPage.html',
+    				controller:'listCtrl',
+    			})
+    			.when('/tmp/salePage',{
+    				templateUrl:'tmp/salePage.html',
+    				controller:'saleCtrl',
+    			})
+    			.when('/tmp/shopCartPage',{
+    				templateUrl:'tmp/shopCartPage.html',
+    				controller:'shopCartCtrl',
+    			})
+    			.when('/tmp/myselfPage',{
+  					templateUrl:'tmp/myselfPage.html',
+    				controller:'myselfCtrl',
+    			})
+    			.when('/tmp/myselfPage2',{
+  					templateUrl:'tmp/myselfPage2.html',
+    				controller:'myselfCtrl2',
+    			})
+    			.otherwise({redirectTo:'/'});
+    	}])
+    		myApp.controller('mainCtrl',['$scope','$location',"$window",'$timeout',function($scope,$location,$window,$timeout){
+    			$("footer li").removeClass("f-active ")
+    			$("footer li:nth-of-type(1)").addClass("f-active ")
+    		var mySwiper1 = new Swiper('.ban', {
+					loop: true,
+					pagination: '.swiper-pagination',
+					autoplay: 2000,
+					autoplayDisableOnInteraction: false,
+				})
+    		var mySwiper2 = new Swiper('.new', {
+    				direction: 'vertical',
+					loop: true,
+					autoplay: 2000,
+					autoplayDisableOnInteraction: false,
+				})
+    		 var hour  = 00,
+                    minte = 16,
+                    mi  = 43,
+                    time  = null;
+                time=setInterval(function(){
+                    mi--;
+                    if(mi == 0){
+                        mi = 59;
+                        minte--;
+                        if(minte == 0){
+                            minte =00;
+                            clearInerval(time);
+                        }
+                    }
+                    $(".time span:nth-of-type(2)").html(minte);
+                    $(".time span:nth-of-type(3)").html(mi);
+                },1000)
+    			/*良品cont*/
+				var mySwiperc2 = new Swiper('.cm-bot', {
+					slidesPerView : 3,
+					spaceBetween : 5,
+				})
+				/*national*/
+				var mySwiperc3 = new Swiper('.national', {
+					effect: 'coverflow',
+					slidesPerView: 2,
+					centeredSlides: true,
+				})
+				/*clear-count*/
+				var mySwiperc4 = new Swiper('.clear1', {
+					slidesPerColumn: 2,
+					slidesPerColumnFill:"row",
+					pagination: '.swiper-pagination',
+				})
+				var mySwiperc5 = new Swiper('.clear2', {
+					slidesPerColumn: 2,
+					slidesPerColumnFill:"row",
+					pagination: '.swiper-pagination',
+				})
+				
+					$.ajax({
+						type: "get",
+						url: "http://list.mogujie.com/search?cKey=h5-shopping&fcid=&pid=9750&searchTag=&sort=pop&page=" + 0 + "&ratio=3%3A4&_version=1&_=1478311519377",
+						async: true,
+						jsonp: 'callback',
+						dataType: 'jsonp',
+						success: function(data) {
+							var html = ' ';
+							data.result.wall.docs.forEach(function(v, k) {
+								var i = k;
+								if( i < 7 ){
+									html += '<div class="swiper-slide"><a href="javascript:;"><img src=" '+v.img+'" alt=""><p>'+v.title+'</p><p>¥'+v.price+'<em class="iconfont">&#xe653;</em></p></a></div>'
+								}
+							oScroll.refresh();
+						})
+							setTimeout(function(){
+								$(".ul-item").append('<li class="ul-list"><div class="buy-img"><img src="img/buy-1.jpg" alt="" /></div><div class="swiper-container cm-bot"><div class="swiper-wrapper cmb-main">'+ html +'</div></div></li>')
+							},1000)
+							oScroll.refresh();
+							console.log(1)
+							var mySwiperc2 = new Swiper('.cm-bot', {
+								slidesPerView : 3,
+								spaceBetween : 5,
+							})
+						}
+					});
+				oScroll = new iScroll('iscroll', {
+					hScrollbar: false,
+					vScrollbar: false,
+					onScrollMove: function() {
+						if (this.y < this.maxScrollY && !$(".ul-list").hasClass("active")) {
+							$(".ul-list").addClass("active");
+						}
+					},
+					onScrollEnd: function() {
+						if ($(".ul-list").hasClass("active")) {
+							$(".ul-list").removeClass("active");
+							upData();
+						}
+					},
+					onRefresh: function() {
+						
+					},
+				})
+
+				
+					var num = 1;
+				function upData() {
+					num++;
+					$.ajax({
+						type: "get",
+						url: "http://list.mogujie.com/search?cKey=h5-shopping&fcid=&pid=9750&searchTag=&sort=pop&page=" + num + "&ratio=3%3A4&_version=1&_=1478311519377",
+						async: true,
+						jsonp: 'callback',
+						dataType: 'jsonp',
+						success: function(data) {
+							var html = ' ';
+							data.result.wall.docs.forEach(function(v, k) {
+								var i = k;
+								if( i < 7 ){
+									html += '<div class="swiper-slide"><a href="javascript:;"><img src=" '+v.img+'" alt=""><p>'+v.title+'</p><p>¥'+v.price+'<em class="iconfont">&#xe653;</em></p></a></div>'
+								}
+							oScroll.refresh();
+						})
+							setTimeout(function(){
+								$(".ul-item").append('<li class="ul-list"><div class="buy-img"><img src="img/buy-1.jpg" alt="" /></div><div class="swiper-container cm-bot"><div class="swiper-wrapper cmb-main">'+ html +'</div></div></li>')
+							},1000)
+							oScroll.refresh();
+							console.log(1)
+							var mySwiperc2 = new Swiper('.cm-bot', {
+								slidesPerView : 3,
+								spaceBetween : 5,
+							})
+						}
+					});
+				}
+				$(".ul-item").on("click",function(ev){
+					var e = ev || window.event;
+					var tar = e.target || e.srcElement;
+					
+					console.log(tar.tagName.toLowerCase())
+				})
+				
+    	}])
+    	myApp.controller('listCtrl',['$location',function($location){
+    		console.log("listCtrl");
+    		this.name = "123";
+    		$("footer li").removeClass("f-active ")
+    		$("footer li:nth-of-type(2)").addClass("f-active ")
+    	}])
+    	myApp.controller('saleCtrl',['$scope',function($scope){
+    		console.log("saleCtrl");
+    		$("footer li").removeClass("f-active ")
+    		$("footer li:nth-of-type(3)").addClass("f-active ")
+    	}])
+    	myApp.controller('shopCartCtrl',['$scope',function($scope){
+    		console.log("shopCartCtrl");
+    		$("footer li").removeClass("f-active ")
+    		$("footer li:nth-of-type(4)").addClass("f-active ")
+    	}])
+    	myApp.controller('myselfCtrl',['$scope',function($scope){
+    		console.log("moreCtrl");
+    		$("footer li").removeClass("f-active ");
+    		$("footer li:nth-of-type(5)").addClass("f-active ");
+    		
+    	var userTag = sessionStorage.getItem('userInfo');
+    	if(userTag){
+    		userTag = JSON.parse(userTag);
+    		$("#name").val(userTag.userID);
+    	}
+    	$("#btn").click(function(){
+    		var tag = true;
+    		if($("#name").val() && $("#psW").val()&& tag){
+    			//格式校验
+    			console.log("已经进来，等待发送！请耐心等待");
+    			$.ajax({
+	    			type:"POST",
+	    			url:"http://datainfo.duapp.com/shopdata/userinfo.php",
+	    			data:{
+	    				"status":"login",
+	    				"userID":$("#name").val(),
+	    				"password":$("#psW").val()
+	    			},
+	    			success:function(data){
+	    				console.log("接口请求已经成功");
+	    				if(data == 0){
+	    					alert("用户账号不存在，请您注册");
+	    					var userTmp = {
+	    						userID:$("#name").val(),
+	    						loginTag:false
+	    					}
+	    					userTmp = JSON.stringify(userTmp);
+	    					sessionStorage.setItem('userInfo',userTmp);
+	    					location.href="#/tmp/myselfPage2";
+	    				}else if(data == 2){
+	    					
+	    				}else{
+	    					console.log("success");
+	    					var userTmp = {
+	    						userID:$("#name").val(),
+	    						loginTag:true
+	    					}
+	    					userTmp = JSON.stringify(userTmp);
+	    					sessionStorage.setItem('userInfo',userTmp);
+	    				}
+	    			},
+	    			error:function(XMLHttpRequest, textStatus, errorThrown){
+	    				console.log("XMLHttpRequest：====" + XMLHttpRequest);
+	    				console.log("textStatus：=====" + textStatus);
+	    				console.log("errorThrown：======" + errorThrown);
+	    			}
+	    			
+	    		})
+    		}else{
+    			alert("请填写用户名或密码");
+    		}
+    	})
+    	}])
+		myApp.controller('myselfCtrl2',['$scope',function($scope){
+    		console.log("moreCtrl2");
+    		$("footer li").removeClass("f-active");
+    		$("footer li:nth-of-type(5)").addClass("f-active");
+    		var userTag = sessionStorage.getItem('userInfo');
+			if(userTag) {
+				userTag = JSON.parse(userTag);
+				console.log(userTag.userID);
+				$('#userName').val(userTag.userID);
+				
+			}
+
+			$("#btn").click(function() {
+				if($("#userName").val() && $("#psw").val() && $("#pswSure").val() && ($("#psw").val() == $("#pswSure").val())) {
+					console.log("接口正在发送中请耐心等待。。。");
+					$.ajax({
+						type: "POST",
+						url: 'http://datainfo.duapp.com/shopdata/userinfo.php',
+						data: {
+							"status":"register",
+							"userID":$("#userName").val(),
+							"password":$("#pswSure").val(),
+						},
+						success: function(data) {
+							console.log("已经成功！");
+							if(data ==0 ){
+								alert("用户重命名");
+							}else if(data == 1){
+								console.log("您已经注册成功");
+								var userTmp = {
+		    						userID:$("#userName").val(),
+		    						loginTag:false
+		    					}
+								userTmp = JSON.stringify(userTmp);
+	    						sessionStorage.setItem('userInfo',userTmp);
+						
+								window.location.href = "login.html";
+							}else if(data == 2){
+								alert("数据库错误");
+							}else{
+								alert("未知错误");
+							}
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							console.log("XMLHttpRequest：====" + XMLHttpRequest);
+		    				console.log("textStatus：=====" + textStatus);
+		    				console.log("errorThrown：======" + errorThrown);
+						}
+					})
+
+				}else{
+					//错误判断以及提醒
+				}
+
+			})
+    		
+    	}])	
+    </script>
+</body>
+</html>
