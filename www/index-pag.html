@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="js/swiper-min.css">
+    <script src="js/zepto.js"></script>
+    <script src="js/swiper-jquery.js"></script>
+    <script src="js/app.js"></script>
+    <style>
+        /*第二张*/
+        .two{
+            display: block;
+            width: 3.2rem;
+            height: 100%;
+            font-size: .16rem;
+        }
+        .two img{
+            width: 100%;
+            height: 100%;
+        }
+        .two .swiper-last img:nth-of-type(1){
+            position: relative;
+        }
+        .two .swiper-last img:nth-of-type(2){
+            position: absolute;
+            bottom: 1.2rem;
+            left: .9rem;
+            width: 1.5rem;
+            height: .5rem;
+        }
+        .swiper-pagination-bullet-active{
+            background: #e5376c;
+        }
+        .five{
+            width: 45%;
+            padding: 5% 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container two">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="img/home-2.png" alt="" class="swiper-one">
+            </div>
+            <div class="swiper-slide">
+                <img src="img/home-3.png" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="img/home-4.png" alt="">
+            </div>
+            <div class="swiper-slide swiper-last">
+                <img src="img/home-5.png" alt="">
+                <img src="img/home-6.png" alt="" class="five">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <script>
+        window.onload = function() {
+            var mySwiperT = new Swiper('.two', {
+                pagination: '.swiper-pagination',
+            });
+            $(".five")[0].addEventListener("touchstart", function () {
+                window.location.href='index-main.html';
+            },false)
+        }
+    </script>
+</body>
+</html>

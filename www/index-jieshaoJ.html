@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>走秀网 商品-介绍</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/swiper-min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <script src="js/zepto.js"></script>
+    <script src="js/touch.js"></script>
+    <script src="js/swiper-jquery.js"></script>
+    <script src="js/iscroll.js"></script>
+     <script src="js/app.js"></script>
+    <style>
+        #box{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .box-main{
+            flex: 1;
+            overflow-y: scroll;
+        }
+        .jie{
+            background: #fefcfd;
+            display: flex;
+            flex-direction: column;
+            height:100%;
+            width:100%;
+        }
+
+        /*商品详情*/
+        .c-head{
+            width: 100%;
+            background: #e4366b;
+            height: .5rem;
+            display: flex;
+        }
+        .c-head img:nth-of-type(1){
+            width: .35rem;
+            height: .25rem;
+            margin: .15rem .595rem 0 .1rem;
+        }
+        .c-head img:nth-of-type(2){
+            width: 1.1rem;
+            height: .25rem;
+            margin-top: .15rem;
+        }
+
+        .jie .time{
+            width: 100%;
+            font-size: .16rem;
+            color: #fff;
+            font-weight: 600;
+            background:#484850;
+            display: flex;
+            height: .5rem;
+            line-height: .5rem;
+            padding-left: .1rem;
+        }
+        .jie .jie-box{
+            display: flex;
+            flex-direction: column;
+        }
+        .jie .jie-one{
+            width: 2.2rem;
+            height: 2.2rem;
+            margin: .2rem 0 .2rem .47rem;
+        }
+        .jie .jie-two{
+            width: 2.8rem;
+            height: .6rem;
+            margin-left:.2rem;
+        }
+        .jie .jie-box span{
+            font-size: .16rem;
+            margin: .2rem 0 0 .3rem;
+        }
+        .jie i{
+            color: #666;
+        }
+        .jie i:nth-of-type(1) em{
+            text-decoration: line-through;
+        }
+        .jie i:nth-of-type(2){
+            margin: 0 .2rem;
+        }
+
+        .nav{
+            width:100%;
+            font-size: .2rem;
+            color: #fff;
+            display: -webkit-flex;
+            display: flex;
+            flex-flow: row  nowrap;
+            justify-content: space-around;
+            box-sizing: border-box;
+            background: #484850;
+            list-style: none;
+        }
+        .nav li{
+            width: 33.33%;
+            text-align: center;
+            padding: 4% 0;
+            border-top: .03rem solid #484850;
+            border-right: 1px solid #222;
+        }
+        .nav li:nth-of-type(3){
+            border-right: none;
+        }
+        .nav .f-active{
+            border-top: .03rem solid #e5376c;
+        }
+        .footer{
+            width:100%;
+            height:.5rem;
+            background: #484850;
+            display: -webkit-flex;
+            display: flex;
+            flex-flow: row  nowrap;
+            box-sizing: border-box;
+        }
+        .c-head .button-one{
+            font-size: .14rem;
+            color: #fefcfd;
+            border-radius: .1rem;
+            background: #e4366b;
+            outline: none;
+            border: 0;
+            box-shadow: 0 .005rem .01rem .005rem #999;
+            width: .6rem;
+            height: .3rem;
+            position: absolute;
+            top: .12rem;
+            right: .12rem;
+        }
+        .time span{
+            display: inline-block;
+            width: .2rem;
+            height: .16rem;
+            font-size: .14rem;
+            text-align: center;
+            line-height: .16rem;
+            margin: .16rem .04rem;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="jie">
+        <div class="c-head">
+            <img src="img/m-1.png" alt="" >
+            <img src="img/xq-0.png" alt="" >
+            <button class="button-one">分享</button>
+        </div>
+        <div class="box-main">
+            <div class="time">
+                距离结束时间：<span>00</span>天<span>00</span>时<span>00</span>分<span>00</span>秒
+            </div>
+            <div class="box-main jie-box">
+                <img src="img/x-0.png" alt="" class="jie-one">
+                <img src="img/x-2.png" alt="" class="jie-two">
+                    <span>
+                        <i>市场价：<em>￥439</em></i>
+                        <i>4.8折</i>
+                        <i>125人购买</i>
+                    </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <ul class="nav">
+            <li class="f-active">介绍</li>
+            <li>详情</li>
+            <li>实拍</li>
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function(){
+        /*详情后退首页*/
+        $(".jie .c-head img:nth-of-type(1)").on("singleTap",function () {
+            window.location.href='index-main.html';
+            $(".footer .foot-list").css({display: 'inline-flex',display:'flex'});
+            $(".footer .nav").css({display:"none"});
+        })
+        $(".nav li").on("singleTap",function () {
+            var i = $(this).index();
+            $(".nav li").removeClass("f-active").eq(i).addClass("f-active");
+            if(i == 0) window.location.href='index-jieshaoJ.html';
+            if(i == 1) window.location.href='index-jieshaoX.html';
+            if(i == 2) window.location.href='index-jieshaoS.html';
+        })
+        /*倒计时*/
+        var
+                oSpanOne   = $(".time span:nth-of-type(1)"),
+                oSpanTwo   = $(".time span:nth-of-type(2)"),
+                oSpanThree = $(".time span:nth-of-type(3)"),
+                oSpanFour  = $(".time span:nth-of-type(4)"),
+                oTime      = null,
+                day        = 2,
+                hour       = 2,
+                minute     = 59,
+                second     = 59;
+
+        oTime = setInterval(function () {
+            second--;
+            if(second == 0){
+                second = 59;
+                minute--;
+                if(minute == 0){
+                    minute = 59;
+                    hour--;
+                    if(hour == 0){
+                        hour == 23;
+                        day--;
+                        if(day == 0){
+                            clearInterval(oTime);
+                        }
+                    }
+                }
+            }
+            oSpanOne.html(day);
+            oSpanTwo.html(hour);
+            oSpanThree.html(minute);
+            oSpanFour.html(second);
+        },1000)
+    }
+</script>
+</body>
+</html>
