@@ -9,7 +9,7 @@ var Qixi = function() {
       },
       audio: {
         enable: true,
-        playURl: "circulation.wav",
+        playURl: "happy.wav",
         cycleURL: "circulation.wav"
       },
       setTime: {
