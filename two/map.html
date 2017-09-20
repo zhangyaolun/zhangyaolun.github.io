@@ -10,14 +10,15 @@
     </style>
 </head>
 <body>
-	<img src="order_logo.png" class="ci_upload" onclick="$('#file4').click()"/>
+	<img src="order_logo.png" class="ci_upload"/>
 	<input name="image" type="file" id="file4" onchange="filesize(this)"/>
 </body>
 	<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		$('#file').on('change',function(){
-			alert('5555')
+		$('.ci_upload').on('click',function(){
+			$('#file4').click();
+			alert('7777')
 		})
 		
 		function filesize(target) {  
