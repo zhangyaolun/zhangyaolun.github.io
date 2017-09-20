@@ -9,7 +9,7 @@ $('.pay_fixed').on('click',function(){
 	
 })
 
-$('.oneImage').bind('click',function(){
+$('.oneImage')..off('click').on('click',function(){
 	alert('88')
 	$('#file4').click();
 })
