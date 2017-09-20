@@ -10,7 +10,6 @@ $('.pay_fixed').on('click',function(){
 })
 
 $('.paytitle_image .oneImage').click(function(){
-	alert('33')
 	$('#file4').click();
 })
 
