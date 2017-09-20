@@ -722,7 +722,6 @@ body{
 }
 .paytitle_image div input{
 	font-size: 0;
-	height: .6rem;
 	position: absolute;
 	top: .55rem;
     left: .1rem;
