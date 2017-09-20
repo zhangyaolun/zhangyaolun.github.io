@@ -9,8 +9,8 @@ $('.pay_fixed').on('click',function(){
 	
 })
 
-$('.oneImage').off('click').on('click',function(){
-	alert('88')
+$('.paytitle_image .oneImage').click(function(){
+	alert('33')
 	$('#file4').click();
 })
 
