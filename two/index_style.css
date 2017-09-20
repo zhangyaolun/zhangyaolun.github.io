@@ -683,6 +683,7 @@ body{
 	height: .9rem;
 }
 .paytitle_image img{
+	
 	width:.8rem;
 	height: .8rem;
 	margin-right: .1rem;
@@ -720,7 +721,6 @@ body{
 	position: relative;
 }
 .paytitle_image div input{
-	font-size: 0;
 	position: absolute;
 	top: 0;
 	left: 0;

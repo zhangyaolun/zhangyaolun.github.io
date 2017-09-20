@@ -9,9 +9,9 @@ $('.pay_fixed').on('click',function(){
 	
 })
 
-$('.paytitle_image .oneImage').click(function(){
+/*$('.paytitle_image .oneImage').click(function(){
 	$('#file4').click();
-})
+})*/
 
 function filesize(target) {  
     var filesize = (target.files[0].size / 1024).toFixed(2);  
