@@ -715,8 +715,18 @@ body{
 	text-align: center;
 	background-color: #ffb600;
 }
+.paytitle_image div{
+	font-size: 0;
+	position: relative;
+}
+.paytitle_image div input{
+	font-size: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 #file4{
-	display: none;
+/*	display: none;*/
 }
 /*消费记录*/
 .consume_box,.consume_box ul{
