@@ -1,4 +1,4 @@
-FastClick.attach(document.body);
+window.addEventListener("load",function(){FastClick.attach(document.body);},false);
 var imgAttr = [];
 /*提交发表评论*/
 $('.pay_fixed').on('click',function(){
@@ -9,8 +9,8 @@ $('.pay_fixed').on('click',function(){
 	
 })
 
-$('.oneImage').on('click',function(){
-	alert('11111');
+$('.oneImage').bind('click',function(){
+	alert('88')
 	$('#file4').click();
 })
 
