@@ -722,10 +722,12 @@ body{
 }
 .paytitle_image div input{
 	font-size: 0;
-	height: .4rem;
+	height: .6rem;
 	position: absolute;
-	top: .2rem;
-	left: 0;
+	top: .55rem;
+    left: .1rem;
+	outline: none;
+	border: none;
 }
 #file4{
 /*	display: none;*/
