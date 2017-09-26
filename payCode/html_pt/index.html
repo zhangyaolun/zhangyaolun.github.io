@@ -160,8 +160,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
+			<div class="back">∧</div>
 		</div>
 	</body>
 	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -173,6 +173,7 @@
 				init:function(){
 					FastClick.attach(document.body);
 					o.swiperDate();
+					o.moreDate();
 					o.clickDate();
 				},
 				swiperDate:function(){
@@ -211,12 +212,32 @@
 						var codeIndex = $(this).index();
 						$(".comTime_code span").removeClass('code_active').eq(codeIndex).addClass('code_active');
 					});
-					$('.index_main ul').scroll(function(){
+					/*$('.index_main ul').scroll(function(){
 					　　var scrollTop = $(this).scrollTop();
 					　　var scrollHeight = ($('.index_main ul li').height()+1)*$('.index_main ul li').length;
 					　　var windowHeight = $(this).height();
 					　　if(scrollTop + windowHeight == scrollHeight){
 						  console.log('55555');
+					　　}
+					});	*/
+					$('.back').on('click',function(){
+						$(window).scrollTop(0);
+						$('.back').css('display','none');
+					})
+				},
+				moreDate:function(){
+					$(window).scroll(function(){
+						if ($(window).scrollTop() != '0'){
+							$('.back').css('display','block');
+						}else{
+							$('.back').css('display','none');
+						}
+					　　var scrollTop = $(this).scrollTop();
+					　　var scrollHeight = $(document).height();
+					　　var windowHeight = $(this).height();
+						
+					　　if(scrollTop + windowHeight == scrollHeight){
+						  
 					　　}
 					});	
 				}
