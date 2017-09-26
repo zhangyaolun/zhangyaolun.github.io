@@ -320,7 +320,7 @@ body{
 .index_comment .comment_time span{
     display: inline-block;
     border: 1px solid #ccc;
-    width: 21%;
+    width: .73rem;
     height: .2rem;
     border-radius: .1rem;
     margin-left: .12rem;
