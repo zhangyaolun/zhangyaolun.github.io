@@ -121,9 +121,9 @@ body{
 }
 .registerBox .reg_button{
 	text-align: center;
-	position: absolute;
+	/*position: absolute;
 	left: .2rem;
-	bottom: .05rem;
+	bottom: .05rem;*/
 	width: 3.35rem;
 	height: .4rem;
 	line-height: .4rem;
@@ -132,6 +132,8 @@ body{
 	background-color:#4caf50 ;
 	color: #fff;
 	font-size: .15rem;
+	    margin-top: .8rem;
+    margin-left: .15rem;
 }
 /*后台商户查询*/
 .indexBox{
