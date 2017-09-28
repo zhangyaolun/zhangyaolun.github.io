@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>对账</title>
+		<script src="css/app.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div class="indexBox box ">
+			<div class="content-slide index_comment lgBackground">
+				<div class="comment_fixed">
+					当前日期：<i>2017-09-27</i>
+				</div>
+				<div class="comment_fixed">
+					伴飞共享卡余额：<i class="colorFont">￥12040.00</i>
+				</div>
+				<div class="comment_fixed">
+					伴飞共享卡折扣：<i>7</i>折
+				</div>
+				<div class="comment_time">
+					<em>请选择时间：</em>
+						<span class="code_one code_active">一个月</span>
+						<span>三个月</span>
+						<span>六个月</span>
+				</div>
+				<div class="index_nav index_flex">
+					<span>消费金额</span>
+					<span>折扣金额</span>
+					<span>交易日期</span>
+				</div>
+				<ul>
+					<li class="index_flex">
+						<span>300.00</span>
+						<span>210.00</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>4.00</span>
+						<span>2.80</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>400</span>
+						<span>280</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-27</span>
+					</li>
+					<li class="index_flex">
+						<span>400</span>
+						<span>280</span>
+						<span>2017-9-26</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-26</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-26</span>
+					</li>
+					<li class="index_flex">
+						<span>300</span>
+						<span>210</span>
+						<span>2017-9-26</span>
+					</li>
+				</ul>
+			</div>
+			<div class="back">∧</div>
+		</div>
+	</body>
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/fastclick.min.js"></script>
+	<script type="text/javascript">		
+		$(function() {
+			var o = {
+				init:function(){
+					FastClick.attach(document.body);
+					o.swiperDate();
+					o.moreDate();
+					o.clickDate();
+				},
+				swiperDate:function(){
+					
+				},
+				clickDate:function(){
+					
+					$('.back').on('click',function(){
+						$(window).scrollTop(0);
+						$('.back').css('display','none');
+					})
+				},
+				moreDate:function(){
+					$(window).scroll(function(){
+						if ($(window).scrollTop() != '0'){
+							$('.back').css('display','block');
+						}else{
+							$('.back').css('display','none');
+						}
+					　　var scrollTop = $(this).scrollTop();
+					　　var scrollHeight = $(document).height();
+					　　var windowHeight = $(this).height();
+						
+					　　if(scrollTop + windowHeight == scrollHeight){
+						  
+					　　}
+					});	
+				}
+			}
+			o.init();
+		});
+	</script>
+</html>

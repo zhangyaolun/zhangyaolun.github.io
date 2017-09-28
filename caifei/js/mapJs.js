@@ -5,13 +5,10 @@ var o = {
 			var mayself = getParameter('index').split('|');
 			o.shopMap(0,0,mayself);
 		}else{
-			console.log('888')
 			var mayself = getParameter('mayself').split('|'),
-				hisself = getParameter('type').split('|');
-				
+				hisself = getParameter('type').split('|');		
 			o.shopMap(mayself,hisself,0);
 		}
-		
 	},
 	shopMap:function(mayself,hisself,mapIndex){
 		var center;
@@ -20,6 +17,8 @@ var o = {
 			mayself = mapIndex;
 			center = new qq.maps.LatLng(mayself[1],mayself[0]);	
 			ajaxDate();
+			console.log(oAttr)
+			
 			
 			for(var i = 0;i < oAttr.length; i++){
 				for(var j = 0;j < oAttr[i].length; j++){
@@ -32,6 +31,7 @@ var o = {
 		    for(var s = 0;s < moreAttr.length; s++){
 				latlngs.push(new qq.maps.LatLng(moreAttr[s].latitude,moreAttr[s].longitude));
 			}
+		    console.log(latlngs)
 		}else{
 			
 			center = new qq.maps.LatLng(mayself[1],mayself[0]);	
@@ -69,10 +69,9 @@ var o = {
 		        
 		    });
 	    	 for(var i = 1;i < latlngs.length; i++) { 
-		    	if(moreAttr[i]){
-		    		var a = moreAttr[i-1].shopName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i-1].discountRate*100).toFixed(0)+'折</span>';
-		    		
-		    	}
+		    	
+		    	var a = moreAttr[i-1].shopName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i-1].discountRate*10).toFixed(0)+'折</span>';
+		    	
 				var label = new qq.maps.Label({
 			        position: latlngs[i],
 			        map: map,
@@ -92,7 +91,6 @@ var o = {
 	            if(hisself != 0)oOpen();
 	            qq.maps.event.addListener(marker, 'click', function(event) { 
 	            	if(event.latLng.lat == mayself[1])return;
-	            	console.log(event.latLng.lat)
 	                 oOpen(event.latLng.lat);
 	            }); 
 	            function oOpen(lato){
@@ -102,7 +100,6 @@ var o = {
 	                'nowrap;color:#333;font-size:14px;">' + 
 	                hisself[4] +'<div style="font-size:12px;color:#666;">地址：'+hisself[3]+'<div style="font-size:12px;color:#666;">电话：'+hisself[6]+'</div></div> </div>'); 
 					}else{
-						console.log(latlngs[5].lat)
 						for(var i = 1;i < latlngs.length; i++) { 
 							if(latlngs[i].lat == lato){
 								infoWin.setContent('<div style="text-align:left;white-space:'+ 
@@ -123,7 +120,7 @@ var o = {
 		    var data = {
 				'x':mayself[0],
 				'y':mayself[1],
-				'radius':3,
+				'radius':100,
 				'currPage':currPage,
 				'pageSize':10,
 				'order':'',
@@ -144,7 +141,7 @@ var o = {
 				           	var data = {
 								'x':mayself[0],
 								'y':mayself[1],
-								'radius':3,
+								'radius':100,
 								'currPage':i,
 								'pageSize':10,
 								'order':'',

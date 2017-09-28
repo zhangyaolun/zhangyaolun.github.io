@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title></title>
+		<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
+		
+<script type="text/javascript">
+
+</script>
+		<style>
+
+		</style>
+	</head>
+	<body >
+		<input name="image" class="ci_upload" type="file" id="file4" onchange="filesize(this)"/>
+	</body>
+	<script type="text/javascript">
+		function filesize(target) {  
+		    var filesize = (target.files[0].size / 1024).toFixed(2);  
+		    var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
+		    if(filesize >1024){  
+		        alert("您上传的文件大于1M");
+		        target.value =""; 
+				return false;   
+		    }else if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'){
+		    	alert("只能上传jpg，png，jpeg");
+			    return false;
+		    }
+		}
+		var suc=function(url){
+	    	//console.log(IMAGE_PATH+url);
+	    	console.log(url)
+	        var $input=$("#"+register_currentId);
+	        $($input).siblings("span").hide();
+	        $("#img1").show();
+	        $($input).siblings("img").attr("src",IMAGE_PATH+url);
+	        $($input).siblings("img").show();
+	        $(".ci_upload").unbind().bind("change",function(){
+	          uploadImage($(this));
+	        })
+	//    	company_register_currentDom.attr("src",IMAGE_PATH+url);
+	//    	$("#"+register_currentId).attr("src",url+register_currentFileType);
+	    }
+	    
+	    $(".ci_upload").change(function(){
+	        uploadImage($(this));
+	      })
+	
+	    function uploadImage(input){
+	    	console.log(input)
+	        register_currentId=$(input).attr("id");//保存当前选中元素
+	        register_currentFileType=$(input).val().substring($(input).val().lastIndexOf("."),$(input).val().length);
+	        ajaxFileUpload($(input),suc);
+	    }
+		
+		
+		function ajaxFileUpload(target,callback) {
+		  var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
+		  var pid=$(target).attr("id");
+		if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'){
+		  //alert("只能上传jpg，png，jpeg");
+		  return;
+		}
+		  $.ajaxFileUpload({
+		    url : '/upload/image', //用于文件上传的服务器端请求地址
+		    secureuri : false, //一般设置为false
+		    fileElementId : pid, //文件上传空间的id属性  <input type="file" id="file" name="file" />
+		    type : 'post',
+		    dataType : 'json', //返回值类型 一般设置为json
+		    success : function(data) //服务器成功响应处理函数
+		    {   console.log(data)
+		       console.log('77777777777')
+		    	callback(data.data,pid);
+		//  if(data.status==200){
+		//    	console.log(data.status)
+		//      callback(data.data,pid);
+		//    }else{
+		//      alert(data.message);
+		//    }
+		    },
+		    error : function(data)//服务器响应失败处理函数
+		    {
+		      alert("上传失败");
+		    }
+		  })
+		  return false;
+		}
+		
+	</script>
+</html>

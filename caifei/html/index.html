@@ -6,13 +6,12 @@
     
     <title>附近商家</title>
     <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="https://apis.map.qq.com/tools/geolocation/min?key=D7BBZ-HERW6-V26SZ-M35SP-5XPBT-LSFOD&referer=myapp"></script>
-
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/> 
 </head>
-
-<body>
+ <iframe id="geoPage" width=0 height=0 frameborder=0  style="display:none;" scrolling="no" src="https://apis.map.qq.com/tools/geolocation?key=D7BBZ-HERW6-V26SZ-M35SP-5XPBT-LSFOD&referer=myapp">
+	</iframe> 
+<body style="background-color: #fff;">
 	<div class="nearbyBox">
 		<div class="search detailColor">
 			<input type="text" name="search" value="" />
@@ -28,14 +27,14 @@
 				<img src="../img/s_screen.png" alt="" class="left"/>
 				<ul class="listItem">
 					<li>全部</li>
-					<li>美食</li>
-					<li>娱乐</li>
-					<li>儿童</li>
-					<li class="listLast">生活</li>
+					<li>精选美食 </li>
+					<li>休闲娱乐</li>
+					<li>亲子乐园</li>
+					<li class="listLast">美容美发</li>
 				</ul>
 			</li>
 		</ul>
-				
+		
 		<ul class="nearbyMain">
 			<!--<li class="clear detailColor">
 				<div class="main_left left ">
@@ -43,7 +42,7 @@
 				</div>
 				<div class="main_right left">
 					<div class="mr_top clear">
-						<span class="left">万达淘气堡</span>
+						<span class="left mr_title">万达万达淘气堡淘气堡</span>
 						<div class="bg right">
 							<div class="over" style="width:.516rem"></div>
 						</div>
@@ -61,11 +60,13 @@
 		</ul>
 		
 		<div class="back">∧</div>
+		<div class="moreDate"><div><span>定位中</span><img src="../img/timg2.gif"/></div></div>		
 	</div>
 </body>
 
 <!--<script src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js" type="text/javascript" charset="utf-8"></script>
 --><script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="../js/comment.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/dropload.min.js" type="text/javascript" charset="utf-8"></script>

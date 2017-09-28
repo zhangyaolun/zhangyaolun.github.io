@@ -19,6 +19,7 @@ var o = {
 		　　var scrollTop = $(this).scrollTop();
 		　　var scrollHeight = $(document).height();
 		　　var windowHeight = $(this).height();
+		   if($('.consume_item .bottom_load').html() == '暂无消费记录')return;
 		　　if(scrollTop + windowHeight == scrollHeight){
 			   currPage++;
 		　　　 o.moreAjax(currPage);
@@ -27,7 +28,7 @@ var o = {
 	},
 	moreAjax:function(currPage){
 		var data = {
-			'openid':'123456',
+			'openid':sessionStorage.getItem('openId'),
 			'currPage':currPage,
 			'pageSize':10
 		}
@@ -41,19 +42,19 @@ var o = {
 	        	console.log(data);
 	        	if(data.httpCode == 200){
 	        		var result = '';
-	        		if(data.result.result.length == 0){
+	        		if(data.result.result.length == 0  &&  $('.consume_item li').length > 10){
 		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无消费记录</li>');
 		            	return ;
 		            }
 	        		for(var i = 0; i <data.result.result.length; i++){
-	                    result += '<li class="detailColor"><div class="clear title"><span class="left">'+data.result.result[i].actualPay+'<i style="color:#ff6585;margin-left:.1rem">'+(data.result.result[i].rate*100).toFixed(0)+'折</i></span><em class="right">'+data.result.result[i].actualPay.toFixed(2)+'</em></div><div class="clear last"><span class="left">'+data.result.result[i].createTime+'</span><div class="right con_name">评论</div></div></li>';
+	                    result += '<li class="detailColor"><div class="clear title"><span class="left">'+data.result.result[i].userShopName+'<i style="color:#ff6585;margin-left:.1rem">'+(data.result.result[i].rate*10)+'折</i></span><em class="right">￥'+((data.result.result[i].actualPay)/100).toFixed(2)+'</em></div><div class="clear last"><span class="left">'+data.result.result[i].createTime+'</span></div></li>';
                     
 	               }
 	        		
 	        		$('.bottom_load').remove();
 		            $('.consume_item').append(result);
 		            
-		            if(data.result.pageNo == data.result.totalPages){
+		            if(data.result.pageNo == data.result.totalPages &&  $('.consume_item li').length > 10){
 		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无消费记录</li>');
 		            	return ;
 		            }else{

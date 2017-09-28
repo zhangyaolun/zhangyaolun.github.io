@@ -3,56 +3,70 @@ var o = {
 	init:function(){
 		FastClick.attach(document.body);
 		$(window).scrollTop(0);
-		var geolocation = new qq.maps.Geolocation();
-		var options = {timeout: 9000};
-		geolocation.getLocation(showPosition, showErr, options);
-		/*geolocation.getIpLocation(showPosition, showErr);*/
-		console.log('position');
-		function showPosition(position){
-			console.log(position);
+		sessionStorage.setItem('openId',getParameter('openId'));
+		var position = JSON.parse(sessionStorage.getItem('position'));
+		if(!position){
+			window.addEventListener('message', function(event) {
+				if($('.nearbyMain li').eq(0).html() == '暂无数据')return;
+			    // 接收位置信息
+			    var position = event.data; 
+			    if(sessionStorage.getItem('position'))return;
+			    if(position  && position.module == 'geolocation') { //定位成功,防止其他应用也会向该页面post信息，需判断module是否为'geolocation'
+	                sessionStorage.setItem('position',JSON.stringify(position));
+	                $('.moreDate').hide();
+	                $('.nearbyMain').html('');
+	                var currPage = 1,order = '',type = '';
+					o.moreData(position.lng,position.lat,currPage,order,type,0,$('.nearbyBox input').val());
+					o.click(position.lng,position.lat);
+	            } else { 
+	            	$('.moreDate img').hide();
+	            	$('.moreDate span').html('定位失败');
+	            }
+			    console.log(position);      
+			}, false); 
+		}else{    
+			$('.moreDate').hide();
 			var currPage = 1,order = '',type = '';
 			o.moreData(position.lng,position.lat,currPage,order,type,0,$('.nearbyBox input').val());
 			o.click(position.lng,position.lat);
 		}
-		function showErr(){
-			geolocation.getLocation(showPosition, showErr, options);
-		}
-		
 	},
 	moreData:function(x,y,currPage,order,type,oName){
 		var result='';
 		var data = {
 			'x':x,
 			'y':y,
-			'radius':3,
+			'radius':100,
 			'currPage':currPage,
 			'pageSize':10,
 			'order':order,
 			'type':type
 		}
-		console.log(data)
+		
 		var urlDate = ['/shop/geo/withInRadius','/shop/search'],
 			oUrl = urlDate[0];
 		
 		if(oName != ''){
 			data.shopName = oName;
+			data.radius = '';
 			oUrl = urlDate[1];
 		}
+		console.log(data)
 		var sucess = function(data){
 			console.log(data)
 			var result='',oData = data.result;
+			if(currPage == 1){$('.nearbyMain').html('');}
 			if(oData.result.length == 0){
 				$('.nearbyMain').append('<li class="detailColor item bottom_load">暂无数据</li>');
             	return ;
 			}
             for(var i = 0; i < oData.result.length; i++){
-            	var num = oData.result[i].distance*1000;
-                result +=   '<li class="clear detailColor" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="main_left left "><img src="'+oData.result[i].pic+'" alt="" /></div><div class="main_right left"><div class="mr_top clear"><span class="left">'+oData.result[i].shopName+'</span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*0.12+'rem"></div></div></div><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="right">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="mr_price"><span class="priceNew">折扣：<em>'+(oData.result[i].discountRate*100).toFixed(0)+'折</em></span></div></div></li>';
+                result +=   '<li class="clear detailColor" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="main_left left "><img src="'+oData.result[i].pic+'" alt="" /></div><div class="main_right left"><div class="mr_top clear"><span class="left mr_title">'+oData.result[i].shopName+'</span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*0.12+'rem"></div></div></div><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="right">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="mr_price"><span class="priceNew">折扣：<em>'+(oData.result[i].discountRate*10)+'折</em></span></div></div></li>';
             }
             $('.bottom_load').remove();
             $('.nearbyMain').append(result);
     		
-            if(data.result.pageNo == data.result.totalPages){
+            if(data.result.pageNo == data.result.totalPages &&  $('.nearbyMain li').length > 4){
             	$('.nearbyMain').append('<li class="detailColor item bottom_load">暂无数据</li>');
             	return ;
             }else{
@@ -60,20 +74,19 @@ var o = {
             		$('.nearbyMain').append('<li class="detailColor item bottom_load">加载中...</li>');
             	}
             } 
-            
-           if($('.nearbyMain').hasClass('one')){
-           		return ;
-           }else{
-               	$('.nearbyMain').addClass('one');
-               	o.moreLoad(x,y,currPage,order,type,oData.totalPages,oName);
-           }
+             var scrollTop = $(this).scrollTop();
+		　　 var scrollHeight = $(document).height();
+		　　 var windowHeight = $(this).height();
+		
+		　　 if(scrollTop + windowHeight < scrollHeight){
+				$('.nearbyMain .bottom_load').remove();
+			}
 		}
 		doPost(oUrl,data,sucess);
-		
-		
 	},
-	moreLoad:function(x,y,currPage,order,type,totalPages,oName){	
+	moreLoad:function(x,y,currPage,order,type,oName){	
 		$(window).scroll(function(){
+			$('.listItem').css('display','none');
 			if ($(window).scrollTop() != '0'){
 				$('.back').show();
 			}else{
@@ -82,10 +95,12 @@ var o = {
 		　　var scrollTop = $(this).scrollTop();
 		　　var scrollHeight = $(document).height();
 		　　var windowHeight = $(this).height();
-		
+			if($('.nearbyMain .bottom_load').html() == '暂无数据'){
+            	return ;
+			}
 		　　if(scrollTop + windowHeight == scrollHeight){
 			   currPage++;
-		　　　 o.moreData(x,y,currPage,order,type,totalPages,oName);
+		　　　 o.moreData(x,y,currPage,order,type,oName);
 		　　}
 		});	
 	    
@@ -102,6 +117,7 @@ var o = {
 		})
 		/*个人*/
 		$('.nearbyBox .seachImg').on('click',function(){
+			$('.listItem').css('display','none');
 			var oOder = ['',0,1];
 			for(var i=0;i<3;i++){
 				if($('.nearbyNav li').eq(i).hasClass('navStyle')){
@@ -110,7 +126,14 @@ var o = {
 					$('.dropload-down').remove();
 					$('.nearbyMain').html('');
 					$('.back').css('display','none');
-					o.moreData(x,y,1,oOder[i],'',$('.nearbyBox input').val());
+					var oType = '';
+					for(var s=0;s<$('.listItem li').length;s++){
+						console.log($('.listItem li').eq(s).css('color'))
+						if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
+							s == 0?oType = '':oType = s-1;
+						}
+					}
+					o.moreData(x,y,1,oOder[i],oType,$('.nearbyBox input').val());
 				}
 			}
 			/*window.location.href = 'personal.html';*/
@@ -122,32 +145,55 @@ var o = {
 			window.location.href = 'details.html?result='+$(this).attr('data')+'&mayself='+x+'|'+y;
 		})
 		/*筛选*/
-		$('.nav_click').on('click',function(){
+		$('.navtLast').on('click',function(){
 			$('.listItem').css('display')=='none'?$('.listItem').css('display','block'):$('.listItem').css('display','none');
 		})
 		/*最受欢迎*/
 		$('.navtTwo').on('click',function(){
 			conmmont();
 			$(this).addClass('navStyle');
-			o.moreData(x,y,1,1,0,$('.nearbyBox input').val());
+			var oType = '';
+			for(var s=0;s<$('.listItem li').length;s++){
+				console.log($('.listItem li').eq(s).css('color'))
+				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
+					s == 0?oType = '':oType = s-1;
+				}
+			}
+			o.moreData(x,y,1,1,oType,$('.nearbyBox input').val());
 		})
 		/*距离最近*/
 		$('.navtTree').on('click',function(){
 			conmmont();
 			$(this).addClass('navStyle');
-			o.moreData(x,y,1,0,0,$('.nearbyBox input').val());
+			var oType = '';
+			for(var s=0;s<$('.listItem li').length;s++){
+				console.log($('.listItem li').eq(s).css('color'))
+				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
+					s == 0?oType = '':oType = s-1;
+				}
+			}
+			o.moreData(x,y,1,0,oType,$('.nearbyBox input').val());
 		})
 		/*综合*/
 		$('.navtFrist').on('click',function(){
 			conmmont();
 			$(this).addClass('navStyle');
-			o.moreData(x,y,1,0,0,$('.nearbyBox input').val());
+			var oType = '';
+			for(var s=0;s<$('.listItem li').length;s++){
+				console.log($('.listItem li').eq(s).css('color'))
+				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
+					s == 0?oType = '':oType = s-1;
+				}
+			}
+			o.moreData(x,y,1,'',oType,$('.nearbyBox input').val());
 		})
 		/*筛选*/
 		$('.listItem').on('click','li',function(){
 			var index = $(this).index(),
 				oAttr = ['',0,1,2,3],
-				oOder = ['',0,1];
+				oOder = [0,1];
+				
+			$('.listItem li').css('color','#777').eq(index).css('color','#000');
 			for(var i=0;i<3;i++){
 				if($('.nearbyNav li').eq(i).hasClass('navStyle')){
 					$(window).scrollTop(0);
@@ -161,6 +207,7 @@ var o = {
 			$('.listItem').css('display')=='none'?$('.listItem').css('display','block'):$('.listItem').css('display','none');
 		})
 		function conmmont(){
+			$('.listItem').css('display','none');
 			$(window).scrollTop(0);
 			$('.nearbyMain').removeClass('one');
 			$('.dropload-down').remove();

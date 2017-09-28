@@ -22,6 +22,7 @@ body{
 }
 
 /*附近商家*/
+
 .nearbyBox{
 	width: 3.75rem;
 	height: 100%;
@@ -110,17 +111,49 @@ body{
     left: -.3rem;
     background-color: #efedf0;
     padding: 0 .05rem;
-    color: #666;
-    z-index: 100;
+    color: #777;
+    z-index: 999;
     border-radius: 5%;
     display: none;
 }
 .nearbyNav .listItem li{
     border-bottom: 1px solid #ccc;
    height: .2rem;
+   border-right: none;
 }
 .nearbyNav .listItem .listLast{
     border-bottom: none;
+}
+/*定位*/
+.moreDate{
+	width: 100%;
+	height: 100%;
+	font-size: .16rem;
+    color: #666;
+    
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.2);
+}
+.moreDate div{
+	width: 1.5rem;
+	height: .8rem;
+	line-height: .8rem;
+	background-color: #fff;
+    position: absolute;
+    z-index: 100;
+    top: 30%;
+    left: 30%;
+    text-align: center;
+    border-radius: 10px;
+}
+.moreDate img{
+	display: inline-block;
+	width: .3rem;
+	height: .3rem;
+	vertical-align: middle;
 }
 /*附近商家bottom*/
 .nearbyMain{
@@ -128,14 +161,17 @@ body{
 	height: auto;
 	padding-top: .8rem;
 }
-.bottom_load{
-	text-align: center;
-}
+
 .nearbyMain li{
 	width: 3.45rem;
        height: .7rem;
     padding: .15rem .15rem;
 	border-bottom:1px solid #e5e5e5;
+}
+.nearbyMain .bottom_load{
+	color: #666;
+	text-align: center;
+	border-bottom: none;
 }
 .nearbyMain li .main_left img{
     width: .85rem;
@@ -147,6 +183,12 @@ body{
 	font-size: .18rem;
 	font-weight: 600;
     height: .3rem;
+}
+.nearbyMain li .main_right .mr_top .mr_title{
+	width: 1.7rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .nearbyMain li .main_right .mr_center{
 	font-size: .12rem;
@@ -286,11 +328,13 @@ body{
 	padding: .1rem;
 	padding-bottom: 0;
 	font-size: .14rem;
+	color: #666;
 }
 .detailBottom .bot_p span{
 	padding: .1rem;
 	font-size: .11rem;
-	color: #666;
+	
+	display: none;
 }
 .detailBottom .bot_p span em{
 	    color: #e2961e;
@@ -300,6 +344,9 @@ body{
     padding: .1rem;
     color: #666;
     margin-bottom: .15rem;
+}
+.bot_evaluate .bottom_load{
+   text-align: center;
 }
 
 .bot_evaluate li .evaluate_img{
@@ -374,10 +421,10 @@ body{
     line-height: .4rem;
 	font-size: .14rem;
 	color: #666;
-	
-}
-.bot_deatil .address{
 	border-bottom: 1px solid #f0f0f0;
+}
+.bot_deatil .phone{
+	border-bottom: none;
 }
 
 
@@ -403,6 +450,7 @@ body{
     position: absolute;
     top: 22%;
     left: 32%;
+    border-radius: 50%;
 }
 .per_main{
 	height: .7rem;
@@ -412,7 +460,7 @@ body{
 	border-bottom: 1px solid #dedede;
 }
 .per_main li{
-	width: 33.33%;
+	width: 50%;
 	text-align: center;
 	box-sizing: border-box;
 }
@@ -421,7 +469,7 @@ body{
 }
 .per_main .main_num{
 	line-height: .4rem;
-	margin-left: .2rem;
+	margin-left: .5rem;
 	margin-top: .2rem;
 	color:#ff6585;
 }
@@ -430,8 +478,8 @@ body{
 	height: .25rem;
 	margin-right: .1rem;
 }
-.per_main .main_history{
-	margin-left: .4rem;
+.per_main .main_history img{
+	margin-left: .25rem;
 }
 .per_bot{
 	margin-top: .15rem;
@@ -456,6 +504,35 @@ body{
 .per_bot .per_last{
 	border-bottom: none;
 }
+.last_img::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
+.last_img{
+	width: 3.75rem;
+	clear: both;
+}
+.last_img li{
+	width: .65rem;
+	height: .7rem;
+	text-align: center;
+	float: left;
+	margin-left: .07rem;
+	margin-bottom: .08rem;
+	color: #666;
+}
+.last_img img{
+	width: .5rem;
+	height: .5rem;
+	margin: 0 0 .05rem .1rem;
+	border-radius: 50%;
+}
+
+.lastImg_more img{
+	width: .5rem;
+	height: .5rem;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	margin-top: .1rem ;
+}
+
 
 /*订单确认*/
 .order_box{
@@ -485,6 +562,12 @@ body{
 	font-weight: 600;
 	height: .3rem;
 }
+.title_name .title_top .mr_title{
+	width: 1.7rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 .title_name .title_num{
 	font-size: .12rem;
 	color: #666;
@@ -511,17 +594,18 @@ body{
 	border-bottom: 1px solid #dedede;
 }
 .order_price .pri_title{
+	font-weight: 600;
 	font-size: .16rem;
 	padding-bottom: .05rem;
-	color: #666;
+	color: #ff6585;
 }
 .order_price .pri_input {
 	border-top: 1px solid #dedede;
 }
 .order_price .pri_input input{
- width: 3.55rem;
- height: .5rem;
- line-height: .5rem;
+	 width: 3.55rem;
+	 height: .5rem;
+	 line-height: .5rem;
 	font-size: .14rem;
 	color: #666;
 	outline: none;
@@ -603,8 +687,8 @@ body{
     padding-top: 10%;
     margin-bottom: .1rem;
 }
-.pay_top p{
-	font-size: .3rem;
+.pay_top .paytop_name{
+	font-size: .18rem;
 	color:#666;
 	line-height: .4rem;
 	margin-bottom: .1rem;
@@ -632,7 +716,7 @@ body{
 	height: .2rem;
 }
 #message{
-	margin-left: .8rem;
+	margin-left: .6rem;
 }
 .pay_title textarea{
 	margin-top: .08rem;
@@ -678,8 +762,22 @@ body{
 	text-align: center;
 	background-color: #ffb600;
 }
-#file4{
-	display: none;
+.paytitle_image div{
+	font-size: 0;
+	position: relative;
+}
+.paytitle_image div input{
+	opacity: 0;
+	filter:alpha(opacity=0);
+	width: .7rem;
+	overflow: hidden;
+	height: .8rem;
+	color: #666;
+	position: absolute;
+	top: 0rem;
+	left: .05rem;
+	outline: none;
+	border: none;
 }
 /*消费记录*/
 .consume_box,.consume_box ul{
@@ -724,18 +822,61 @@ body{
 	background: #ccc;
 	overflow: hidden;
 }
-.bot_evaluate .bottom_load {
+.consume_box .bottom_load {
 	width:3.75rem;
+	height: .3rem;
 	text-align: center;
 	padding: 0;
 	margin: 0;
 	color: #999;
 	background-color: #f5f3f6;
 	display: block;
+	border-bottom: none;
 }
 .detail .back {
 	bottom: .45rem;
-}
+}    
 .consume_box .search input{
 	padding: 0;
+	width: 103%;
+}
+.consume_box .search img{
+    right: .35rem;
+}
+/*推广页*/
+.mendBox{
+	width: 3.45rem;
+	padding: .1rem .15rem;
+}
+.mendBox .mend_name{
+	font-size: .18rem;
+	font-weight: 600;
+	line-height: .4rem;
+}
+.mendBox .mend_time{
+	font-size: .14rem;
+	color: #666;
+}
+.mendBox .img_gif{
+	width: 3.45rem;
+	margin: .15rem 0;
+}
+.mendBox p{
+	font-size: .16rem;
+	color: #666;
+	line-height: .3rem;
+	margin-bottom: .2rem;
+}
+.mendBox .img_png{
+	width: 3.45rem;
+	margin: .15rem 0;
+}
+.mendBox .img_myself{
+	width: 2.6rem;
+	margin: .15rem 0 .15rem .45rem;
+}
+.mendBox .mend_bot{
+	width: 3.45rem;
+	text-align: center;
+	font-size: .15rem;
 }

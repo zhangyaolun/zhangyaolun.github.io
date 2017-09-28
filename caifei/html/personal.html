@@ -15,7 +15,7 @@
 		<div class="per_top">
 			<img src="../img/p_logo.png" class="per_logo"/>
 			<img src="../img/outline.png" class="per_loimg"/>
-			<img src="../img/Layer 1.png" class="per_image"/>
+			<img src="../img/Layer1.png" class="per_image"/>
 		</div>
 		<ul class="per_main clear detailColor">
 			<li class="left bor_list">
@@ -25,14 +25,14 @@
 					<span class="left">3569</span>
 				</div>
 			</li>
-			<li class="left bor_list">
+			<!--<li class="left bor_list">
 				<div class="main_title">当前状态</div>
 				<div class="main_num clear">
 					<img src="../img/Wallet.png" alt="" class="left"/>
 					<span class="left">3</span>
 				</div>
-			</li>
-			<li class="left">
+			</li>-->
+			<li class="left item_history">
 				<div class="main_title main_history">消费记录</div>
 				<div class="main_history main_num">
 					<img src="../img/Write document.png" alt="" />
@@ -48,10 +48,47 @@
 				<img src="../img/p_2.png"/>
 				<span>用户指南</span>
 			</li>
-			<li class="per_last">
+			<li>
 				<img src="../img/p_3.png"/>
-				<span>关于彩卡</span>
+				<span>关于伴飞</span>
 			</li>
+			<li class="per_last">
+				<img src="../img/p_1.png"/>
+				<span>我的粉丝：<em>0</em>人</span>
+			</li>
+		</ul>
+		<ul class="last_img detailColor clear">
+			<!--<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li>
+				<img src="../img/Layer1.png"/>
+				<div class="last_title">小伙伴</div>
+			</li>
+			<li class="lastImg_more">
+				<img src="../img/add_img.png"/>
+			</li>-->
 		</ul>
 	</div>
 </body>
@@ -59,31 +96,5 @@
 <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/comment.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-	var o = {
-		init:function(){
-			FastClick.attach(document.body);
-			o.ajaxDate();
-			o.oClick();
-		},
-		ajaxDate:function(){
-			var suc = function(data){
-				console.log(data)
-			}
-			var data = {
-				'openid':'123456'
-			}
-			
-			doPost('/user/info',data,suc);
-		},
-		oClick:function(){
-			$('.main_history').on('click',function(){
-				window.location.href = 'consume.html';
-			});
-		}
-	}
-	o.init();
-	
-	
-</script>
+<script src="../js/parsonalJs.js" type="text/javascript" charset="utf-8"></script>
 </html>

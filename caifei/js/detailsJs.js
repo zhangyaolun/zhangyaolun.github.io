@@ -13,27 +13,86 @@ var o = {
 			var index = $(this).index();
 			$('.bot_Nav span').removeClass('stypeSpan').eq(index).addClass('stypeSpan');
 			if(index == 0){
-				$('.bot_one').show();
-				$('.bot_deatil').hide()
+				console.log(index)
+				if($('.moreNumber').html() == 0){
+					$('.bot_one').show();
+					$('.bot_deatil').hide();
+				}else{
+					$('.bot_one').show();
+					$('.bot_deatil').hide();
+				}
 			}else{
 				$('.bot_one').hide();
 				$('.bot_deatil').show()
 			}
 		})
-		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-		console.log(data)
-		$('.detailImg img').attr("src",data.pic);			
-		$('.detailImg span').html(data.shopName);			
-		$('.map_left span').html(data.shopName);			
-		$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
-		$('.map_left em').html(data.address);			
-		$('.main_price em').html((data.discountRate*100).toFixed(0));	
-		$('.address span').html(data.address);	
-		$('.phone span').html(data.mobile);	
-		var currPage = 1;
-		o.moreDate(data.id,currPage);
-		o.moreAjax(data.id,currPage);
-		o.click(getParameter('mayself'));
+		if(getParameter('result')){
+			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
+			$('.detailImg img').attr("src",data.pic);			
+			$('.detailImg span').html(data.shopName);				
+			$('.map_left span').html(data.shopName);			
+			$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
+			$('.map_left em').html(data.address);			
+			$('.main_price em').html((data.discountRate*10));	
+			$('.address span').html(data.address);	
+			$('.phone span').html(data.mobile);	
+			$('.tel span').html(data.telephone);	
+			$('.number').html(data.averageScore.toFixed(1));	
+			var currPage = 1;
+			o.moreDate(data.id,currPage);
+			o.moreAjax(data.id,currPage);
+			o.click(getParameter('mayself'),'');
+		}else if(getParameter('shopId')){
+			o.mapDate();
+			sessionStorage.setItem('openId',getParameter('openId'));
+			$.ajax({
+		        url : '/shop/shopId/'+getParameter('shopId'),
+		        data :null,
+		        type : 'POST',
+		        dataType : 'json',
+		        async : false,
+		        success : function(data){
+		        	var data = data.result;
+					$('.detailImg img').attr("src",data.pic);			
+					$('.detailImg span').html(data.shopName);				
+					$('.map_left span').html(data.shopName);			
+					$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
+					$('.map_left em').html(data.address);			
+					$('.main_price em').html((data.discountRate*10));	
+					$('.address span').html(data.address);	
+					$('.phone span').html(data.mobile);	
+					$('.tel span').html(data.telephone);	
+					$('.number').html(data.averageScore.toFixed(1));	
+					var currPage = 1;
+					o.moreDate(data.id,currPage);
+					o.moreAjax(data.id,currPage);
+					o.click('',data);
+		        }
+		    });
+		}else{
+			sessionStorage.setItem('openId',getParameter('openId'));
+			var dataa = {
+				'openid':getParameter('openId')
+			}
+			var sucess = function(data){
+				var data = data.result;
+				$('.detailImg img').attr("src",data.pic);			
+				$('.detailImg span').html(data.shopName);				
+				$('.map_left span').html(data.shopName);			
+				$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
+				$('.map_left em').html(data.address);			
+				$('.main_price em').html((data.discountRate*10));	
+				$('.address span').html(data.address);	
+				$('.phone span').html(data.mobile);	
+				$('.tel span').html(data.telephone);	
+				$('.number').html(data.averageScore.toFixed(1));	
+				var currPage = 1;
+				o.moreDate(data.id,currPage);
+				o.moreAjax(data.id,currPage);
+				o.click('',data);
+			}
+			doPost('/shop/bindedShop',dataa,sucess);
+		}
 	},
 	moreDate:function(id,currPage){
 		$(window).scroll(function(){
@@ -45,7 +104,9 @@ var o = {
 		　　var scrollTop = $(this).scrollTop();
 		　　var scrollHeight = $(document).height();
 		　　var windowHeight = $(this).height();
-		
+			if($('.bot_evaluate .bottom_load').html() == '暂无评论'){
+            	return ;
+            }
 		　　if(scrollTop + windowHeight == scrollHeight){
 			   currPage++;
 		　　　 o.moreAjax(id,currPage);
@@ -54,44 +115,43 @@ var o = {
 	},
 	moreAjax:function(id,currPage){
 		var data = {
-			'shopId':'7b942ce200ae46d480aa752e1824e288',
+			'shopId':id,
 			'currPage':currPage,
 			'pageSize':10
 		}
-		console.log(data)
 		$.ajax({
 	        url :'/comment/findByShop',
 	        data :data,
 	        type : 'POST',
 	        async : false,
 	        success : function(data){
-	        	console.log(data);
 	        	if(data.httpCode == 200){
 	        		var result = '',oResult = '',num=0;
 	        		$('.moreNumber').html(data.result.totalCount);	
 	        		if(data.result.result.length == 0){
-		            	$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
+	        			$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
 		            	return ;
 		            }
 	        		for(var i = 0; i < data.result.result.length; i++){
-	        			num = parseFloat(data.result.result[i].score) + parseFloat(num);
 	                    result += '<li class="detailColor item"><div class="evaluate_img clear"><img src="'+data.result.result[i].userIcon+'" alt="" class="left"/><div class="left evaluate_top"><div class="ri_name">'+data.result.result[i].nickName+'</div><div class="ri_date clear"><div class="bg left"><div class="over" style="width:'+0.12*data.result.result[i].score+'rem"></div></div><div class="dateTime right">'+data.result.result[i].createTime+'</div></div></div></div><div class="evaluate_right"><p>'+data.result.result[i].content+'</p><div class="clear ri_image">';
 	                    if(data.result.result[i].commentImages == ''){
 	                    	oResult = '';
 	                    }else{
-	                    	
+	                    	if(data.result.result[i].commentImages.indexOf(",")>0){
+	                    		var imageAttr = data.result.result[i].commentImages.split(',');
+		                    	for(var z = 0; z < imageAttr.length; z++){
+		                    		oResult += '<img src="'+imageAttr[z]+'" alt="" class="left"/>'
+		                    	}
+	                    	}else{
+	                    		oResult = '<img src="'+data.result.result[i].commentImages+'" alt="" class="left"/>'
+	                    	}
 	                    }
-		                	
 		                result += oResult+ '</div><div class="ri_map"><img src="../img/icon2.png" alt="" /><span>'+$('.map_left em').html()+'</span></div></div></li>';
 	                }
 	        		
-	        		if(!$('.number').hasClass('frist')){
-	        			$('.number').addClass('frist');
-	        			$('.number').html((num/data.result.totalCount*10).toFixed(1));
-	        		}
 	        		$('.bottom_load').remove();
 		            $('.bot_evaluate').append(result);
-		            if(data.result.pageNo == data.result.totalPages){
+		            if(data.result.pageNo == data.result.totalPages &&  $('.bot_evaluate li').length > 4){
 		            	$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
 		            	return ;
 		            }else{
@@ -103,14 +163,36 @@ var o = {
 	        }
 	    })
 	},
-	click:function(mayself){
+	mapDate:function(){
+		window.addEventListener('message', function(event) {
+			var position = event.data; 
+		    if(position  && position.module == 'geolocation') { 
+				var oSelf = position.lng+'|'+position.lat;
+				$('.map_left').attr('mapdate',oSelf);
+            }    
+		}, false);
+	},
+	click:function(mayself,data){
+		
 		/*跳转到地图*/
 		$('.map_left').on('click',function(){	
-			window.location.href = 'map.html?type='+$('.map_left').attr('type')+'&mayself='+mayself;
+			if(mayself){
+				window.location.href = 'map.html?type='+$('.map_left').attr('type')+'&mayself='+mayself;
+			}else{
+				if(!$('.map_left').attr('mapdate')){
+					var oSelf = data.longitude+'|'+data.latitude;
+					$('.map_left').attr('mapdate',oSelf);
+				}
+				window.location.href = 'map.html?type='+$('.map_left').attr('type')+'&mayself='+$('.map_left').attr('mapdate');
+			}
 		})
 		/*付款*/
 		$('.buy_price').on('click',function(){
-			window.location.href = 'orderShop.html?result='+getParameter('result')+'&num='+$('.number').html();
+			if(getParameter('openId')){
+				window.location.href = 'orderShop.html?result='+JSON.stringify(data).replace(/"([^"]*)"/g, "'$1'")+'&num='+$('.number').html()+'&channel='+getParameter('channel');
+			}else{
+				window.location.href = 'orderShop.html?result='+getParameter('result')+'&num='+$('.number').html();
+			}
 		})
 		/*回到顶部*/
 		$('.back').on('click',function(){
