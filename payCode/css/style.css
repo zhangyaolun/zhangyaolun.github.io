@@ -20,6 +20,14 @@ user-select:none;
 body{
 	background-color: #f0f0f0;
 }
+#title{
+	width: 3.75rem;
+	color: #ff6585;
+	font-size: .14rem;
+	line-height: .5rem;
+    height: .5rem;
+    text-align: center;
+    }
 .lgBackground{background-color: #fff;}
 .box{
 	width: 3.75rem;
@@ -201,20 +209,20 @@ body{
 }
 /*注册*/
 .registerBox{
-	width: 3.65rem;
+	width: 3.75rem;
 	height: auto;
 	color: #333;
 	font-size: .15rem;
-	background: #fff;
-	padding: 0 .05rem;
 }
 .registerBox ul li{
+	background: #fff;
 	padding: 0 .1rem;
 	line-height: .5rem;
 	height: .5rem;
-	margin: 0 .1rem;
-	border-bottom: 1px solid #ccc;
+	margin: .08rem .05rem;
+	border-radius: 10px;
 }
+
 .registerBox ul .li_last{
 	border-bottom: none;
 }
@@ -226,6 +234,21 @@ body{
 	height: .3rem;
 	color: #666;
 	font-size: .14rem;
+}
+.registerBox ul .register_yzm input{
+	width: 1rem;
+}
+.registerBox ul .register_yzm span{
+	display: inline-block;
+    width: 1.15rem;
+    height: .4rem;
+    line-height: .4rem;
+    text-align: center;
+    color: #666;
+    font-size: .12rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-left: .2rem;
 }
 .registerBox .reg_button{
 	text-align: center;
@@ -310,7 +333,8 @@ body{
 }
 .index_comment .comment_time{
 	width: 100%;
-	height: .7rem;
+	height: .4rem;
+	margin: .1rem 0;
 	font-size: .14rem;
 }
 .index_comment .comment_time em{
