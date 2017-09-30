@@ -1,3 +1,4 @@
+document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 		init:function(){
 			FastClick.attach(document.body);

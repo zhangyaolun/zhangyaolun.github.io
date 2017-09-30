@@ -6,6 +6,7 @@ window.onload=function(){
     window.scrollTo(0,-1);
     document.body.scrollTop=0;
 }
+document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		FastClick.attach(document.body);

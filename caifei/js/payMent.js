@@ -1,4 +1,5 @@
 window.addEventListener("load",function(){FastClick.attach(document.body);},false);
+document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 if(getParameter('channel')){
 	$('.pay_title').hide();
 	$('.pay_fixed').hide();
