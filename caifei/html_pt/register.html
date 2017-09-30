@@ -4,10 +4,11 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>注册</title>
-		<script src="css/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body>
+	<body style="display: none;">
+	
 		<div class="registerBox box">
 			<div class="login_lg">
 				<h1>伴飞商家对账平台</h1>
@@ -20,11 +21,11 @@
 				</li>
 				<li class="register_pass">
 					<label>密&emsp;&emsp;码：</label>
-					<input type="text" name="密码" placeholder="请设置6-12位密码"/>
+					<input type="password" name="密码" placeholder="请设置6-12位密码"/>
 				</li>
 				<li class="register_word">
 					<label>确认密码：</label>
-					<input type="text" name="确认密码" placeholder="请再次确认密码"/>
+					<input type="password" name="确认密码" placeholder="请再次确认密码"/>
 				</li>
 				<li class="register_mobile ">
 					<label>注&ensp;册&ensp;码：</label>
@@ -32,6 +33,8 @@
 				</li>
 			</ul>
 			<div class="register_checkbox">我同意  <input type="checkbox" name="注册码" id="checkedInput"/><label style="vertical-align:middle;">伴飞共享卡免责条款</label></div>
+			<div id="title" style="width: 3.75rem;">
+			</div>
 			<div class="reg_button">注册</div>
 		</div>
 		<div class="moreDate">
@@ -53,24 +56,7 @@
 	</div>
 	</body>
 	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		$(function() {
-			var o = {
-				init:function(){
-					FastClick.attach(document.body);
-					o.clickDate();
-				},
-				clickDate:function(){
-					$('.register_checkbox label').on('click',function(){
-						$('.moreDate').show();
-					})
-					$('.del').on('click',function(){
-						$('.moreDate').hide();
-					})
-				}
-			}
-			o.init();
-		});
-	</script>
+	<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
 </html>

@@ -1,3 +1,4 @@
+document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 function getParameter(param)
 {
     var query = decodeURI(window.location.search);//获取URL地址中？后的所有字符

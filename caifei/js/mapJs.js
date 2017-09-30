@@ -70,7 +70,7 @@ var o = {
 		    });
 	    	 for(var i = 1;i < latlngs.length; i++) { 
 		    	
-		    	var a = moreAttr[i-1].shopName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i-1].discountRate*10).toFixed(0)+'折</span>';
+		    	var a = moreAttr[i-1].shortName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i-1].discountRate*10).toFixed(0)+'折</span>';
 		    	
 				var label = new qq.maps.Label({
 			        position: latlngs[i],

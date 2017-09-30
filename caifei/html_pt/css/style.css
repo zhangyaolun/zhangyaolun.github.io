@@ -19,6 +19,7 @@ user-select:none;
 }
 body{
 	background-color: #fff;
+	display: none;
 }
 .lgBackground{background-color: #fff;}
 .box{
@@ -69,10 +70,16 @@ body{
 	background-color:#4caf50 ;
 	color: #fff;
 	font-size: .15rem;
-	margin-top: .3rem;
 }
 .loginBox .loginlast{
 	font-size: .13rem;
+}
+#title{
+	width: 2.75rem;
+	color: #ff6585;
+	font-size: .14rem;
+	line-height: .5rem;
+    height: .5rem;
 }
 /*注册*/
 .registerBox{
@@ -132,7 +139,6 @@ body{
 	background-color:#4caf50 ;
 	color: #fff;
 	font-size: .15rem;
-	    margin-top: .5rem;
     margin-left: .15rem;
 }
 /*后台商户查询*/
@@ -216,6 +222,11 @@ body{
     background-color:#4caf50 ;
 	color: #fff;
 }
+.index_comment ul .bottom_load{
+	color: #666;
+	text-align: center;
+	border-bottom: none;
+}
 .index_comment ul li{
 	box-sizing: border-box;
 	height: .4rem;
@@ -224,7 +235,7 @@ body{
 }
 .comment_fixed{
     margin-left: .15rem;
-	margin-top: .1rem;
+	padding-top: .1rem;
 	font-size: .15rem;
 	height: .2rem;
 }

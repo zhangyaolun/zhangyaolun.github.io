@@ -19,7 +19,9 @@ var o = {
 		　　var scrollTop = $(this).scrollTop();
 		　　var scrollHeight = $(document).height();
 		　　var windowHeight = $(this).height();
-		   if($('.consume_item .bottom_load').html() == '暂无消费记录')return;
+		    if($('.consume_item .bottom_load').html() == '暂无消费记录'){
+            	return ;
+			}
 		　　if(scrollTop + windowHeight == scrollHeight){
 			   currPage++;
 		　　　 o.moreAjax(currPage);
@@ -42,7 +44,7 @@ var o = {
 	        	console.log(data);
 	        	if(data.httpCode == 200){
 	        		var result = '';
-	        		if(data.result.result.length == 0  &&  $('.consume_item li').length > 10){
+	        		if(data.result.result.length == 0){
 		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无消费记录</li>');
 		            	return ;
 		            }

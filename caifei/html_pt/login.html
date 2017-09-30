@@ -4,10 +4,11 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>伴飞商户</title>
-		<script src="css/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body style="background: #fff;">
+	<body style="background: #fff;display: none;">
+		
 		<div class="loginBox box">
 			<div class="login_lg">
 				<h1>伴飞商家对账平台</h1>
@@ -21,6 +22,8 @@
 				密码：<input id="pwd" type="password" placeholder="请输入您的密码" maxlength="12" minlength='6'/>
 				<div class="input_title"><div>
 			</div>
+			<div id="title">
+			</div>
 			<div class="login_div lg_login">
 				登录
 			</div>
@@ -30,9 +33,7 @@
 		</div>
 	</body>
 	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		$('.lg_login').on('click',function(){
-			window.location.href = 'index.html';
-		})
-	</script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/loginJs.js" type="text/javascript" charset="utf-8"></script>
 </html>
