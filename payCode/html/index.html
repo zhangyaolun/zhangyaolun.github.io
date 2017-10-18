@@ -6,13 +6,12 @@
     
     <title>名童支付</title>
     <link rel="stylesheet" href="../css/swiper.css">
-    <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="../css/style.css">
     
 </head>
 <body>
-	<div class="box">
-		<div class="box_top backF clear">
+	<div class="box ">
+		<div class="box_top clear lgBackground">
 			<img src="../img/Layer.png" alt="" class="left"/>
 			<div class="top_click  left">
 				<span class="left">账户余额：<em>0</em>元</span>
@@ -20,7 +19,7 @@
 			</div>
 		</div>
 		
-		<div class="swiper-container backF">
+		<div class="swiper-container lgBackground">
 		    <div class="swiper-wrapper">
 		        <div class="swiper-slide"><img src="../img/2.jpg" alt="" /></div>
 		        <div class="swiper-slide"><img src="../img/1.jpg" alt="" /></div>
@@ -34,7 +33,7 @@
 		    <div class="swiper-button-next"></div>
 		</div>
 		
-		<div class="box_bot backF">
+		<div class="box_bot lgBackground">
 			<img src="../img/wPay.png" alt="" />
 			<div class="name">我要购币</div>
 		</div>
@@ -42,8 +41,10 @@
 	
 </body>
 <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="../js/swiper.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/idangerous.swiper.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+	FastClick.attach(document.body);
 	$('.box_bot').on('click',function(){
 		window.location.href = 'pay.html';
 	})

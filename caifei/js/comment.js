@@ -27,7 +27,7 @@ function doPost(url,data,callback){
 
         }
         if(datas.httpCode==500){
-            alert(datas.message);
+            
         }
         if(datas.httpCode==200){
             callback(datas);

@@ -17,84 +17,15 @@ body{
 -ms-user-select:none; 
 user-select:none;
 }
-.sanjiaoStyle{
-    display: inline-block;
-	transform:rotate(-90deg);
-	-ms-transform:rotate(-90deg); 	/* IE 9 */
-	-moz-transform:rotate(-90deg); 	/* Firefox */
-	-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
-	-o-transform:rotate(-90deg); 	/* Opera */
-}
-.dropload-up,.dropload-down{
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    font-size: .12rem;
-    /* 开启硬件加速 */
-    -webkit-transform:translateZ(0);
-    transform:translateZ(0);
-}
-.dropload-down{
-	width: 3.75rem;
-    height: .5rem;
-    text-align: center;
-}
-.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
-	width: 3.75rem;
-    height: .5rem;
-    line-height: .5rem;
-    text-align: center;
-}
-.dropload-load .loading{
-    display: inline-block;
-    height: .15rem;
-    width: .15rem;
-    border-radius: 100%;
-    margin: .06rem;
-    border: 2px solid #666;
-    border-bottom-color: transparent;
-    vertical-align: middle;
-    -webkit-animation: rotate 0.75s linear infinite;
-    animation: rotate 0.75s linear infinite;
-}
-@-webkit-keyframes rotate {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-    50% {
-        -webkit-transform: rotate(180deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
-}
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(180deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-} 
 .back{
-	position: fixed;
-    bottom: .3rem;
+    position: fixed;
+    bottom: 7%;
     overflow: hidden;
-    right: .05rem;
-    z-index: 200;
-    text-align: center;
-    width: .4rem;
-    height: .45rem;
-    line-height: .4rem;
-    background-color: #000;
-    filter: alpha(opacity=40);
-    opacity: .4;
-    border-radius:10%;
-    font-size: .25rem;
-    color: #fff;
+    right: 3%;
+    z-index: 2000;
+    width: 10%;
+    height: 32px;
+    border-radius: 10%;
     display: none;
 }
 

@@ -14,7 +14,7 @@ var o = {
 	shopMap:function(mayself,hisself,mapIndex){
 		var center;
 		var oAttr = [],xyAttr=[],moreAttr=[];
-		if(mayself == 0){
+		if(mayself == 0){//mayself=0,首页进
 			mayself = mapIndex;
 			center = new qq.maps.LatLng(mayself[1],mayself[0]);	
 			ajaxDate();
@@ -27,7 +27,7 @@ var o = {
 				}
 			}
 			var latlngs = [ 
-		        new qq.maps.LatLng(mayself[1],mayself[0])
+		        /*new qq.maps.LatLng(mayself[1],mayself[0])*/
 		    ];
 		    for(var s = 0;s < moreAttr.length; s++){
 				latlngs.push(new qq.maps.LatLng(moreAttr[s].latitude,moreAttr[s].longitude));
@@ -39,8 +39,8 @@ var o = {
 			console.log(center)
 				console.log(hisself)
 			var latlngs = [ 
-		        new qq.maps.LatLng(mayself[1],mayself[0]), 
-		        new qq.maps.LatLng(hisself[0],hisself[1])
+		        /*new qq.maps.LatLng(mayself[1],mayself[0]), 
+		        new qq.maps.LatLng(hisself[0],hisself[1])*/
 		    ]; 
 		}
 		
@@ -61,6 +61,27 @@ var o = {
 		        content: '我的位置',
 		        style:{border:'0'},
 		    });
+		    var marker = new qq.maps.Marker({
+                //设置Marker的位置坐标
+                position: center,
+                //设置Marker被添加到Map上时的动画效果为落下
+                animation: qq.maps.MarkerAnimation.DOWN,
+                //设置Marker被添加到Map上时的动画效果为反复弹跳
+                //animation:qq.maps.MarkerAnimation.BOUNCE
+                //设置Marker被添加到Map上时的动画效果为从天而降
+                //animation:qq.maps.MarkerAnimation.DROP
+                //设置Marker被添加到Map上时的动画效果为升起
+                //animation:qq.maps.MarkerAnimation.UP
+                //设置显示Marker的地图
+                map: map,
+                //设置Marker可拖动
+                draggable: false,
+                //自定义Marker图标为大头针样式
+                icon: new qq.maps.MarkerImage(
+                    "http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
+                //设置Marker的可见性，为true时可见,false时不可见
+                visible: true,
+            });
 	    }else{
 	    	var label = new qq.maps.Label({
 		        position: center,
@@ -69,9 +90,30 @@ var o = {
 		        style:{border:'0'},
 		        
 		    });
-	    	 for(var i = 1;i < latlngs.length; i++) { 
-		    	
-		    	var a = moreAttr[i-1].shortName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i-1].discountRate*10).toFixed(0)+'折</span>';
+            var marker = new qq.maps.Marker({
+                //设置Marker的位置坐标
+                position: center,
+                //设置Marker被添加到Map上时的动画效果为落下
+                animation: qq.maps.MarkerAnimation.DOWN,
+                //设置Marker被添加到Map上时的动画效果为反复弹跳
+                //animation:qq.maps.MarkerAnimation.BOUNCE
+                //设置Marker被添加到Map上时的动画效果为从天而降
+                //animation:qq.maps.MarkerAnimation.DROP
+                //设置Marker被添加到Map上时的动画效果为升起
+                //animation:qq.maps.MarkerAnimation.UP
+                //设置显示Marker的地图
+                map: map,
+                //设置Marker可拖动
+                draggable: false,
+                //自定义Marker图标为大头针样式
+                icon: new qq.maps.MarkerImage(
+                    "http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
+                //设置Marker的可见性，为true时可见,false时不可见
+                visible: true,
+            });
+
+	    	 for(var i = 0;i < latlngs.length; i++) { 
+		    	var a = moreAttr[i].shortName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i].discountRate*10).toFixed(0)+'折</span>';
 		    	
 				var label = new qq.maps.Label({
 			        position: latlngs[i],
@@ -101,11 +143,11 @@ var o = {
 	                'nowrap;color:#333;font-size:14px;">' + 
 	                hisself[4] +'<div style="font-size:12px;color:#666;">地址：'+hisself[3]+'<div style="font-size:12px;color:#666;">电话：'+hisself[6]+'</div></div> </div>'); 
 					}else{
-						for(var i = 1;i < latlngs.length; i++) { 
+						for(var i = 0;i < latlngs.length; i++) { 
 							if(latlngs[i].lat == lato){
 								infoWin.setContent('<div style="text-align:left;white-space:'+ 
 	                'nowrap;color:#333;font-size:14px;">地址：' + 
-	                moreAttr[i-1].address +'<div>电话：'+moreAttr[i-1].mobile+'<a style="margin-left:10px;color:#ff6585;text-decoration:underline;" href="details.html?result='+JSON.stringify(moreAttr[i-1]).replace(/"([^"]*)"/g, "'$1'")+ '&mayself=' +mayself[0]+'|'+mayself[1]+'">去看看</a></div></div>');
+	                moreAttr[i].address +'<div>电话：'+moreAttr[i].mobile+'<a style="margin-left:10px;color:#ff6585;text-decoration:underline;" href="details.html?result='+JSON.stringify(moreAttr[i]).replace(/"([^"]*)"/g, "'$1'")+ '&mayself=' +mayself[0]+'|'+mayself[1]+'">去看看</a></div></div>');
 							}
 						}
 					}
@@ -138,7 +180,7 @@ var o = {
 			           oAttr.push(data.result.result);
 			           currPage++;
 			           var num = data.result.totalPages;
-			           for(var i=currPage;i<=3;i++){
+			           for(var i=currPage;i<=num;i++){
 				           	var data = {
 								'x':mayself[0],
 								'y':mayself[1],
@@ -165,9 +207,6 @@ var o = {
 		    });
 	    }
 	    
-	},
-	ajaxDate:function(){
-		
 	}
 }
 o.init();

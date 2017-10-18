@@ -6,7 +6,6 @@ window.onload=function(){
     window.scrollTo(0,-1);
     document.body.scrollTop=0;
 }
-document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
@@ -29,16 +28,18 @@ var o = {
 		})
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
+			console.log(data)
 			$('.detailImg img').attr("src",data.pic);			
-			$('.detailImg span').html(data.shopName);				
-			$('.map_left span').html(data.shopName);			
+			$('.detailMain .main_title').html(data.shopName);				
+			$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
+			$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');			
 			$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
-			$('.map_left em').html(data.address);			
+			$('.map_left .map_tit em').html(data.address);			
+			$('.map_left .map_tel em').html(data.telephone);			
 			$('.main_price em').html((data.discountRate*10));	
 			$('.address span').html(data.address);	
 			$('.phone span').html(data.mobile);	
-			$('.tel span').html(data.telephone);	
-			$('.number').html(data.averageScore.toFixed(1));	
+			$('.tel span').html(data.telephone);		
 			var currPage = 1;
 			o.moreDate(data.id,currPage);
 			o.moreAjax(data.id,currPage);
@@ -55,15 +56,16 @@ var o = {
 		        success : function(data){
 		        	var data = data.result;
 					$('.detailImg img').attr("src",data.pic);			
-					$('.detailImg span').html(data.shopName);				
-					$('.map_left span').html(data.shopName);			
+					$('.detailMain .main_title').html(data.shopName);				
+					$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
+			$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');					
 					$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
-					$('.map_left em').html(data.address);			
+					$('.map_left .map_tit em').html(data.address);	
+					$('.map_left .map_tel em').html(data.telephone);
 					$('.main_price em').html((data.discountRate*10));	
 					$('.address span').html(data.address);	
 					$('.phone span').html(data.mobile);	
-					$('.tel span').html(data.telephone);	
-					$('.number').html(data.averageScore.toFixed(1));	
+					$('.tel span').html(data.telephone);		
 					var currPage = 1;
 					o.moreDate(data.id,currPage);
 					o.moreAjax(data.id,currPage);
@@ -78,15 +80,16 @@ var o = {
 			var sucess = function(data){
 				var data = data.result;
 				$('.detailImg img').attr("src",data.pic);			
-				$('.detailImg span').html(data.shopName);				
-				$('.map_left span').html(data.shopName);			
+				$('.detailMain .main_title').html(data.shopName);				
+				$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
+				$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');
 				$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
-				$('.map_left em').html(data.address);			
+				$('.map_left .map_tit em').html(data.address);	
+				$('.map_left .map_tel em').html(data.telephone);
 				$('.main_price em').html((data.discountRate*10));	
 				$('.address span').html(data.address);	
 				$('.phone span').html(data.mobile);	
-				$('.tel span').html(data.telephone);	
-				$('.number').html(data.averageScore.toFixed(1));	
+				$('.tel span').html(data.telephone);		
 				var currPage = 1;
 				o.moreDate(data.id,currPage);
 				o.moreAjax(data.id,currPage);
@@ -132,9 +135,9 @@ var o = {
 	        		if(data.result.result.length == 0){
 	        			$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
 		            	return ;
-		            }
+		          }
 	        		for(var i = 0; i < data.result.result.length; i++){
-	                    result += '<li class="detailColor item"><div class="evaluate_img clear"><img src="'+data.result.result[i].userIcon+'" alt="" class="left"/><div class="left evaluate_top"><div class="ri_name">'+data.result.result[i].nickName+'</div><div class="ri_date clear"><div class="bg left"><div class="over" style="width:'+0.12*data.result.result[i].score+'rem"></div></div><div class="dateTime right">'+data.result.result[i].createTime+'</div></div></div></div><div class="evaluate_right"><p>'+data.result.result[i].content+'</p><div class="clear ri_image">';
+	                     result += '<li class="detailColor item"><div class="evaluate_img clear"><img src="'+data.result.result[i].userIcon+'" alt="" class="left"></div><div class="evaluate_right"><div class="ri_name">'+data.result.result[i].nickName+'</div><div class="ri_date"><div class="bg left"><div class="over" style="width:'+12*data.result.result[i].score+'px""></div></div><div class="dateTime right">'+data.result.result[i].createTime+'</div></div><p>'+data.result.result[i].content+'</p><div class="clear ri_image">';
 	                    if(data.result.result[i].commentImages == ''){
 	                    	oResult = '';
 	                    }else{
@@ -147,9 +150,8 @@ var o = {
 	                    		oResult = '<img src="'+data.result.result[i].commentImages+'" alt="" class="left"/>'
 	                    	}
 	                    }
-		                result += oResult+ '</div><div class="ri_map"><img src="../img/icon2.png" alt="" /><span>'+$('.map_left em').html()+'</span></div></div></li>';
+		                result += oResult+ '</div></div></li>';
 	                }
-	        		
 	        		$('.bottom_load').remove();
 		            $('.bot_evaluate').append(result);
 		            if(data.result.pageNo == data.result.totalPages &&  $('.bot_evaluate li').length > 4){
@@ -188,11 +190,11 @@ var o = {
 			}
 		})
 		/*付款*/
-		$('.buy_price').on('click',function(){
+		$('.price_img').on('click',function(){
 			if(getParameter('openId')){
-				window.location.href = 'orderShop.html?result='+JSON.stringify(data).replace(/"([^"]*)"/g, "'$1'")+'&num='+$('.number').html()+'&channel='+getParameter('channel');
+				window.location.href = 'orderShop.html?result='+JSON.stringify(data).replace(/"([^"]*)"/g, "'$1'")+'&num='+$('.detailMain .emStyle').html()+'&channel='+getParameter('channel');
 			}else{
-				window.location.href = 'orderShop.html?result='+getParameter('result')+'&num='+$('.number').html();
+				window.location.href = 'orderShop.html?result='+getParameter('result')+'&num='+$('.detailMain .emStyle').html();
 			}
 		})
 		/*回到顶部*/

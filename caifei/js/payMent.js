@@ -5,11 +5,11 @@ if(getParameter('channel')){
 	$('.pay_fixed').hide();
 }
 var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-$('.order_title img').attr("src",data.pic);			
-$('.title_top span').html(data.shopName);	
-$('.title_det').html(getParameter('num'));	
-$('.title_top .over').css('width',getParameter('num')*12/100+'rem');					
-$('.title_price').html((data.discountRate*10).toFixed(0)+'折');			
+$('.shop_img').attr("src",data.pic);			
+$('.shop_top span').html(data.shopName);	
+$('.shop_det').html(getParameter('num'));	
+$('.pay_shop .over').css('width',getParameter('num')*12+'px');					
+$('.shop_price').html((data.discountRate*10).toFixed(0)+'折');			
 $('.pay').html((getParameter('totalMoney')/100).toFixed(2));			
 $('.total').html((getParameter('payMoney')/100).toFixed(2));	
 
@@ -103,11 +103,7 @@ function ajaxFileUpload(target,callback) {
   return false;
 }
 
-
-
-
-
-var check = 0;//该变量是记录当前选择的评分
+var check = 5;//该变量是记录当前选择的评分
 /*over()是鼠标移过事件的处理方法*/		
 function over(param){
 	if(param == 1){

@@ -1,3 +1,4 @@
+document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
@@ -23,6 +24,14 @@ var o = {
 			$('#title').html('')
 			o.moreAjax(userName,pwd);
 		})
+		var num = 0,numAttr = ['img/logo_1.jpg','img/logo_2.jpg','img/logo_3.jpg']
+		$('.login_logo').on('click',function(){
+			if(num == 3){
+				num = 0;
+			}
+			$('.login_logo').attr('src',numAttr[num]);
+			num++;
+		})
 	},
 	moreAjax:function(userName,pwd){
 		var suc = function(data){
@@ -36,8 +45,8 @@ var o = {
 			}
 		}
 		var data = {
-			'loginName':'aaa',
-			'password':'123456'
+			'loginName':userName,
+			'password':pwd
 		}
 		doAjax('/shop-account/login',data,suc);
 	},

@@ -3,33 +3,33 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>-->
     <title>支付成功</title>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/>
     
 </head>
-<body style="display: none;">
+<body>
 	<div class="pay_box">
 		<div class="pay_top detailColor">
 			<img src="../img/buy_s.png"/>
 			<div class="paytop_name">原价：￥<span class="pay"></span>&nbsp;&nbsp;&nbsp;折扣价：￥<span class="total"></span></div>
 		</div>
 		<!--添加评论-->
-		<div class="order_title detailColor clear">
-			<img src="" alt="" class="left"/>
-			<div class="title_name left">
-				<div class="title_top clear">
-					<span class="left mr_title"></span>
+		<div class="pay_shop detailColor clear">
+			<img src="" alt="" class="left shop_img"/>
+			<div class="shop_name left detailColor">
+				<div class="shop_top clear">
+					<span class="left shop_title"></span>
+				</div>
+				<div class="shop_num">
+					<span>综合评价：<em class="shop_det emStyle"></em></span>
 					<div class="bg right">
 						<div class="over"></div>
 					</div>
-				</div>
-				<div class="title_num">
-					<span>综合评价：<em class="title_det"></em></span>
 					<!--<span>有<em class="title_pel">48</em>为你推荐</span>-->
 				</div>
-				<div class="title_price"></div>
+				<div class="shop_price"></div>
 			</div>
 		</div>
 		
@@ -37,11 +37,11 @@
 			<div class="paytitle_top">
 				<span>满意度： </span>
 				<a href="javascript:click(1)"><img src="../img/star_red.png" id="star1" onMouseOver="over(1)" onMouseOut="out(1)"/></a>
-				<a href="javascript:click(2)"><img src="../img/star.png" id="star2" onMouseOver="over(2)" onMouseOut="out(2)" /></a>
-				<a href="javascript:click(3)"><img src="../img/star.png" id="star3" onMouseOver="over(3)" onMouseOut="out(3)" /></a>
-				<a href="javascript:click(4)"><img src="../img/star.png" id="star4" onMouseOver="over(4)" onMouseOut="out(4)"/></a>
-				<a href="javascript:click(5)"><img src="../img/star.png" id="star5" onMouseOver="over(5)" onMouseOut="out(5)"/></a>
-				<span id="message">很差</span>
+				<a href="javascript:click(2)"><img src="../img/star_red.png" id="star2" onMouseOver="over(2)" onMouseOut="out(2)" /></a>
+				<a href="javascript:click(3)"><img src="../img/star_red.png" id="star3" onMouseOver="over(3)" onMouseOut="out(3)" /></a>
+				<a href="javascript:click(4)"><img src="../img/star_red.png" id="star4" onMouseOver="over(4)" onMouseOut="out(4)"/></a>
+				<a href="javascript:click(5)"><img src="../img/star_red.png" id="star5" onMouseOver="over(5)" onMouseOut="out(5)"/></a>
+				<span id="message">很好</span>
 			</div>
 			<textarea name="" rows="5" cols="5" placeholder="您对这次消费满意吗？说点什么吧。我们期待您的建议和意见。"></textarea>
 			<div class="paytitle_image clear">
@@ -49,7 +49,7 @@
 					<!--<img src="../img/s_img.png" class="left"/>-->
 				</span>
 				<div class="left oneImage">
-					<img src="../img/buy_img.png" class=""/>
+					<img src="../img/buy_img.png" class="" id="clickImg"/>
 					<input name="image" class="ci_upload" type="file" id="file4" onchange="filesize(this)"/>
 				</div>
 			</div>

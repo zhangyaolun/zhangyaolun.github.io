@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>伴飞商家对账平台</title>
+		<link rel="stylesheet" href="css/stylePc.css">
+	</head>
+	<body>
+		<div class="box">
+			<div class="indexBox">
+				<div class="index_comment lgBackground">
+					<div class="comment_fixed comment_data">
+						当前日期：<i>2017-09-27</i>
+					</div>
+					<div class="comment_fixed">
+						截至昨天累计收益：<i class="colorFont">￥0.00</i>
+					</div>
+					<div class="comment_fixed comment_select" data='' months='' currPage=''><!--下拉-->
+						代理店铺：
+						<select name="店铺" id="status">
+							<option disabled selected value>请选择店铺</option>
+						</select>
+					</div>
+					<ul class="comment_time">
+						<li>收益明细：</li>
+						<li class="code_one code_active">一个月</li>
+						<li  class="code_one">三个月</li>
+						<li  class="code_one">六个月</li>
+					</ul>
+					<div class="index_flex">
+						<span>店铺</span>
+						<span>收益金额</span>
+						<span>交易日期</span>
+					</div>
+					<ul class="item">
+						<!--<li class="index_list list_active">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list list_active">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list list_active">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list list_active">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list list_active">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>
+						<li class="index_list">
+							<span>200.00</span>
+							<span>100.00</span>
+							<span>2017.10.11</span>
+						</li>-->
+					</ul>
+					
+					<div class="last">
+						<span>重置密码</span>
+					</div>
+					<div class="ht_choose">
+						<div class="ht_shows">
+							每页显示10项
+							<span>&nbsp;共&nbsp;<i></i>&nbsp;页，到第<input type="number" name="page" value="" min="1">页<button>确定</button><p class="tishi">值必须小于或等于<em></em></p></span>
+						</div>
+						<div class="fenye">
+							<span class="first">首页</span>
+							<span class="prev">&lt;</span>
+							<span class="next">&gt;</span>
+							<span class="chooselast">尾页</span>
+							<span class="bili"><em></em>/<i></i></span>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var o = {
+			init:function(){
+				if(!getCookie('agentPwd')){
+					window.location.href = 'loginpc.html';
+				}
+				if(getParameter('result') != 1){
+					var data = JSON.parse(getParameter('result')),oHtml='';
+					for(var i = 0; i < data.length; i++){
+						oHtml+='<option value="'+data[i].id+'">'+data[i].shopName+'</option>'
+					}
+					$("select#status").append(oHtml);
+				}
+				var currPage = 1,months = 3;
+				$('.comment_select').attr('currPage',currPage);
+				$('.comment_select').attr('months',months);
+				o.ajaxData();
+				o.indexClick();
+			},
+			ajaxData:function(){
+				var suc = function(res){
+				console.log(res)
+				var oResult = '',
+					oHtml = res.result.details;
+					$('.ht_shows i').html(oHtml.totalPages);
+					$('.ht_shows input').val(oHtml.pageNo);
+					$('.bili em').html(oHtml.pageNo);
+					$('.bili i').html(oHtml.totalPages);
+					if(oHtml.length == 0){
+		            	return ;
+		            }
+					for(var i=0;i<oHtml.result.length;i++){
+						if(i%2 ==0){
+							oResult +='<li class="index_list list_active"><span>'+oHtml[i].shopName+'</span><span>'+oHtml.result[i].income+'</span><span>'+oHtml.result[i].time+'</span></li>'
+						}else{
+							oResult +='<li class="index_list"><span>'+oHtml.result[i].shopName+'</span><span>'+oHtml.result[i].income+'</span><span>'+oHtml.result[i].time+'</span></li>'
+						}
+					}
+					$('.item').html(oResult);
+				}
+				var data = {
+					'months':$('.comment_select').attr('months'),
+					'currPage':$('.comment_select').attr('currPage'),
+					'pageSize':10,
+					'shopId':$('.comment_select').attr('data'),
+					'agentId':'80052c881e154b12bd4ecea5b199fd5c'
+				}
+				console.log(data)
+				doAjax('/agent/query',data,suc);
+			},
+			indexClick:function(currPage,months){
+				$("select#status").change(function(){
+				     console.log($(this).val());
+				     $('.comment_select').attr('data',$(this).val());
+				     o.ajaxData();
+				});
+				$(".last span").on('click',function(){//修改密码
+				     window.location.href = 'forgetPc.html?name='+getParameter('name');
+				});
+				$(".comment_time li").on('click',function(){
+					var index = $(this).index();
+					if(index == 0)return;
+				    $(".comment_time li").removeClass('code_active').eq(index).addClass('code_active');
+				    activeColor();
+				    o.ajaxData();
+				});
+				$(".first").on('click',function(){//首页
+					$('.comment_select').attr('currPage',1);
+				    o.ajaxData();
+				});
+				$(".chooselast").on('click',function(){//尾页
+					$('.comment_select').attr('currPage',$('.bili i').html());
+				    o.ajaxData();
+				});
+				$(".prev").on('click',function(){//上一页
+					if($('.bili i').html() == $('.bili em').html())return;
+					var i = $('.bili em').html(),
+						s = parseInt(i)-parseInt(1);
+					$('.comment_select').attr('currPage',s);
+				    o.ajaxData();
+				});
+				$(".next").on('click',function(){//下一页
+					if($('.bili i').html() == $('.bili em').html())return;
+					var a = $('.bili em').html(),
+						b = parseInt(a)+parseInt(1);
+					$('.comment_select').attr('currPage',b);
+				    o.ajaxData();
+				});
+				$(".ht_shows button").on('click',function(){//跳第几页
+					if($('.bili i').html() == $('.bili em').html())return;
+					$('.comment_select').attr('currPage',$(".ht_shows button").val());
+				    o.ajaxData();
+				});
+				$(".ht_shows input").bind('input propertychange',function(){//跳第几页
+					if($(".ht_shows input").val()>$('.bili i').html()){
+						$(".ht_shows input").val('1');
+						alert('超出查询页数');
+					}
+				});
+				function activeColor(){
+					for(var s=0;s<4;s++){
+						if($(".comment_time li").eq(s).hasClass('code_active')){
+							var timeAttr = ['0','1','3','6'];
+							$('.comment_select').attr('months',timeAttr[s]);
+							return ;
+						}
+					}
+				}
+			}
+		}
+		o.init();
+		
+		
+		 
+		 
+	</script>
+</html>

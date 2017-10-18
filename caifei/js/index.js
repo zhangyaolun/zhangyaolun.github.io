@@ -17,6 +17,7 @@ var o = {
 	                $('.nearbyMain').html('');
 	                var currPage = 1,order = '',type = '';
 					o.moreData(position.lng,position.lat,currPage,order,type,0,$('.nearbyBox input').val());
+					o.moreLoad(position.lng,position.lat,currPage,order,type,0,$('.nearbyBox input').val());
 					o.click(position.lng,position.lat);
 	            } else { 
 	            	$('.moreDate img').hide();
@@ -28,6 +29,7 @@ var o = {
 			$('.moreDate').hide();
 			var currPage = 1,order = '',type = '';
 			o.moreData(position.lng,position.lat,currPage,order,type,0,$('.nearbyBox input').val());
+			o.moreLoad(position.lng,position.lat,currPage,order,type,0,$('.nearbyBox input').val());
 			o.click(position.lng,position.lat);
 		}
 	},
@@ -42,7 +44,8 @@ var o = {
 			'order':order,
 			'type':type
 		}
-		
+		var oType = x+'|'+y+'|'+currPage+'|'+order+'|'+type+'|'+oName;
+		$('.nearbyMain').attr('type',oType);
 		var urlDate = ['/shop/geo/withInRadius','/shop/search'],
 			oUrl = urlDate[0];
 		
@@ -61,7 +64,7 @@ var o = {
             	return ;
 			}
             for(var i = 0; i < oData.result.length; i++){
-                result +=   '<li class="clear detailColor" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="main_left left "><img src="'+oData.result[i].pic+'" alt="" /></div><div class="main_right left"><div class="mr_top clear"><span class="left mr_title">'+oData.result[i].shopName+'</span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*0.12+'rem"></div></div></div><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="right">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="mr_price"><span class="priceNew">折扣：<em>'+(oData.result[i].discountRate*10)+'折</em></span></div></div></li>';
+                result +=   '<li class="clear detailColor" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="main_left left "><img src="'+oData.result[i].pic+'" alt="" /></div><div class="main_right left"><div class="mr_top clear"><span class="left mr_title">'+oData.result[i].shopName+'</span></div><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="left">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*12+'px"></div></div></div><div class="mr_price"><span class="priceNew">折扣：<em>'+(oData.result[i].discountRate*10)+'折</em></span></div></div></li>';
             }
             $('.bottom_load').remove();
             $('.nearbyMain').append(result);
@@ -100,7 +103,8 @@ var o = {
 			}
 		　　if(scrollTop + windowHeight == scrollHeight){
 			   currPage++;
-		　　　 o.moreData(x,y,currPage,order,type,oName);
+			   var typeAttr = $('.nearbyMain').attr('type').split('|'); 
+		　　　 o.moreData(typeAttr[0],typeAttr[1],currPage,typeAttr[3],typeAttr[4],typeAttr[5]);
 		　　}
 		});	
 	    
@@ -136,13 +140,15 @@ var o = {
 					o.moreData(x,y,1,oOder[i],oType,$('.nearbyBox input').val());
 				}
 			}
-			/*window.location.href = 'personal.html';*/
 		})
 		
 		/*点击li查看详情*/
 		$('.nearbyMain').on('click','li',function(){
-			console.log($(this).attr('data'))
-			window.location.href = 'details.html?result='+$(this).attr('data')+'&mayself='+x+'|'+y;
+			if($(this).attr('data')){
+				window.location.href = 'details.html?result='+$(this).attr('data')+'&mayself='+x+'|'+y;
+			}else{
+				return;
+			}
 		})
 		/*筛选*/
 		$('.navtLast').on('click',function(){
@@ -192,7 +198,6 @@ var o = {
 			var index = $(this).index(),
 				oAttr = ['',0,1,2,3],
 				oOder = [0,1];
-				
 			$('.listItem li').css('color','#777').eq(index).css('color','#000');
 			for(var i=0;i<3;i++){
 				if($('.nearbyNav li').eq(i).hasClass('navStyle')){
@@ -204,7 +209,6 @@ var o = {
 					o.moreData(x,y,1,oOder[i],oAttr[index],$('.nearbyBox input').val());
 				}
 			}
-			$('.listItem').css('display')=='none'?$('.listItem').css('display','block'):$('.listItem').css('display','none');
 		})
 		function conmmont(){
 			$('.listItem').css('display','none');

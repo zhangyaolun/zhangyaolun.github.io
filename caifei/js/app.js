@@ -4,7 +4,7 @@
 		recalc = function() {
 			var tagFont = 100 * (docEl.clientWidth / 375);
 			if (tagFont > 500) {
-				docEl.style.fontSize = '30px'
+				docEl.style.fontSize = '200px'
 			} else {
 				docEl.style.fontSize = 100 * (docEl.clientWidth / 375) + 'px'
 			}

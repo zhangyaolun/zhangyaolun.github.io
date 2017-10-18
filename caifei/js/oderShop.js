@@ -4,21 +4,27 @@ var o = {
 		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		console.log(data)
-		$('.order_title img').attr("src",data.pic);			
-		$('.title_top span').html(data.shopName);			
-		$('.title_num em').html(getParameter('num'));			
-		$('.over').css('width',$('.title_num em').html()*12/100+'rem');			
+		console.log(getParameter('num'))
+		$('.order_logo img').attr("src",data.pic);			
+		$('.order_title .main_title').html(data.shopName);			
+		$('.order_title .emStyle').html(getParameter('num'));			
+		$('.order_title .over').css('width',getParameter('num')*12+'px');			
 		$('.price_n').html((data.discountRate*10)+'折');	
-		o.click(data.id,data.discountRate.toFixed(2));
+		o.click(data.id,(data.discountRate).toFixed(1));
 	},
 	ajsxData:function(userShopId,rate){
-		
 		var data = {
 			'openid':sessionStorage.getItem('openId'),
-			'total':$('.pri_input input').val()*100,
+			'total':($('.pri_input input').val()*100).toFixed(0),
 			'userShopId':userShopId,
 			'rate':rate,
-			'actualPay':$('.fexed_left i').html()*100
+			'actualPay':($('.fexed_left i').attr('pay')*100).toFixed(0),
+			'actualScore':0			
+		}
+		if($('.order_bot').css('display') == 'block'){
+			if($('.order_bot .bot_image').hasClass('one')){
+				data.actualScore = $('.order_bot .order_code').html();
+			}
 		}
 		console.log(data)
 		var suc = function(data){
@@ -40,9 +46,18 @@ var o = {
 	},
 	click:function(userShopId,rate){
 		$('.pri_input input').bind('input propertychange',function(){
+			console.log($('.pri_input input').val())
+			if($('.pri_input input').val() == ''){
+				$('.pri_input input').css('font-size',' 1.5rem');
+			}else{
+				o.comData(($('.pri_input input').val()*rate).toFixed(2));
+				$('.pri_input input').css('font-size',' 2.5rem');
+			}
 			if(parseInt($('.pri_input input').val()) > 9999){ 
-				alert('请输入10000元以下的金额');
-				$('.pri_input input').val('');
+				$('.alertTan').show();
+				setTimeout(function(){
+					$('.alertTan').hide();
+				},3000)
 				return;
 			}
 			if( ! /^-?\d+\.?\d{0,2}$/.test($('.pri_input input').val())){ 
@@ -53,7 +68,8 @@ var o = {
 				var s = $('.pri_input input').val();
 				$('.pri_input input').val(s.substring(0,s.length-1));
 			}
-			$('.fexed_left i').html(($('.pri_input input').val()*rate).toFixed(2))
+			$('.fexed_left i').attr('pay',($('.pri_input input').val()*rate).toFixed(2));
+			$('.fexed_left i').html(($('.pri_input input').val()*rate).toFixed(2));
 		})
 		$('.fexed_right').on('click',function(){
 			if($('.pri_input input').val() == ''){
@@ -70,11 +86,31 @@ var o = {
 			if($('.bot_image').hasClass('one')){
 				$('.bot_image').removeClass('one');
 				$('.bot_image').attr('src','../img/mapNew1.png');
+				$('.fexed_left i').html(($('.pri_input input').val()*rate).toFixed(2));
 			}else{
 				$('.bot_image').addClass('one');
 				$('.bot_image').attr('src','../img/mapNew2.png');
+				$('.fexed_left i').html(($('.fexed_left i').html()-$('.order_bot .order_pay').html()).toFixed(2));
 			}
 		});
+	},
+	comData:function(payMoney){
+		var data = {
+			'userInfoId':sessionStorage.getItem('openId'),
+			'payMoney': (payMoney*100).toFixed(0)
+		}
+		console.log(data)
+		var suc = function(data){
+			console.log(data)
+			if(data.result > 0){
+				$('.order_bot').show();
+				$('.order_bot .order_code').html(data.result);
+				$('.order_bot .order_pay').html(data.result/100);
+			}else{
+				$('.order_bot').hide();
+			}
+		}
+		doPost('/pay/comScore',data,suc);
 	}
 }
 o.init();

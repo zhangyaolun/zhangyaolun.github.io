@@ -3,27 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>-->
     <title>订单确认</title>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/>
 </head>
-<body style="display: none;">
+<body>
 	<div class="order_box">
-		<div class="order_logo"><img src="../img/order_logo.png"/></div>
+		<div class="order_logo detailColor"><img src="../img/order_logo.png"/></div>
 		<div class="order_title detailColor clear">
-			<img src="" alt="" class="left"/>
-			<div class="title_name left">
-				<div class="title_top clear">
-					<span class="left mr_title"></span>
-					<div class="bg right">
-						<div class="over" ></div>
-					</div>
+			<span class="main_title"></span>
+			<div class="mr_center clear">
+				<span class="marght left">综合评价：<em class="emStyle"></em></span>
+				<div class="bg right">
+					<div class="over" style="width:.516rem"></div>
 				</div>
-				<div class="title_num">
-					<span>综合评价：<em class="title_det"></em></span>
-				</div>
-				<div class="title_price price_n">折</div>
+				<!--<span class="left">559<em>m</em></span>-->
 			</div>
 		</div>
 		
@@ -32,21 +27,19 @@
 				付款金额
 			</div>
 			<div class="pri_input">
-				<input type="number" name="" id=""  value="" placeholder="注：请输入消费金额" />
+				<em>￥</em><input type="number" name="" id=""  value="" placeholder="请输入消费金额" />
+			</div>
+			<div class="pri_name bornnone">
+				<span>当前折扣：<em class="price_n emStyle"></em></span>
 			</div>
 		</div>
 		
-		<div class="order_bot detailColor">
-			<!--<div class="bot_name clear">
-				<div class="left name_title">
-					<span>使用积分付款</span>
-					<em>当前可用100积分</em>
-				</div>
-				<img src="../img/mapNew1.png" class="right bot_image"/>
-			</div>-->
-			<div class="bot_name bornnone">
-				<span>当前折扣：<em class="price_n"></em></span>
+		<div class="order_bot detailColor clear">
+			<div class="name_title left">
+				<span>积分抵扣</span>
+				<em>(可用积分：<span class="emStyle order_code"></span>分，抵扣<i class="emStyle order_pay"></i>元)</em>
 			</div>
+			<img src="../img/mapNew1.png" class="bot_image right"/>
 		</div>
 		
 		<div class="order_fexed clear detailColor">
@@ -54,9 +47,12 @@
 				确认付款
 			</div>
 			<div class="fexed_left right">
-				<span>合计：<em>￥</em><i>0.00</i></span>
+				<span>实付金额：<em>￥</em><i pay=''>0.00</i></span>
 			</div>
 			
+		</div>
+		<div class="alertTan">
+			超出可支付最大金额
 		</div>
 	</div>
 </body>

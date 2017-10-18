@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="sharecontent" data-msg-img="http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg" data-msg-title="尊享身边的会员卡" data-msg-content="在这里，有各种高折扣的充值卡供你使用，同时你也可以分享给别人。一起分享，一起打折" data-msg-callBack="" data-line-img="http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg" data-line-title="尊享身边的会员卡" data-line-callBack=""/>
-    <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>-->
     <title>会员卡大放送</title>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/>
 </head>
-<body style="background-color: #fff;display: none;">
+<body style="background-color: #fff;">
 
 	<!--<div class="login" style="position: absolute;top:-6rem;">
 		<img src="http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg"/>
@@ -31,57 +31,7 @@
 <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/comment.js" type="text/javascript" charset="utf-8"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"charset="utf-8"></script>
-<script type="text/javascript">
-	$('.img_myself').attr('src','/user/qrcode?openid='+getParameter('openId'));	
-	var o = {
-		init:function(){
-			$('.img_myself').attr('src','/user/qrcode?openid='+getParameter('openId'));
-			var data = {
-				'openid':getParameter('openId')
-			}
-			var suc = function(data){
-				o.moreDate(data.result.appId,data.result.timeStamp,data.result.nonceStr,data.result.signature);
-			}
-			doPost('/consumption/createShareSign',data,suc);
-		},
-		moreDate:function(app,time,nonc,sign){
-			console.log(app,time,nonc,sign)
-			 wx.config({
-				    appId: app, // 必填，公众号的唯一标识
-				    timestamp: time, // 必填，生成签名的时间戳
-				    nonceStr: nonc, // 必填，生成签名的随机串
-				    signature: sign,// 必填，签名，见附录1
-				    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-				});
-				wx.ready(function(){
-					   wx.onMenuShareTimeline({
-					    title: '伴飞共享卡上线了!', // 分享标题
-					    link: 'http://www.tongyaosh.com/html/shopMend.html?openId='+getParameter('openId'), 
-					    imgUrl: 'http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg', // 分享图标
-					    success: function () { 
-					        // 用户确认分享后执行的回调函数
-					    },
-					    cancel: function () { 
-					        // 用户取消分享后执行的回调函数
-					    }
-					});
-					wx.onMenuShareAppMessage({
-					    title: '伴飞共享卡上线了', // 分享标题
-					    desc: '一起分享，一起打折。', // 分享描述
-					    link: 'http://www.tongyaosh.com/html/shopMend.html?openId='+getParameter('openId'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-					    imgUrl: 'http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg', // 分享图标
-					    success: function () { 
-					        // 用户确认分享后执行的回调函数
-					    },
-					    cancel: function () { 
-					        // 用户取消分享后执行的回调函数
-					    }
-					});
-				});
-		}
-	}
-	o.init();
-	
+<script src="../js/shopMendJs.js" type="text/javascript" charset="utf-8"></script>
 </script>
 </html>
 

@@ -1,3 +1,4 @@
+document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 $(function() {
 	var o = {
 		init:function(){
@@ -13,7 +14,7 @@ $(function() {
 		oDate:function(months,currPage){
 			var suc = function(res){
 				console.log(res)
-				$('.rateDate').html(res.result.rate);
+				$('.rateDate').html((res.result.rate*10).toFixed(0));
 				$('.colorFont').html('￥'+res.result.remainingAmount.toFixed(2));
 				var oResult = '',
 					oHtml = res.result.details;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>-->
     <title>个人中心</title>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/>
@@ -12,15 +12,15 @@
 	<div class="per_box">
 		<div class="per_top">
 			<img src="../img/p_logo.png" class="per_logo"/>
-			<img src="../img/outline.png" class="per_loimg"/>
-			<img src="" class="per_image"/>
+			<img src="" class="per_image" oid=''/>
+			<span></span>
 		</div>
 		<ul class="per_main clear detailColor">
 			<li class="left bor_list">
-				<div class="main_title">当前积分</div>
+				<div class="per_title">当前积分</div>
 				<div class="main_num clear">
 					<img src="../img/Coins.png" alt=""  class="left"/>
-					<span class="left">3569</span>
+					<span class="left"></span>
 				</div>
 			</li>
 			<!--<li class="left bor_list">
@@ -31,7 +31,7 @@
 				</div>
 			</li>-->
 			<li class="left item_history">
-				<div class="main_title main_history">消费记录</div>
+				<div class="per_title main_history">消费记录</div>
 				<div class="main_history main_num">
 					<img src="../img/Write document.png" alt="" />
 				</div>
@@ -42,25 +42,38 @@
 				<img src="../img/p_1.png"/>
 				<span>问题反馈</span>
 			</li>-->
-			<li>
+			<li class="itemLi item_login">
 				<img src="../img/p_2.png"/>
-				<span>用户指南</span>
+				<span>商家合作</span>
 			</li>
-			<li>
+			<!--<li class="itemLi">
 				<img src="../img/p_3.png"/>
 				<span>关于伴飞</span>
+			</li>-->
+			<li class="per_code itemLi">
+				<img src="../img/p_3.png"/>
+				<span>我的推广二维码</span>
 			</li>
-			<li class="per_last">
+			<li class="itemLi per_num">
 				<img src="../img/p_1.png"/>
 				<span>我的粉丝：<em>0</em>人</span>
+				<ul class="last_img detailColor ">
+					<!--<li><img src="../img/p_3.png"/>
+					<div class="last_title">的撒法撒旦</div></li>
+					<li class="lastImg_more"><img src="../img/add_img.png"/></li>-->
+				</ul>
 			</li>
-		</ul>
-		<ul class="last_img detailColor clear">
-			<!--<li>
-				<img src="../img/Layer1.png"/>
-				<div class="last_title">小伙伴</div>
+			<!--<li class="itemLi per_last">
+				<img src="../img/p_5.png"/>
+				<span>我的粉丝店铺：<em>0</em>个</span>
+				<ul class="last_item detailColor ">
+					<!--<li><img src="../img/p_3.png"/>
+					<div class="last_title">的撒法撒旦</div></li>
+					<li class="lastImg_more"><img src="../img/add_img.png"/></li>
+				</ul>
 			</li>-->
 		</ul>
+		
 	</div>
 </body>
 
