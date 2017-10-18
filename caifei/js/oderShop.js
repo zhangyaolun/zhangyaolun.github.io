@@ -2,8 +2,7 @@ document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		$('#pri_input input')[0].focus();
-		return;
+		$('.pri_input input').focus();
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		console.log(data)
 		console.log(getParameter('num'))
