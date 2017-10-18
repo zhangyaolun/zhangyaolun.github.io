@@ -7,7 +7,7 @@ img{display:block}
 ol,ul{list-style:none}
 a{color:#000}
 a,a:hover{text-decoration:none}
-.clear{clear:both}
+.clear::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
 .left{float: left;}
 .right{float: right;}
 em,i{font-style: normal;}

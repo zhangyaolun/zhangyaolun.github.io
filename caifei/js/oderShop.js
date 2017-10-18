@@ -5,11 +5,12 @@ var o = {
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		console.log(data)
 		console.log(getParameter('num'))
-		$('.order_logo img').attr("src",data.pic);			
-		$('.order_title .main_title').html(data.shopName);			
-		$('.order_title .emStyle').html(getParameter('num'));			
-		$('.order_title .over').css('width',getParameter('num')*12+'px');			
-		$('.price_n').html((data.discountRate*10)+'折');	
+		$('.shop_img').attr("src",data.pic);			
+		$('.pay_shop .shop_title').html(data.shopName);			
+		$('.pay_shop .emStyle').html(getParameter('num'));			
+		$('.pay_shop .over').css('width',getParameter('num')*12+'px');			
+		$('.shop_order em').html(data.address);	
+		$('.price_n').html((data.discountRate*10));	
 		o.click(data.id,(data.discountRate).toFixed(1));
 	},
 	ajsxData:function(userShopId,rate){
