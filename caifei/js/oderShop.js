@@ -1,6 +1,7 @@
 document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
+		return;
 		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		console.log(data)
