@@ -631,8 +631,8 @@ html,body{
 }
 .order_price{
 	width: 100%;
-    padding: 1.5% 2%;
-        margin: 1.5% 0;
+    padding: 2%;
+    margin: 1.5% 0;
     box-sizing: border-box;
     border-bottom: 1px solid #dedede;
 }
@@ -645,7 +645,7 @@ html,body{
 .order_price .pri_title{
     font-size: 1.2rem;
     color: #000;
-        margin-bottom: 2%;
+    margin-bottom: 4%;
 }
 .order_price .pri_input{
 	white-space: nowrap;
@@ -675,7 +675,7 @@ html,body{
 }
 .order_bot{
 	width: 100%;
-    padding: 1.5% 2% 1%;
+    padding: 1.8% 2% 1.2%;
     box-sizing: border-box;
     font-size: .9rem;
     color: #666;
@@ -798,6 +798,7 @@ html,body{
     font-weight: 600;
     height: 1.5rem;
     margin-left: 2%;
+        margin-top: .5%;
 }
 .pay_shop .shop_top{
    font-size: .9rem;
@@ -813,7 +814,7 @@ html,body{
 .pay_shop .shop_num{
     font-size: .8rem;
     font-weight: 500;
-    padding: 2.5% 0;
+    padding: 2.2% 0;
 }
 .pay_shop .shop_price{
     font-size: .9rem;

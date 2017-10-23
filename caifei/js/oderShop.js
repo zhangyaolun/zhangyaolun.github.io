@@ -1,6 +1,19 @@
 document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
+		$('.pri_input input').bind('input propertychange',function(){
+			if($('.pri_input input').val() == ''){
+				$('.pri_input input').css('font-size',' 1.1rem');
+				$('.order_price .pri_input').css('padding-top',' 3%');
+				$('.code_display').hide();
+				$('.payMent').hide();
+				$('.fexed_left .payCont').html('0.00');
+				return;
+			}else{
+				$('.pri_input input').css('font-size',' 2rem');
+				$('.order_price .pri_input').css('padding-top','0');
+			}
+		})
 		return;
 		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
@@ -53,7 +66,6 @@ var o = {
 		doPost('/pay/weiToPay',data,suc);
 	},
 	click:function(userShopId,rate){
-		
 		$('.pri_input input').bind('input propertychange',function(){
 			if($('.pri_input input').val() == ''){
 				$('.pri_input input').css('font-size',' 1.1rem');
