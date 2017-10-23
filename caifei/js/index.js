@@ -205,7 +205,7 @@ var o = {
 		/*筛选*/
 		$('.listItem').on('click','li',function(){
 			var index = $(this).index(),
-				oAttr = ['',0,1,2,3],
+				oAttr = ['',0,1,2,3,4],
 				oOder = [0,1];
 			$('.listItem li').css('color','#777').eq(index).css('color','#000');
 			for(var i=0;i<3;i++){

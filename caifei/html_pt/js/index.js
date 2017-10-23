@@ -3,9 +3,9 @@ $(function() {
 	var o = {
 		init:function(){
 			FastClick.attach(document.body);
-			if(!getCookie('userName')){
+			/*if(!getCookie('userName')){
 				window.location.href = 'login.html';
-			}
+			}*/
 			var myDate = new Date().Format("yyyy-MM-dd");
 			$('.comment_data i').html(myDate);
 			var months = 1,
@@ -55,6 +55,14 @@ $(function() {
 			$('.back').on('click',function(){
 				$(window).scrollTop(0);
 				$('.back').css('display','none');
+			})
+			/*点击重置密码*/
+			$('.forgetDiv').on('click',function(){
+				window.location.href = 'forget.html';
+			})
+			/*点击重置密码*/
+			$('.ClerkDiv').on('click',function(){
+				window.location.href = 'shopClerk.html';
 			})
 		},
 		moreDate:function(months,currPage){

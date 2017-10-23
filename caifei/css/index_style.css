@@ -268,11 +268,13 @@ html,body{
     color: #666;
 }
 .detailMain .mr_center{
-	    font-size: .85rem;
+    width: 100%;
+    font-size: .85rem;
     color: #a3a3a3;
     height: 1.4rem;
     padding: 1.5% 0;
     border-bottom: 1px solid #f0f0f0;
+    white-space: nowrap;
 }
 .detailMain .main_top{
 	height: .2rem;

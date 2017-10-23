@@ -22,7 +22,7 @@ var o = {
 			wx.ready(function(){
 				   wx.onMenuShareTimeline({
 				    title: '伴飞共享卡上线了!', // 分享标题
-				    link: 'http://www.tongyaosh.com/html/shopMend.html?openId='+getParameter('openId'), 
+				    link: 'http://www.banfeikeji.com/html/shopMend.html?openId='+getParameter('openId'), 
 				    imgUrl: 'http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg', // 分享图标
 				    success: function () { 
 				        // 用户确认分享后执行的回调函数
@@ -34,7 +34,7 @@ var o = {
 				wx.onMenuShareAppMessage({
 				    title: '伴飞共享卡上线了', // 分享标题
 				    desc: '一起分享，一起打折。', // 分享描述
-				    link: 'http://www.tongyaosh.com/html/shopMend.html?openId='+getParameter('openId'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				    link: 'http://www.banfeikeji.com/html/shopMend.html?openId='+getParameter('openId'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 				    imgUrl: 'http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg', // 分享图标
 				    success: function () { 
 				        // 用户确认分享后执行的回调函数

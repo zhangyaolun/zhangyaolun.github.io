@@ -7,7 +7,7 @@ img{display:block}
 ol,ul{list-style:none}
 a{color:#000}
 a,a:hover{text-decoration:none}
-.clear{clear:both}
+.clear::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
 .left{float: left;}
 .right{float: right;}
 em,i{font-style: normal;}
@@ -85,7 +85,7 @@ body{
 	width: 100%;
 	height: auto;
 	color: #333;
-	margin-top: 20%;
+	margin-top: 40%;
 	text-align: center;
 }
 .registerBox .login_lg img{
@@ -128,6 +128,11 @@ body{
 	background-color:#4caf50 ;
 	color: #fff;
 }
+
+/*重置密码*/
+
+
+
 /*后台商户查询*/
 .indexBox{
 	width: 100%;
@@ -177,6 +182,24 @@ body{
 	box-sizing: border-box;
 	line-height: .5rem;
 	border-bottom: 1px solid #f3f0f0;
+}
+.ClerkDiv{
+	position: absolute;
+    top: 6%;
+    right: 3%;
+	cursor: pointer;
+}
+.forgetDiv{
+	position: absolute;
+    top: 2%;
+    right: 3%;
+	cursor: pointer;
+}
+.forgetDiv span,.ClerkDiv span{
+	font-size: 1rem;
+	color: #666;
+	cursor: pointer;
+	text-decoration:underline
 }
 
 /*收益查询*/
@@ -266,6 +289,113 @@ body{
     border-radius: 10%;
     display: none;
 }
+/*店员管理*/
+.clerkBox{
+	width: 100%;
+	height: auto;
+}
+.clerkTop{
+	width: 100%;
+	height: auto;
+}
+.clerkTop img{
+    display: block;
+    width: 70%;
+    margin: 8% 15%;
+}
+.clerkItem{
+	width: 100%;
+	height: auto;
+}
+.clerkItem li{
+    width: 100%;
+    padding: 2%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #dedede;
+    color: #666;
+    font-size: 1rem;
+    white-space: nowrap;
+    line-height: 3rem;
+}
+.clerkItem li .clerkTitle{
+    width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.clerkItem li .clerkImg{
+	box-sizing: border-box;
+    width: 13%;
+    border-radius: 50%;
+    margin-right: 3%;
+}
+.clerkItem li .clerkButton{
+    display: inline-block;
+    width: 53%;
+    text-align: center;
+}
+.clerkItem li .clerkButton em{
+    padding: 0 5%;
+    display: inline-block;
+    height: 2rem;
+    line-height: 2rem;
+    border-right: 1px solid #dedede;
+}
+.clerkItem li .clerkButton .borderNone{
+    border-right: none;
+}
+.alertBox{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.2);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.alertTan{
+	width: 60%;
+	padding: 10% 0;
+	text-align: center;
+	color: #666;
+	background: #fff;
+	position: absolute;
+	top: 35%;
+	left: 20%;
+	border-radius: 10px 10px 0 0;
+	z-index: 99999;
+}
+.alertTan .alertTitle{
+    padding-bottom: 13%;
+	font-size: 1rem;
+}
+.alertTan .alertTitle span,.alertTan .alertTitle em{
+	text-decoration:underline;
+	margin: 0 2%;
+}
+.alertTan .alertBut{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	border-top: 1px solid #dedede;
+}
+.alertTan .alertBut div{
+	width: 50%;
+	padding: 3% 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+.alertTan .alertBut .ButFalse{
+	color: #666;
+}
+.alertTan .alertBut .ButTrue{
+	background: #f30213;
+	color: #fff;
+}
+
+
+
+
 
 
 /*滚动条*/

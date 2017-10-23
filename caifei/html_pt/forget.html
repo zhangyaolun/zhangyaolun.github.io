@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>修改密码</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div class="registerBox box">
+			<div class="login_lg">
+				<h1>修改密码</h1>
+			</div>
+			<ul>
+				<li class="register_name">
+					<label>旧&ensp;密&ensp;码：</label>
+					<input type="password" name="用户名" id="passOld" placeholder="请输入原始密码"/>
+				</li>
+				<li class="register_pass">
+					<label>新&ensp;密&ensp;码：</label>
+					<input type="password" name="密码" id="pass" placeholder="请设置6-12位密码"/>
+				</li>
+				<li class="register_word">
+					<label>确认密码：</label>
+					<input type="password" name="确认密码" id="word" placeholder="请再次确认新密码"/>
+				</li>
+			</ul>
+			<div id="title"></div>
+			<div class="reg_button">完成</div>
+		</div>
+	</body>
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/comment.js"></script>
+	<script type="text/javascript" src="../js/fastclick.min.js"></script>
+	<script type="text/javascript">
+		var o = {
+			init:function(){
+				FastClick.attach(document.body);
+				o.divClick();
+			},
+			oNclick:function(passOld){
+				if(!checkPassword(passOld)){
+					$('#title').html('请输入6-12位密码');
+					return false;
+				}
+				return true;
+			},
+			divClick:function(){
+				$('.reg_button').on('click',function(){
+					$('#title').html('');
+					var passOld = $('#passOld').val(),
+						pass = $('#pass').val(),
+						word = $('#word').val();
+					if(!checkNotEmpty(passOld)){
+						$('#title').html('请输入原始密码');
+						return ;
+					}
+					if(!o.oNclick(passOld))return ;
+					if(!checkNotEmpty(passOld)){
+						$('#title').html('请输入新密码');
+						return ;
+					}
+					if(!o.oNclick(pass))return ;
+					if(!checkNotEmpty(word)){
+						$('#title').html('请再次确认新密码');
+						return ;
+					}
+					if(!o.oNclick(word))return ;
+					if(pass != word){
+						$('#title').html('两次密码输入不一致');
+						return ;
+					}
+					$('#title').html('');
+					/*
+					var suc = function(data){
+						if(data.result == 1){
+							window.location.href = 'index.html?name='+getParameter('name');
+						}else if(data.result == 0){
+							$('#title').html('修改密码失败');
+						}
+					}
+					var data = {
+						'agentMobile':getParameter('name'),
+						'agentPwd':getCookie('agentPwd'),
+						'updateAgentPwd':pass
+					}
+					doAjax('/agent/updatePwd',data,suc);*/
+				})
+			}
+		}
+		o.init();
+	</script>
+</html>

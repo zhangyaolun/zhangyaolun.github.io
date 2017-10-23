@@ -179,6 +179,7 @@ var o = {
 		
 		/*跳转到地图*/
 		$('.map_left').on('click',function(){	
+			if($('.map_left').attr('mapdate') == '')return;
 			if(mayself){
 				window.location.href = 'map.html?type='+$('.map_left').attr('type')+'&mayself='+mayself;
 			}else{
