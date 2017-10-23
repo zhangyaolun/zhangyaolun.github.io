@@ -2,7 +2,6 @@ document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		$('.pri_input input').focus();
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		console.log(data)
 		console.log(getParameter('num'))
@@ -13,6 +12,7 @@ var o = {
 		$('.shop_order em').html(data.address);	
 		$('.price_n').html((data.discountRate*10));	
 		o.click(data.id,(data.discountRate).toFixed(1));
+		o.ajaxDate();
 	},
 	ajsxData:function(userShopId,rate){
 		var data = {
@@ -23,19 +23,21 @@ var o = {
 			'actualPay':($('.fexed_left i').attr('pay')*100).toFixed(0),
 			'actualScore':0			
 		}
-		if($('.order_bot').css('display') == 'block'){
-			if($('.order_bot .bot_image').hasClass('one')){
+		if($('.code_display').css('display') == 'inline-block'){
+			if($('.order_bot .bot_image').hasClass('two')){
 				data.actualScore = $('.order_bot .order_code').html();
 			}
-		}
+		} 
 		console.log(data)
-		var suc = function(data){
-			console.log(data)
-			WeixinJSBridge.invoke('getBrandWCPayRequest',{
+		var suc = function(data){         
+			if(data.result.payType == 2){
+				window.location.href = 'payment.html?result='+getParameter('result')+'&num='+getParameter('num')+'&payNumber=1'+'&orderPayId='+data.result.orderId+'&userShopId='+userShopId+'&channel='+getParameter('channel');
+			}else{
+				WeixinJSBridge.invoke('getBrandWCPayRequest',{
   		 "appId" : data.result.appId,"timeStamp" : data.result.timeStamp, "nonceStr" : data.result.nonceStr, "package" : data.result. packagee,"signType" : "MD5", "paySign" : data.result.paySign 
    			},function(res){
 	            if(res.err_msg == "get_brand_wcpay_request:ok"){  
-	            	window.location.href = 'payment.html?result='+getParameter('result')+'&num='+getParameter('num')+'&payMoney='+data.result.actual_pay+'&totalMoney='+data.result.total+'&orderPayId='+data.result.orderId+'&userShopId='+userShopId+'&channel='+getParameter('channel');
+	            	window.location.href = 'payment.html?result='+getParameter('result')+'&num='+getParameter('num')+'&payMoney='+data.result.actual_pay+'&totalMoney='+data.result.total+'&orderPayId='+data.result.orderId+'&userShopId='+userShopId+'&channel='+getParameter('channel')+'&payNumber=2';
 	            }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
 	                /*alert("用户取消支付!"); */ 
 	            }else{
@@ -43,22 +45,36 @@ var o = {
 	               alert("支付失败");  
 	            }  
 			})
+			}
+			console.log(data)
+			
 		}
 		doPost('/pay/weiToPay',data,suc);
 	},
 	click:function(userShopId,rate){
+		
 		$('.pri_input input').bind('input propertychange',function(){
-			console.log($('.pri_input input').val())
 			if($('.pri_input input').val() == ''){
-				$('.pri_input input').css('font-size',' 1.5rem');
+				$('.pri_input input').css('font-size',' 1.1rem');
+				$('.order_price .pri_input').css('padding-top',' 3%');
+				$('.code_display').hide();
+				$('.payMent').hide();
+				$('.fexed_left .payCont').html('0.00');
+				return;
 			}else{
 				o.comData(($('.pri_input input').val()*rate).toFixed(2));
-				$('.pri_input input').css('font-size',' 2.5rem');
+				$('.pri_input input').css('font-size',' 2rem');
+				$('.order_price .pri_input').css('padding-top','0');
 			}
 			if(parseInt($('.pri_input input').val()) > 9999){ 
 				$('.alertTan').show();
 				setTimeout(function(){
 					$('.alertTan').hide();
+					$('.pri_input input').val('');
+					$('.pri_input input').css('font-size',' 1.1rem');
+					$('.code_display').hide();
+					$('.payMent').hide();
+					$('.fexed_left .payCont').html('0.00');
 				},3000)
 				return;
 			}
@@ -71,28 +87,39 @@ var o = {
 				$('.pri_input input').val(s.substring(0,s.length-1));
 			}
 			$('.fexed_left i').attr('pay',($('.pri_input input').val()*rate).toFixed(2));
-			$('.fexed_left i').html(($('.pri_input input').val()*rate).toFixed(2));
+			if($('.code_display').css('display') == 'inline-block'){
+				if($('.order_bot .bot_image').hasClass('one')){
+					$('.fexed_left .payCont').html((($('.pri_input input').val()*rate).toFixed(2)-$('.order_bot .order_pay').html()).toFixed(2));
+					$('.fexed_left .payMent').show();
+					$('.fexed_left .payMent').html('(折后价:￥'+($('.pri_input input').val()*rate).toFixed(2)+')');
+				}else{
+					$('.fexed_left .payMent').hide();
+					$('.fexed_left .payCont').html(($('.pri_input input').val()*rate).toFixed(2));
+				}
+			}else{
+				$('.fexed_left .payMent').hide();
+				$('.fexed_left .payCont').html(($('.pri_input input').val()*rate).toFixed(2));
+			}
 		})
 		$('.fexed_right').on('click',function(){
 			if($('.pri_input input').val() == ''){
 				alert('请输入付款金额');
 				return;
 			}
-			if($('.fexed_left i').html() == 0){
-				alert('请确认消费金额');
-				return;
-			}
 			o.ajsxData(userShopId,rate);
 		});
-		$('.bot_image').on('click',function(){
-			if($('.bot_image').hasClass('one')){
-				$('.bot_image').removeClass('one');
-				$('.bot_image').attr('src','../img/mapNew1.png');
-				$('.fexed_left i').html(($('.pri_input input').val()*rate).toFixed(2));
+		$('.order_bot img').on('click',function(){
+			if(!$('.order_bot img').hasClass('two')){
+				$('.order_bot img').addClass('two');
+				$('.order_bot img').attr('src','../img/mapNew2.png');
+				$('.fexed_left .payCont').html((($('.pri_input input').val()*rate).toFixed(2)-$('.order_bot .order_pay').html()).toFixed(2));
+				$('.fexed_left .payMent').show();
+				$('.fexed_left .payMent').html('(折后价:￥'+($('.pri_input input').val()*rate).toFixed(2)+')');
 			}else{
-				$('.bot_image').addClass('one');
-				$('.bot_image').attr('src','../img/mapNew2.png');
-				$('.fexed_left i').html(($('.fexed_left i').html()-$('.order_bot .order_pay').html()).toFixed(2));
+				$('.order_bot img').removeClass('two');
+				$('.order_bot img').attr('src','../img/mapNew1.png');
+				$('.fexed_left .payCont').html(($('.pri_input input').val()*rate).toFixed(2));
+				$('.fexed_left .payMent').hide();
 			}
 		});
 	},
@@ -105,14 +132,29 @@ var o = {
 		var suc = function(data){
 			console.log(data)
 			if(data.result > 0){
-				$('.order_bot').show();
+				$('.code_display').css('display','inline-block');
+				if(!$('.order_bot img').hasClass('two')){
+					$('.order_bot img').addClass('two');
+					$('.order_bot img').attr('src','../img/mapNew2.png');
+				}
 				$('.order_bot .order_code').html(data.result);
 				$('.order_bot .order_pay').html(data.result/100);
 			}else{
-				$('.order_bot').hide();
+				$('.code_display').hide();
 			}
 		}
 		doPost('/pay/comScore',data,suc);
+	},
+	ajaxDate:function(){//用户
+		var suc = function(data){
+			console.log(data)
+			$('.order_bot .code_cont').html(data.result.score);
+		}
+		var data = {
+			'openid':sessionStorage.getItem('openId')
+		}
+		doPost('/user/info',data,suc);
 	}
+	
 }
 o.init();

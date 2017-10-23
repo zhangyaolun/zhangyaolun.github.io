@@ -3,6 +3,9 @@ $(function() {
 	var o = {
 		init:function(){
 			FastClick.attach(document.body);
+			if(!getCookie('userName')){
+				window.location.href = 'login.html';
+			}
 			var myDate = new Date().Format("yyyy-MM-dd");
 			$('.comment_data i').html(myDate);
 			var months = 1,

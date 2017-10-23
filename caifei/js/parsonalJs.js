@@ -91,6 +91,9 @@ var o = {
 			$('.item_history').on('click',function(){
 				window.location.href = 'consume.html?openId='+getParameter('openId');
 			});
+			$('.bor_list').on('click',function(){
+				window.location.href = 'shopCode.html?userId='+$('.per_image').attr('oid');
+			});
 			$('.item_login').on('click',function(){
 				window.location.href = '../html_pt/login.html';
 			});

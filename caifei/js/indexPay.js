@@ -5,6 +5,15 @@ var o = {
 		$(window).scrollTop(0);
 		sessionStorage.setItem('openId',getParameter('openId'));
 		var position = JSON.parse(sessionStorage.getItem('position'));
+		setTimeout(function(){
+			if(!position){
+				$('.moreDate div').css('width','60%');
+				$('.moreDate div').css('left','20%');
+				$('.moreDate').show();
+				$('.moreDate img').hide();
+        		$('.moreDate span').html('请检查是否开启微信定位授权');
+			}
+		},15000)
 		if(!position){
 			window.addEventListener('message', function(event) {
 				if($('.payItem li').eq(0).html() == '暂无数据')return;
@@ -55,7 +64,14 @@ var o = {
             	return ;
 			}
             for(var i = 0; i < oData.result.length; i++){
-                result +=  '<li class="detailColor" ><div class="payItem_left"><img src="'+oData.result[i].pic+'" alt="" /></div><div class="payItem_right"><div class="detailMain detailColor"><span class="main_title">'+oData.result[i].shopName+'</span><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*12+'px"></div></div><span class="left pay_num">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="main_price clear"><span class="price_code left">￥<em>'+(oData.result[i].discountRate*10)+'</em>折</span><span class="price_img right" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'" type="'+oData.result[i].averageScore.toFixed(1)+'">付&nbsp;&nbsp;&nbsp;&nbsp;款</span></div></div></div></li>'
+            	if(i == 0){
+            		result +=  '<li class="detailColor" ><div class="payItem_left"><img src="'+oData.result[i].pic+'" alt="" /></div><div class="payItem_right"><div class="detailMain detailColor"><span class="main_title">'+oData.result[i].shopName+'</span><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*12+'px"></div></div><span class="left pay_num">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="main_price clear"><span class="price_code left"><em>'+(oData.result[i].discountRate*10)+'</em>折</span><span class="price_img right" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'" type="'+oData.result[i].averageScore.toFixed(1)+'">付&nbsp;&nbsp;&nbsp;&nbsp;款</span></div></div></div></li>'
+            	}else if(i%2 == 0){
+            		result +=  '<li class="detailColor item_first marginLeft" ><div class="payItem_left"><img src="'+oData.result[i].pic+'" alt="" /></div><div class="payItem_right"><div class="detailMain detailColor"><span class="main_title">'+oData.result[i].shopName+'</span><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="right pay_num">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="main_price clear"><span class="price_code left"><em>'+(oData.result[i].discountRate*10)+'</em>折</span><span class="price_img right" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'" type="'+oData.result[i].averageScore.toFixed(1)+'">付&nbsp;&nbsp;款</span></div></div></div></li>'
+            	}else{
+            		result +=  '<li class="detailColor item_first marginright" ><div class="payItem_left"><img src="'+oData.result[i].pic+'" alt="" /></div><div class="payItem_right"><div class="detailMain detailColor"><span class="main_title">'+oData.result[i].shopName+'</span><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="right pay_num">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span></div><div class="main_price clear"><span class="price_code left"><em>'+(oData.result[i].discountRate*10)+'</em>折</span><span class="price_img right" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'" type="'+oData.result[i].averageScore.toFixed(1)+'">付&nbsp;&nbsp;款</span></div></div></div></li>'
+            	}
+                
             }
             $('.bottom_load').remove();
             $('.payItem').append(result);

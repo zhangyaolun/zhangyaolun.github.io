@@ -20,7 +20,7 @@ var o = {
 		　　var scrollTop = $(this).scrollTop();
 		　　var scrollHeight = $(document).height();
 		　　var windowHeight = $(this).height();
-		    if($('.consume_item .bottom_load').html() == '暂无消费记录'){
+		    if($('.consume_item .bottom_load').html() == '暂无积分变动记录'){
             	return ;
 			}
 		　　if(scrollTop + windowHeight == scrollHeight){
@@ -31,13 +31,14 @@ var o = {
 	},
 	moreAjax:function(currPage){
 		var data = {
-			'openid':getParameter('openId'),
+			'userId':getParameter('userId'),
+			'months':3,
 			'currPage':currPage,
-			'pageSize':10
+			'pageSize':20
 		}
 		console.log(data)
 		$.ajax({
-	        url :'/user/payHistory',
+	        url :'/user/scoreHistory',
 	        data :data,
 	        type : 'POST',
 	        async : false,
@@ -46,19 +47,22 @@ var o = {
 	        	if(data.httpCode == 200){
 	        		var result = '';
 	        		if(data.result.result.length == 0){
-		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无消费记录</li>');
+		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无积分变动记录</li>');
 		            	return ;
 		            }
 	        		for(var i = 0; i <data.result.result.length; i++){
-	                    result += '<li class="detailColor"><div class="clear title"><span class="left">'+data.result.result[i].userShopName+'</span><i style="color:#ff6585;margin-left:.1rem">'+(data.result.result[i].rate*10)+'折</i></span><em class="right">￥'+((data.result.result[i].actualPay)/100).toFixed(2)+'</em></div><div class="clear last"><span class="left">'+data.result.result[i].createTime+'</span></div></li>';
-                    
+	        			if(data.result.result[i].scoreChange > 0){
+	        				result += '<li class="detailColor">积分变动: <span class="emStyle"> +'+data.result.result[i].scoreChange+'分</span><div class="title"><span>'+data.result.result[i].reason+'</span></div><div class="clear last"><span class="left">'+data.result.result[i].createTime+'</span></div></li>';
+	        			}else{
+	        				result += '<li class="detailColor">积分变动: <span class="emStyle">'+data.result.result[i].scoreChange+'分</span><div class="title"><span>'+data.result.result[i].reason+'</span></div><div class="clear last"><span class="left">'+data.result.result[i].createTime+'</span></div></li>';
+	        			}
 	               }
 	        		
 	        		$('.bottom_load').remove();
 		            $('.consume_item').append(result);
 		            
 		            if(data.result.pageNo == data.result.totalPages &&  $('.consume_item li').length > 10){
-		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无消费记录</li>');
+		            	$('.consume_item').append('<li class="detailColor item bottom_load">暂无积分变动记录</li>');
 		            	return ;
 		            }else{
 					　　if($(window).scrollTop() > 0){

@@ -4,14 +4,19 @@ if(getParameter('channel')){
 	$('.pay_title').hide();
 	$('.pay_fixed').hide();
 }
+if(getParameter('payNumber') == 1){
+	$('.paytop_name').hide();
+}else{
+	$('.pay').html((getParameter('totalMoney')/100).toFixed(2));			
+	$('.total').html((getParameter('payMoney')/100).toFixed(2));
+}
 var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 $('.shop_img').attr("src",data.pic);			
 $('.shop_top span').html(data.shopName);	
 $('.shop_det').html(getParameter('num'));	
 $('.pay_shop .over').css('width',getParameter('num')*12+'px');					
-$('.shop_price').html((data.discountRate*10).toFixed(0)+'折');			
-$('.pay').html((getParameter('totalMoney')/100).toFixed(2));			
-$('.total').html((getParameter('payMoney')/100).toFixed(2));	
+$('.shop_price').html((data.discountRate*10)+'折');			
+	
 
 /*$('.oneImage').bind('click',function(){
 	alert('只能上传jpg，png，jpeg');
@@ -92,7 +97,6 @@ function ajaxFileUpload(target,callback) {
      if(data.httpCode==200){
         callback(data);
       }else{
-        alert(data.message);
       }
     },
     error : function(data)//服务器响应失败处理函数

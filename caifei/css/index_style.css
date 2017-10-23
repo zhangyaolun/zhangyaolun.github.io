@@ -20,6 +20,17 @@ html,body{
 	height:12px;
 	background:url("../img/star_org.png") no-repeat;
 }
+.offBox {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #666;
+	padding-top: 20%;
+}
+.offBox img{
+    width: 40%;
+}
+
 /*彩卡网络*/
 .box_map{
 	width: 100%;
@@ -151,8 +162,8 @@ html,body{
 }
 .moreDate img{
 	display: inline-block;
-	    width: 30%;
-    height: 30%;
+	        width: 30px;
+    height: 30px;
 	vertical-align: middle;
 }
 /*附近商家bottom*/
@@ -204,7 +215,7 @@ html,body{
 .nearbyMain li .main_right .mr_center{
 	font-size: .85rem;
     color: #a3a3a3;
-    height: 1.4rem;
+    margin: 1.8% 0;
     white-space: nowrap;
 }
 .nearbyMain li .main_right .mr_center .marght{
@@ -330,11 +341,11 @@ html,body{
     text-align: center;
     color: #666;
     box-sizing: border-box;
+    background: #DEDEDE;
 }
 .bot_Nav .stypeSpan{
 	font-weight: 600;
-	background: #DEDEDE;
-	border-bottom: 1px solid #F0F0F0;
+	background: #fff;
 }
 .detailBottom{
     margin-bottom: 1rem;
@@ -364,14 +375,10 @@ html,body{
        font-size: .9rem;
 }
 
-.bot_evaluate li .evaluate_img{
-	width:3.55rem;
-}
-
 .bot_evaluate li .evaluate_img img{
-    width: 3rem;
+       width: 15%;
     border-radius: 50%;
-    margin-left: 10%;
+    margin: 0 2%;
 }
 .bot_evaluate li p{
 	    min-height: 2rem;
@@ -384,15 +391,16 @@ html,body{
     color: #ccc;
 }
 .bot_evaluate li .evaluate_right{
-	margin-left: 4rem;
+	margin-left: 2%;
 }
 .bot_evaluate li .ri_image{
-        width: 100%;
+            width: 83%;
+        margin-left: 17%;
 }
 .bot_evaluate li .ri_image::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
 .bot_evaluate li .ri_image img{
 	width: 23%;
-	    height: 100%;
+    height: 5rem;
     margin-right: 3%;
 }
 .bot_evaluate li .ri_map img{
@@ -455,7 +463,6 @@ html,body{
 }
 .per_top .per_image{
    width: 30%;
-   height: 50%;
     position: absolute;
     top: 13%;
     left: 33%;
@@ -475,7 +482,7 @@ html,body{
 }
 .per_main{
     height: 5rem;
-    padding: 1% 2%;
+    padding: 1% 2% 0;
     color: #666;
     border-bottom: 1px solid #dedede;
 }
@@ -624,8 +631,8 @@ html,body{
 }
 .order_price{
 	width: 100%;
-        padding: 2.5% 2%;
-    margin: 2% 0;
+    padding: 1.5% 2%;
+        margin: 1.5% 0;
     box-sizing: border-box;
     border-bottom: 1px solid #dedede;
 }
@@ -638,17 +645,18 @@ html,body{
 .order_price .pri_title{
     font-size: 1.2rem;
     color: #000;
+        margin-bottom: 2%;
 }
 .order_price .pri_input{
 	white-space: nowrap;
-	padding-top: 5%;
+	    padding-top: 3%;
 }
 .order_price .pri_input em{
 	font-size: 1.5rem;
 }
 .order_price .pri_input input{
     width: 90%;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: #000;
     outline: none;
     border: none;
@@ -663,7 +671,7 @@ html,body{
 .order_price .pri_name span{
 }
 .order_price .price_n{
-	font-size: 2.5rem;
+	font-size: 1.8rem;
 }
 .order_bot{
 	width: 100%;
@@ -671,40 +679,57 @@ html,body{
     box-sizing: border-box;
     font-size: .9rem;
     color: #666;
-    line-height: 30px;
+    line-height: 26px;
 }
 .order_bot .name_title {
 	width: 70%;
 	display: inline-block;
+    white-space: nowrap;
+}
+.order_bot .name_title .code_display{	
+	display: none;
 }
 .order_bot .name_title em{
 	font-size: 1rem;
 }
-.order_bot img{
+.order_bot .bot_image{
 	display: inline-block;
 	    width: 50px;
-    height: 30px;
+        height: 25px;
+}
+.order_bot .code_display{	
+	display: none;
 }
 .order_fexed{
 	width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3.5rem;
-    line-height: 3.5rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: 1.5%;
     border-top: 1px solid #dedede;
     font-size: 1.1rem;
     color: #666;
 }
 .order_fexed .fexed_right{
-	width: 33%;
+	width: 28%;
 	text-align: center;
 	background-color: #ffb600;
 	color: #fff;
-	margin-left: 3%;
+	margin-left: 1%;
+}
+.order_fexed .fexed_left{
+    width: 71%;
+    white-space: nowrap;
+    text-align: right;
 }
 .order_fexed .fexed_left em,.order_fexed .fexed_left i{
 	color: #ff6585;
+}
+.order_fexed .fexed_left i{
+	font-size: 1.6rem;
+}
+.order_fexed .fexed_left .payMent{
+	display: none;
+	font-size: .8rem;
 }
 .alertTan{
 	width: 50%;
@@ -736,7 +761,7 @@ html,body{
 	height: 12rem;
     margin-left: 33%;
     padding-top: 10%;
-    margin-bottom: .1rem;
+    margin-bottom: 4%;
 }
 .pay_top .paytop_name{
 	    color: #666;
@@ -759,26 +784,24 @@ html,body{
     color: #666;
     width: 100%;
     box-sizing: border-box;
-    padding: 2% 2% 3%;
+    padding: 1.8% 2%;
 }
 .pay_shop::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
 .pay_shop .shop_img{
-    width: 30%;
-    height: 3.5rem;
+    width: 26%;
+    height: 4.4rem;
     box-sizing: border-box;
 }
 .pay_shop .shop_name{
     font-size: 1rem;
-    width: 68%;
+        width: 72%;
     font-weight: 600;
     height: 1.5rem;
     margin-left: 2%;
 }
 .pay_shop .shop_top{
-    font-size: 1rem;
+   font-size: .9rem;
     width: 100%;
-    
-    height: 1.5rem;
 }
 .pay_shop .shop_title{
     width: 100%;
@@ -790,6 +813,7 @@ html,body{
 .pay_shop .shop_num{
     font-size: .8rem;
     font-weight: 500;
+    padding: 2.5% 0;
 }
 .pay_shop .shop_price{
     font-size: .9rem;
@@ -892,30 +916,30 @@ html,body{
 }
 .consume_box li {
 	width: 100%;
-	padding:3% 2% 7%;
+	padding:2%;
 	border-bottom: 1px solid #dedede;
 	box-sizing: border-box;
 }
 .consume_box li .title{
 	color: #333;
 }
+.consume_box,.consume_box ul{
+	width: 100%;
+	height: auto;
+}
 .consume_box li .title span{
 	overflow: hidden;
-    width: 80%;
+    width: 50%;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .consume_box li .last{
 	font-size: .9rem;
 	color: #ccc;
-	    margin-top: 7%;
+     margin-top: 1%;
 }
 .consume_box li .title em{
 	margin-right: .08rem;
-}
-.consume_box .con_title{
-	height: .2rem;
-	border-bottom: none;
 }
 .consume_box li .last div{
 	color: #666;
@@ -934,8 +958,8 @@ html,body{
 	overflow: hidden;
 }
 .consume_box .bottom_load {
-	width:3.75rem;
-	height: .3rem;
+	width:100%;
+	color: #666;
 	text-align: center;
 	padding: 0;
 	margin: 0;
@@ -943,16 +967,6 @@ html,body{
 	background-color: #f5f3f6;
 	display: block;
 	border-bottom: none;
-}
-/*.detail .back {
-	bottom: .45rem;
-}    */
-.consume_box .search input{
-	padding: 0;
-	width: 103%;
-}
-.consume_box .search img{
-    right: .35rem;
 }
 /*推广页*/
 .mendBox{
@@ -1065,29 +1079,77 @@ html,body{
 .payItem{
 	width: 100%;
 	height: auto;
-	
 	box-sizing: border-box;
-}
-.payItem .main_title{
-	padding: 2% 0;
 }
 .payItem li{
 	width: 100%;
+    padding: 2% 2% 0;
+	box-sizing: border-box;
+	margin-bottom: 2%;
+	float: left;
+}
+.payItem .item_first{
+	width: 49%;
 	padding: 2%;
 	box-sizing: border-box;
 	margin-bottom: 2%;
+    float: left;
+}
+.payItem .marginLeft{
+	margin-left: 1%;
+}
+.payItem .marginright{
+	margin-right: 1%;
+}
+.payItem .item_first .price_img{
+	display: inline-block;
+	color: #fff;
+	width: 43%;
+        height: 1.8rem;
+    line-height: 1.8rem;
+        margin-top: 6%;
+	background: #ff9e05;
+	text-align: center;
+	border-radius: 5px;  
+	font-size: .8rem;
 }
 .payItem li .payItem_left img{
 	width: 100%;
-	height: 12rem;
+    height: 14rem;
+}
+.payItem .item_first .payItem_left img {
+    width: 100%;
+    height: 8rem;
+}
+.payItem .mr_center,.payItem .main_price {
+    padding: 0;
+}
+.payItem .item_first .main_price {
+    font-size: 1rem;
+    height: auto;
+}
+.payItem .item_first .price_code em {
+    font-size: 2rem;
 }
 .payItem li .mr_title{
 	width: 100%;
 	height: 12rem;
 }
-.payItem li .mr_title .bottom_load{
-	text-align: center;
-	color: #ccc;
+.payItem .item_first .payItem_left img {
+    width: 100%;
+    height: 8rem;
+}
+.payItem li .main_title{
+    display: inline-block;
+    font-size: 1.5rem;
+    width: 100%;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.payItem .item_first .main_title{
+    font-size: 1rem;
 }
 .payItem li .pay_num{
 	margin-left: 22%;

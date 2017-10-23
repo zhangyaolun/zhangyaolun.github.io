@@ -22,8 +22,8 @@
 		<div class="pay_shop detailColor clear">
 			<img src="" alt="" class="left shop_img"/>
 			<div class="shop_name left detailColor">
-				<div class="shop_top clear">
-					<span class="left shop_title"></span>
+				<div class="shop_top">
+					<span class=" shop_title"></span>
 				</div>
 				<div class="shop_num">
 					<span>综合评价：<em class="shop_det emStyle"></em></span>
@@ -41,7 +41,7 @@
 					付款金额
 				</div>
 				<div class="pri_input">
-					<em>￥</em><input type="number" name="" id=""  value="" placeholder="请输入消费金额" />
+					<em>￥</em><input type="number" name="" id=""  value="" placeholder="请输入消费金额" autofocus="autofocus"/>
 				</div>
 			</div>
 			<div class="pri_name bornnone left">
@@ -54,8 +54,11 @@
 		
 		<div class="order_bot detailColor clear">
 			<div class="name_title">
-				<span>总积分: <i class="emStyle">500</i>分</span>
-				<em class="code_display">(可用：<span class="emStyle order_code"></span>分，抵扣<i class="emStyle order_pay"></i>元)</em>
+				<span>总积分: <i class="emStyle code_cont"></i>分</span>
+				<em class="code_display">
+					(可用：<span class="emStyle order_code"></span>分，抵扣<i class="emStyle order_pay"></i>元)
+					
+				</em>
 			</div>
 			<img src="../img/mapNew2.png" class="bot_image right one code_display"/>
 		</div>
@@ -65,7 +68,7 @@
 				确认付款
 			</div>
 			<div class="fexed_left right">
-				<span>实付金额：<em>￥</em><i pay=''>0.00</i></span>
+				实付金额：<em>￥</em><i pay='' class="pay"><span class="payCont">0.00</span><span class="payMent">(折后价:￥0.00)</span></i>
 			</div>
 			
 		</div>

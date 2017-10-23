@@ -5,6 +5,15 @@ var o = {
 		$(window).scrollTop(0);
 		sessionStorage.setItem('openId',getParameter('openId'));
 		var position = JSON.parse(sessionStorage.getItem('position'));
+		setTimeout(function(){
+			if(!position){
+				$('.moreDate div').css('width','60%');
+				$('.moreDate div').css('left','20%');
+				$('.moreDate').show();
+				$('.moreDate img').hide();
+        		$('.moreDate span').html('请检查是否开启微信定位授权');
+			}
+		},15000)
 		if(!position){
 			window.addEventListener('message', function(event) {
 				if($('.nearbyMain li').eq(0).html() == '暂无数据')return;

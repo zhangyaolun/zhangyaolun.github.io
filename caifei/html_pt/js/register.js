@@ -21,7 +21,7 @@ $(function() {
 					$('#title').html('请设置您的密码');
 					return ;
 				}
-				if(!checkPassword(pass)){
+				if(6>pass.length||12<pass.length){
 					$('#title').html('请输入6-12位密码');
 					return ;
 				}
@@ -29,7 +29,7 @@ $(function() {
 					$('#title').html('请再次输入您的密码');
 					return ;
 				}
-				if(!checkPassword(word)){
+				if(6>word.length||12<word.length)){
 					$('#title').html('请输入6-12位密码');
 					return ;
 				}

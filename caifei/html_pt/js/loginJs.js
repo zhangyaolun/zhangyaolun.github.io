@@ -37,6 +37,7 @@ var o = {
 		var suc = function(data){
 			console.log(data);
 			if(data.result == 1){
+				setCookie('userName',1)
 				window.location.href = 'index.html';
 			}else if(data.result == 2){
 				$('#title').html('账号不存在');
