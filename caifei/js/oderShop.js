@@ -54,16 +54,12 @@ var o = {
 	click:function(userShopId,rate){
 		$('.pri_input input').bind('input propertychange',function(){
 			if($('.pri_input input').val() == ''){
-				$('.pri_input input').css('font-size',' 1.1rem');
-				$('.order_price .pri_input').css('padding-top',' 3%');
 				$('.code_display').hide();
 				$('.payMent').hide();
 				$('.fexed_left .payCont').html('0.00');
 				return;
 			}else{
 				o.comData(($('.pri_input input').val()*rate).toFixed(2));
-				$('.pri_input input').css('font-size',' 2rem');
-				$('.order_price .pri_input').css('padding-top','0');
 			}
 			if(parseInt($('.pri_input input').val()) > 9999){ 
 				$('.alertTan').show();
@@ -101,10 +97,12 @@ var o = {
 			}
 		})
 		$('.fexed_right').on('click',function(){
+			if($('.fexed_right').hasClass('oneClick'))return;
 			if($('.pri_input input').val() == ''){
 				alert('请输入付款金额');
 				return;
 			}
+			$('.fexed_right').addClass('oneClick');
 			o.ajsxData(userShopId,rate);
 		});
 		$('.order_bot img').on('click',function(){

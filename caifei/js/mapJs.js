@@ -78,7 +78,7 @@ var o = {
                 draggable: false,
                 //自定义Marker图标为大头针样式
                 icon: new qq.maps.MarkerImage(
-                    "http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
+                    "http://md-pay.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
                 //设置Marker的可见性，为true时可见,false时不可见
                 visible: true,
             });
@@ -107,7 +107,7 @@ var o = {
                 draggable: false,
                 //自定义Marker图标为大头针样式
                 icon: new qq.maps.MarkerImage(
-                    "http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
+                    "http://md-pay.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
                 //设置Marker的可见性，为true时可见,false时不可见
                 visible: true,
             });

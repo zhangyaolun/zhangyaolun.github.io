@@ -9,10 +9,10 @@
 	<body>
 		<div class="clerkBox box">
 			<div class="clerkTop">
-				<img src="../img/men_0.png"/>
+				<img src=""/>
 			</div>
 			<ul class="clerkItem">
-				<li class="clear">
+				<!--<li class="clear">
 					<img src="../img/Layer1.png" class="clerkImg left"/>
 					<div class="clerkTitle left">啦啦啦</div>
 					<div class="clerkButton left" index='0'>
@@ -27,13 +27,13 @@
 						<em>店员</em>
 						<em class="borderNone">收银员</em>
 					</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<div class="alertBox">
 			<div class="alertTan">
 				<div class="alertTitle">
-					您是否设置<span></span>为<em></em>
+					<!--您是否设置<span></span>为<em></em>-->
 				</div>
 				<div class="alertBut clear">
 					<div class="ButFalse left">取消</div>
@@ -45,35 +45,5 @@
 	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/comment.js"></script>
-	<script type="text/javascript">
-		var o = {
-			init:function(){
-				FastClick.attach(document.body);
-				o.clerkClick();
-			},
-			clerkClick:function(months,currPage){
-				$('.clerkButton em').bind('click',function(){
-					if($(this).hasClass('clerkActive'))return;
-					var time_index = $(this).index(),
-						data =$(this).parent().parent().find('.clerkTitle').html(),
-						name = $(this).context.innerText,
-						index = $(this).parent().attr('index');
-					o.alertData(data,name,index)
-				})
-			},
-			alertData:function(data,name,index){//弹出提示
-				$('.alertBox').show();
-				$('.alertTan .alertTitle span').html(data);
-				$('.alertTan .alertTitle em').html(name);
-				$('.ButFalse').on('click',function(){
-					$('.alertBox').hide();
-				})
-				$('.ButTrue').on('click',function(){
-					$('.clerkItem li').eq(index).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
-					$('.alertBox').hide();
-				})
-			}
-		}
-		o.init();
-	</script>
+	<script type="text/javascript" src="js/shopCherk.js"></script>
 </html>

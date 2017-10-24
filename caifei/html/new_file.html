@@ -1,95 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-<title></title>
-		<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
-		
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>浏览器定位</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=ddd51725251c86a9d213b34c820d041c"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<body>
+<div id='container'></div>
+<div id="tip"></div>
 <script type="text/javascript">
-
+/***************************************
+由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+***************************************/
+    var map, geolocation;
+    //加载地图，调用浏览器定位服务
+    map = new AMap.Map('container', {
+        resizeEnable: true
+    });
+    map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition:'RB'
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+    //解析定位结果
+    function onComplete(data) {
+        var str=['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+        if(data.accuracy){
+             str.push('精度：' + data.accuracy + ' 米');
+        }//如为IP精确定位结果则没有精度信息
+        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+        document.getElementById('tip').innerHTML = str.join('<br>');
+    }
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById('tip').innerHTML = '定位失败';
+    }
 </script>
-		<style>
-		
-		</style>
-	</head>
-	<body >
-		<input name="image" class="ci_upload" type="file" id="file4" onchange="filesize(this)"/>
-	</body>
-	<script type="text/javascript">
-		
-		function filesize(target) {  
-		    var filesize = (target.files[0].size / 1024).toFixed(2);  
-		    var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
-		    if(filesize >1024){  
-		        alert("您上传的文件大于1M");
-		        target.value =""; 
-				return false;   
-		    }else if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'){
-		    	alert("只能上传jpg，png，jpeg");
-			    return false;
-		    }
-		}
-		var suc=function(url){
-	    	//console.log(IMAGE_PATH+url);
-	    	console.log(url)
-	        var $input=$("#"+register_currentId);
-	        $($input).siblings("span").hide();
-	        $("#img1").show();
-	        $($input).siblings("img").attr("src",IMAGE_PATH+url);
-	        $($input).siblings("img").show();
-	        $(".ci_upload").unbind().bind("change",function(){
-	          uploadImage($(this));
-	        })
-	//    	company_register_currentDom.attr("src",IMAGE_PATH+url);
-	//    	$("#"+register_currentId).attr("src",url+register_currentFileType);
-	    }
-	    
-	    $(".ci_upload").change(function(){
-	        uploadImage($(this));
-	      })
-	
-	    function uploadImage(input){
-	    	console.log(input)
-	        register_currentId=$(input).attr("id");//保存当前选中元素
-	        register_currentFileType=$(input).val().substring($(input).val().lastIndexOf("."),$(input).val().length);
-	        ajaxFileUpload($(input),suc);
-	    }
-		
-		
-		function ajaxFileUpload(target,callback) {
-		  var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
-		  var pid=$(target).attr("id");
-		if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'){
-		  //alert("只能上传jpg，png，jpeg");
-		  return;
-		}
-		  $.ajaxFileUpload({
-		    url : '/upload/image', //用于文件上传的服务器端请求地址
-		    secureuri : false, //一般设置为false
-		    fileElementId : pid, //文件上传空间的id属性  <input type="file" id="file" name="file" />
-		    type : 'post',
-		    dataType : 'json', //返回值类型 一般设置为json
-		    success : function(data) //服务器成功响应处理函数
-		    {   console.log(data)
-		       console.log('77777777777')
-		    	callback(data.data,pid);
-		//  if(data.status==200){
-		//    	console.log(data.status)
-		//      callback(data.data,pid);
-		//    }else{
-		//      alert(data.message);
-		//    }
-		    },
-		    error : function(data)//服务器响应失败处理函数
-		    {
-		      alert("上传失败");
-		    }
-		  })
-		  return false;
-		}
-		
-	</script>
+</body>
 </html>

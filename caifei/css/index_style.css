@@ -142,7 +142,7 @@ html,body{
 	width: 100%;
 	height: 100%;
     color: #666;
-    position: absolute;
+    position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
@@ -464,7 +464,8 @@ html,body{
     left: 32%;
 }
 .per_top .per_image{
-   width: 30%;
+    width: 30%;
+    height: 8rem;
     position: absolute;
     top: 13%;
     left: 33%;
@@ -557,6 +558,7 @@ html,body{
 }
 .per_bot .per_num .last_img img,.per_bot .per_last .last_item img{
     width: 100%;
+    height: 4.6rem;
 	margin: 0 0 .05rem .1rem;
 	border-radius: 50%;
 }
@@ -657,7 +659,7 @@ html,body{
 }
 .order_price .pri_input input{
     width: 90%;
-    font-size: 1.1rem;
+    font-size:2rem;
     color: #000;
     outline: none;
     border: none;

@@ -3,9 +3,9 @@ $(function() {
 	var o = {
 		init:function(){
 			FastClick.attach(document.body);
-			/*if(!getCookie('userName')){
+			if(!getCookie('userName')){
 				window.location.href = 'login.html';
-			}*/
+			}
 			var myDate = new Date().Format("yyyy-MM-dd");
 			$('.comment_data i').html(myDate);
 			var months = 1,
@@ -23,6 +23,7 @@ $(function() {
 					oHtml = res.result.details;
 				if(oHtml.length == 0){
 	            	$('.index_comment ul').attr('type','1');
+	            	$('.index_comment ul').append('<li class="detailColor item bottom_load">暂无记录</li>');
 	            	return ;
 	            }
 				for(var i=0;i<oHtml.length;i++){

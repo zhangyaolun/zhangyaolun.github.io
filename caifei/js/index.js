@@ -73,8 +73,8 @@ var o = {
             	return ;
 			}
             for(var i = 0; i < oData.result.length; i++){
-                result +=   '<li class="clear detailColor" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="main_left left "><img src="'+oData.result[i].pic+'" alt="" /></div><div class="main_right left"><div class="mr_top clear"><span class="left mr_title">'+oData.result[i].shopName+'</span></div><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="left">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*12+'px"></div></div></div><div class="mr_price"><span class="priceNew">折扣：<em>'+(oData.result[i].discountRate*10)+'折</em></span></div></div></li>';
-            }
+                result +=   '<li class="clear detailColor" data="'+JSON.stringify(oData.result[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="main_left left "><img src="'+oData.result[i].pic+'" alt="" /></div><div class="main_right left"><div class="mr_top clear"><span class="left mr_title">'+oData.result[i].shopName+'</span></div><div class="mr_center clear"><span class="marght left">综合评价：<em class="emStyle">'+oData.result[i].averageScore.toFixed(1)+'</em></span><span class="left">'+oData.result[i].distance.toFixed(2)+'<em>km</em></span><div class="bg right"><div class="over" style="width:'+oData.result[i].averageScore.toFixed(1)*12+'px"></div></div></div><div class="mr_price"><span class="priceNew">折扣：<em style="font-size:1.2rem">'+(oData.result[i].discountRate*10)+'</em>折</span></div></div></li>';
+            } 
             $('.bottom_load').remove();
             $('.nearbyMain').append(result);
     		

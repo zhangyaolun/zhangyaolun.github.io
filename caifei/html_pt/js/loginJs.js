@@ -36,12 +36,18 @@ var o = {
 	moreAjax:function(userName,pwd){
 		var suc = function(data){
 			console.log(data);
-			if(data.result == 1){
+			if(data.result.result == 1){
 				setCookie('userName',1)
+				setCookie('loginDto',data.result.loginDto.id)
+				setCookie('id',data.result.shopDto.id)
+				setCookie('pwd',pwd)
+				setCookie('userInfoId',data.result.shopDto.userInfoId)
+				setCookie('getMsgId1',data.result.shopDto.getMsgId1)
+				setCookie('getMsgId2',data.result.shopDto.getMsgId2)
 				window.location.href = 'index.html';
-			}else if(data.result == 2){
+			}else if(data.result.result == 2){
 				$('#title').html('账号不存在');
-			}else if(data.result == 3){
+			}else if(data.result.result == 3){
 				$('#title').html('密码错误');
 			}
 		}
