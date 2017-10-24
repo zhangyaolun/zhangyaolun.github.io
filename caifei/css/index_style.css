@@ -667,7 +667,6 @@ html,body{
 }
 .order_price .pri_input em{
 	font-size: 1.5rem;
-	vertical-align: middle;
 }
 .order_price .pri_input input{
     width: 90%;
@@ -675,9 +674,7 @@ html,body{
     color: #000;
     outline: none;
     border: none;
-    line-height: 2.8rem;
-    height: 2.6rem;
-    vertical-align: middle;
+    
     font-family: myFirstFont;
 }
 .order_price .pri_name{
