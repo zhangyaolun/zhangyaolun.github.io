@@ -6,6 +6,7 @@ var o = {
 		sessionStorage.setItem('openId',getParameter('openId'));
 		var position = JSON.parse(sessionStorage.getItem('position'));
 		setTimeout(function(){
+			var position = JSON.parse(sessionStorage.getItem('position'));
 			if(!position){
 				$('.moreDate div').css('width','60%');
 				$('.moreDate div').css('left','20%');

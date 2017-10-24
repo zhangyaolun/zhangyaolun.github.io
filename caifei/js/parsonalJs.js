@@ -20,6 +20,9 @@ var o = {
 					$('.per_code').show();
 					o.aClick();
 				}
+				if(data.result.isShop){
+					$('.item_login').show();
+				}
 			}
 			var data = {
 				'openid':getParameter('openId')

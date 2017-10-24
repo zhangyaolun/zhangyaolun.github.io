@@ -518,13 +518,16 @@ html,body{
 
 }
 .per_bot .itemLi{
-	    width: 100%;
+    width: 100%;
     padding: 3% 2%;
     box-sizing: border-box;
     border-bottom: 1px solid #dedede;
     font-size: .13rem;
     color: #666;
     font-size: 1rem;
+}
+.per_bot .item_login{
+	display: none;
 }
 .per_bot .itemLi img{
 	display: inline-block;
@@ -663,6 +666,7 @@ html,body{
     color: #000;
     outline: none;
     border: none;
+    line-height: normal;
     font-family: myFirstFont;
 }
 .order_price .pri_name{
