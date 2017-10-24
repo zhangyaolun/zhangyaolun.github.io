@@ -677,6 +677,7 @@ html,body{
     border: none;
     line-height: 2.8rem;
     height: 2.6rem;
+    vertical-align: middle;
     font-family: myFirstFont;
 }
 .order_price .pri_name{
