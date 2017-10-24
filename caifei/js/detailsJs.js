@@ -37,6 +37,7 @@ var o = {
 			$('.map_left .map_tit em').html(data.address);			
 			$('.map_left .map_tel em').html(data.telephone);			
 			$('.main_price em').html((data.discountRate*10));	
+			$('.main_price .price_title').html(data.remarks);	
 			$('.address span').html(data.address);	
 			$('.phone span').html(data.mobile);	
 			$('.tel span').html(data.telephone);		
@@ -63,6 +64,7 @@ var o = {
 					$('.map_left .map_tit em').html(data.address);	
 					$('.map_left .map_tel em').html(data.telephone);
 					$('.main_price em').html((data.discountRate*10));	
+					$('.main_price .price_title').html(data.remarks);	
 					$('.address span').html(data.address);	
 					$('.phone span').html(data.mobile);	
 					$('.tel span').html(data.telephone);		
@@ -87,6 +89,7 @@ var o = {
 				$('.map_left .map_tit em').html(data.address);	
 				$('.map_left .map_tel em').html(data.telephone);
 				$('.main_price em').html((data.discountRate*10));	
+				$('.main_price .price_title').html(data.remarks);	
 				$('.address span').html(data.address);	
 				$('.phone span').html(data.mobile);	
 				$('.tel span').html(data.telephone);		

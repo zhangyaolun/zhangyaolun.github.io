@@ -226,6 +226,7 @@ html,body{
 }
 .nearbyMain li .main_right .mr_price {
 	font-size: .85rem;
+	
 }
 .nearbyMain li .main_right .mr_price .priceNew{
 	color: #ff6585;
@@ -292,6 +293,13 @@ html,body{
 }
 .detailMain .price_code em{
 	font-size: 3rem;
+}
+.detailMain .price_title{
+    color: #666;
+    font-size: 1.2rem;
+    height: 4rem;
+    line-height: 5rem;
+    margin-left: 5%;
 }
 .detailMain .price_img{
 	display: inline-block;
@@ -666,7 +674,8 @@ html,body{
     color: #000;
     outline: none;
     border: none;
-    line-height: normal;
+    line-height: 2.6rem;
+    height: 2.6rem;
     font-family: myFirstFont;
 }
 .order_price .pri_name{
