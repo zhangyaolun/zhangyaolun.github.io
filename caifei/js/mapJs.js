@@ -39,8 +39,8 @@ var o = {
 			console.log(center)
 				console.log(hisself)
 			var latlngs = [ 
-		        /*new qq.maps.LatLng(mayself[1],mayself[0]), 
-		        new qq.maps.LatLng(hisself[0],hisself[1])*/
+		        /*new qq.maps.LatLng(mayself[1],mayself[0]), */
+		        new qq.maps.LatLng(hisself[0],hisself[1])
 		    ]; 
 		}
 		
@@ -77,8 +77,7 @@ var o = {
                 //设置Marker可拖动
                 draggable: false,
                 //自定义Marker图标为大头针样式
-                icon: new qq.maps.MarkerImage(
-                    "http://md-pay.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
+                icon: new qq.maps.MarkerImage("http://md-pay.oss-cn-hangzhou.aliyuncs.com/zuobiao.png"),
                 //设置Marker的可见性，为true时可见,false时不可见
                 visible: true,
             });

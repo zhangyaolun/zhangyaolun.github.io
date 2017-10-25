@@ -6,7 +6,6 @@ var o = {
 			o.ajaxDate();
 			var aPage = 1,cPage = 1;
 			o.subReferences(aPage);
-			
 			o.oClick();
 		},
 		ajaxDate:function(){//用户
