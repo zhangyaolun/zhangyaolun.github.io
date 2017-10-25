@@ -1,6 +1,13 @@
 document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
+		$('.pri_input input').bind('input propertychange',function(){
+			if( ! /^((?!0)\d+(.\d{1,2})?)$/g.test($('.pri_input input').val())){ 
+				var s = $('.pri_input input').val();
+				$('.pri_input input').val(s.substring(0,s.length-1));
+			}
+		})
+		return;
 		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		console.log(data)
