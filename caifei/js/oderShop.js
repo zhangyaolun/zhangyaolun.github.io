@@ -53,6 +53,10 @@ var o = {
 	},
 	click:function(userShopId,rate){
 		$('.pri_input input').bind('input propertychange',function(){
+			if( ! /^((?!0)\d+(.\d{1,2})?)$/g.test($('.pri_input input').val())){ 
+				var s = $('.pri_input input').val();
+				$('.pri_input input').val(s.substring(0,s.length-1));
+			}
 			if($('.pri_input input').val() == ''){
 				$('.code_display').hide();
 				$('.payMent').hide();
@@ -73,14 +77,7 @@ var o = {
 				},3000)
 				return;
 			}
-			if( ! /^-?\d+\.?\d{0,2}$/.test($('.pri_input input').val())){ 
-				var s = $('.pri_input input').val();
-				$('.pri_input input').val(s.substring(0,s.length-1));
-			}
-			if( ! /^-?\d+\.?\d{0,2}$/.test($('.pri_input input').val())){ 
-				var s = $('.pri_input input').val();
-				$('.pri_input input').val(s.substring(0,s.length-1));
-			}
+			
 			$('.fexed_left i').attr('pay',($('.pri_input input').val()*rate).toFixed(2));
 			if($('.code_display').css('display') == 'inline-block'){
 				if($('.order_bot .bot_image').hasClass('one')){
@@ -98,7 +95,7 @@ var o = {
 		})
 		$('.fexed_right').on('click',function(){
 			if($('.fexed_right').hasClass('oneClick'))return;
-			if($('.pri_input input').val() == ''){
+			if($('.pri_input input').val() == ' '){
 				alert('请输入付款金额');
 				return;
 			}
