@@ -243,10 +243,11 @@ body{
 	white-space:nowrap;
 	width: 100%;
 	padding: 2% 0;
+	    font-size: .8rem;
 	border-bottom: 1px solid #f3f0f0;
 }
 .index_comment ul li span{
-	width: 33%;
+	width: 32%;
 	text-align: center;
 }
 .comment_fixed{
@@ -276,7 +277,7 @@ body{
 .index_flex span{
 	display: inline-block;
 	text-align: center;
-	width: 33%;
+	width: 32%;
 }
 .back{
 	position: fixed;
