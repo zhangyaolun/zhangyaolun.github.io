@@ -13,7 +13,6 @@ var o = {
 					var s = $('.pri_input input').val();
 					$('.pri_input input').val(s.substring(0,s.length-1));
 				}
-				o.comData(($('.pri_input input').val()*rate).toFixed(2));
 			}
 		})
 		return;
