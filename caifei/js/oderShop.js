@@ -1,30 +1,8 @@
 document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
-		$('.pri_input input').bind('input propertychange',function(){
-			if($('.pri_input input').val() == ''){
-				$('.code_display').hide();
-				$('.payMent').hide();
-				$('.fexed_left .payCont').html('0.00');
-				return;
-			}else{
-			     var regStrs = [
-			        ['^0(\\d+)$', '$1'], //禁止录入整数部分两位以上，但首位为0
-			        ['[^\\d\\.]+$', ''], //禁止录入任何非数字和点
-			        ['\\.(\\d?)\\.+', '.$1'], //禁止录入两个以上的点
-			        ['^(\\d+\\.\\d{2}).+', '$1'] //禁止录入小数点后两位以上
-			    ];
-			    for(i=0; i<regStrs.length; i++){
-			        var reg = new RegExp(regStrs[i][0]);
-			        $('.pri_input input').val($('.pri_input input').val().replace(reg, regStrs[i][1]))
-			    }
-			}
-		})
-		return;
-		/*FastClick.attach(document.body);
+		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-		console.log(data)
-		console.log(getParameter('num'))
 		$('.shop_img').attr("src",data.pic);			
 		$('.pay_shop .shop_title').html(data.shopName);			
 		$('.pay_shop .emStyle').html(getParameter('num'));			
@@ -32,7 +10,7 @@ var o = {
 		$('.shop_order em').html(data.address);	
 		$('.price_n').html((data.discountRate*10));	
 		o.click(data.id,(data.discountRate).toFixed(1));
-		o.ajaxDate();*/
+		o.ajaxDate();
 	},
 	ajsxData:function(userShopId,rate){
 		var data = {
@@ -79,25 +57,28 @@ var o = {
 				$('.fexed_left .payCont').html('0.00');
 				return;
 			}else{
-				$('.pri_input input').val($('.pri_input input').val().replace(/[^\d.]/g, ""))
-				if( ! /^((?!0)\d+(.\d{1,2})?)$/g.test($('.pri_input input').val())){ 
-					var s = $('.pri_input input').val();
-					 $('.pri_input input').val($('.pri_input input').val().replace(/[^(?!0)\d.]/g, "").replace(/^\./g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
-					$('.pri_input input').val(s.substring(0,s.length-1));
+				if(parseInt($('.pri_input input').val()) > 9999){ 
+					$('.alertTan').show();
+					setTimeout(function(){
+						$('.alertTan').hide();
+						$('.pri_input input').val('');
+						$('.code_display').hide();
+						$('.payMent').hide();
+						$('.fexed_left .payCont').html('0.00');
+					},3000)
+					return;
 				}
+				 var regStrs = [
+			        ['^0(\\d+)$', '$1'], //禁止录入整数部分两位以上，但首位为0
+			        ['[^\\d\\.]+$', ''], //禁止录入任何非数字和点
+			        ['\\.(\\d?)\\.+', '.$1'], //禁止录入两个以上的点
+			        ['^(\\d+\\.\\d{2}).+', '$1'] //禁止录入小数点后两位以上
+			    ];
+			    for(i=0; i<regStrs.length; i++){
+			        var reg = new RegExp(regStrs[i][0]);
+			        $('.pri_input input').val($('.pri_input input').val().replace(reg, regStrs[i][1]))
+			    }
 				o.comData(($('.pri_input input').val()*rate).toFixed(2));
-			}
-			if(parseInt($('.pri_input input').val()) > 9999){ 
-				$('.alertTan').show();
-				setTimeout(function(){
-					$('.alertTan').hide();
-					$('.pri_input input').val('');
-					$('.pri_input input').css('font-size',' 1.1rem');
-					$('.code_display').hide();
-					$('.payMent').hide();
-					$('.fexed_left .payCont').html('0.00');
-				},3000)
-				return;
 			}
 			
 			$('.fexed_left i').attr('pay',($('.pri_input input').val()*rate).toFixed(2));
@@ -116,12 +97,16 @@ var o = {
 			}
 		})
 		$('.fexed_right').on('click',function(){
+			if($('.alertTan').css('display') == 'block')return;
 			if($('.fexed_right').hasClass('oneClick'))return;
-			if($('.pri_input input').val() == ' '){
+			if($('.pri_input input').val() == ''){
 				alert('请输入付款金额');
 				return;
 			}
-			$('.pri_input input').val(($('.pri_input input').val().replace(/\.$/g, "")));
+			if($('.pri_input input').val() <= 0){
+				alert('请输入付款金额');
+				return;
+			}
 			$('.fexed_right').addClass('oneClick');
 			o.ajsxData(userShopId,rate);
 		});
