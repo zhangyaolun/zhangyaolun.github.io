@@ -2,10 +2,11 @@ document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		$('.pri_input input').bind('input propertychange',function(){
-			if( ! /^((?!0)\d+(.\d{1,2})?)$/g.test($('.pri_input input').val())){ 
+			/*if( ! /^((?!0)\d+(.\d{1,2})?)$/g.test($('.pri_input input').val())){ 
 				var s = $('.pri_input input').val();
 				$('.pri_input input').val(s.substring(0,s.length-1));
-			}
+			}*/
+			 $('.pri_input input').val($('.pri_input input').val().replace(/[^\d.]/g, "").replace(/^\./g, "").replace(/\.{2,}/g, ".").replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
 		})
 		return;
 		FastClick.attach(document.body);
@@ -106,6 +107,7 @@ var o = {
 				alert('请输入付款金额');
 				return;
 			}
+			$('.pri_input input').val(($('.pri_input input').val().replace(/\.$/g, "")));
 			$('.fexed_right').addClass('oneClick');
 			o.ajsxData(userShopId,rate);
 		});
