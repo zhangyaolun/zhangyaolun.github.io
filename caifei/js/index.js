@@ -24,7 +24,7 @@ var o = {
 	                sessionStorage.setItem('position',JSON.stringify(position));
 	                $('.moreDate').hide();
 	                $('.nearbyMain').html('');
-	                var currPage = 1,order = '',type = '';
+	                var currPage = 1,order = 3,type = '';
 	                setTimeout(function(){
 						o.moreData(position.lng,position.lat,currPage,order,type,$('.nearbyBox input').val());
 					},100)
@@ -41,7 +41,7 @@ var o = {
 			}, false); 
 		}else{    
 			$('.moreDate').hide();
-			 $('.nearbyMain').html('');
+			$('.nearbyMain').html('');
 			var currPage = 1,order = 3,type = '';
 			setTimeout(function(){
 				o.moreData(position.lng,position.lat,currPage,order,type,$('.nearbyBox input').val());

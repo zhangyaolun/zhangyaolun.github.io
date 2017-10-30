@@ -2,7 +2,6 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		/*电话*/
 		$('.bot_Nav').on('click','span',function(){
 			var index = $(this).index();
 			$('.bot_Nav span').removeClass('stypeSpan').eq(index).addClass('stypeSpan');
@@ -20,17 +19,6 @@ var o = {
 				$('.bot_deatil').show()
 			}
 		})
-		$('.map_tel').on('click',function(){
-			if(!$('.map_tel a').html())return;
-			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
-			$('.map_tel a').click();
-		})
-		$('.tel').on('click',function(){
-			if(!$('.tel a').html())return;
-			$('.tel a').attr('href','tel:'+$('.tel a').html());
-			$('.tel a').click();
-		})
-		return;
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 			if(data.pic.split(',').length >= 2){
@@ -255,7 +243,11 @@ var o = {
 			if(!$('.map_tel a').html())return;
 			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
 		})
-		
+		$('.tel').on('click',function(){
+			if(!$('.tel a').html())return;
+			$('.tel a').attr('href','tel:'+$('.tel a').html());
+			$('.tel a').click();
+		})
 		/*付款*/
 		$('.price_img').on('click',function(){
 			if(getParameter('openId')){

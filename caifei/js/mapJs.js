@@ -23,6 +23,7 @@ var o = {
 					moreAttr.push(oAttr[i][j]);
 				}
 			}
+			console.log(moreAttr)
 			var latlngs = [ 
 		        /*new qq.maps.LatLng(mayself[1],mayself[0])*/
 		    ];
