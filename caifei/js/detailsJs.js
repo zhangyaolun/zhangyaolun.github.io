@@ -4,7 +4,7 @@ var o = {
 		FastClick.attach(document.body);
 		/*电话*/
 		$('.map_tel').on('click',function(){	
-			$('.map_tit a').attr('href',$('.map_tit a').html());
+			$('.map_tel a').attr('href',$('.map_tit a').html());
 		})
 		return;
 		$('.bot_Nav').on('click','span',function(){
