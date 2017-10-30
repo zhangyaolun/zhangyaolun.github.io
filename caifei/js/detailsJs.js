@@ -2,11 +2,7 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		/*电话*/
-		$('.map_tel').on('click',function(){	
-			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
-		})
-		return;
+		
 		$('.bot_Nav').on('click','span',function(){
 			var index = $(this).index();
 			$('.bot_Nav span').removeClass('stypeSpan').eq(index).addClass('stypeSpan');
@@ -244,8 +240,9 @@ var o = {
 			}
 		})
 		/*电话*/
-		$('.map_tel').on('click',function(){	
-			$('.map_tit a').attr('href',$('.map_tit a').html());
+		$('.map_tel').on('click',function(){
+			if(!$('.map_tel a').html())return;
+			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
 		})
 		
 		/*付款*/
