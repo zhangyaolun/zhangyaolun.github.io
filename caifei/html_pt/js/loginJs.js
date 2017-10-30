@@ -2,6 +2,10 @@ document.getElementsByTagName("body")[0].setAttribute("style","display:block");
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
+		if(getCookie('userName')){
+			$('#userName').val(getCookie('userName'));
+			$('#pwd').val(getCookie('pwd'));
+		}
 		o.moreClick();
 	},
 	moreClick:function(){
@@ -24,26 +28,15 @@ var o = {
 			$('#title').html('')
 			o.moreAjax(userName,pwd);
 		})
-		var num = 0,numAttr = ['img/logo_1.jpg','img/logo_2.jpg','img/logo_3.jpg']
-		$('.login_logo').on('click',function(){
-			if(num == 3){
-				num = 0;
-			}
-			$('.login_logo').attr('src',numAttr[num]);
-			num++;
-		})
 	},
 	moreAjax:function(userName,pwd){
 		var suc = function(data){
 			console.log(data);
 			if(data.result.result == 1){
-				setCookie('userName',1)
+				setCookie('userName',userName)
 				setCookie('loginDto',data.result.loginDto.id)
 				setCookie('id',data.result.shopDto.id)
 				setCookie('pwd',pwd)
-				setCookie('userInfoId',data.result.shopDto.userInfoId)
-				setCookie('getMsgId1',data.result.shopDto.getMsgId1)
-				setCookie('getMsgId2',data.result.shopDto.getMsgId2)
 				window.location.href = 'index.html';
 			}else if(data.result.result == 2){
 				$('#title').html('账号不存在');

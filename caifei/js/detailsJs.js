@@ -1,14 +1,12 @@
-window.onload=function(){
-    if(document.body.scrollTop>0){
-        window.scrollTo(0,-1);
-        document.body.scrollTop=0;
-    }
-    window.scrollTo(0,-1);
-    document.body.scrollTop=0;
-}
+
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
+		/*电话*/
+		$('.map_tel').on('click',function(){	
+			$('.map_tit a').attr('href',$('.map_tit a').html());
+		})
+		return;
 		$('.bot_Nav').on('click','span',function(){
 			var index = $(this).index();
 			$('.bot_Nav span').removeClass('stypeSpan').eq(index).addClass('stypeSpan');
@@ -28,23 +26,47 @@ var o = {
 		})
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-			console.log(data)
-			$('.detailImg img').attr("src",data.pic);			
+			if(data.pic.split(',').length >= 2){
+				var picAttr = data.pic.split(','),picHtml='';
+				for(var p=0;p<picAttr.length;p++){
+					picHtml+='<div class="swiper-slide"><img src="'+picAttr[p]+'" alt="" /></div>'
+				}
+				$('.swiper-wrapper').html(picHtml);
+				var mySwiper = new Swiper ('.swiper-container', {
+				    direction: 'horizontal',
+				    loop: true,
+				    autoplay : 1500,
+				    autoplayDisableOnInteraction : false,
+				    pagination: '.swiper-pagination',
+				    paginationClickable :true,
+				 })    
+			}else{
+				$('.swiper-wrapper').html('<div class="swiper-slide"><img src="'+data.pic+'" alt="" /></div>');
+				var mySwiper = new Swiper ('.swiper-container', {
+					loop: false,
+				 })     
+			}
 			$('.detailMain .main_title').html(data.shopName);				
 			$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
 			$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');			
-			$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
+			$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
 			$('.map_left .map_tit em').html(data.address);			
-			$('.map_left .map_tel em').html(data.telephone);			
-			$('.main_price em').html((data.discountRate*10));	
+			$('.map_left .map_tel a').html(data.telephone);			
+			$('.main_price em').html((data.discountRate*10).toFixed(1));	
 			$('.main_price .price_title').html(data.remarks);	
 			$('.address span').html(data.address);	
-			$('.phone span').html(data.mobile);	
 			$('.tel span').html(data.telephone);		
 			var currPage = 1;
-			o.moreDate(data.id,currPage);
-			o.moreAjax(data.id,currPage);
-			o.click(getParameter('mayself'),'');
+			 setTimeout(function(){
+				o.moreAjax(data.id,currPage);
+			},100)
+			  setTimeout(function(){
+				o.moreDate(data.id,currPage);
+			},200)
+		     setTimeout(function(){
+				o.click(getParameter('mayself'),'');
+			},200)
+			
 		}else if(getParameter('shopId')){
 			o.mapDate();
 			sessionStorage.setItem('openId',getParameter('openId'));
@@ -56,22 +78,46 @@ var o = {
 		        async : false,
 		        success : function(data){
 		        	var data = data.result;
-					$('.detailImg img').attr("src",data.pic);			
+					if(data.pic.split(',').length >= 2){
+						var picAttr = data.pic.split(','),picHtml='';
+						for(var p=0;p<picAttr.length;p++){
+							picHtml+='<div class="swiper-slide"><img src="'+picAttr[p]+'" alt="" /></div>'
+						}
+						$('.swiper-wrapper').html(picHtml);
+						var mySwiper = new Swiper ('.swiper-container', {
+						    direction: 'horizontal',
+						    loop: true,
+						    autoplay : 1500,
+						    autoplayDisableOnInteraction : false,
+						    pagination: '.swiper-pagination',
+						    paginationClickable :true,
+						 })    
+					}else{
+						$('.swiper-wrapper').html('<div class="swiper-slide"><img src="'+data.pic+'" alt="" /></div>');
+						var mySwiper = new Swiper ('.swiper-container', {
+							loop: false,
+						 })     
+					}			
 					$('.detailMain .main_title').html(data.shopName);				
 					$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
 			$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');					
-					$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
+					$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
 					$('.map_left .map_tit em').html(data.address);	
-					$('.map_left .map_tel em').html(data.telephone);
-					$('.main_price em').html((data.discountRate*10));	
+					$('.map_left .map_tel a').html(data.telephone);
+					$('.main_price em').html((data.discountRate*10).toFixed(1));	
 					$('.main_price .price_title').html(data.remarks);	
 					$('.address span').html(data.address);	
-					$('.phone span').html(data.mobile);	
 					$('.tel span').html(data.telephone);		
 					var currPage = 1;
-					o.moreDate(data.id,currPage);
-					o.moreAjax(data.id,currPage);
+					 setTimeout(function(){
+						o.moreAjax(data.id,currPage);
+					},100)
+					  setTimeout(function(){
+						o.moreDate(data.id,currPage);
+					},200)
+					    setTimeout(function(){
 					o.click('',data);
+				},200)
 		        }
 		    });
 		}else{
@@ -81,22 +127,26 @@ var o = {
 			}
 			var sucess = function(data){
 				var data = data.result;
-				$('.detailImg img').attr("src",data.pic);			
 				$('.detailMain .main_title').html(data.shopName);				
 				$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
 				$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');
-				$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.mobile);			
+				$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
 				$('.map_left .map_tit em').html(data.address);	
-				$('.map_left .map_tel em').html(data.telephone);
-				$('.main_price em').html((data.discountRate*10));	
+				$('.map_left .map_tel a').html(data.telephone);
+				$('.main_price em').html((data.discountRate*10).toFixed(1));	
 				$('.main_price .price_title').html(data.remarks);	
 				$('.address span').html(data.address);	
-				$('.phone span').html(data.mobile);	
 				$('.tel span').html(data.telephone);		
 				var currPage = 1;
-				o.moreDate(data.id,currPage);
-				o.moreAjax(data.id,currPage);
-				o.click('',data);
+				 setTimeout(function(){
+					o.moreAjax(data.id,currPage);
+				},100)
+				  setTimeout(function(){
+					o.moreDate(data.id,currPage);
+				},200)
+				    setTimeout(function(){
+					o.click('',data);
+				},200)
 			}
 			doPost('/shop/bindedShop',dataa,sucess);
 		}
@@ -181,7 +231,7 @@ var o = {
 	click:function(mayself,data){
 		
 		/*跳转到地图*/
-		$('.map_left').on('click',function(){	
+		$('.map_tit').on('click',function(){	
 			if($('.map_left').attr('mapdate') == '')return;
 			if(mayself){
 				window.location.href = 'map.html?type='+$('.map_left').attr('type')+'&mayself='+mayself;
@@ -193,6 +243,11 @@ var o = {
 				window.location.href = 'map.html?type='+$('.map_left').attr('type')+'&mayself='+$('.map_left').attr('mapdate');
 			}
 		})
+		/*电话*/
+		$('.map_tel').on('click',function(){	
+			$('.map_tit a').attr('href',$('.map_tit a').html());
+		})
+		
 		/*付款*/
 		$('.price_img').on('click',function(){
 			if(getParameter('openId')){

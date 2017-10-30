@@ -3,13 +3,17 @@ var o = {
 	init:function(){
 		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-		$('.shop_img').attr("src",data.pic);			
+		if(data.pic.split(',').length >= 2){
+			$('.shop_img').attr("src",data.pic.split(',')[0]) 
+		}else{
+			$('.shop_img').attr("src",data.pic);  
+		}
 		$('.pay_shop .shop_title').html(data.shopName);			
 		$('.pay_shop .emStyle').html(getParameter('num'));			
 		$('.pay_shop .over').css('width',getParameter('num')*12+'px');			
 		$('.shop_order em').html(data.address);	
-		$('.price_n').html((data.discountRate*10));	
-		o.click(data.id,(data.discountRate).toFixed(1));
+		$('.price_n').html((data.discountRate*10).toFixed(1));	
+		o.click(data.id,(data.discountRate));
 		o.ajaxDate();
 	},
 	ajsxData:function(userShopId,rate){
@@ -45,12 +49,18 @@ var o = {
 			})
 			}
 			console.log(data)
-			
 		}
 		doPost('/pay/weiToPay',data,suc);
 	},
 	click:function(userShopId,rate){
+		$('.orderp_left').on('click',function(){
+			$('.pri_input input').focus();
+		})
 		$('.pri_input input').bind('input propertychange',function(){
+			if($('.pri_input input').val() < 0){
+				o.alertData('输入金额格式有误');
+				return;
+			}
 			if($('.pri_input input').val() == ''){
 				$('.code_display').hide();
 				$('.payMent').hide();
@@ -58,26 +68,16 @@ var o = {
 				return;
 			}else{
 				if(parseInt($('.pri_input input').val()) > 9999){ 
-					$('.alertTan').show();
-					setTimeout(function(){
-						$('.alertTan').hide();
-						$('.pri_input input').val('');
-						$('.code_display').hide();
-						$('.payMent').hide();
-						$('.fexed_left .payCont').html('0.00');
-					},3000)
+					o.alertData('超过最大限额');
 					return;
 				}
-				 var regStrs = [
-			        ['^0(\\d+)$', '$1'], //禁止录入整数部分两位以上，但首位为0
-			        ['[^\\d\\.]+$', ''], //禁止录入任何非数字和点
-			        ['\\.(\\d?)\\.+', '.$1'], //禁止录入两个以上的点
-			        ['^(\\d+\\.\\d{2}).+', '$1'] //禁止录入小数点后两位以上
-			    ];
-			    for(i=0; i<regStrs.length; i++){
-			        var reg = new RegExp(regStrs[i][0]);
-			        $('.pri_input input').val($('.pri_input input').val().replace(reg, regStrs[i][1]))
-			    }
+				var isNum= /(^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$)/;
+				
+				if(isNum.test($('.pri_input input').val())){
+					$('.pri_input input').attr('otype',$('.pri_input input').val())
+				}else{
+					$('.pri_input input').val($('.pri_input input').attr('otype'))
+				}
 				o.comData(($('.pri_input input').val()*rate).toFixed(2));
 			}
 			
@@ -100,11 +100,11 @@ var o = {
 			if($('.alertTan').css('display') == 'block')return;
 			if($('.fexed_right').hasClass('oneClick'))return;
 			if($('.pri_input input').val() == ''){
-				alert('请输入付款金额');
+				o.alertData('请输入付款金额');
 				return;
 			}
 			if($('.pri_input input').val() <= 0){
-				alert('请输入付款金额');
+				o.alertData('请输入付款金额');
 				return;
 			}
 			$('.fexed_right').addClass('oneClick');
@@ -131,21 +131,32 @@ var o = {
 			'payMoney': (payMoney*100).toFixed(0)
 		}
 		console.log(data)
-		var suc = function(data){
-			console.log(data)
-			if(data.result > 0){
-				$('.code_display').css('display','inline-block');
-				if(!$('.order_bot img').hasClass('two')){
-					$('.order_bot img').addClass('two');
-					$('.order_bot img').attr('src','../img/mapNew2.png');
-				}
-				$('.order_bot .order_code').html(data.result);
-				$('.order_bot .order_pay').html(data.result/100);
-			}else{
-				$('.code_display').hide();
-			}
-		}
-		doPost('/pay/comScore',data,suc);
+		 $.ajax({
+	        url : '/pay/comScore',
+	        data :data,
+	        type : 'POST',
+	        dataType : 'json',
+	        async : false,
+	        success : function(data){
+	        	console.log(data)
+	        	if(data.httpCode==200){
+		           if(data.result > 0){
+						$('.code_display').css('display','inline-block');
+						if(!$('.order_bot img').hasClass('two')){
+							$('.order_bot img').addClass('two');
+							$('.order_bot img').attr('src','../img/mapNew2.png');
+						}
+						$('.order_bot .order_code').html(data.result);
+						$('.order_bot .order_pay').html(data.result/100);
+					}else{
+						$('.code_display').hide();
+					}
+		        }
+	        	if(data.httpCode==500){
+	        		o.alertData('输入付款金额格式有误');
+		        }
+	        }
+	    });
 	},
 	ajaxDate:function(){//用户
 		var suc = function(data){
@@ -156,6 +167,17 @@ var o = {
 			'openid':sessionStorage.getItem('openId')
 		}
 		doPost('/user/info',data,suc);
+	},
+	alertData:function(data){//用户
+		$('.alertTan').show();
+		$('.alertTan').html(data);
+		setTimeout(function(){
+			$('.alertTan').hide();
+			$('.pri_input input').val('');
+			$('.code_display').hide();
+			$('.payMent').hide();
+			$('.fexed_left .payCont').html('0.00');
+		},3000)
 	}
 	
 }

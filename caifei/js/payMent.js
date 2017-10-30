@@ -11,11 +11,15 @@ if(getParameter('payNumber') == 1){
 	$('.total').html((getParameter('payMoney')/100).toFixed(2));
 }
 var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-$('.shop_img').attr("src",data.pic);			
+if(data.pic.split(',').length >= 2){
+	$('.shop_img').attr("src",data.pic.split(',')[0]) 
+}else{
+	$('.shop_img').attr("src",data.pic);  
+}			
 $('.shop_top span').html(data.shopName);	
 $('.shop_det').html(getParameter('num'));	
 $('.pay_shop .over').css('width',getParameter('num')*12+'px');					
-$('.shop_price').html((data.discountRate*10)+'折');			
+$('.shop_price').html((data.discountRate*10).toFixed(1)+'折');			
 	
 
 /*$('.oneImage').bind('click',function(){

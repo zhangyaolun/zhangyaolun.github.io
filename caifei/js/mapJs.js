@@ -18,9 +18,6 @@ var o = {
 			mayself = mapIndex;
 			center = new qq.maps.LatLng(mayself[1],mayself[0]);	
 			ajaxDate();
-			console.log(oAttr)
-			
-			
 			for(var i = 0;i < oAttr.length; i++){
 				for(var j = 0;j < oAttr[i].length; j++){
 					moreAttr.push(oAttr[i][j]);
@@ -32,12 +29,9 @@ var o = {
 		    for(var s = 0;s < moreAttr.length; s++){
 				latlngs.push(new qq.maps.LatLng(moreAttr[s].latitude,moreAttr[s].longitude));
 			}
-		    console.log(latlngs)
 		}else{
 			
 			center = new qq.maps.LatLng(mayself[1],mayself[0]);	
-			console.log(center)
-				console.log(hisself)
 			var latlngs = [ 
 		        /*new qq.maps.LatLng(mayself[1],mayself[0]), */
 		        new qq.maps.LatLng(hisself[0],hisself[1])
@@ -112,7 +106,7 @@ var o = {
             });
 
 	    	 for(var i = 0;i < latlngs.length; i++) { 
-		    	var a = moreAttr[i].shortName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i].discountRate*10).toFixed(0)+'折</span>';
+		    	var a = moreAttr[i].shortName +'&nbsp;&nbsp;<span style="color:#ff6585;font-weight:600">' + (moreAttr[i].discountRate*10).toFixed(1)+'折</span>';
 		    	
 				var label = new qq.maps.Label({
 			        position: latlngs[i],
@@ -146,7 +140,7 @@ var o = {
 							if(latlngs[i].lat == lato){
 								infoWin.setContent('<div style="text-align:left;white-space:'+ 
 	                'nowrap;color:#333;font-size:14px;">地址：' + 
-	                moreAttr[i].address +'<div>电话：'+moreAttr[i].mobile+'<a style="margin-left:10px;color:#ff6585;text-decoration:underline;" href="details.html?result='+JSON.stringify(moreAttr[i]).replace(/"([^"]*)"/g, "'$1'")+ '&mayself=' +mayself[0]+'|'+mayself[1]+'">去看看</a></div></div>');
+	                moreAttr[i].address +'<div>电话：'+moreAttr[i].telephone+'<a style="margin-left:10px;color:#ff6585;text-decoration:underline;" href="details.html?result='+JSON.stringify(moreAttr[i]).replace(/"([^"]*)"/g, "'$1'")+ '&mayself=' +mayself[0]+'|'+mayself[1]+'">去看看</a></div></div>');
 							}
 						}
 					}

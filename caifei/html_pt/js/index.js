@@ -10,15 +10,23 @@ $(function() {
 			$('.comment_data i').html(myDate);
 			var months = 1,
 				currPage = 1;
-			o.oDate(months,currPage);
-			o.moreDate(months,currPage);
-			o.clickDate();
+			 setTimeout(function(){
+				o.oDate(months,currPage);
+			},100)
+			  setTimeout(function(){
+				o.moreDate(months,currPage);
+			},200)
+			setTimeout(function(){
+				o.clickDate();
+			},200)
 		},
 		oDate:function(months,currPage){
 			var suc = function(res){
 				console.log(res)
-				$('.rateDate').html((res.result.rate*10).toFixed(0));
-				$('.colorFont').html('￥'+res.result.remainingAmount.toFixed(2));
+				$('.comment_zhekou .rateDate').html((res.result.rate*10).toFixed(1));
+				$('.comment_body .colorFont').html('￥'+res.result.remainingAmount.toFixed(2));
+				$('.comment_today i').html('￥'+res.result.todayAmount.toFixed(2));
+				$('.comment_qiantian i').html('￥'+res.result.yesterdayAmount.toFixed(2));
 				var oResult = '',
 					oHtml = res.result.details;
 				if(oHtml.length == 0){
@@ -29,10 +37,6 @@ $(function() {
 				for(var i=0;i<oHtml.length;i++){
 					oResult += '<li class="index_flex"><span>'+oHtml[i].total.toFixed(2)+'</span><span>'+oHtml[i].deduction.toFixed(2)+'</span><span>'+oHtml[i].date+'</span></li>'
 				}
-				if(oHtml.length == 0 && $('.index_comment ul li').length>10){
-	            	$('.index_comment ul').append('<li class="detailColor item bottom_load">暂无记录</li>');
-	            	return ;
-	            }
 				$('.index_comment ul').append(oResult);
 			}
 			var data = {
@@ -40,6 +44,8 @@ $(function() {
 				'currPage':currPage,
 				'pageSize':10
 			}
+			var oType = currPage+'|'+months;
+		    $('.index_comment').attr('type',oType);
 			console.log(data)
 			doAjax('/shop-account/query',data,suc);
 		},
@@ -48,6 +54,7 @@ $(function() {
 			$('.comment_time span').on('click',function(){
 				var time_index = $(this).index(),
 					time_attr = ['1','3','6',];
+				$('.index_comment ul').attr('type','0');
 				$('.comment_time span').removeClass('code_active').eq(time_index-1).addClass('code_active');
 				$('.index_comment ul').html('');
 				o.oDate(time_attr[time_index-1],1);
@@ -61,9 +68,13 @@ $(function() {
 			$('.forgetDiv').on('click',function(){
 				window.location.href = 'forget.html';
 			})
-			/*点击重置密码*/
+			/*点击店员管理*/
 			$('.ClerkDiv').on('click',function(){
 				window.location.href = 'shopClerk.html';
+			})
+			/*点击充值记录*/
+			$('.chongDiv').on('click',function(){
+				window.location.href = 'shopPay.html';
 			})
 		},
 		moreDate:function(months,currPage){
@@ -76,12 +87,14 @@ $(function() {
 			　　var scrollTop = $(this).scrollTop();
 			　　var scrollHeight = $(document).height();
 			　　var windowHeight = $(this).height();
-				if($('.index_comment ul').attr('type') == '1'){
+				if($('.index_comment ul').attr('type') == 1){
 	            	return ;
 				}
 			　　if(scrollTop + windowHeight == scrollHeight){
-				  currPage++;
-				  o.oDate(months,currPage);
+				  var oType = $('.index_comment').attr('type').split('|');
+				  var page = oType[0];
+				  page++;
+				  o.oDate(oType[1],page);
 			　　}
 			});	
 		}

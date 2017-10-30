@@ -36,6 +36,7 @@ var o = {
 					return;
 				}else{
 					$('.per_bot .per_num .last_img').css('margin-top','5%');
+					$('.per_num em').html(data.result.totalCount);
 					oAttr.push(data.result.result);
 			        aPage++;
 			        var num = data.result.totalPages;
@@ -63,7 +64,6 @@ var o = {
 							moreAttr.push(oAttr[s][j]);
 						}
 					}
-					$('.per_num em').html(moreAttr.length);
 					for(var x=0,a=moreAttr.length;x<a;x++){
 						if(x>23){
 							oResult += '<li><img src="'+moreAttr[x].headimgurl+'"/><div class="last_title">'+moreAttr[x].nickname+'</div></li>'
@@ -80,7 +80,6 @@ var o = {
 					$('.last_img').append(result);
 					o.dClick(oResult);
 				}
-				
 			}
 			var data = {
 				'userId':$('.per_image').attr('oid'),

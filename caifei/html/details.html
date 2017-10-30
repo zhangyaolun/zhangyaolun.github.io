@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=yes"/>
      <!--<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>-->
     <title>商家详情</title>
+     <link rel="stylesheet" type="text/css" href="../css/swiper.css"/>
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+   
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/>
     
 </head>
@@ -13,10 +16,11 @@
 	</iframe> 
 <body>
 	<div class="detail">
-		<div class="detailImg detailColor">
-			<img src="" alt="" />
+		<div class="swiper-container detailColor detailImg">
+		    <div class="swiper-wrapper">
+		    </div>
+		    <div class="swiper-pagination"></div>
 		</div>
-		
 		<div class="detailMain detailColor">
 			<span class="main_title"></span>
 			<div class="mr_center clear">
@@ -36,7 +40,7 @@
 		<div class="detailMap detailColor">
 			<div class="map_left">
 				<p class="map_tit"><img src="../img/icon1.png" alt="" /><em></em></p>
-				<p class="map_tel"><img src="../img/icon3.png" alt="" /><em></em></p>
+				<p class="map_tel"><img src="../img/icon3.png" alt="" /><a href="javascript:;">0371-3115335</a></p>
 			</div>
 		</div>
 		
@@ -94,9 +98,9 @@
 				<li class="tel">
 					电话：<span></span>
 				</li>
-				<li class="phone">
+				<!--<li class="phone">
 					手机：<span></span>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<!--<div class="buy_price">付款</div>-->
@@ -107,5 +111,6 @@
 <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/comment.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/swiper.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/detailsJs.js" type="text/javascript" charset="utf-8"></script>
 </html>

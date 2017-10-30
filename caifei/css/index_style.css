@@ -242,14 +242,12 @@ html,body{
 .detailImg{
 	width: 100%;
 	position: relative;
-	padding: 2% 2% 0;
 	box-sizing: border-box;
 }
 .detailImg img{
 	width: 100%;
-	height: 180px;
+    height: 14rem;
 }
-
 .detailMain{
 	color: #666;
     width: 100%;
@@ -285,21 +283,23 @@ html,body{
 }
 .detailMain .main_price{
 	width: 100%;
-    color: #ff6585;
+    color: #666;
     padding: 2% 0;
     font-size: 1.2rem;
     white-space: nowrap;
-    height: 4rem;
 }
+.detailMain .price_code {
+	color: #ff6585;
+}
+
 .detailMain .price_code em{
 	font-size: 3rem;
 }
 .detailMain .price_title{
     color: #666;
-    font-size: 1.2rem;
+   font-size: .9rem;
     height: 4rem;
-    line-height: 5rem;
-    margin-left: 5%;
+    line-height: 5.5rem;
 }
 .detailMain .price_img{
 	display: inline-block;
@@ -317,21 +317,28 @@ html,body{
 	width: 100%;
     margin-top: 2.5%;
     height: 30%;
-    padding: 2% 3%;
+    padding: 0 3%;
     color: #666;
     box-sizing: border-box;
     position: relative;
 }
 .detailMap .map_left p{
-	padding: 1% 0;
+   padding: 4% 0;
+}
+.detailMap .map_left .map_tit{
+ 	border-bottom: 1px solid #f0f0f0;
 }
 .detailMap .map_left img{
-	position: absolute;
-    left: 2%;
-    width: 4.5%;
+    width: 5%;
+    vertical-align: middle;
+    display: inline-block;
 }
 .detailMap .map_left em{
-	margin-left: 1.5rem;
+	margin-left: 3%;
+}
+.detailMap .map_left a{
+	color: #666;
+	margin-left: 3%;
 }
 
 
@@ -442,7 +449,6 @@ html,body{
 	width: 100%;
     padding: 0 3%;
     box-sizing: border-box;
-    height: 3rem;
     line-height: 3rem;
     color: #666;
     border-bottom: 1px solid #f0f0f0;
@@ -927,14 +933,16 @@ html,body{
 .consume_box,.consume_box ul{
 	width: 100%;
 	height: auto;
+    font-size: 1.1rem;
 }
 .consume_box li {
 	width: 100%;
-	padding:2%;
+	    padding: 3.5% 2%;
 	border-bottom: 1px solid #dedede;
 	box-sizing: border-box;
 }
 .consume_box li .title{
+    font-size: 1.15rem;
 	color: #333;
 }
 .consume_box,.consume_box ul{
@@ -948,9 +956,10 @@ html,body{
     white-space: nowrap;
 }
 .consume_box li .last{
-	font-size: .9rem;
+	font-size: 1rem;
 	color: #ccc;
-     margin-top: 1%;
+        margin-top: 2%;
+        
 }
 .consume_box li .title em{
 	margin-right: .08rem;
@@ -988,25 +997,27 @@ html,body{
 	padding: 1% 2%;
 	box-sizing: border-box;
 	font-size: 1rem;
+	background-color: #fff;
 }
 .mendBox .mend_name{
 	font-size: 1.5rem;
-	font-weight: 600;
+    font-weight: 400;
 	margin-top: 5%;
 }
 .mendBox .mend_time{
-	font-size: .9rem;
+	font-size: 1.1rem;
 	color: #666;
 	margin-top: 2%;
 }
 .mendBox .img_gif{
 	width: 100%;
-	margin: 3% 0;
+	margin: 3% 0 8%;
 }
 .mendBox p{
+	width: 100%;
+	text-align: center;
 	font-size: 1.2rem;
 	color: #666;
-	margin-bottom: 5%;
 	line-height: 2rem;
 }
 .mendBox .img_png{
@@ -1017,7 +1028,13 @@ html,body{
 	width: 80%;
 	margin: 5% 10%;
 }
+.mendBox .border{
+	margin-top: 10%;
+	border-bottom: 1px solid #666;
+}
 .mendBox .mend_bot{
+	    color: rgb(61, 170, 214);
+	    font-size: 1.2rem;
 	width: 100%;
 	text-align: center;
 }
@@ -1115,6 +1132,12 @@ html,body{
 .payItem .marginright{
 	margin-right: 1%;
 }
+.payItem .price_remarks {
+    color: #a3a3a3;
+    font-size: .9rem;
+    height: 4rem;
+    line-height: 5.4rem;
+}
 .payItem .item_first .price_img{
 	display: inline-block;
 	color: #fff;
@@ -1137,6 +1160,13 @@ html,body{
 }
 .payItem .mr_center,.payItem .main_price {
     padding: 0;
+}
+.payItem li .mr_center .marght{
+	width: 58%;
+	font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .payItem .item_first .main_price {
     font-size: 1rem;

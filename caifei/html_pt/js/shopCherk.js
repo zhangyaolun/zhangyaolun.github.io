@@ -1,6 +1,9 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
+		if(!getCookie('userName')){
+			window.location.href = 'login.html';
+		}
 		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));
 		o.clerkClick();
 		o.oDate();
@@ -28,11 +31,9 @@ var o = {
 			$('.alertBox').hide();
 		})
 		$('.ButTrue').on('click',function(){
-			console.log(name)
 			if(name == '店长'){
 				var suc = function(data){
 					if(data.result){
-						setCookie('userInfoId',$('.ButTrue').attr('oid'));
 						window.location.reload();
 						$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
 						$('.alertBox').hide();
@@ -44,7 +45,6 @@ var o = {
 				doAjax('/shop/bindUser/bindUser',data,suc);
 			}else if(name == '店员'){
 				var suc = function(data){
-					setCookie('getMsgId1',$('.ButTrue').attr('oid'));
 					window.location.reload();
 					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
 					$('.alertBox').hide();
@@ -55,7 +55,6 @@ var o = {
 				doAjax('/shop/bindUser/bindMsg1',data,suc);
 			}else if(name == '收银员'){
 			var suc = function(data){
-					setCookie('getMsgId2',$('.ButTrue').attr('oid'));
 					window.location.reload();
 					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
 					$('.alertBox').hide();
@@ -86,7 +85,6 @@ var o = {
 		           for(var i=currPage;i<=num;i++){
 			           	var data = {
 							'currPage':i,
-							'shopId':'86f53a0142824ded8c4c5d938a5ce19b'
 						}
 					    $.ajax({
 				       		url : '/shop-account/searchUserList',
@@ -107,18 +105,18 @@ var o = {
 	},
 	htmlData:function(oAttr){
 		var oHtml = '',moreAttr=[];
+		console.log(oAttr)
 		for(var i = 0;i < oAttr.length; i++){
 			for(var j = 0;j < oAttr[i].length; j++){
 				moreAttr.push(oAttr[i][j]);
 			}
 		}
-		console.log(moreAttr)
 		for(var s = 0;s< moreAttr.length; s++){
-			if(moreAttr[s].id == getCookie('userInfoId')){
+			if(moreAttr[s].jiaose == 1){
 				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'"</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店长</em></div></li>'
-			}else if(moreAttr[s].id == getCookie('getMsgId1')){
+			}else if(moreAttr[s].jiaose == 2){
 				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'"</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店员</em></div></li>'
-			}else if(moreAttr[s].id == getCookie('getMsgId2')){
+			}else if(moreAttr[s].jiaose == 3){
 				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'"</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">收银员</em></div></li>'
 			}else{
 				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'"</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em>店长</em><em>店员</em><em class="borderNone">收银员</em></div></li>'
@@ -137,7 +135,6 @@ var o = {
 			if(name == '店长'){
 				var suc = function(data){
 					if(data.result){
-						setCookie('userInfoId','');
 						window.location.reload();
 						$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
 						$('.alertBox').hide();
@@ -149,7 +146,6 @@ var o = {
 				doAjax('/shop/bindUser/bindUser',data,suc);
 			}else if(name == '店员'){
 				var suc = function(data){
-					setCookie('getMsgId1','');
 					window.location.reload();
 					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
 					$('.alertBox').hide();
@@ -160,7 +156,6 @@ var o = {
 				doAjax('/shop/bindUser/bindMsg1',data,suc);
 			}else if(name == '收银员'){
 			var suc = function(data){
-					setCookie('getMsgId2','');
 					window.location.reload();
 					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
 					$('.alertBox').hide();
