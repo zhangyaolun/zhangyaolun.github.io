@@ -3,6 +3,7 @@ var o = {
 	init:function(){
 		FastClick.attach(document.body);
 		$(window).scrollTop(0);
+		sessionStorage.setItem('openId',getParameter('openId'));
 		setTimeout(function(){
 			var parse = JSON.parse(sessionStorage.getItem('position'));
 			if(!parse){

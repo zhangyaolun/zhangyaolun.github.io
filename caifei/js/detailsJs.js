@@ -3,11 +3,6 @@ var o = {
 	init:function(){
 		FastClick.attach(document.body);
 		/*电话*/
-		$('.map_tel').on('click',function(){
-			if(!$('.map_tel a').html())return;
-			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
-		})
-		return;
 		$('.bot_Nav').on('click','span',function(){
 			var index = $(this).index();
 			$('.bot_Nav span').removeClass('stypeSpan').eq(index).addClass('stypeSpan');
@@ -25,6 +20,11 @@ var o = {
 				$('.bot_deatil').show()
 			}
 		})
+		$('.map_tel').on('click',function(){
+			if(!$('.map_tel a').html())return;
+			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
+		})
+		return;
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 			if(data.pic.split(',').length >= 2){
@@ -56,7 +56,7 @@ var o = {
 			$('.main_price em').html((data.discountRate*10).toFixed(1));	
 			$('.main_price .price_title').html(data.remarks);	
 			$('.address span').html(data.address);	
-			$('.tel span').html(data.telephone);		
+			$('.tel a').html(data.telephone);		
 			var currPage = 1;
 			 setTimeout(function(){
 				o.moreAjax(data.id,currPage);
@@ -108,7 +108,7 @@ var o = {
 					$('.main_price em').html((data.discountRate*10).toFixed(1));	
 					$('.main_price .price_title').html(data.remarks);	
 					$('.address span').html(data.address);	
-					$('.tel span').html(data.telephone);		
+					$('.tel a').html(data.telephone);		
 					var currPage = 1;
 					 setTimeout(function(){
 						o.moreAjax(data.id,currPage);
@@ -137,7 +137,7 @@ var o = {
 				$('.main_price em').html((data.discountRate*10).toFixed(1));	
 				$('.main_price .price_title').html(data.remarks);	
 				$('.address span').html(data.address);	
-				$('.tel span').html(data.telephone);		
+				$('.tel a').html(data.telephone);		
 				var currPage = 1;
 				 setTimeout(function(){
 					o.moreAjax(data.id,currPage);
