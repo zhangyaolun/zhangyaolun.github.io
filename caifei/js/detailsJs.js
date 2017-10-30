@@ -24,6 +24,10 @@ var o = {
 			if(!$('.map_tel a').html())return;
 			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
 		})
+		$('.tel').on('click',function(){
+			if(!$('.tel a').html())return;
+			$('.tel a').attr('href','tel:'+$('.tel a').html());
+		})
 		return;
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
