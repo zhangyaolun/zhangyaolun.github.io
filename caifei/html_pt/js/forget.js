@@ -42,6 +42,7 @@ var o = {
 			$('#title').html('');
 			var suc = function(data){
 				if(data.result == 1){
+					setCookie('pwd',word);
 					window.location.href = 'index.html';
 				}else if(data.result == 0){
 					$('#title').html('修改密码失败');

@@ -313,6 +313,7 @@ body{
 .clerkItem{
 	width: 100%;
 	height: auto;
+	overflow: hidden;
 }
 .clerkItem li{
     width: 100%;
@@ -320,9 +321,11 @@ body{
     box-sizing: border-box;
     border-bottom: 1px solid #dedede;
     color: #666;
+    position: relative;
     font-size: 1rem;
     white-space: nowrap;
     line-height: 3rem;
+    -webkit-transform: translateX(0px);
 }
 .clerkItem li .clerkTitle{
     width: 30%;
@@ -414,8 +417,12 @@ body{
 	box-sizing: border-box;
 	padding: 3% 1.5%;
 	border-bottom: 1px solid #DCDCDC;
+	white-space: nowrap;
 }
-
+.consume_item li span,.consume_item li i{
+	display: inline-block;
+	width: 29%;
+}
 .consume_item .bottom_load{
 	color: #666;
 	text-align: center;

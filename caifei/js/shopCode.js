@@ -69,6 +69,7 @@ var o = {
 		            $('.consume_item').append(result);
 		            if(data.result.pageNo == data.result.totalPages ){
 		            	$('.consume_item').attr('oPage',1);
+		            	return ;
 		            }
 	        	}
 	        }

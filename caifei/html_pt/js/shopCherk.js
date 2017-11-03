@@ -4,9 +4,10 @@ var o = {
 		if(!getCookie('userName')){
 			window.location.href = 'login.html';
 		}
-		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));
-		o.clerkClick();
-		o.oDate();
+		/*$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));*/
+		o.touchDate();
+		/*o.clerkClick();
+		o.oDate();*/
 	},
 	clerkClick:function(months,currPage){
 		$('.clerkItem').on('click','em',function(){
@@ -113,16 +114,16 @@ var o = {
 		}
 		for(var s = 0;s< moreAttr.length; s++){
 			if(moreAttr[s].jiaose == 1){
-				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店长</em></div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店长</em></div><div class="btn">删除</div></li>'
 			}else if(moreAttr[s].jiaose == 2){
-				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店员</em></div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店员</em></div><div class="btn">删除</div></li>'
 			}else if(moreAttr[s].jiaose == 3){
-				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">收银员</em></div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">收银员</em></div><div class="btn">删除</div></li>'
 			}else{
-				oHtml+='<li class="clear"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em>店长</em><em>店员</em><em class="borderNone">收银员</em></div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em>店长</em><em>店员</em><em class="borderNone">收银员</em></div><div class="btn">删除</div></li>'
 			}
 		}
-		$('.clerkItem').html(oHtml);
+		$('.clerkItem').append(oHtml);
 	},
 	quxiaoData:function(data,name){
 		$('.alertBox').show();
@@ -166,6 +167,76 @@ var o = {
 				doAjax('/shop/bindUser/bindMsg2',data,suc);
 			}
 		})
+	},
+	touchDate:function(){
+		var initX; //触摸位置
+	    var moveX; //滑动时的位置
+	    var X = 0; //移动距离
+	    var objX = 0; //目标对象位置
+	    window.addEventListener('touchstart', function(event) {
+	        event.preventDefault();
+	        var obj = event.target.parentNode;
+	        console.log(obj.className)
+	        if (obj.className == "clear list-li") {
+	        	console.log('touchstart')
+	            initX = event.targetTouches[0].pageX;
+	            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
+	        }
+	        if (objX == 0) {
+	            window.addEventListener('touchmove', function(event) {
+	                event.preventDefault();
+	                var obj = event.target.parentNode;
+	                if (obj.className == "clear list-li") {
+	                    moveX = event.targetTouches[0].pageX;
+	                    X = moveX - initX;
+	                    if (X >= 0) {
+	                        obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+	                    } else if (X < 0) {
+	                        var l = Math.abs(X);
+	                        obj.style.WebkitTransform = "translateX(" + -l + "px)";
+	                        if (l > 100) {
+	                            l = 100;
+	                            obj.style.WebkitTransform = "translateX(" + -l + "px)";
+	                        }
+	                    }
+	                }
+	            });
+	        } else if (objX < 0) {
+	            window.addEventListener('touchmove', function(event) {
+	                event.preventDefault();
+	                var obj = event.target.parentNode;
+	                if (obj.className == "clear list-li") {
+	                    moveX = event.targetTouches[0].pageX;
+	                    X = moveX - initX;
+	                    if (X >= 0) {
+	                        var r = -100 + Math.abs(X);
+	                        obj.style.WebkitTransform = "translateX(" + r + "px)";
+	                        if (r > 0) {
+	                            r = 0;
+	                            obj.style.WebkitTransform = "translateX(" + r + "px)";
+	                        }
+	                    } else { //向左滑动
+	                        obj.style.WebkitTransform = "translateX(" + -100 + "px)";
+	                    }
+	                }
+	            });
+	        }
+	
+	    })
+	    window.addEventListener('touchend', function(event) {
+	        event.preventDefault();
+	        var obj = event.target.parentNode;
+	        if (obj.className == "clear list-li") {
+	            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
+	            if (objX > -100) {
+	                obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+	                objX = 0;
+	            } else {
+	                obj.style.WebkitTransform = "translateX(" + -100 + "px)";
+	                objX = -100;
+	            }
+	        }
+	    })
 	}
 }
 o.init();

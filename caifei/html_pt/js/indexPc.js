@@ -3,13 +3,19 @@ var o = {
 		if(!getCookie('agentPwd')){
 			window.location.href = 'loginpc.html';
 		}
-		if(getParameter('result') != 1){
-			var data = JSON.parse(getParameter('result')),oHtml='';
-			for(var i = 0; i < data.length; i++){
-				oHtml+='<option value="'+data[i].id+'">'+data[i].shopName+'</option>'
+		var suc = function(data){
+			console.log(data);
+			var oHtml = '';
+			for(var i = 0; i < data.result.list.length; i++){
+				oHtml+='<option value="'+data.result.list[i].id+'">'+data.result.list[i].shopName+'</option>'
 			}
 			$("select#status").append(oHtml);
 		}
+		var data = {
+			'agentMobile':getCookie('userName'),
+			'agentPwd':getCookie('agentPwd')
+		}
+		doAjax('/agent/login',data,suc);
 		var currPage = 1,months = 1;
 		$('.comment_select').attr('currPage',currPage);
 		$('.comment_select').attr('months',months);
@@ -24,13 +30,13 @@ var o = {
 			$('.ht_shows i').html(oHtml.totalPages);
 			$('.ht_shows input').val(oHtml.pageNo);
 			$('.bili em').html(oHtml.pageNo);
-			oHtml.totalPages == 0?$('.bili i').html(1):$('.bili i').html(oHtml.totalPages);
+			$('.bili i').html(oHtml.totalPages);
 			if(oHtml.length == 0){
             	return ;
             }
 			for(var i=0;i<oHtml.result.length;i++){
 				if(i%2 ==0){
-					oResult +='<li class="index_list list_active"><span>'+oHtml[i].shopName+'</span><span>'+oHtml.result[i].income+'</span><span>'+oHtml.result[i].time+'</span></li>'
+					oResult +='<li class="index_list list_active"><span>'+oHtml.result[i].shopName+'</span><span>'+oHtml.result[i].income+'</span><span>'+oHtml.result[i].time+'</span></li>'
 				}else{
 					oResult +='<li class="index_list"><span>'+oHtml.result[i].shopName+'</span><span>'+oHtml.result[i].income+'</span><span>'+oHtml.result[i].time+'</span></li>'
 				}
@@ -91,6 +97,8 @@ var o = {
 		    o.ajaxData();
 		});
 		$(".ht_shows input").bind('input propertychange',function(){//跳第几页
+			console.log($('.bili i').html())
+			console.log($(".ht_shows input").val())
 			if($(".ht_shows input").val()>$('.bili i').html()){
 				$(".ht_shows input").val('1');
 				alert('超出查询页数');

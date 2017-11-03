@@ -19,51 +19,24 @@ var o = {
 				$('.bot_deatil').show()
 			}
 		})
+		var posi = JSON.parse(sessionStorage.getItem('position'));
+		if(!posi){
+			window.addEventListener('message', function(event) {
+				var position = event.data; 
+			    if(position  && position.module == 'geolocation') { 
+					var oSelf = position.lng+'|'+position.lat;
+					$('.map_left').attr('mapdate',oSelf);
+	            }    
+			}, false);
+		}else{
+			$('#geoPage').remove();
+			var oSelf = posi.lng+'|'+posi.lat;
+			$('.map_left').attr('mapdate',oSelf);
+		}
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-			if(data.pic.split(',').length >= 2){
-				var picAttr = data.pic.split(','),picHtml='';
-				for(var p=0;p<picAttr.length;p++){
-					picHtml+='<div class="swiper-slide"><img src="'+picAttr[p]+'" alt="" /></div>'
-				}
-				$('.swiper-wrapper').html(picHtml);
-				var mySwiper = new Swiper ('.swiper-container', {
-				    direction: 'horizontal',
-				    loop: true,
-				    autoplay : 1500,
-				    autoplayDisableOnInteraction : false,
-				    pagination: '.swiper-pagination',
-				    paginationClickable :true,
-				 })    
-			}else{
-				$('.swiper-wrapper').html('<div class="swiper-slide"><img src="'+data.pic+'" alt="" /></div>');
-				var mySwiper = new Swiper ('.swiper-container', {
-					loop: false,
-				 })     
-			}
-			$('.detailMain .main_title').html(data.shopName);				
-			$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
-			$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');			
-			$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
-			$('.map_left .map_tit em').html(data.address);			
-			$('.map_left .map_tel a').html(data.telephone);			
-			$('.main_price em').html((data.discountRate*10).toFixed(1));	
-			$('.main_price .price_title').html(data.remarks);	
-			$('.address span').html(data.address);	
-			$('.tel a').html(data.telephone);		
-			var currPage = 1;
-			 setTimeout(function(){
-				o.moreAjax(data.id,currPage);
-			},100)
-			  setTimeout(function(){
-				o.moreDate(data.id,currPage);
-			},200)
-		     setTimeout(function(){
-				o.click(getParameter('mayself'),'');
-			},200)
-			
+			o.htmlDate(data);
 		}else if(getParameter('shopId')){
-			o.mapDate();
 			sessionStorage.setItem('openId',getParameter('openId'));
 			$.ajax({
 		        url : '/shop/shopId/'+getParameter('shopId'),
@@ -73,46 +46,7 @@ var o = {
 		        async : false,
 		        success : function(data){
 		        	var data = data.result;
-					if(data.pic.split(',').length >= 2){
-						var picAttr = data.pic.split(','),picHtml='';
-						for(var p=0;p<picAttr.length;p++){
-							picHtml+='<div class="swiper-slide"><img src="'+picAttr[p]+'" alt="" /></div>'
-						}
-						$('.swiper-wrapper').html(picHtml);
-						var mySwiper = new Swiper ('.swiper-container', {
-						    direction: 'horizontal',
-						    loop: true,
-						    autoplay : 1500,
-						    autoplayDisableOnInteraction : false,
-						    pagination: '.swiper-pagination',
-						    paginationClickable :true,
-						 })    
-					}else{
-						$('.swiper-wrapper').html('<div class="swiper-slide"><img src="'+data.pic+'" alt="" /></div>');
-						var mySwiper = new Swiper ('.swiper-container', {
-							loop: false,
-						 })     
-					}			
-					$('.detailMain .main_title').html(data.shopName);				
-					$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
-			$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');					
-					$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
-					$('.map_left .map_tit em').html(data.address);	
-					$('.map_left .map_tel a').html(data.telephone);
-					$('.main_price em').html((data.discountRate*10).toFixed(1));	
-					$('.main_price .price_title').html(data.remarks);	
-					$('.address span').html(data.address);	
-					$('.tel a').html(data.telephone);		
-					var currPage = 1;
-					 setTimeout(function(){
-						o.moreAjax(data.id,currPage);
-					},100)
-					  setTimeout(function(){
-						o.moreDate(data.id,currPage);
-					},200)
-					    setTimeout(function(){
-					o.click('',data);
-				},200)
+		        	o.htmlDate(data);
 		        }
 		    });
 		}else{
@@ -122,31 +56,12 @@ var o = {
 			}
 			var sucess = function(data){
 				var data = data.result;
-				$('.detailMain .main_title').html(data.shopName);				
-				$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
-				$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');
-				$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
-				$('.map_left .map_tit em').html(data.address);	
-				$('.map_left .map_tel a').html(data.telephone);
-				$('.main_price em').html((data.discountRate*10).toFixed(1));	
-				$('.main_price .price_title').html(data.remarks);	
-				$('.address span').html(data.address);	
-				$('.tel a').html(data.telephone);		
-				var currPage = 1;
-				 setTimeout(function(){
-					o.moreAjax(data.id,currPage);
-				},100)
-				  setTimeout(function(){
-					o.moreDate(data.id,currPage);
-				},200)
-				    setTimeout(function(){
-					o.click('',data);
-				},200)
+				o.htmlDate(data);
 			}
 			doPost('/shop/bindedShop',dataa,sucess);
 		}
 	},
-	moreDate:function(id,currPage){
+	moreDate:function(){
 		$(window).scroll(function(){
 			if ($(window).scrollTop() != '0'){
 				$('.back').css('display','block');
@@ -160,10 +75,61 @@ var o = {
             	return ;
             }
 		　　if(scrollTop + windowHeight == scrollHeight){
-			   currPage++;
-		　　　 o.moreAjax(id,currPage);
+			  var typeAttr = $('.bot_evaluate').attr('type').split('|');
+			  var oPage = typeAttr[1];
+			  oPage++;
+		　　　 o.moreAjax(typeAttr[0],oPage);
 		　　}
 		});	
+	},
+	htmlDate:function(data){
+		if(data.detailPic.split(',').length >= 2){
+			var detailPicAttr = data.detailPic.split(','),detailPicHtml='';
+			for(var s=0;s<detailPicAttr.length;s++){
+				detailPicHtml+='<li><img src="'+detailPicAttr[s]+'"/></li>'
+			}
+			$('.bot_deatil').html(detailPicHtml); 
+		}else{
+			$('.bot_deatil').html('<li><img src="'+data.detailPic+'"/></li>');
+		}
+		if(data.pic.split(',').length >= 2){
+			var picAttr = data.pic.split(','),picHtml='';
+			for(var p=0;p<picAttr.length;p++){
+				picHtml+='<div class="swiper-slide"><img src="'+picAttr[p]+'" alt="" /></div>'
+			}
+			$('.swiper-wrapper').html(picHtml);
+			var mySwiper = new Swiper ('.swiper-container', {
+			    direction: 'horizontal',
+			    loop: true,
+			    autoplay : 1500,
+			    autoplayDisableOnInteraction : false,
+			    pagination: '.swiper-pagination',
+			    paginationClickable :true,
+			 })    
+		}else{
+			$('.swiper-wrapper').html('<div class="swiper-slide"><img src="'+data.pic+'" alt="" /></div>');
+			var mySwiper = new Swiper ('.swiper-container', {
+				loop: false,
+			 })     
+		}	
+		$('.detailMain .main_title').html(data.shopName);				
+		$('.detailMain .emStyle').html(data.averageScore.toFixed(1));				
+		$('.detailMain .over').css('width',data.averageScore.toFixed(1)*12+'px');
+		$('.map_left').attr('type',data.latitude+'|'+data.longitude+'|'+data.distance+'|'+data.address+'|'+data.shopName+'|'+data.address+'|'+data.telephone);			
+		$('.map_left .map_tit em').html(data.address);	
+		$('.map_left .map_tel a').html(data.telephone);
+		$('.main_price em').html((data.discountRate*10).toFixed(1));	
+		$('.main_price .price_title').html(data.remarks);		
+		var currPage = 1;
+		 setTimeout(function(){
+			o.moreAjax(data.id,currPage);
+		},100)
+		  setTimeout(function(){
+			o.moreDate();
+		},200)
+		    setTimeout(function(){
+			o.click('',data);
+		},200)
 	},
 	moreAjax:function(id,currPage){
 		var data = {
@@ -171,6 +137,8 @@ var o = {
 			'currPage':currPage,
 			'pageSize':10
 		}
+		var oType = id+'|'+currPage;
+		$('.bot_evaluate').attr('type',oType);
 		$.ajax({
 	        url :'/comment/findByShop',
 	        data :data,
@@ -183,7 +151,7 @@ var o = {
 	        		if(data.result.result.length == 0){
 	        			$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
 		            	return ;
-		          }
+		            }
 	        		for(var i = 0; i < data.result.result.length; i++){
 	                     result += '<li class="detailColor item"><div class="evaluate_img"><img src="'+data.result.result[i].userIcon+'" alt="" class="left"></div><div class="evaluate_right"><div class="ri_name">'+data.result.result[i].nickName+'</div><div class="ri_date"><div class="bg left"><div class="over" style="width:'+12*data.result.result[i].score+'px""></div></div><div class="dateTime right">'+data.result.result[i].createTime+'</div></div><p>'+data.result.result[i].content+'</p><div class="clear ri_image">';
 	                    if(data.result.result[i].commentImages == ''){
@@ -202,26 +170,13 @@ var o = {
 	                }
 	        		$('.bottom_load').remove();
 		            $('.bot_evaluate').append(result);
-		            if(data.result.pageNo == data.result.totalPages &&  $('.bot_evaluate li').length > 4){
+		            if(data.result.pageNo == data.result.totalPages){
 		            	$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
 		            	return ;
-		            }else{
-		            	if($(window).scrollTop() > 0){
-		            		$('.bot_evaluate').append('<li class="detailColor item bottom_load">加载中...</li>');
-		            	}
 		            }
 	        	}
 	        }
 	    })
-	},
-	mapDate:function(){
-		window.addEventListener('message', function(event) {
-			var position = event.data; 
-		    if(position  && position.module == 'geolocation') { 
-				var oSelf = position.lng+'|'+position.lat;
-				$('.map_left').attr('mapdate',oSelf);
-            }    
-		}, false);
 	},
 	click:function(mayself,data){
 		
@@ -242,11 +197,6 @@ var o = {
 		$('.map_tel').on('click',function(){
 			if(!$('.map_tel a').html())return;
 			$('.map_tel a').attr('href','tel:'+$('.map_tel a').html());
-		})
-		$('.tel').on('click',function(){
-			if(!$('.tel a').html())return;
-			$('.tel a').attr('href','tel:'+$('.tel a').html());
-			$('.tel a').click();
 		})
 		/*付款*/
 		$('.price_img').on('click',function(){

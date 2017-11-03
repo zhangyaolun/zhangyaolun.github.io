@@ -12,6 +12,7 @@ var o = {
 				$('.moreDate').show();
 				$('.moreDate img').hide();
         		$('.moreDate span').html('请检查是否开启微信定位授权');
+        		o.locaSuccend();
 			}
 		},15000)
 		if(!position){
@@ -20,7 +21,7 @@ var o = {
 			    // 接收位置信息
 			    var position = event.data; 
 			    if(sessionStorage.getItem('position'))return;
-			    if(position  && position.module == 'geolocation') { //定位成功,防止其他应用也会向该页面post信息，需判断module是否为'geolocation'
+			    if(position && position.module == 'geolocation') { //定位成功,防止其他应用也会向该页面post信息，需判断module是否为'geolocation'
 	                sessionStorage.setItem('position',JSON.stringify(position));
 	                $('.moreDate').hide();
 	                $('.nearbyMain').html('');
@@ -37,6 +38,7 @@ var o = {
 	            } else { 
 	            	$('.moreDate img').hide();
 	            	$('.moreDate span').html('定位失败');
+	            	o.locaSuccend();
 	            }     
 			}, false); 
 		}else{    
@@ -98,18 +100,7 @@ var o = {
             if(data.result.pageNo == data.result.totalPages){
             	$('.nearbyMain').append('<li class="detailColor item bottom_load">暂无数据</li>');
             	return ;
-            }else{
-            	if($(window).scrollTop() > 0){
-            		$('.nearbyMain').append('<li class="detailColor item bottom_load">加载中...</li>');
-            	}
-            } 
-             var scrollTop = $(this).scrollTop();
-		　　 var scrollHeight = $(document).height();
-		　　 var windowHeight = $(this).height();
-		
-		　　 if(scrollTop + windowHeight < scrollHeight){
-				$('.nearbyMain .bottom_load').remove();
-			}
+            }
 		}
 		doPost(oUrl,data,sucess);
 	},
@@ -134,7 +125,28 @@ var o = {
 		　　　 o.moreData(typeAttr[0],typeAttr[1],page,typeAttr[3],typeAttr[4],typeAttr[5]);
 		　　}
 		});	
-	    
+	},
+	locaSuccend:function(){
+		var locaSuc = function(data){
+			console.log(data)
+			$('.moreDate').hide();
+            $('.nearbyMain').html('');
+            var currPage = 1,order = 3,type = '';
+            setTimeout(function(){
+				o.moreData(data.result.x,data.result.y,currPage,order,type,$('.nearbyBox input').val());
+			},100)
+			setTimeout(function(){
+				o.moreLoad();
+			},200)
+			setTimeout(function(){
+				o.click(data.result.x,data.result.y);
+			},150)
+	            	
+		}
+		var loca = {
+			'openid':getParameter('openId')
+		}
+		doPost('/user/location',loca,locaSuc);
 	},
 	click:function(x,y){
 		/*回到顶部*/
@@ -146,7 +158,7 @@ var o = {
 		$('.mapImg').on('click',function(){
 			window.location.href = 'map.html?index='+x+'|'+y;
 		})
-		/*个人*/
+		/*搜索*/
 		$('.nearbyBox .seachImg').on('click',function(){
 			$('.listItem').css('display','none');
 			var oOder = [3,0,1];
@@ -159,9 +171,8 @@ var o = {
 					$('.back').css('display','none');
 					var oType = '';
 					for(var s=0;s<$('.listItem li').length;s++){
-						console.log($('.listItem li').eq(s).css('color'))
 						if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
-							s == 0?oType = '':oType = s-1;
+							oType = $('.listItem li').eq(s).attr('atype');
 						}
 					}
 					o.moreData(x,y,1,oOder[i],oType,$('.nearbyBox input').val());
@@ -188,7 +199,7 @@ var o = {
 			var oType = '';
 			for(var s=0;s<$('.listItem li').length;s++){
 				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
-					s == 0?oType = '':oType = s-1;
+					oType = $('.listItem li').eq(s).attr('atype');
 				}
 			}
 			o.moreData(x,y,1,1,oType,$('.nearbyBox input').val());
@@ -201,7 +212,7 @@ var o = {
 			for(var s=0;s<$('.listItem li').length;s++){
 				console.log($('.listItem li').eq(s).css('color'))
 				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
-					s == 0?oType = '':oType = s-1;
+					oType = $('.listItem li').eq(s).attr('atype');
 				}
 			}
 			o.moreData(x,y,1,0,oType,$('.nearbyBox input').val());
@@ -212,9 +223,8 @@ var o = {
 			$(this).addClass('navStyle');
 			var oType = '';
 			for(var s=0;s<$('.listItem li').length;s++){
-				console.log($('.listItem li').eq(s).css('color'))
 				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
-					s == 0?oType = '':oType = s-1;
+					oType = $('.listItem li').eq(s).attr('atype');
 				}
 			}
 			o.moreData(x,y,1,3,oType,$('.nearbyBox input').val());
@@ -222,7 +232,7 @@ var o = {
 		/*筛选*/
 		$('.listItem').on('click','li',function(){
 			var index = $(this).index(),
-				oAttr = ['',0,1,2,3,4],
+				oAttr = ['',3,7,5,2,1,6,8,4,0],
 				oOder = [3,0,1];
 			$('.listItem li').css('color','#777').eq(index).css('color','#000');
 			for(var i=0;i<3;i++){

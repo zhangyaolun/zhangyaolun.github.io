@@ -1,5 +1,9 @@
 window.addEventListener("load",function(){FastClick.attach(document.body);},false);
 document.getElementsByTagName("body")[0].setAttribute("style","display:block");
+if(getCookie('payMent') == 2){
+	$('.pay_title').hide();
+	$('.pay_fixed').hide();
+}
 if(getParameter('channel')){
 	$('.pay_title').hide();
 	$('.pay_fixed').hide();
@@ -35,6 +39,7 @@ $('.pay_fixed').on('click',function(){
 	}
 	var suc = function(data){
 		alert('发表评论成功。');
+		setCookie('payMent','2');
 		window.location.href = 'index.html?openId='+sessionStorage.getItem('openId');
 	}
 	var data = {

@@ -2,14 +2,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>修改密码</title>
-		<link rel="stylesheet" href="css/stylepc.css">
+		<title>重置密码</title>
+		<link rel="stylesheet" href="css/stylePc.css">
 	</head>
 	<body onkeydown="keyLogin();">
 		<div class="a_content">
 			<div class="content">
 				<div class="regist">
-					<h2>修改密码</h2>
+					<h2>重置密码 </h2>
 					<div class="pwd password">
 						<input id="pwd" autofocus="autofocus" type="password" placeholder="请输入您的新密码" maxlength="12" minlength='6'/>
 						<h5 class="title"></h5>
@@ -49,6 +49,7 @@
 			$('.title').html('')
 			var suc = function(data){
 				if(data.result == 1){
+					setCookie('agentPwd',pass);
 					window.location.href = 'indexPc.html?name='+getParameter('name');
 				}else if(data.result == 0){
 					$('#title').html('修改密码失败');

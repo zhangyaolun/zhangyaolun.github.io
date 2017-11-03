@@ -4,12 +4,12 @@ var o = {
 		var aPage = 1,oPage = 1;
 		o.subShops(oPage);
 		var suc = function(data){
-				console.log(data)
 				var oAttr = [];
 				if(data.result.result == ''){
 					return;
 				}else{
 					$('.per_bot .per_num .last_img').css('margin-top','5%');
+					$('.per_num em').html(data.result.totalCount);
 					oAttr.push(data.result.result);
 			        aPage++;
 			        var num = data.result.totalPages;
@@ -37,7 +37,7 @@ var o = {
 							moreAttr.push(oAttr[s][j]);
 						}
 					}
-					$('.per_num em').html(moreAttr.length);
+					
 					for(var x=0,a=moreAttr.length;x<a;x++){
 						if(x>13){
 							oResult += '<li><img src="'+moreAttr[x].headimgurl+'"/><div class="last_title">'+moreAttr[x].nickname+'</div></li>'
@@ -70,8 +70,8 @@ var o = {
 				return;
 			}else{
 				$('.per_bot .per_last .last_item').css('margin-top','5%');
+				$('.per_last em').html(data.result.totalCount);
 				oAttr.push(data.result.result);
-				console.log(oAttr)
 		        aPage++;
 		        var num = data.result.totalPages;
 		         for(var i=aPage;i<=num;i++){
@@ -86,6 +86,7 @@ var o = {
 				        type : 'POST',
 				        async : false,
 				        success : function(data){
+				        	console.log(data)
 				        	if(data.httpCode == 200){
 					           oAttr.push(data.result.result);
 				        	}
@@ -98,15 +99,23 @@ var o = {
 						moreAttr.push(oAttr[s][j]);
 					}
 				}
-				$('.per_last em').html(moreAttr.length);
+				console.log(moreAttr)
 				for(var x=0,a=moreAttr.length;x<a;x++){
-					if(x>12){/*'+moreAttr[x].shopName+'*/
-						oResult += '<li><img src="'+moreAttr[x].shopPic+'"/><div class="last_title"></div></li>'
+					if(x>12){
+						if(moreAttr[x].shopPic.split(',').length >= 2){
+		    				oResult += '<li><img src="'+moreAttr[x].shopPic.split(',')[0]+'"/><div class="last_title"></div></li>'
+		    			}else{
+		    				oResult += '<li><img src="'+moreAttr[x].shopPic+'"/><div class="last_title"></div></li>'
+		    			}
 					}else{
-						result += '<li><img src="'+moreAttr[x].shopPic+'"/><div class="last_title"></div></li>'
+						if(moreAttr[x].shopPic.split(',').length >= 2){
+		    				result += '<li><img src="'+moreAttr[x].shopPic.split(',')[0]+'"/><div class="last_title"></div></li>'
+		    			}else{
+		    				result += '<li><img src="'+moreAttr[x].shopPic+'"/><div class="last_title"></div></li>'
+		    			}
 						if(x == 12){
 							if(moreAttr.length > 13){
-								result += '<li class="lastImg_more"><img src="../img/add_img.png" style="border-radius: 50%;height: 70%"/></li>'
+								result += '<li class="lastImg_more"><img src="../img/add_img.png" style="border-radius: 50%;"/></li>'
 							}
 						}
 					}

@@ -13,6 +13,7 @@ var o = {
 				$('.moreDate').show();
 				$('.moreDate img').hide();
         		$('.moreDate span').html('请检查是否开启微信定位授权');
+				o.locaSuccend();
 			}
 		},15000)   
 		if(!position){
@@ -35,6 +36,7 @@ var o = {
 	            } else { 
 	            	$('.moreDate img').hide();
 	            	$('.moreDate span').html('定位失败');
+	            	o.locaSuccend();
 	            }    
 			}, false); 
 		}else{
@@ -147,6 +149,24 @@ var o = {
 		$('.payItem_left img').bind('click',function(){
 			window.location.href = 'details.html?result='+$(this).attr('result')+'&mayself='+x+'|'+y;
 		})
+	},
+	locaSuccend:function(){
+		var locaSuc = function(data){
+			$('.moreDate').hide();
+            $('.payItem').html('');
+            $('.payItem').attr('type',2);
+            setTimeout(function(){
+				o.moreData(data.result.x,data.result.y);
+			},100)
+             setTimeout(function(){
+				o.click(data.result.x,data.result.y);
+			},120)
+	            	
+		}
+		var loca = {
+			'openid':getParameter('openId')
+		}
+		doPost('/user/location',loca,locaSuc);
 	}
 }
 o.init();

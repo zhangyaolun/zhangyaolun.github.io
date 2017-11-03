@@ -7,9 +7,12 @@
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css"/>
     <style type="text/css">
-    	input::-webkit-input-placeholder {font-size:1.1rem;line-height: 3.3rem;}
-		input::-moz-placeholder {font-size: 1.1rem;line-height: 3.3rem;}
-		input::-ms-input-placeholder {font-size: 1.1rem;line-height: 3.3rem;;}
+    	.pri_input input::-webkit-input-placeholder {font-size:1.1rem;line-height: 3.3rem;}
+		.pri_input input::-moz-placeholder {font-size: 1.1rem;line-height: 3.3rem;}
+		.pri_input input::-ms-input-placeholder {font-size: 1.1rem;line-height: 3.3rem;}
+		#name_priceNon::-webkit-input-placeholder {font-size:1rem;}
+		#name_priceNon::-moz-placeholder {font-size: 1.1rem;}
+		#name_priceNon::-ms-input-placeholder {font-size: 1.1rem;}
     </style>
 </head>
 <body>
@@ -42,11 +45,11 @@
 		</div>
 		<div class="order_price detailColor clear">
 			<div class="orderp_left left"> 
-				<div class="pri_title ">
-					付款金额
+				<div class="pri_title">
+					付款总额
 				</div>
 				<div class="pri_input">
-					<em>￥</em><input type="number" name="" id=""  value="" placeholder="请输入消费金额" autofocus="autofocus"/>
+					<em>￥</em><input type="number" name="" id=""  value="" placeholder="询问服务员后输入" autofocus="autofocus"/>
 				</div>
 			</div>
 			<div class="pri_name bornnone left">
@@ -54,6 +57,17 @@
 					当前折扣
 				</div>
 				<span class="emStyle"><em class="price_n emStyle"></em>折</span>
+			</div>
+		</div>
+		
+		<div class="order_priceNon">
+			<div class="priceNon_left"> 
+				<input type="checkbox" name="" id="priceNon" value="" />
+				<label for="priceNon">输入不参与优惠金额</label>
+			</div>
+			<div class="priceNon_name detailColor">
+				<span>不参与优惠金额：<em>￥</em></span>
+				<input type="number" name="" id="name_priceNon" placeholder="询问服务员后输入" value="" />
 			</div>
 		</div>
 		

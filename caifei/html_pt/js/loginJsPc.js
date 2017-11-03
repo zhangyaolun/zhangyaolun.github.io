@@ -19,15 +19,17 @@ function oNclick(){
 	$('.title').html('');
 	var suc = function(data){
 		console.log(data);
+		
 		if(data.result == 2){
 			$('.pwd h5').html('账号不存在');
 		}else if(data.result == 3){
 			$('.pwd h5').html('密码错误');
 		}else{
 			setCookie('agentPwd',pwd);
+			setCookie('userName',userName);
 			setCookie('agentId',data.result.id);
 			if(data.result.list.length>0){
-				window.location.href = 'indexPc.html?name='+userName+'&result='+JSON.stringify(data.result.list);
+				window.location.href = 'indexPc.html?name='+userName;
 			}else{
 				window.location.href = 'indexPc.html?name='+userName+'&result=1';
 			}

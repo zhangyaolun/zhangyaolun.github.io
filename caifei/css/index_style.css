@@ -25,7 +25,7 @@ html,body{
 	height: 100%;
 	text-align: center;
 	color: #666;
-	padding-top: 20%;
+	padding-top: 30%;
 }
 .offBox img{
     width: 40%;
@@ -215,7 +215,7 @@ html,body{
 .nearbyMain li .main_right .mr_center{
 	font-size: .85rem;
     color: #a3a3a3;
-    margin: 1.8% 0;
+    margin: 1.8% 0 1%;
     white-space: nowrap;
 }
 .nearbyMain li .main_right .mr_center .marght{
@@ -246,7 +246,6 @@ html,body{
 }
 .detailImg img{
 	width: 100%;
-    height: 15rem;
 }
 .detailMain{
 	color: #666;
@@ -323,7 +322,7 @@ html,body{
     position: relative;
 }
 .detailMap .map_left p{
-   padding: 4% 0;
+   padding: 3.2% 0;
 }
 .detailMap .map_left .map_tit{
  	border-bottom: 1px solid #f0f0f0;
@@ -383,6 +382,7 @@ html,body{
 }
 
 .bot_evaluate .item{
+	
         padding: 1rem 0;
     color: #666;
     margin-bottom: .15rem;
@@ -444,19 +444,21 @@ html,body{
 }
 .bot_deatil{
 	display: none;
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	height: auto;
+	padding-top: 2%;
 }
 .bot_deatil li{
 	width: 100%;
-    padding: 0 3%;
+	padding:1% 2%;
     box-sizing: border-box;
-    line-height: 3rem;
-    color: #666;
-    border-bottom: 1px solid #f0f0f0;
 }
-.bot_deatil .phone{
-	border-bottom: none;
+.bot_deatil li img{
+	width: 100%;
+	border-radius:5px;
 }
-
 
 /*个人中心*/
 .per_box{
@@ -669,7 +671,7 @@ html,body{
 }
 .order_price .pri_input{
 	white-space: nowrap;
-	    padding-top: 3%;
+    padding-top: 3%;
 }
 .order_price .pri_input em{
 	font-size: 1.5rem;
@@ -680,7 +682,6 @@ html,body{
     color: #000;
     outline: none;
     border: none;
-    
     font-family: myFirstFont;
 }
 .order_price .pri_name{
@@ -694,6 +695,46 @@ html,body{
 .order_price .price_n{
 	font-size: 1.8rem;
 }
+.order_priceNon{
+	width: 100%;
+	height: auto;
+    margin: 1.5% 0;
+	box-sizing: border-box;
+	font-size: 1rem;
+	color: #888;
+}
+.order_priceNon .priceNon_left{
+	padding: 1% 2% 2%;
+}
+.order_priceNon .priceNon_left input{
+	vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+.order_priceNon .priceNon_name {
+    width: 100%;
+    padding: 0 2% 2%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #666;
+    white-space: nowrap;
+    display: none;
+}
+.order_priceNon .priceNon_name span{
+    color: #000;
+}
+.order_priceNon .priceNon_name em{
+   	font-size: 1.5rem;
+}
+.order_priceNon .priceNon_name input{
+   	outline: none;
+   	border: none;
+   	margin-top: 2%;
+   	width: 64%;
+   	font-size: 1.6rem;
+   	font-family: myFirstFont;
+}
+
 .order_bot{
 	width: 100%;
     padding: 2.2% 2% 1.4%;
@@ -808,8 +849,7 @@ html,body{
 }
 .pay_shop::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
 .pay_shop .shop_img{
-    width: 26%;
-    height: 4.4rem;
+    width: 25%;
     box-sizing: border-box;
 }
 .pay_shop .shop_name{
@@ -833,7 +873,7 @@ html,body{
 .pay_shop .shop_num{
     font-size: .8rem;
     font-weight: 500;
-    padding: 2.2% 0;
+    padding: 1.5% 0;
 }
 .pay_shop .shop_price{
     font-size: .9rem;
@@ -1095,16 +1135,18 @@ html,body{
     height: 3.5rem;
     margin: 0 0 .05rem .1rem;
     border-radius: 5%;
+    border: 1px solid #ccc;
 }
 .per_bot .code_last .last_item li {
        width: 22%;
-    height: 6.5rem;
+    height: 4.5rem;
     text-align: center;
     float: left;
-    margin-left: 1%;
+    margin-left: 2%;
     margin-bottom: 1%;
     color: #666;
     box-sizing: border-box;
+    
 }
 /*付款*/
 .payItem{
@@ -1133,10 +1175,10 @@ html,body{
 	margin-right: 1%;
 }
 .payItem .price_remarks {
+	display: inline-block;
     color: #a3a3a3;
     font-size: .9rem;
-    height: 4rem;
-    line-height: 5.4rem;
+    padding-top: 8.5%;
 }
 .payItem .item_first .price_img{
 	display: inline-block;
@@ -1152,11 +1194,9 @@ html,body{
 }
 .payItem li .payItem_left img{
 	width: 100%;
-    height: 14rem;
 }
 .payItem .item_first .payItem_left img {
     width: 100%;
-    height: 8rem;
 }
 .payItem .mr_center,.payItem .main_price {
     padding: 0;
@@ -1177,11 +1217,10 @@ html,body{
 }
 .payItem li .mr_title{
 	width: 100%;
-	height: 12rem;
 }
-.payItem .item_first .payItem_left img {
+.payItem .item_first img {
     width: 100%;
-    height: 8rem;
+    height: 6.6rem;
 }
 .payItem li .main_title{
     display: inline-block;

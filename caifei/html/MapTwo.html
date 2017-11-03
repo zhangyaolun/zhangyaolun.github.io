@@ -17,14 +17,58 @@
 		    height: 3%;
 		    top: 70%;
 		    left: 42%;
-		    transform: rotate(180deg);
 		}
+		#oSelection{
+			position: absolute;
+		    top: 3%;
+		    left: 5%;
+		    border: 1px solid #eee;
+		    outline: none;
+		    border-radius: 10%;
+		    background: #fff;
+		    text-align: center;
+		    font-size: .16rem;
+		    color: #666;
+		    padding: 1% ;
+		}
+		.wayStyle{
+			position: absolute;
+		    top: 3%;
+		    right: 5%;
+		    border: 1px solid #eee;
+		    outline: none;
+		    border-radius: 10%;
+		    background: #fff;
+		    text-align: center;
+		    font-size: .16rem;
+		    color: #666;
+		    padding: 1%;
+		}
+		#policyJia,#infoDiv{display: none;}
 	</style>
 </head>
 <body style="display: none;">
 	<div id="container" style="width:3.75rem; height:6.67rem"></div>
-	<div style="width:3.75rem;position: absolute;padding: 8% 0 4%;top: 70%;left: 0;background: #fff;overflow: auto;    height: 30%;box-sizing: border-box;" id="plans"></div>
-   <img src="../html_pt/img/map_way.jpg" alt=""  id="wayImg"/>
+	<div style="width:3.75rem;position: absolute;padding: 8% 2% 4%;top: 70%;left: 0;background: #fff;overflow: auto;height: 30%;box-sizing: border-box;" id="plans" class="oData"></div>
+	<div style="width:3.75rem;position: absolute;padding: 8% 2% 4%;top: 70%;left: 0;background: #fff;overflow: auto;height: 30%;box-sizing: border-box;" id="infoDiv" class="oData"></div>
+    <div class=""><img src="../img/timg_2.png" alt=""  id="wayImg"/></div>
+    <select id="oSelection">
+   		<option value="公交">公交</option>
+   		<option value="驾车">驾车</option>
+    </select>
+    <select id="policyJia" class="wayStyle">
+        <option value="LEAST_TIME">最少时间</option>
+        <option value="LEAST_DISTANCE">最短距离</option>
+        <option value="AVOID_HIGHWAYS">避开高速</option>
+        <option value="REAL_TRAFFIC">实时路况</option>
+        <option value="PREDICT_TRAFFIC">预测路况</option>
+    </select>
+    <select id="policyGong" class="wayStyle">
+        <option value="LEAST_TIME">较快捷</option>
+        <option value="LEAST_TRANSFER">少换乘</option>
+        <option value="LEAST_WALKING">少步行</option>
+        <option value="NO_SUBWAY">不坐地铁</option>
+    </select>
 </body>
 	<script src="../js/MapTwo.js" charset="utf-8"></script>
 </html>

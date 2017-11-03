@@ -1,7 +1,12 @@
 var o = {
 	init:function(){
 		document.getElementsByTagName("body")[0].setAttribute("style","display:block");
-		$('.img_myself').attr('src','/user/qrcode?openid='+getParameter('openId'));
+		var open = getParameter('openId');
+		if(open){
+			$('.img_myself').attr('src','/user/qrcode?openid='+open);	
+		}else{
+			$('.img_myself').attr('src','../img/open.jpg');	
+		}
 		var data = {
 			'openid':getParameter('openId')
 		}
