@@ -178,14 +178,16 @@ var o = {
 	        var obj = event.target.parentNode;
 	        console.log(obj.className)
 	        if (obj.className == "clear list-li") {
-	        	$('.list-li').css('-webkit-transform','translateX(0px)')
-	        	console.log('touchstart')
+	        	/*$('.list-li').css('-webkit-transform','translateX(0px)')*/
+	        	
 	            initX = event.targetTouches[0].pageX;
 	            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
 	        }
+	        console.log(objX)
 	        if (objX == 0) {
 	            window.addEventListener('touchmove', function(event) {
 	                event.preventDefault();
+	                $('.list-li').css('-webkit-transform','translateX(0px)');
 	                var obj = event.target.parentNode;
 	                if (obj.className == "clear list-li") {
 	                    moveX = event.targetTouches[0].pageX;
