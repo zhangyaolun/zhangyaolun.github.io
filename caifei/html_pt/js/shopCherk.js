@@ -178,6 +178,7 @@ var o = {
 	        var obj = event.target.parentNode;
 	        console.log(obj.className)
 	        if (obj.className == "clear list-li") {
+	        	$('.list-li').css('-webkit-transform','translateX(0px)')
 	        	console.log('touchstart')
 	            initX = event.targetTouches[0].pageX;
 	            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
