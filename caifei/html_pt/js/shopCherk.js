@@ -1,9 +1,9 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		if(!getCookie('userName')){
+		/*if(!getCookie('userName')){
 			window.location.href = 'login.html';
-		}
+		}*/
 		/*$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));*/
 		o.touchDate();
 		/*o.clerkClick();
