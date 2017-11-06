@@ -62,7 +62,6 @@ var o = {
 			'type':''
 		}
 		var sucess = function(data){
-			console.log(data)
 			$('.payItem').html('');
 			var result='',oData = data.result;
 			if(oData.result.length == 0){
@@ -96,7 +95,6 @@ var o = {
 					moreAttr.push(oAttr[i][j]);
 				}
 			}
-		    console.log(moreAttr)
             for(var z = 0; z < moreAttr.length-5; z++){
             		if(z == 0){
             			if(moreAttr[z].pic.split(',').length >= 2){
@@ -143,7 +141,6 @@ var o = {
 		})
 		/*点击li查看详情*/
 		$('.price_img').on('click',function(){
-			console.log($(this).attr('type'))
 			window.location.href = 'orderShop.html?result='+$(this).attr('data')+'&num='+$(this).attr('type');
 		})
 		$('.payItem_left img').bind('click',function(){

@@ -7,7 +7,6 @@ $(function() {
 		},
 		clickDate:function(){
 			$('.reg_button').on('click',function(){
-				console.log($('#checkedInput').is(':checked'))
 				$('#title').html('');
 				var userName = $('.register_name input').val(),
 					pass = $('.register_pass input').val(),
@@ -57,7 +56,6 @@ $(function() {
 		},
 		moreAjax:function(userName,pwd,registerCode){
 			var suc = function(data){
-				console.log(data);
 				if(data.result == 1){
 					window.location.href = 'index.html';
 				}else{

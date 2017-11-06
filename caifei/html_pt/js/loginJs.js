@@ -31,7 +31,6 @@ var o = {
 	},
 	moreAjax:function(userName,pwd){
 		var suc = function(data){
-			console.log(data);
 			if(data.result.result == 1){
 				setCookie('userName',userName)
 				setCookie('loginDto',data.result.loginDto.id)

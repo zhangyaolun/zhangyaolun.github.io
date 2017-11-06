@@ -41,14 +41,12 @@ var o = {
 			'pageSize':10
 		}
 		$('.consume_item').attr('type',currPage);
-		console.log(data)
 		$.ajax({
 	        url :'/user/payHistory',
 	        data :data,
 	        type : 'POST',
 	        async : false,
 	        success : function(data){
-	        	console.log(data);
 	        	if(data.httpCode == 200){
 	        		var result = '';
 	        		if(data.result.result.length == 0){

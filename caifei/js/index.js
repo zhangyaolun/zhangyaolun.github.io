@@ -77,9 +77,7 @@ var o = {
 			data.radius = '';
 			oUrl = urlDate[1];
 		}
-		console.log(data)
 		var sucess = function(data){
-			console.log(data)
 			var result='',oData = data.result;
 			if(currPage == 1){$('.nearbyMain').html('');}
 			if(oData.result.length == 0){
@@ -128,7 +126,6 @@ var o = {
 	},
 	locaSuccend:function(){
 		var locaSuc = function(data){
-			console.log(data)
 			$('.moreDate').hide();
             $('.nearbyMain').html('');
             var currPage = 1,order = 3,type = '';
@@ -210,7 +207,6 @@ var o = {
 			$(this).addClass('navStyle');
 			var oType = '';
 			for(var s=0;s<$('.listItem li').length;s++){
-				console.log($('.listItem li').eq(s).css('color'))
 				if($('.listItem li').eq(s).css('color') == 'rgb(0, 0, 0)'){
 					oType = $('.listItem li').eq(s).attr('atype');
 				}

@@ -6,66 +6,64 @@ var o = {
 		}*/
 		/*$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));*/
 		o.touchDate();
-		/*o.clerkClick();
-		o.oDate();*/
+		/*o.oDate();*/
 	},
-	clerkClick:function(months,currPage){
-		$('.clerkItem').on('click','em',function(){
-			var item_index = $(this).index(),
-				data =$(this).parent().parent().find('.clerkTitle').html(),
-				name = $(this).context.innerText,
-				oid = $(this).parent().attr('oid'),
-				index = $(this).parent().attr('index');
-			$('.ButTrue').attr('index',index);
-			$('.ButTrue').attr('oid',oid);
-			if($(this).hasClass('clerkActive')){
-				o.quxiaoData(data,name)
-			}else{
-				o.alertData(data,name)
+	clerkClick:function(event,obj){// 点击弹层
+		var data = event.target.parentNode.previousSibling.innerHTML,
+			name = event.target.innerText,
+			oid = obj.attributes.oid.value,
+			index = obj.attributes.index.value;
+		$('.ButTrue').attr('index',index);
+		$('.ButTrue').attr('oid',oid);
+		$('.ButTrue').attr('name',name);
+		if(event.target.className == 'borderNone clerkActive'){
+			$('.ButTrue').attr('oNum',1);
+			o.quxiaoData(data,name)
+		}else{
+			$('.ButTrue').attr('oNum',2);
+			o.alertData(data,name)
+		}
+	},
+	clerkNode:function(){//设置职务
+		if($('.ButTrue').attr('name') == '店长'){
+			alert('店长')
+			return;
+			var suc = function(data){
+				if(data.result){
+					window.location.reload();
+					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
+					$('.alertBox').hide();
+				}
 			}
-		})
+			var data = {
+				'userInfoId':$('.ButTrue').attr('oid')
+			}
+			doAjax('/shop/bindUser/bindUser',data,suc);
+		}else if($('.ButTrue').attr('name') == '店员'){
+			var suc = function(data){
+				window.location.reload();
+				$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
+				$('.alertBox').hide();
+			}
+			var data = {
+				'getMsgId1':$('.ButTrue').attr('oid')
+			}
+			doAjax('/shop/bindUser/bindMsg1',data,suc);
+		}else if($('.ButTrue').attr('name') == '收银员'){
+			var suc = function(data){
+				window.location.reload();
+				$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
+				$('.alertBox').hide();
+			}
+			var data = {
+				'getMsgId2':$('.ButTrue').attr('oid')
+			}
+			doAjax('/shop/bindUser/bindMsg2',data,suc);
+		}
 	},
 	alertData:function(data,name){//弹出提示
 		$('.alertBox').show();
-		$('.alertTan .alertTitle').html('您是否设置 ' +data +' 为 '+ name);
-		$('.ButFalse').on('click',function(){
-			$('.alertBox').hide();
-		})
-		$('.ButTrue').on('click',function(){
-			if(name == '店长'){
-				var suc = function(data){
-					if(data.result){
-						window.location.reload();
-						$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
-						$('.alertBox').hide();
-					}
-				}
-				var data = {
-					'userInfoId':$('.ButTrue').attr('oid')
-				}
-				doAjax('/shop/bindUser/bindUser',data,suc);
-			}else if(name == '店员'){
-				var suc = function(data){
-					window.location.reload();
-					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
-					$('.alertBox').hide();
-				}
-				var data = {
-					'getMsgId1':$('.ButTrue').attr('oid')
-				}
-				doAjax('/shop/bindUser/bindMsg1',data,suc);
-			}else if(name == '收银员'){
-			var suc = function(data){
-					window.location.reload();
-					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em class="borderNone clerkActive">'+name+'</em>');
-					$('.alertBox').hide();
-				}
-				var data = {
-					'getMsgId2':$('.ButTrue').attr('oid')
-				}
-				doAjax('/shop/bindUser/bindMsg2',data,suc);
-			}
-		})
+		$('.alertTan .alertTitle').html('&nbsp;&nbsp;您是否设置 ' +data +' 为 '+ name);
 	},
 	oDate:function(){
 		var oAttr = [];
@@ -106,7 +104,6 @@ var o = {
 	},
 	htmlData:function(oAttr){
 		var oHtml = '',moreAttr=[];
-		console.log(oAttr)
 		for(var i = 0;i < oAttr.length; i++){
 			for(var j = 0;j < oAttr[i].length; j++){
 				moreAttr.push(oAttr[i][j]);
@@ -114,59 +111,70 @@ var o = {
 		}
 		for(var s = 0;s< moreAttr.length; s++){
 			if(moreAttr[s].jiaose == 1){
-				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店长</em></div><div class="btn">删除</div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店长</em></div><div class="btn" aid="'+moreAttr[s].id+'">删除</div></li>'
 			}else if(moreAttr[s].jiaose == 2){
-				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店员</em></div><div class="btn">删除</div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">店员</em></div><div class="btn" aid="'+moreAttr[s].id+'">删除</div></li>'
 			}else if(moreAttr[s].jiaose == 3){
-				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">收银员</em></div><div class="btn">删除</div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em class="borderNone clerkActive">收银员</em></div><div class="btn" aid="'+moreAttr[s].id+'">删除</div></li>'
 			}else{
-				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em>店长</em><em>店员</em><em class="borderNone">收银员</em></div><div class="btn">删除</div></li>'
+				oHtml+='<li class="clear list-li"><img src="'+moreAttr[s].userIcon+'" class="clerkImg left"/><div class="clerkTitle left">'+moreAttr[s].nickname+'</div><div class="clerkButton left" index="'+s+'" oid="'+moreAttr[s].id+'"><em>店长</em><em>店员</em><em class="borderNone">收银员</em></div><div class="btn" aid="'+moreAttr[s].id+'">删除</div></li>'
 			}
 		}
-		$('.clerkItem').append(oHtml);
+		$('.clerkItem').html(oHtml);
 	},
 	quxiaoData:function(data,name){
 		$('.alertBox').show();
-		$('.alertTan .alertTitle').html('您是否取消 ' +data +' 为 '+ name);
-		$('.ButFalse').on('click',function(){
-			$('.alertBox').hide();
-		})
-		$('.ButTrue').on('click',function(){
-			console.log(name)
-			if(name == '店长'){
-				var suc = function(data){
-					if(data.result){
-						window.location.reload();
-						$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
-						$('.alertBox').hide();
-					}
-				}
-				var data = {
-					'userInfoId':''
-				}
-				doAjax('/shop/bindUser/bindUser',data,suc);
-			}else if(name == '店员'){
-				var suc = function(data){
-					window.location.reload();
-					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
-					$('.alertBox').hide();
-				}
-				var data = {
-					'getMsgId1':''
-				}
-				doAjax('/shop/bindUser/bindMsg1',data,suc);
-			}else if(name == '收银员'){
-			var suc = function(data){
-					window.location.reload();
-					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
-					$('.alertBox').hide();
-				}
-				var data = {
-					'getMsgId2':''
-				}
-				doAjax('/shop/bindUser/bindMsg2',data,suc);
+		$('.alertTan .alertTitle').html('&nbsp;&nbsp;您是否取消 ' +data +' 为 '+ name);
+	},
+	delData:function(event,obj){//删除
+		alert('删除')
+			return;
+		var suc = function(data){
+			if(data.result){
+				obj.remove();
 			}
-		})
+		}
+		var data = {
+			'userInfoId':event.target.attributes.aid.value
+		}
+		doAjax('/shop/bindUser/delUser',data,suc);
+	},
+	quxiaoClick:function(){
+		if($('.ButTrue').attr('name') == '店长'){
+			alert('取消设置')
+			return;
+			var suc = function(data){
+				if(data.result){
+					window.location.reload();
+					$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
+					$('.alertBox').hide();
+				}
+			}
+			var data = {
+				'userInfoId':''
+			}
+			doAjax('/shop/bindUser/bindUser',data,suc);
+		}else if($('.ButTrue').attr('name') == '店员'){
+			var suc = function(data){
+				window.location.reload();
+				$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
+				$('.alertBox').hide();
+			}
+			var data = {
+				'getMsgId1':''
+			}
+			doAjax('/shop/bindUser/bindMsg1',data,suc);
+		}else if($('.ButTrue').attr('name') == '收银员'){
+			var suc = function(data){
+				window.location.reload();
+				$('.clerkItem li').eq($('.ButTrue').attr('index')).find('.clerkButton').html('<em>店长</em><em>店员</em><em class="borderNone">收银员</em>');
+				$('.alertBox').hide();
+			}
+			var data = {
+				'getMsgId2':''
+			}
+			doAjax('/shop/bindUser/bindMsg2',data,suc);
+		}
 	},
 	touchDate:function(){
 		var initX; //触摸位置
@@ -176,30 +184,48 @@ var o = {
 	    window.addEventListener('touchstart', function(event) {
 	        event.preventDefault();
 	        var obj = event.target.parentNode;
-	        console.log(obj.className)
+	        if (event.target.tagName == "EM") {
+	        	$('.list-li').css('-webkit-transform','translateX(0px)');
+                $('.list-li').css('-ms-transform','translateX(0px)');
+	        	o.clerkClick(event,obj);
+	        	return;
+	        }
+	        if (event.target.innerHTML == "删除") {
+	        	o.delData(event,obj);
+	        	return;
+	        }
+	        if (event.target.innerHTML == "取消") {
+	        	$('.alertBox').hide();
+	        	return;
+	        }
+	        if (event.target.innerHTML == "确定") {
+	        	$('.ButTrue').attr('oNum') == 1?o.quxiaoClick():o.clerkNode();
+	        	return;
+	        }
 	        if (obj.className == "clear list-li") {
-	        	/*$('.list-li').css('-webkit-transform','translateX(0px)')*/
-	        	
 	            initX = event.targetTouches[0].pageX;
 	            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
 	        }
-	        console.log(objX)
 	        if (objX == 0) {
 	            window.addEventListener('touchmove', function(event) {
 	                event.preventDefault();
 	                $('.list-li').css('-webkit-transform','translateX(0px)');
+	                $('.list-li').css('-ms-transform','translateX(0px)');
 	                var obj = event.target.parentNode;
 	                if (obj.className == "clear list-li") {
 	                    moveX = event.targetTouches[0].pageX;
 	                    X = moveX - initX;
 	                    if (X >= 0) {
 	                        obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+	                        obj.style.MsTransform = "translateX(" + 0 + "px)";
 	                    } else if (X < 0) {
 	                        var l = Math.abs(X);
 	                        obj.style.WebkitTransform = "translateX(" + -l + "px)";
+	                        obj.style.MsTransform = "translateX(" + -l + "px)";
 	                        if (l > 100) {
 	                            l = 100;
 	                            obj.style.WebkitTransform = "translateX(" + -l + "px)";
+	                            obj.style.MsTransform = "translateX(" + -l + "px)";
 	                        }
 	                    }
 	                }
@@ -214,12 +240,15 @@ var o = {
 	                    if (X >= 0) {
 	                        var r = -100 + Math.abs(X);
 	                        obj.style.WebkitTransform = "translateX(" + r + "px)";
+	                        obj.style.MsTransform = "translateX(" + r + "px)";
 	                        if (r > 0) {
 	                            r = 0;
 	                            obj.style.WebkitTransform = "translateX(" + r + "px)";
+	                            obj.style.MsTransform = "translateX(" + r + "px)";
 	                        }
 	                    } else { //向左滑动
 	                        obj.style.WebkitTransform = "translateX(" + -100 + "px)";
+	                        obj.style.MsTransform = "translateX(" + -100 + "px)";
 	                    }
 	                }
 	            });
@@ -233,9 +262,11 @@ var o = {
 	            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
 	            if (objX > -100) {
 	                obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+	                obj.style.MsTransform = "translateX(" + 0 + "px)";
 	                objX = 0;
 	            } else {
 	                obj.style.WebkitTransform = "translateX(" + -100 + "px)";
+	                obj.style.MsTransform = "translateX(" + -100 + "px)";
 	                objX = -100;
 	            }
 	        }

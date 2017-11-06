@@ -18,8 +18,6 @@ function oNclick(){
 	}
 	$('.title').html('');
 	var suc = function(data){
-		console.log(data);
-		
 		if(data.result == 2){
 			$('.pwd h5').html('账号不存在');
 		}else if(data.result == 3){

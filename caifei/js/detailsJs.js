@@ -6,7 +6,6 @@ var o = {
 			var index = $(this).index();
 			$('.bot_Nav span').removeClass('stypeSpan').eq(index).addClass('stypeSpan');
 			if(index == 0){
-				console.log(index)
 				if($('.moreNumber').html() == 0){
 					$('.bot_one').show();
 					$('.bot_deatil').hide();
@@ -26,7 +25,9 @@ var o = {
 			    if(position  && position.module == 'geolocation') { 
 					var oSelf = position.lng+'|'+position.lat;
 					$('.map_left').attr('mapdate',oSelf);
-	            }    
+	            }else { 
+	            	o.locaSuccend();
+	            }     
 			}, false);
 		}else{
 			$('#geoPage').remove();
@@ -60,6 +61,16 @@ var o = {
 			}
 			doPost('/shop/bindedShop',dataa,sucess);
 		}
+	},
+	locaSuccend:function(){
+		var locaSuc = function(data){
+			var oSelf = data.result.x+'|'+data.result.y;
+			$('.map_left').attr('mapdate',oSelf);
+		}
+		var loca = {
+			'openid':getParameter('openId')
+		}
+		doPost('/user/location',loca,locaSuc);
 	},
 	moreDate:function(){
 		$(window).scroll(function(){

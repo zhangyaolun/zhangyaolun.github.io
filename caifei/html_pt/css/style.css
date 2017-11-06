@@ -326,6 +326,7 @@ body{
     white-space: nowrap;
     line-height: 3rem;
     -webkit-transform: translateX(0px);
+    -ms-transform: translateX(0px);
 }
 .clerkItem li .clerkTitle{
     width: 30%;

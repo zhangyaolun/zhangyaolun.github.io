@@ -64,7 +64,6 @@ var o = {
 	},
 	subShops:function(aPage){//店铺
 		var suc = function(data){
-			console.log(data)
 			var oAttr = [];
 			if(data.result.result == ''){
 				return;
@@ -86,7 +85,6 @@ var o = {
 				        type : 'POST',
 				        async : false,
 				        success : function(data){
-				        	console.log(data)
 				        	if(data.httpCode == 200){
 					           oAttr.push(data.result.result);
 				        	}
@@ -99,7 +97,6 @@ var o = {
 						moreAttr.push(oAttr[s][j]);
 					}
 				}
-				console.log(moreAttr)
 				for(var x=0,a=moreAttr.length;x<a;x++){
 					if(x>12){
 						if(moreAttr[x].shopPic.split(',').length >= 2){

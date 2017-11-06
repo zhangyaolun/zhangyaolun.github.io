@@ -50,7 +50,6 @@ $('.pay_fixed').on('click',function(){
 		'content':$('.pay_title textarea').val(),
 		'commentImages':imgAttr.join(',') || ''
 	}
-	console.log(data)
 	doPost('/comment/submit',data,suc);
 })
 function filesize(target) {  
@@ -66,7 +65,6 @@ function filesize(target) {
     }
 }
 var suc=function(url){
-	console.log(url)
 	imgAttr.push(url.result);
     $(".paytitle_image span").append('<img src="'+url.result+'" class="left"/>');
     if($(".paytitle_image span img").length == 3){
@@ -82,7 +80,6 @@ $(".ci_upload").change(function(){
 
 
 function uploadImage(input){
-	console.log(input)
 	register_currentId=$(input).attr("id");//保存当前选中元素
 	register_currentFileType=$(input).val().substring($(input).val().lastIndexOf("."),$(input).val().length);
     ajaxFileUpload($(input),suc);
@@ -102,7 +99,6 @@ function ajaxFileUpload(target,callback) {
     dataType : 'json', //返回值类型 一般设置为json
     success : function(data) //服务器成功响应处理函数
     {  
-    	console.log(data)
      if(data.httpCode==200){
         callback(data);
       }else{

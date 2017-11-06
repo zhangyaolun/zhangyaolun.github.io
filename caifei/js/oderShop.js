@@ -30,9 +30,7 @@ var o = {
 				data.actualScore = $('.order_bot .order_code').html();
 			}
 		} 
-		console.log(data)
-		var suc = function(data){      
-			console.log(data)
+		var suc = function(data){   
 			setCookie('payMent','1');
 			if(data.result.payType == 2){
 				window.location.href = 'payment.html?result='+getParameter('result')+'&num='+getParameter('num')+'&payNumber=1'+'&orderPayId='+data.result.orderId+'&userShopId='+userShopId+'&channel='+getParameter('channel');
@@ -180,7 +178,6 @@ var o = {
 			'userInfoId':sessionStorage.getItem('openId'),
 			'payMoney': (payMoney*100).toFixed(0)
 		}
-		console.log(data)
 		 $.ajax({
 	        url : '/pay/comScore',
 	        data :data,
@@ -188,7 +185,6 @@ var o = {
 	        dataType : 'json',
 	        async : false,
 	        success : function(data){
-	        	console.log(data)
 	        	if(data.httpCode==200){
 		           if(data.result > 0){
 						$('.code_display').css('display','inline-block');
@@ -212,7 +208,6 @@ var o = {
 	},
 	ajaxDate:function(){//用户
 		var suc = function(data){
-			console.log(data)
 			$('.order_bot .code_cont').html(data.result.score);
 		}
 		var data = {
@@ -254,8 +249,6 @@ var o = {
 				}else{
 					cont = (parseFloat(priceTwo)-$('.order_bot .order_pay').html()).toFixed(2)
 				}
-				console.log(parseFloat(priceTwo))
-				console.log($('.order_bot .order_pay').html())
 				$('.fexed_left .payCont').html(cont);
 				$('.fexed_left .payMent').show();
 				$('.fexed_left .payMent').html('(折后价:￥'+priceTwo.toFixed(2)+')');

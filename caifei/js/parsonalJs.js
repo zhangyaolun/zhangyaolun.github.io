@@ -10,7 +10,6 @@ var o = {
 		},
 		ajaxDate:function(){//用户
 			var suc = function(data){
-				console.log(data)
 				$('.per_image').attr('src',data.result.headimgurl);
 				$('.per_image').attr('oid',data.result.id);
 				$('.per_top span').html(data.result.nickname);
@@ -30,7 +29,6 @@ var o = {
 		},
 		subReferences:function(aPage){//粉丝
 			var suc = function(data){
-				console.log(data)
 				var oAttr = [];
 				if(data.result.result == ''){
 					return;

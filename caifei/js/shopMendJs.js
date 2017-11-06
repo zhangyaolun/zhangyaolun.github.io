@@ -16,7 +16,6 @@ var o = {
 		doPost('/consumption/createShareSign',data,suc);
 	},
 	moreDate:function(app,time,nonc,sign){
-		console.log(app,time,nonc,sign)
 		 wx.config({
 			    appId: app, // 必填，公众号的唯一标识
 			    timestamp: time, // 必填，生成签名的时间戳

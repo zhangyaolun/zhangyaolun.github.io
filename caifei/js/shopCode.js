@@ -41,7 +41,6 @@ var o = {
 			'currPage':currPage,
 			'pageSize':20
 		}
-		console.log(data)
 		var oType = currPage;
 		$('.consume_item').attr('type',oType);
 		$.ajax({
@@ -50,7 +49,6 @@ var o = {
 	        type : 'POST',
 	        async : false,
 	        success : function(data){
-	        	console.log(data);
 	        	if(data.httpCode == 200){
 	        		var result = '';
 	        		if(data.result.result.length == 0){
