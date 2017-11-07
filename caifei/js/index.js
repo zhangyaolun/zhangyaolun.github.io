@@ -25,7 +25,7 @@ var o = {
 	                sessionStorage.setItem('position',JSON.stringify(position));
 	                $('.moreDate').hide();
 	                $('.nearbyMain').html('');
-	                var currPage = 1,order = 3,type = '';
+	                var currPage = 1,order = 0,type = '';
 	                setTimeout(function(){
 						o.moreData(position.lng,position.lat,currPage,order,type,$('.nearbyBox input').val());
 					},100)
@@ -44,7 +44,7 @@ var o = {
 		}else{    
 			$('.moreDate').hide();
 			$('.nearbyMain').html('');
-			var currPage = 1,order = 3,type = '';
+			var currPage = 1,order = 0,type = '';
 			setTimeout(function(){
 				o.moreData(position.lng,position.lat,currPage,order,type,$('.nearbyBox input').val());
 			},100)
@@ -128,7 +128,7 @@ var o = {
 		var locaSuc = function(data){
 			$('.moreDate').hide();
             $('.nearbyMain').html('');
-            var currPage = 1,order = 3,type = '';
+            var currPage = 1,order = 0,type = '';
             setTimeout(function(){
 				o.moreData(data.result.x,data.result.y,currPage,order,type,$('.nearbyBox input').val());
 			},100)
@@ -158,7 +158,7 @@ var o = {
 		/*搜索*/
 		$('.nearbyBox .seachImg').on('click',function(){
 			$('.listItem').css('display','none');
-			var oOder = [3,0,1];
+			var oOder = [0,0,1];
 			for(var i=0;i<3;i++){
 				if($('.nearbyNav li').eq(i).hasClass('navStyle')){
 					$(window).scrollTop(0);
@@ -223,13 +223,13 @@ var o = {
 					oType = $('.listItem li').eq(s).attr('atype');
 				}
 			}
-			o.moreData(x,y,1,3,oType,$('.nearbyBox input').val());
+			o.moreData(x,y,1,0,oType,$('.nearbyBox input').val());
 		})
 		/*筛选*/
 		$('.listItem').on('click','li',function(){
 			var index = $(this).index(),
 				oAttr = ['',3,7,5,2,1,6,8,4,0],
-				oOder = [3,0,1];
+				oOder = [0,0,1];
 			$('.listItem li').css('color','#777').eq(index).css('color','#000');
 			for(var i=0;i<3;i++){
 				if($('.nearbyNav li').eq(i).hasClass('navStyle')){

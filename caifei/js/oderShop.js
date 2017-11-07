@@ -13,6 +13,7 @@ var o = {
 		$('.pay_shop .over').css('width',getParameter('num')*12+'px');			
 		$('.shop_order em').html(data.address);	
 		$('.price_n').html((data.discountRate*10).toFixed(1));	
+		o.ajaxDate();
 		o.click(data.id,(data.discountRate));
 	},
 	ajsxData:function(userShopId,rate){
@@ -25,6 +26,7 @@ var o = {
 			'actualScore':0,			
 			'noPrePay':($('#name_priceNon').val()*100).toFixed(0)||0			
 		}
+		console.log(data)
 		if($('.code_display').css('display') == 'inline-block'){
 			if($('.order_bot .bot_image').hasClass('two')){
 				data.actualScore = $('.order_bot .order_code').html();
@@ -60,6 +62,8 @@ var o = {
 			}else{
 				$('.priceNon_name').hide();
 				$('#name_priceNon').val('');
+				o.comData(parseFloat($('.pri_input input').val()*rate));
+				o.hidehtml(parseFloat($('.pri_input input').val()*rate));
 			}
 		})
 		$('.pri_input input').bind('input propertychange',function(){
@@ -70,6 +74,10 @@ var o = {
 				$('.fexed_left .payCont').html('0.00');
 				return;
 			}else{
+				if($('.pri_input input').val() == 0){
+					$('.fexed_left .payCont').html('0.00');
+					return;
+				}
 				if(parseFloat($('#name_priceNon').val()) > parseFloat($('.pri_input input').val())){
 					$('#name_priceNon').val('');
 				}
@@ -159,8 +167,9 @@ var o = {
 				var contt;
 				if($('#name_priceNon').val() !=''){
 					contt = (parseFloat($('#name_priceNon').val())+parseFloat(payCont)-$('.order_bot .order_pay').html()).toFixed(2)
+				
 				}else{
-					contt = (parseFloat(priceTwo)-$('.order_bot .order_pay').html()).toFixed(2)
+					contt = (parseFloat(payCont-$('.order_bot .order_pay').html())).toFixed(2)
 				}
 				$('.fexed_left .payCont').html(contt);
 				$('.fexed_left .payMent').show();
@@ -168,8 +177,14 @@ var o = {
 			}else{
 				$('.order_bot img').removeClass('two');
 				$('.order_bot img').attr('src','../img/mapNew1.png');
-				$('.fexed_left .payCont').html(payCont.toFixed(2));
-				$('.fexed_left .payMent').hide();
+				if($('#name_priceNon').val() !=''){
+					$('.fexed_left .payMent').show();
+					$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())+parseFloat(payCont)).toFixed(2));
+				}else{
+					$('.fexed_left .payCont').html(payCont.toFixed(2));
+					$('.fexed_left .payMent').hide();
+				}
+				$('.fexed_left .payMent').html('(折后价:￥'+payCont.toFixed(2)+')');
 			}
 		});
 	},
@@ -199,9 +214,6 @@ var o = {
 						$('.order_bot .order_code').html(0);
 						$('.order_bot .order_pay').html(0);
 					}
-		        }
-	        	if(data.httpCode==500){
-	        		o.alertData('输入付款金额格式有误');
 		        }
 	        }
 	    });
@@ -252,13 +264,25 @@ var o = {
 				$('.fexed_left .payCont').html(cont);
 				$('.fexed_left .payMent').show();
 				$('.fexed_left .payMent').html('(折后价:￥'+priceTwo.toFixed(2)+')');
-			}else{
+			}
+			/*else{
 				$('.fexed_left .payMent').hide();
 				$('.fexed_left .payCont').html(priceTwo.toFixed(2));
-			}
+			}*/
 		}else{
-			$('.fexed_left .payMent').hide();
-			$('.fexed_left .payCont').html(priceTwo.toFixed(2));
+			if($('#name_priceNon').val() !=''){
+				if(priceTwo == $('#name_priceNon').val()){
+					$('.fexed_left .payMent').hide();
+					$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())).toFixed(2));
+				}else{
+					$('.fexed_left .payMent').show();
+				$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())+parseFloat(priceTwo)-$('.order_bot .order_pay').html()).toFixed(2));
+				}
+			}else{
+				$('.fexed_left .payCont').html(priceTwo.toFixed(2));
+				$('.fexed_left .payMent').hide();
+			}
+			$('.fexed_left .payMent').html('(折后价:￥'+priceTwo.toFixed(2)+')');
 		}
 	}
 	

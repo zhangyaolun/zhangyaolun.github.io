@@ -61,6 +61,7 @@ var o = {
 			'order':0,
 			'type':''
 		}
+		console.log(data)
 		var sucess = function(data){
 			$('.payItem').html('');
 			var result='',oData = data.result;
@@ -89,7 +90,7 @@ var o = {
 		        	}
 		        }
 		    });
-		     
+		     console.log(oAttr)
 		    for(var i = 0;i < oAttr.length; i++){
 				for(var j = 0;j < oAttr[i].length; j++){
 					moreAttr.push(oAttr[i][j]);
