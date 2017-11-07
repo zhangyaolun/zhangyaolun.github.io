@@ -5,7 +5,7 @@ var o = {
 			window.location.href = 'login.html';
 		}
 		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));*/
-		o.touchDate();
+		o.mobile();
 	},
 	clerkClick:function(event,obj){// 点击弹层
 		var data = event.target.parentNode.previousSibling.innerHTML,
@@ -268,6 +268,29 @@ var o = {
 	            }
 	        }
 	    })
-	}
+	},
+	mobile:function(){
+		 $('.list-li').on('swipeleft', function(event) {
+		    event.preventDefault();
+		    /* Act on the event */
+		    $(this).addClass('selected').siblings('.list-li').removeClass('selected');
+		    $(this).find('.btn').on('click', function(event) {
+		      event.preventDefault();
+		      /* Act on the event */
+		      $(this).parent(".list-li").animate({
+		        height: 0,
+		        width: 0},
+		        300, function() {
+		        /* stuff to do after animation is complete */
+		        $(this).remove();
+		      });
+		    });
+		  });
+		  $('.list-li').on('swiperight', function(event) {
+		    event.preventDefault();
+		    /* Act on the event */
+		    $(this).removeClass('selected');
+		  });
+			}
 }
 o.init();
