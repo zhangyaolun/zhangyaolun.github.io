@@ -55,11 +55,7 @@ $('.pay_fixed').on('click',function(){
 function filesize(target) {  
     var filesize = (target.files[0].size / 1024).toFixed(2);  
     var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
-    if(filesize >5120){  
-        alert("您上传的文件大于5M");
-        target.value =""; 
-		return false;   
-    }else if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'){
+    if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'&&prefix!='JPG'){
     	alert("只能上传jpg，png，jpeg");
 	    return false;
     }
@@ -87,7 +83,7 @@ function uploadImage(input){
 function ajaxFileUpload(target,callback) {
   var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
   var pid=$(target).attr("id");
-	if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'){
+	if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'&&prefix!='JPG'){
 	  //alert("只能上传jpg，png，jpeg");
 	  return;
 	}

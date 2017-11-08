@@ -1,13 +1,12 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		/*if(!getCookie('userName')){
+		if(!getCookie('userName')){
 			window.location.href = 'login.html';
 		}
-		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));*/
-		
+		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));
 		o.clerkClick();
-		/*o.oDate();*/
+		o.oDate();
 		o.mobile();
 	},
 	clerkClick:function(event,obj){// 点击弹层
@@ -17,7 +16,7 @@ var o = {
 				name = $(this).context.innerText,
 				oid = $(this).parent().attr('oid'),
 				index = $(this).parent().attr('index');
-			$('.clerkItem li').siblings('.selected').removeClass('selected')
+			$('.clerkItem li').siblings('.selected').removeClass('selected');
 			$('.ButTrue').attr('index',index);
 			$('.ButTrue').attr('oid',oid);
 			if($(this).hasClass('clerkActive')){
@@ -175,19 +174,29 @@ var o = {
 		    event.preventDefault();
 		    $(this).addClass('selected').siblings('.list-li').removeClass('selected');
 		    $(this).find('.btn').on('click', function(event) {
+		    	var userId = $(this).find('.btn').context.attributes.aid.value,
+		    		_this = $(this);
 		      event.preventDefault();
-		      $(this).parent(".list-li").animate({
-		        height: 0,
-		        width: 0},
-		        300, function() {
-		        $(this).remove();
-		      });
+		      var suc = function(data){
+					if(data.result){
+					 _this.parent(".list-li").animate({
+				        height: 0,
+				        width: 0},
+				        300, function() {
+			        		$(this).remove();
+				      });
+					}
+				}
+				var data = {
+					'userInfoId':userId
+				}
+				doAjax('/shop/bindUser/delUser',data,suc);
 		    });
 		  });
 		  $('.list-li').on('swiperight', function(event) {
 		    event.preventDefault();
 		    $(this).removeClass('selected');
 		  });
-			}
+	}
 }
 o.init();

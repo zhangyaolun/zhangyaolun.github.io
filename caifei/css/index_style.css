@@ -391,9 +391,11 @@ html,body{
    text-align: center;
        font-size: .9rem;
 }
-
-.bot_evaluate li .evaluate_img img{
-       width: 15%;
+.bot_evaluate li .evaluate_img{
+    width: 13%;
+    height: 100%;
+}
+.bot_evaluate li .evaluate_img {
     border-radius: 50%;
     margin: 0 2%;
 }
@@ -408,11 +410,12 @@ html,body{
     color: #ccc;
 }
 .bot_evaluate li .evaluate_right{
+	width: 80%;
 	margin-left: 2%;
 }
 .bot_evaluate li .ri_image{
-            width: 83%;
-        margin-left: 17%;
+    width: 83%;
+    margin-top: 3%;
 }
 .bot_evaluate li .ri_image::after{content:'';display:block;height:0;visibility:hidden;clear:both;}
 .bot_evaluate li .ri_image img{

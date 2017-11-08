@@ -164,17 +164,17 @@ var o = {
 		            	return ;
 		            }
 	        		for(var i = 0; i < data.result.result.length; i++){
-	                     result += '<li class="detailColor item"><div class="evaluate_img"><img src="'+data.result.result[i].userIcon+'" alt="" class="left"></div><div class="evaluate_right"><div class="ri_name">'+data.result.result[i].nickName+'</div><div class="ri_date"><div class="bg left"><div class="over" style="width:'+12*data.result.result[i].score+'px""></div></div><div class="dateTime right">'+data.result.result[i].createTime+'</div></div><p>'+data.result.result[i].content+'</p><div class="clear ri_image">';
+	                     result += '<li class="detailColor item clear"><img src="'+data.result.result[i].userIcon+'" alt="" class="evaluate_img left"><div class="evaluate_right left"><div class="ri_name">'+data.result.result[i].nickName+'</div><div class="ri_date"><div class="bg left"><div class="over" style="width:'+12*data.result.result[i].score+'px""></div></div><div class="dateTime right">'+data.result.result[i].createTime+'</div></div><span>'+data.result.result[i].content+'</span><div class="clear ri_image">';
 	                    if(data.result.result[i].commentImages == ''){
 	                    	oResult = '';
 	                    }else{
 	                    	if(data.result.result[i].commentImages.indexOf(",")>0){
 	                    		var imageAttr = data.result.result[i].commentImages.split(',');
 		                    	for(var z = 0; z < imageAttr.length; z++){
-		                    		oResult += '<img src="'+imageAttr[z]+'" alt="" class="left"/>'
+		                    		oResult += '<img src="'+imageAttr[z]+'" alt="" class="left ri_image"/>'
 		                    	}
 	                    	}else{
-	                    		oResult = '<img src="'+data.result.result[i].commentImages+'" alt="" class="left"/>'
+	                    		oResult = '<img src="'+data.result.result[i].commentImages+'" alt="" class="left ri_image"/>'
 	                    	}
 	                    }
 		                result += oResult+ '</div></div></li>';
@@ -190,6 +190,7 @@ var o = {
 	    })
 	},
 	click:function(mayself,data){
+		
 		
 		/*跳转到地图*/
 		$('.map_tit').on('click',function(){	

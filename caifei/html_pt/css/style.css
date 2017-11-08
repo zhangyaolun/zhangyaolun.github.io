@@ -325,11 +325,12 @@ body{
     font-size: 1rem;
     white-space: nowrap;
     line-height: 3rem;
-    
 }
 .clerkItem .selected{
   -webkit-transform: translate(-100px);
   -webkit-transition: all 0.3s linear;
+  -ms-transform: translate(-100px);
+  -ms-transition: all 0.3s linear;
 }
 .clerkItem li .clerkTitle{
     width: 30%;
