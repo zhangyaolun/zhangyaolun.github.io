@@ -55,31 +55,22 @@ var o = {
 		$('.orderp_left').on('click',function(){
 			$('.pri_input input').focus();
 		})
-		$('#priceNon').on('click',function(){
-			if($('#priceNon').is(':checked')){
-				$('.priceNon_name').show();
-				$('#name_priceNon').focus();
-			}else{
-				$('.priceNon_name').hide();
-				$('#name_priceNon').val('');
-				o.comData(parseFloat($('.pri_input input').val()*rate));
-				o.hidehtml(parseFloat($('.pri_input input').val()*rate));
-			}
-		})
 		$('.pri_input input').bind('input propertychange',function(){
 			if($('.pri_input input').val() == ''){
 				$('.code_display').hide();
 				$('.payMent').hide();
 				$('.pri_input input').val('');
 				$('.fexed_left .payCont').html('0.00');
+				var priceNum;
+				if($('#name_priceNon').val() != ''){
+					priceNum = $('#name_priceNon').val();
+					$('.fexed_left .payCont').html(priceNum);
+					o.comData(parseFloat(priceNum));
+					o.hidehtml(0);
+				}
 				return;
 			}else{
 				if($('.pri_input input').val() == 0){
-					$('.fexed_left .payCont').html('0.00');
-					return;
-				}
-				if(parseFloat($('#name_priceNon').val()) > parseFloat($('.pri_input input').val())){
-					$('#name_priceNon').val('');
 				}
 				if(parseInt($('.pri_input input').val()) > 9999){ 
 					o.alertData('超过最大限额');
@@ -93,29 +84,20 @@ var o = {
 					$('.pri_input input').val($('.pri_input input').attr('otype'))
 				}
 				var priceNum = $('#name_priceNon').val()||0,
-					priceDate = (parseFloat($('.pri_input input').val())-parseFloat(priceNum))*rate
-				if(priceDate == 0){
-					o.comData(0);
-					o.hidehtml(parseFloat($('#name_priceNon').val()));
-				}else{
-					o.comData(priceDate+parseFloat(priceNum));
-					o.hidehtml(priceDate);
-				}
+					priceDate = parseFloat($('.pri_input input').val())*rate;
+				o.comData(priceDate+parseFloat(priceNum));
+				o.hidehtml(priceDate);
 			}
 			$('.fexed_left i').attr('pay',priceDate);
 		})
 		
 		$('#name_priceNon').bind('input propertychange',function(){
-			if($('.pri_input input').val() == ''){o.alertTwo('请确认付款总额',rate);return;}
 			if($('#name_priceNon').val() == ''){
 				$('#name_priceNon').val('');
-				o.comData($('.pri_input input').val()*rate);
-				o.hidehtml($('.pri_input input').val()*rate);
+				var priceinput = $('.pri_input input').val()||0;
+				o.comData(parseFloat(priceinput*rate));
+				o.hidehtml(parseFloat(priceinput*rate));
 			}else{
-				if(parseFloat($('#name_priceNon').val()) > parseFloat($('.pri_input input').val())){
-					o.alertTwo('请确认优惠金额',rate);
-					return;
-				}
 				if(parseInt($('#name_priceNon').val()) > 9999){ 
 					o.alertTwo('超过最大限额',rate);
 					return;
@@ -126,65 +108,50 @@ var o = {
 				}else{
 					$('#name_priceNon').val($('#name_priceNon').attr('otype'))
 				}
-				var priceOne = $('.pri_input input').val(),
-					priceTwo =(parseFloat(priceOne)-parseFloat($('#name_priceNon').val()))*rate; 
-				if(priceTwo == 0){
-					o.comData(0);
-					o.hidehtml(parseFloat($('#name_priceNon').val()));
-				}else{
-					o.comData(priceTwo+parseFloat($('#name_priceNon').val()));
-					o.hidehtml(priceTwo);
-				}
-				$('.fexed_left i').attr('pay',priceTwo);
+				var priceTwo = $('.pri_input input').val() || 0;
+				o.comData(parseFloat(priceTwo)*rate + parseFloat($('#name_priceNon').val()));
+				o.hidehtml(parseFloat(priceTwo)*rate);
 			}
 		})
 		
-		
 		$('.fexed_right').on('click',function(){
 			if($('.alertTan').css('display') == 'block')return;
-			if($('.fexed_right').hasClass('oneClick'))return;
-			if($('.pri_input input').val() == ''){
-				o.alertData('请输入付款总额');
-				return;
-			}
 			if($('.pri_input input').val() <= 0){
-				o.alertData('请输入付款总额');
-				return;
+				if($('#name_priceNon').val() <= 0){
+					o.alertData('请输入付款总额');
+					return;
+				}
 			}
-			$('.fexed_right').addClass('oneClick');
 			o.ajsxData(userShopId,rate);
 		});
+		
 		$('.order_bot img').on('click',function(){
 			var payCont = 0;
 			if($('#name_priceNon').val() == ''){
 				payCont = parseFloat($('.pri_input input').val()*rate);
 			}else{
-				payCont = (parseFloat($('.pri_input input').val()) - parseFloat($('#name_priceNon').val()))*rate;
+				if($('.pri_input input').val() == ''){
+					payCont = parseFloat($('#name_priceNon').val());
+				}else{
+					payCont = parseFloat($('.pri_input input').val())*rate+parseFloat($('#name_priceNon').val());
+				}
 			}
 			if(!$('.order_bot img').hasClass('two')){
 				$('.order_bot img').addClass('two');
 				$('.order_bot img').attr('src','../img/mapNew2.png');
-				var contt;
-				if($('#name_priceNon').val() !=''){
-					contt = (parseFloat($('#name_priceNon').val())+parseFloat(payCont)-$('.order_bot .order_pay').html()).toFixed(2)
-				
-				}else{
-					contt = (parseFloat(payCont-$('.order_bot .order_pay').html())).toFixed(2)
-				}
-				$('.fexed_left .payCont').html(contt);
+				$('.fexed_left .payCont').html((payCont-$('.order_bot .order_pay').html()).toFixed(2));
 				$('.fexed_left .payMent').show();
-				$('.fexed_left .payMent').html('(折后价:￥'+payCont.toFixed(2)+')');
+				$('.fexed_left .payMent').html('(折后价:￥'+parseFloat($('.pri_input input').val()*rate).toFixed(2)+')');
 			}else{
 				$('.order_bot img').removeClass('two');
 				$('.order_bot img').attr('src','../img/mapNew1.png');
 				if($('#name_priceNon').val() !=''){
 					$('.fexed_left .payMent').show();
-					$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())+parseFloat(payCont)).toFixed(2));
 				}else{
-					$('.fexed_left .payCont').html(payCont.toFixed(2));
 					$('.fexed_left .payMent').hide();
 				}
-				$('.fexed_left .payMent').html('(折后价:￥'+payCont.toFixed(2)+')');
+				$('.fexed_left .payCont').html(payCont.toFixed(2));
+				$('.fexed_left .payMent').html('(折后价:￥'+parseFloat($('.pri_input input').val()*rate).toFixed(2)+')');
 			}
 		});
 	},
@@ -236,12 +203,23 @@ var o = {
 			$('.code_display').hide();
 			$('.payMent').hide();
 			$('.fexed_left .payCont').html('0.00');
+			var priceNum;
+			if($('#name_priceNon').val() != ''){
+				priceNum = $('#name_priceNon').val();
+				$('.fexed_left .payCont').html(priceNum);
+				o.comData(parseFloat($('.pri_input input').val()));
+				o.hidehtml(parseFloat(priceNum));
+			}
 		},3000)
 	},
 	alertTwo:function(data,rate){//不折算
 		$('.alertTan').show();
 		$('.alertTan').html(data);
 		setTimeout(function(){
+			$('.alertTan').hide();
+			$('.code_display').hide();
+			$('.payMent').hide();
+			$('.fexed_left .payCont').html('0.00');
 			$('#name_priceNon').val('');
 			if($('.pri_input input').val() != ''){
 				o.comData(parseFloat($('.pri_input input').val()*rate));
@@ -262,21 +240,19 @@ var o = {
 					cont = (parseFloat(priceTwo)-$('.order_bot .order_pay').html()).toFixed(2)
 				}
 				$('.fexed_left .payCont').html(cont);
-				$('.fexed_left .payMent').show();
-				$('.fexed_left .payMent').html('(折后价:￥'+priceTwo.toFixed(2)+')');
+				if($('.pri_input input').val()>0){
+					$('.fexed_left .payMent').show();
+					$('.fexed_left .payMent').html('(折后价:￥'+priceTwo.toFixed(2)+')');
+				}
 			}
-			/*else{
-				$('.fexed_left .payMent').hide();
-				$('.fexed_left .payCont').html(priceTwo.toFixed(2));
-			}*/
 		}else{
 			if($('#name_priceNon').val() !=''){
-				if(priceTwo == $('#name_priceNon').val()){
+				if($('.pri_input input').val() == ''){
 					$('.fexed_left .payMent').hide();
 					$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())).toFixed(2));
 				}else{
 					$('.fexed_left .payMent').show();
-				$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())+parseFloat(priceTwo)-$('.order_bot .order_pay').html()).toFixed(2));
+					$('.fexed_left .payCont').html((parseFloat($('#name_priceNon').val())+parseFloat(priceTwo)).toFixed(2));
 				}
 			}else{
 				$('.fexed_left .payCont').html(priceTwo.toFixed(2));

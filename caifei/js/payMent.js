@@ -1,9 +1,6 @@
 window.addEventListener("load",function(){FastClick.attach(document.body);},false);
 document.getElementsByTagName("body")[0].setAttribute("style","display:block");
-if(getCookie('payMent') == 2){
-	$('.pay_title').hide();
-	$('.pay_fixed').hide();
-}
+
 if(getParameter('channel')){
 	$('.pay_title').hide();
 	$('.pay_fixed').hide();
@@ -14,16 +11,45 @@ if(getParameter('payNumber') == 1){
 	$('.pay').html((getParameter('totalMoney')/100).toFixed(2));			
 	$('.total').html((getParameter('payMoney')/100).toFixed(2));
 }
-var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
-if(data.pic.split(',').length >= 2){
-	$('.shop_img').attr("src",data.pic.split(',')[0]) 
-}else{
-	$('.shop_img').attr("src",data.pic);  
-}			
-$('.shop_top span').html(data.shopName);	
-$('.shop_det').html(getParameter('num'));	
-$('.pay_shop .over').css('width',getParameter('num')*12+'px');					
-$('.shop_price').html((data.discountRate*10).toFixed(1)+'折');			
+
+
+if(getParameter('result')){
+	$(document).attr("title",'支付成功');
+	var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
+	dataHtml(data);
+	$('.shop_det').html(getParameter('num'));	
+	$('.pay_shop .over').css('width',getParameter('num')*12+'px');	
+}
+if(getParameter('consume')){
+	$(document).attr("title",'评论');
+	
+	console.log(getParameter('userShopId'))
+	console.log(getParameter('orderPayId'))
+	$('.pay_top').hide();
+	$.ajax({
+        url : '/shop/shopId/'+getParameter('userShopId'),
+        data :null,
+        type : 'POST',
+        dataType : 'json',
+        async : false,
+        success : function(data){
+        	dataHtml(data.result);	
+			$('.shop_det').html(data.result.averageScore.toFixed(1));	
+			$('.pay_shop .over').css('width',data.result.averageScore.toFixed(1)*12+'px');	
+        }
+    });
+}
+
+function dataHtml(data){
+	if(data.pic.split(',').length >= 2){
+		$('.shop_img').attr("src",data.pic.split(',')[0]) 
+	}else{
+		$('.shop_img').attr("src",data.pic);  
+	}			
+	$('.shop_top span').html(data.shopName);						
+	$('.shop_price').html((data.discountRate*10).toFixed(1)+'折');	
+}
+		
 	
 
 /*$('.oneImage').bind('click',function(){
@@ -37,11 +63,6 @@ $('.pay_fixed').on('click',function(){
 		alert('请您填写评论内容');
 		return;
 	}
-	var suc = function(data){
-		alert('发表评论成功。');
-		setCookie('payMent','2');
-		window.location.href = 'index.html?openId='+sessionStorage.getItem('openId');
-	}
 	var data = {
 		'openid':sessionStorage.getItem('openId'),
 		'orderPayId':getParameter('orderPayId'),
@@ -50,12 +71,26 @@ $('.pay_fixed').on('click',function(){
 		'content':$('.pay_title textarea').val(),
 		'commentImages':imgAttr.join(',') || ''
 	}
-	doPost('/comment/submit',data,suc);
+	 $.ajax({
+        url : '/comment/submit',
+        data :data,
+        type : 'POST',
+        dataType : 'json',
+        async : false,
+        success : function(data){
+        	if(data.httpCode==200){
+	           alert('发表评论成功。');
+				window.location.href = 'index.html?openId='+sessionStorage.getItem('openId');
+	        }else if(data.httpCode==400){
+	        	alert('您已发表过此次消费评论。');
+	        }
+        }
+    });
 })
 function filesize(target) {  
     var filesize = (target.files[0].size / 1024).toFixed(2);  
     var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
-    if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'&&prefix!='JPG'){
+     if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'&&prefix!='JPG'&&prefix!='PNG'&&prefix!='JPEG'){
     	alert("只能上传jpg，png，jpeg");
 	    return false;
     }
@@ -83,8 +118,7 @@ function uploadImage(input){
 function ajaxFileUpload(target,callback) {
   var prefix=$(target).val().substring($(target).val().lastIndexOf(".")+1,$(target).val().length);
   var pid=$(target).attr("id");
-	if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'&&prefix!='JPG'){
-	  //alert("只能上传jpg，png，jpeg");
+	 if(prefix!='png'&&prefix!='jpg'&&prefix!='jpeg'&&prefix!='JPG'&&prefix!='PNG'&&prefix!='JPEG'){
 	  return;
 	}
   $.ajaxFileUpload({

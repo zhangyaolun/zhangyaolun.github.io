@@ -36,6 +36,7 @@ var o = {
 		}
 		if(getParameter('result')){
 			var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
+			console.log(data)
 			o.htmlDate(data);
 		}else if(getParameter('shopId')){
 			sessionStorage.setItem('openId',getParameter('openId'));
@@ -168,19 +169,21 @@ var o = {
 	                    if(data.result.result[i].commentImages == ''){
 	                    	oResult = '';
 	                    }else{
+	                    	oResult = '';
 	                    	if(data.result.result[i].commentImages.indexOf(",")>0){
 	                    		var imageAttr = data.result.result[i].commentImages.split(',');
 		                    	for(var z = 0; z < imageAttr.length; z++){
-		                    		oResult += '<img src="'+imageAttr[z]+'" alt="" class="left ri_image"/>'
+		                    		oResult += '<img src="'+imageAttr[z]+'" alt="" class="left ri_image" pic="'+imageAttr+'" index="'+z+'"/>'
 		                    	}
 	                    	}else{
-	                    		oResult = '<img src="'+data.result.result[i].commentImages+'" alt="" class="left ri_image"/>'
+	                    		oResult = '<img src="'+data.result.result[i].commentImages+'" alt="" class="left ri_image" pic="'+data.result.result[i].commentImages+'" index="1"/>'
 	                    	}
 	                    }
 		                result += oResult+ '</div></div></li>';
 	                }
 	        		$('.bottom_load').remove();
 		            $('.bot_evaluate').append(result);
+		            
 		            if(data.result.pageNo == data.result.totalPages){
 		            	$('.bot_evaluate').append('<li class="detailColor item bottom_load">暂无评论</li>');
 		            	return ;
@@ -190,8 +193,11 @@ var o = {
 	    })
 	},
 	click:function(mayself,data){
-		
-		
+		$('.bot_evaluate ').bind('click','img',function(event){
+        	if(event.target.classList.value == 'left ri_image'){
+        		window.location.href = 'bigImage.html?pic='+event.target.attributes.pic.value+'&index='+event.target.attributes.index.value;
+        	}
+        })
 		/*跳转到地图*/
 		$('.map_tit').on('click',function(){	
 			if($('.map_left').attr('mapdate') == '')return;

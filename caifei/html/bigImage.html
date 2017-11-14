@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=yes"/>
+    <script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+    <title>图片详情</title>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css"/>
+    <style type="text/css">
+    	.bigImage{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+		    top: 0;
+		    left: 0;
+		    background-color: rgba(0,0,0,.8);
+		}
+		.bot_deatil{
+			position:relative;
+			width: 100%;
+			height: 100%;
+		    top: 0;
+		    left: 0;
+		}
+		.swiper-wrapper{
+			width: 3.75rem;
+			height: 6.67rem;
+		}
+		.swiper-slide {
+			width: 3.75rem;
+			text-align: center;
+		}
+		.swiper-slide span{
+		    display: inline-block;
+		    height:100%;
+		    vertical-align:middle;
+		}
+		.swiper-slide img{
+			width: 3.75rem;
+			vertical-align:middle;
+		}
+    </style>
+</head>
+<body>
+	<div class="bigImage">
+		<div class="swiper-container bot_deatil">
+		    <div class="swiper-wrapper">
+		    </div>
+		    <div class="swiper-pagination"></div>
+		</div>
+	</div>
+</body>
+
+<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/swiper.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/comment.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var o = {
+		init:function(){
+			FastClick.attach(document.body);
+			var data = getParameter('pic').split(',');
+			var index = getParameter('index');
+			if(data.length >= 2){
+				var picHtml='';
+				for(var p=0;p<data.length;p++){
+					picHtml+='<div class="swiper-slide" ><img src="'+data[p]+'" alt="" /><span></span></div>'
+				}
+				$('.swiper-wrapper').html(picHtml);
+			}else{
+				$('.swiper-wrapper').html('<div class="swiper-slide"><img src="'+data[0]+'" alt=""/><span></span></div>');
+				    
+			}
+			var mySwiper = new Swiper ('.swiper-container', {
+			    direction: 'horizontal',
+			    pagination : '.swiper-pagination',
+			    paginationClickable :true,
+			})  
+			$('.swiper-pagination span').eq(index).trigger('click');
+		}
+	}
+	o.init();
+</script>
+</html>

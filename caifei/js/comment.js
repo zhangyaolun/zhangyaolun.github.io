@@ -29,6 +29,9 @@ function doPost(url,data,callback){
         if(datas.httpCode==500){
             callback(datas);
         }
+        if(datas.httpCode==400){
+            callerror(datas);
+        }
         if(datas.httpCode==200){
             callback(datas);
         }if(datas.httpCode==201){
