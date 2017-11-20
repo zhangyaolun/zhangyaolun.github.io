@@ -60,6 +60,29 @@ header h2 {
 
 <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+	  
+	  function openDB (name,version) {
+            var version=version || 1;
+            var request=window.indexedDB.open(name,version);
+            request.onerror=function(e){
+                console.log(e.currentTarget.error.message);
+            };
+            request.onsuccess=function(e){
+                myDB.db=e.target.result;
+            };
+            request.onupgradeneeded=function(e){
+                console.log('DB version changed to '+version);
+            };
+        }
+
+        var myDB={
+            name:'test',
+            version:3,
+            db:null
+        };
+        openDB(myDB.name,myDB.version);
+        
+        
 	    var initX; //触摸位置
     var moveX; //滑动时的位置
     var X = 0; //移动距离
