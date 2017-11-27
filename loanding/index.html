@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<title></title>
+<script>
+    document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+</script>
+<link rel="stylesheet" type="text/css" href="css/comment.css"/>
+
+<style type="text/css">
+	
+</style>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div class="" style="height: 2000px;background: #ccc;">
+		
+	</div>
+	<div class="back"><img src="img/topback.gif" alt="" /></div>
+	
+	<script type="text/javascript">
+		window.onload=function(){
+			window.scrollTo(0,0);
+			var o = {
+				init:function(){
+					FastClick.attach(document.body);
+					o.moreLoad();
+					$('.back').bind('click',function(){
+						$(window).scrollTop(0);
+						$('.back').hide();
+					})
+				},
+				moreLoad:function(){	
+					$(window).scroll(function(){
+						if ($(window).scrollTop() != '0'){
+							$('.back').show();
+						}else{
+							$('.back').hide();
+						}
+					　　var scrollTop = $(this).scrollTop();
+					　　var scrollHeight = $(document).height();
+					　　var windowHeight = $(this).height();
+						if($('.nearbyMain .bottom_load').html() == '暂无数据'){
+			            	return ;
+						}
+					　　if(scrollTop + windowHeight == scrollHeight){
+							
+					　　}
+					});	
+				},
+			}
+			o.init()
+		}
+		
+	</script>
+</body>
+
+</html>

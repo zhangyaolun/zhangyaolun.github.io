@@ -1,0 +1,11 @@
+/*回到顶部*/
+$('.back').on('click',function(){
+	console.log('555555')
+	$(window).scrollTop(0);
+	$('.back').hide();
+})
+$('.back').bind('click',function(){
+	console.log('3333333')
+	$(window).scrollTop(0);
+	$('.back').hide();
+})
