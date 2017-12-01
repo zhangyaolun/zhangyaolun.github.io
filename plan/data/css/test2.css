@@ -1,0 +1,173 @@
+
+.all{
+	position: absolute;
+	top: 50%;
+    width: 1000px;
+    border: 1px solid #4183c4;
+    margin: 50px auto;
+    height: 800px;
+    z-index: 0;
+}
+.header p{
+    margin: 0;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+    line-height: 50px;
+    background: #b8b886;
+}
+.btn{
+    font-size: 12px;
+    width: 80px;
+    text-align: center;
+    height: 50px;
+    display: block;
+    line-height: 60px;
+}
+.btn:hover{
+    color: #fff;
+    text-decoration:underline;
+}
+.header{
+    background: #91b83f;
+    width: 1000px;
+    clear: both;
+    height: 50px;
+    position: relative;
+}
+.header .diqu{
+    margin-left: 5px;
+}
+.cityBox{
+    width: 800px ;
+    min-height: 600px;
+    border: 3px solid moccasin;
+    position: absolute;
+    border-radius: 5px;
+    display: none;
+    background: #fff;
+    top: 15%;
+    left: 28%;
+    z-index: 1;
+}
+.cityBox .head{
+    height: 50px;
+    background: moccasin;
+    text-align: center;
+}
+.cityBox .head .title{
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.cityBox .head .close{
+    line-height: 50px;
+    font-size: 12px;
+    float: right;
+    margin-right: 10px;
+}
+.cityBox .head .close:hover{
+    color: red;
+}
+.cityBox .c1{
+    margin: 10px 0 0 10px;
+}
+.cityBox .bt{
+    float: left;
+}
+.cityBox .list{
+    float: left;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 690px;
+}
+.cityBox .list li{
+    float: left;
+    width: 60px;
+    list-style: none;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    color: #2e2e2e;
+    font-family: ΢���ź�;
+    font-weight: bold;
+    overflow: hidden;
+}
+.cityBox .list li:hover{
+    cursor: pointer;
+}
+hr{
+    clear: both;
+}
+.content{
+    clear: both;
+    overflow: hidden;
+    height: 750px;
+}
+.content .text1{
+    width: 28.2%;
+    height: 380px;
+    float: left;
+}
+.content .text2{
+    width: 17.7%;
+    height: 380px;
+    float: left;
+}
+.textTitle{
+    font-weight: bold;
+    font-size: 16px;
+}
+.textTitle span{
+    line-height: 30px;
+}
+.tqImg{
+    width: 30%;
+    margin: 10px auto 0;
+}
+.tqImg img{
+    width: 100%;
+    height: 100%;
+}
+.tqImg2{
+    margin:5px auto 0;
+    width: 30%;
+}
+.tqImg2 img{
+    width: 100%;
+    height: 100%;
+}
+.qushitu{
+    clear: both;
+}
+.riqi{
+    width: 100%;
+    height: 30px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.tishiyu{
+    line-height: 20px;
+    padding: 0 10px;
+    font-weight: bold;
+}
+.dao{
+    font-size: 20px;
+    font-weight: bold;
+}
+.xinxititle{font-size: 16px;}
+.xinxi,.xix1{
+    text-align: center;
+    width: 100%;
+    margin: 1% 0;
+    font-weight: 800;
+}
+.xinxi2,.xix2{
+    text-align: center;
+    width: 100%;
+    margin: 1% 0;
+    font-weight: 800;
+}
