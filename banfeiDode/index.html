@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>积分商城</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/mescroll.css">
+		<link rel="stylesheet" href="css/swiper.css">
+		<link rel="stylesheet" href="css/homepage.css">
+		<style type="text/css">
+			body{
+				width: 100%;
+  				height:auto;
+	        	background: url('img/bg.png') no-repeat ;
+	        	background-size: 100%;
+	        }
+		</style>
+	</head>
+	<script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+        
+    </script>
+	<body>
+		<!--<p class="header">
+			<a class="btn-left" href="javascript:;"><img src="img/head_1.png"/></a> 
+			<img src="img/head_1.png" class="headerImg"/> <a class="btn-right" href="javascript:;"><img src="img/head_1.png"/></a>
+		</p>-->
+		
+		<div id="mescroll" class="mescroll">
+			
+			<ul class="homenav clear">
+				<li>
+					<img src="img/n_1.png" alt="" />
+					<em>积分<i>100000</i></em>
+				</li>
+				<li>
+					<img src="img/n_2.png" alt="" />
+					<em>我的百宝箱</em>
+				</li>
+				<li class="borderNone">
+					<img src="img/n_3.png" alt="" />
+					<em>兑换记录</em>
+				</li>
+			</ul>
+			
+			<div class="swiper-container">
+			    <div class="swiper-wrapper"></div>
+			    <div class="swiper-pagination"></div>
+			</div>
+			
+			<ul class="indexNav clear">
+				<li>
+					<img src="img/hn_1.png" alt="" />
+					<em>爆款娃娃</em>
+				</li>
+				<li>
+					<img src="img/hn_2.png" alt="" class="widthimg"/>
+					<em>代金卷</em>
+				</li>
+				<li class="border">
+					<img src="img/hn_3.png" alt="" />
+					<em>品牌专区</em>
+				</li>
+				<li class="borderNone">
+					<img src="img/hn_4.png" alt="" />
+					<em>所有商品</em>
+				</li>
+			</ul>
+			
+			<div class="homeTitle"><img src="img/home_1.png" alt="" /></div>
+			
+			<ul id="dataList" class="data-list clear">
+				<li class="listLeft">
+					<img class="pd-img" src="img/l_1.png"/>
+					<p class="pd-name">
+						<img class="pd-img" src="img/l_2.png"/>
+					</p>
+					<p class="pd-price">满20减3元</p>
+					<p class="pd-sold">200积分</p>
+				</li>
+				<li class="listRight">
+					<img class="pd-img" src="img/l_1.png"/>
+					<p class="pd-name">
+						<img class="pd-img" src="img/l_2.png"/>
+					</p>
+					<p class="pd-price">满20减3元</p>
+					<p class="pd-sold">200积分</p>
+				</li>
+			</ul>
+			
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mescroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/pdlist1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		FastClick.attach(document.body);
+		var o = {
+			init:function(){
+				showLoginDialog('积分商城');
+				o.scrollData();
+			},
+			scrollData:function(){
+				var mescroll = new MeScroll("mescroll", {
+					up: {
+						clearEmptyId: "dataList", 
+						callback: getListData, 
+					}
+				});
+				function getListData(page){
+					console.log(page);
+					getListDataFromNet(page.num, page.size, function(data){
+						mescroll.endSuccess(data.length);
+						console.log(data);
+						setListData(data);
+					});
+				}
+				function setListData(data){
+					var oHtml='';
+					for (var i = 0; i < 10; i++) {
+						if(i%2 == 0){
+							oHtml+='<li class="listLeft"><img class="pd-img" src="img/l_1.png"/><p class="pd-name"><img class="pd-img" src="img/l_2.png"/></p><p class="pd-price">满20减3元</p><p class="pd-sold">200积分</p></li>'
+						}else{
+							oHtml+='<li class="listRight"><img class="pd-img" src="img/l_1.png"/><p class="pd-name"><img class="pd-img" src="img/l_2.png"/></p><p class="pd-price">满20减3元</p><p class="pd-sold">200积分</p></li>'
+						}
+					}
+					$('#dataList').append(oHtml);
+					$('.swiper-wrapper').html('<div class="swiper-slide"><img src="img/swiper.png" alt="" /></div><div class="swiper-slide"><img src="img/1.jpg" alt="" /></div> <div class="swiper-slide"><img src="img/swiper.png" alt="" /></div>');
+					var mySwiper = new Swiper ('.swiper-container', {
+					    direction: 'horizontal',
+					    loop: true,
+					    autoplay : 1500,
+					    // 如果需要分页器
+					    pagination: '.swiper-pagination',
+					    autoplayDisableOnInteraction : false,
+					    paginationClickable :true,
+					}) 
+				}
+				
+				function getListDataFromNet(pageNum,pageSize,successCallback) {
+	                setTimeout(function () {
+	                	/*$.ajax({
+			                type: 'GET',
+			                url: '',
+			                dataType: 'json',
+			                success: function(data){*/
+			                	var data=pdlist1;
+			                	var listData=[];
+								for (var i = (pageNum-1)*pageSize; i < pageNum*pageSize; i++) {
+				            		if(i==data.length) break;
+				            		listData.push(data[i]);
+				            	}
+			                	successCallback(listData);
+			               /* }
+		            	});*/
+	                },1000)
+				}
+			}
+		}
+		o.init();
+	</script>
+
+</html>
