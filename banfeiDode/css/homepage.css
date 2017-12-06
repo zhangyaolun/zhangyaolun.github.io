@@ -1,0 +1,162 @@
+.header{
+	z-index: 9990;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2.1rem;
+	background: url('../img/header.png') no-repeat;
+	background-size: 100%;
+}
+.header .headerImg{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0 auto;
+	width: 3rem;
+}
+.header .btn-left{
+	position: absolute;
+	top: 40%;
+	left: 5%;
+}
+.header .btn-left img{
+	width: .85rem;
+}
+.header .btn-right{
+	position: absolute;
+	top: 40%;
+	right: 5%;
+}
+/*home导航*/
+.homenav{
+	width: 100%;
+	height: 1.2rem;
+	border-top: 1px solid #d8d5ce;
+	border-bottom: 1px solid #d8d5ce;
+	background: #fdf9ec;
+}
+.homenav li{
+	float: left;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	width: 33.33%;
+	box-sizing: border-box;
+	border-right: 1px solid #d8d5ce;
+	font-size: .4rem;
+	color: #666;
+	text-align: center;
+}
+.homenav li i{
+	color: #6490c1;
+}
+.homenav li img{
+	display: inline-block;
+	width: 25px;
+	margin-bottom: 4%;
+	vertical-align: middle;
+}
+.homenav .borderNone,.indexNav .borderNone{
+	border-right: none;
+}
+.indexNav{
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #d8d5ce;
+}
+.indexNav li{
+	float: left;
+	font-size: .37rem;
+	width: 25%;
+	height: 2.3rem;
+	box-sizing: border-box;
+	text-align: center;
+	border-right: 1px solid #d8d5ce;
+	color: #666;
+}
+.indexNav li img{
+	width: 1.2rem;
+	height: 1rem;
+	margin: .3rem auto .3rem;
+}
+.indexNav li .widthimg{
+    width: 1.6rem;
+    height: 1rem;
+}
+.homeTitle{
+	width: 100%;
+	height: auto;
+}
+.homeTitle img{
+	width: 40%;
+	margin: 4% 0 2% 4%;
+}
+
+/*列表*/
+.mescroll{
+	position: fixed;
+	top: 2.1rem;
+	bottom: 0;
+	height: auto;
+}
+/*展示上拉加载的数据列表*/
+.data-list{
+	width: 100%;
+	height: auto; 
+}
+.data-list li{
+	float: left;
+	width: 49%;
+	height: auto;
+	background: #fff;
+	padding: 8% 4% 4%;
+	border: 1px solid #d8d5ce;
+	box-sizing: border-box;
+}
+.data-list .listLeft{
+	margin: 0 2% 2% 0;
+}
+.data-list .listRight{
+	margin: 0 0 2% 0;
+}
+.data-list .pd-img{
+	width: 3.6rem;
+	height: 1.6rem;
+	margin: 0 auto 1%;
+}
+.data-list .pd-name img{
+	display: inline-block;
+	width: 1.5rem;
+    height: .5rem;
+}
+.data-list .pd-price{
+	padding: 2% 0 4% 0;
+	color: #666;
+	font-size: .4rem;
+}
+.data-list .pd-sold{
+	color: #65AADD;
+	font-size: .3rem;
+}
+/*轮播图*/
+.swiper-container {
+    width: 100%;
+    box-sizing: border-box;
+} 
+.swiper-container img{
+    width: 100%;
+	height: 4rem;
+	box-sizing: border-box;
+} 
+.swiper-container-horizontal>.swiper-pagination-bullets{
+	bottom: 0;
+}
+.swiper-pagination-bullet {
+    background: #b1b0b1;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #007aff;
+}
