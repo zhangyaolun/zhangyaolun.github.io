@@ -5,8 +5,6 @@
 	left: 0;
 	width: 100%;
 	height: 2.1rem;
-	background: url('../img/header.png') no-repeat;
-	background-size: 100%;
 }
 .header .headerImg{
 	position: absolute;
@@ -17,12 +15,12 @@
 	width: 3rem;
 }
 .header .btn-left{
-	position: absolute;
-	top: 40%;
-	left: 5%;
+    position: fixed;
+    top: .7rem;
+    left: .25rem;
 }
 .header .btn-left img{
-	width: .85rem;
+	width: 1rem;
 }
 .header .btn-right{
 	position: absolute;
@@ -159,4 +157,248 @@
 .swiper-pagination-bullet-active {
     opacity: 1;
     background: #007aff;
+}
+
+
+
+
+
+/*积分header*/
+.contInt{
+	position: relative;
+	width: 90%;
+	height: 4.8rem;
+	margin: 18% 0 0 5%;
+	text-align: center;
+	background: url('../img/m_2.png') no-repeat ;
+	background-size: 100% 98%;
+}
+.headInt{
+    width: 5.6rem;
+    height: 1.5rem;
+    position: absolute;
+    top: -.5rem;
+    left: 1.65rem;
+}
+
+.contInt .contInt_title{
+	padding-top: 1.5rem;
+	font-size: .7rem;
+	color: #ffe23d;
+	font-family: myFirstFont;
+	-webkit-text-stroke: 1.5px #885d23;
+}
+.contInt .contInt_history{
+	position: absolute;
+    top: 3rem;
+    left: 32%;
+	width: 2.8rem;
+	padding:1% 1.5%;
+	background: #e5d59d;
+	border-radius: 10px;
+}
+.contInt .contInt_history img{
+	display: inline-block;
+	width: .5rem;
+	height: .5rem;
+	vertical-align: middle;
+}
+.contInt .contInt_history .contInt_img{
+	display: inline-block;
+	width: 1.8rem;
+	height: .5rem;
+	vertical-align: middle;
+}
+.mainInt{
+	width: 90%;
+	height: 2.6rem;
+	margin: 3% 0 0 5%;
+	padding: 5% 0 0 4%;
+	box-sizing: border-box;
+	background: url('../img/m_6.png') no-repeat ;
+	background-size: 100% 98%;
+}
+.mainInt img{
+	display: inline-block;
+	vertical-align: middle;
+}
+.mainInt .main_1{
+	width: 25%;
+}
+.mainInt .main_2{
+	width: 43%;
+}
+.mainInt .main_3{
+	width: 23%;
+}
+.botInt{
+	position: relative;
+	width: 90%;
+	height: 7.2rem;
+	margin: 7% 0 0 5%;
+	text-align: center;
+	background: url('../img/m_2.png') no-repeat ;
+	background-size: 100% 98%;
+}
+.botInt ul{
+	height: 4rem;
+	position: absolute;
+    top: 1rem;
+    left: 13%;
+}
+.botInt ul li{
+	margin: 3% 0;
+}
+.botInt ul .botInt_left{
+	width: 20%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.botInt .botInt_img{
+	width: 70%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.botInt .botInt_img .botInt_title{
+	width: 70%;
+	margin: 0 0 3% 2%;
+}
+.botInt .botInt_img .botInt_way{
+	width: 45%;
+	margin-left: 2%;
+}
+
+
+/*兑换积分确认*/
+.change_img{
+    width: 23%;
+    margin: 0 auto;
+    padding-top: 12%;
+}
+.exchang{
+	background: url('../img/c_3.png') no-repeat ;
+	background-size: 100% 98%;
+}
+.exchang .contInt_title{
+	padding-top: .2rem;
+}
+.exchang .headInt{
+	padding-top: .2rem;
+}
+.exchang_main{
+	position: relative;
+	width: 90%;
+	height: 10.7rem;
+    margin: 10% 0 0 5%;
+    padding-top: .1rem;
+	background: url('../img/c_4.png') no-repeat ;
+	background-size: 100% 98%;
+}
+.exchang_item{
+	margin-top: 10%;
+	height: 9rem;
+	overflow-y: auto;
+}
+.exchang_item li{
+	width: 100%;
+	padding: 2% 4%;
+	box-sizing: border-box;
+	white-space: nowrap;
+}
+
+.exchang_item_first{
+    padding: 7% 0;
+}
+.exchang_img{
+    width: 5.6rem;
+    height: 1.5rem;
+    position: absolute;
+    top: -.6rem;
+    left: 1.65rem;
+}
+.exchang_item li .exItem_img{
+	width: 13%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.exchang_item li .exItem_name{
+	width: 34%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.exchang_item li .exItem_name span{ 
+	color: #7c2b08;
+	width: 100%;
+	font-size: .47rem;
+	padding: 5% 0;
+    display: inline-block;
+	font-weight: 800;
+	font-family: fontFangZheng;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.exchang_item li .exItem_name .exItem_way{ 
+	color: #ca800c;
+	font-size: .38rem;
+	font-weight: 800;
+	font-family: fontFangZheng;
+}
+.exchang_item li .exItem_name .exItem_way i{ 
+	color: #ca800c;
+	font-family: fontBold;
+}
+.exchang_item li .exItem_time{ 
+	display: inline-block;
+	width: 20%;
+	height: 1.5rem;
+	font-size: .3rem;
+	text-align: center;
+	line-height: 2.3rem;
+	color: #fff;
+	background: url('../img/c_7.png') no-repeat ;
+	background-size: 100% 98%;
+	vertical-align: middle;
+}
+.exchang_item li .exItem_click{ 
+	display: inline-block;
+	width: 25%;
+	vertical-align: middle;
+    margin-top: 5%;
+}
+
+/*我的宝库*/
+.myTreas_nav{
+	width: 100%;
+	height: 1.5rem;
+	margin-top: 20%;
+	border-bottom: 1px solid #999;
+	border-top: 1px solid #999;
+}
+.myTreas_nav span{
+	display: inline-block;
+	width: 49%;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	box-sizing: border-box;
+	text-align: center;
+}
+.myTreas_nav .myTreas_spanNav{
+	border-right: 1px solid #999;
+}
+.myTreas_nav .myTreas_active{
+	background: #ccc;
+}
+/*我的宝库*/
+#mescroll1{
+	display: none;
+}
+
+
+
+/*滚动条*/
+::-webkit-scrollbar {   
+	width: 6px;
+	margin: 0 3px;
+	display: none;
 }

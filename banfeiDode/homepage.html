@@ -1,95 +1,173 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>积分商城</title>
-    <link rel="stylesheet" type="text/css" href="css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="css/mui.picker.css"/>
-    <script>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>积分商城</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/mescroll.css">
+		<link rel="stylesheet" href="css/swiper.css">
+		<link rel="stylesheet" href="css/homepage.css">
+	</head>
+	<script>
         document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+        
     </script>
-    <style>
-    	*{font-size:14px;}
-		p{text-align:center;background:#ccc;padding:10px 0;margin:20px 0 0 0; color:#fff}
-    </style>
-</head>
- 
-<body>
-	<p id="city_text">选择省市区</p>
-</body>
-
-<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/data.city.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-window.onload=function(){
-	var o = {
-		init:function(){
-			FastClick.attach(document.body);
-			var city_picker = new mui.PopPicker({layer:3});
-			city_picker.setData(init_city_picker);
-			$("#city_text").on("click", function(){
-				setTimeout(function(){
-					city_picker.show(function(items){
-						$("#city_text").html((items[0] || {}).text + " " + (items[1] || {}).text + " " + ((items[2] || {}).text || ''));						
-					});
-				},200);
-			});
-			var isAndIOS = isAndIsiOS();/*1是and 2是ios*/
-			setTimeout(function(){
-				o.moreDate();
-				o.moreLoad();
-				o.indexClick();
-			},100);
-		},
-		moreDate:function(){/*加载数据*/	
-			$('.boxLoad').css('height','2000px');	
-			/*var data = {}
-			var sucess = function(data){}
-			doPost(oUrl,data,sucess);*/
-		},
-		indexClick:function(){
+	<body>
+		<!--<p class="header">
+			<a class="btn-left" href="javascript:;"><img src="img/head_1.png"/></a> 
+			<img src="img/head_1.png" class="headerImg"/> <a class="btn-right" href="javascript:;"><img src="img/head_1.png"/></a>
+		</p>-->
+		
+		<div id="mescroll" class="mescroll">
 			
-		},
-		moreLoad:function(){/*检测滚动条*/	
-			$(window).scroll(function(){
-				if ($(window).scrollTop() != '0'){
-					$('.back').show();
-				}else{
-					$('.back').hide();
-				}
-			　　var scrollTop = $(this).scrollTop();
-			　　var scrollHeight = $(document).height();
-			　　var windowHeight = $(this).height();
-				if($('.nearbyMain .bottom_load').html() == '暂无数据'){
-	            	return ;
-				}
-			　　if(scrollTop + windowHeight == scrollHeight){
+			<ul class="homenav clear">
+				<li class="intergral">
+					<img src="img/n_1.png" alt=""/>
+					<em>积分<i>100000</i></em>
+				</li>
+				<li class="myTreas">
+					<img src="img/n_2.png" alt="" />
+					<em>我的百宝箱</em>
+				</li>
+				<li class="borderNone">
+					<img src="img/n_3.png" alt="" />
+					<em>兑换记录</em>
+				</li>
+			</ul>
+			
+			<div class="swiper-container">
+			    <div class="swiper-wrapper"></div>
+			    <div class="swiper-pagination"></div>
+			</div>
+			
+			<ul class="indexNav clear">
+				<li>
+					<img src="img/hn_1.png" alt="" />
+					<em>爆款娃娃</em>
+				</li>
+				<li>
+					<img src="img/hn_2.png" alt="" class="widthimg"/>
+					<em>代金卷</em>
+				</li>
+				<li class="border">
+					<img src="img/hn_3.png" alt="" />
+					<em>品牌专区</em>
+				</li>
+				<li class="borderNone">
+					<img src="img/hn_4.png" alt="" />
+					<em>所有商品</em>
+				</li>
+			</ul>
+			
+			<div class="homeTitle"><img src="img/home_1.png" alt="" /></div>
+			
+			<ul id="dataList" class="data-list clear">
+				<li class="listLeft">
+					<img class="pd-img" src="img/l_1.png"/>
+					<p class="pd-name">
+						<img class="pd-img" src="img/l_2.png"/>
+					</p>
+					<p class="pd-price">满20减3元</p>
+					<p class="pd-sold">200积分</p>
+				</li>
+				<li class="listRight">
+					<img class="pd-img" src="img/l_1.png"/>
+					<p class="pd-name">
+						<img class="pd-img" src="img/l_2.png"/>
+					</p>
+					<p class="pd-price">满20减3元</p>
+					<p class="pd-sold">200积分</p>
+				</li>
+			</ul>
+			
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/pdlist1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		FastClick.attach(document.body);
+		var o = {
+			init:function(){
+				showLoginDialog('积分商城');
+				o.scrollData();
+				o.oClick();
+			},
+			scrollData:function(){
+				var mescroll = new MeScroll("mescroll", {
+					up: {
+						page:{size:100},
+						clearEmptyId: "dataList", 
+						callback: getListData, 
+					}
 					
-			　　}
-			});	
-		},
-		oJect:function(){
-			/*弹出确定*/
-	        $.DialogByZ.Alert({Title: "提示", Content: "您的请求失败",BtnL:"确定",FunR:Immediate}); 
-		    /*弹出确定取消*/
-	        $.DialogByZ.Confirm({Title: "", Content: "投资前需开通第三方存管账户</br>确保资金安全",FunL:confirmL,FunR:Immediate})
-			/*下方提示*/
-		    $.DialogByZ.Autofade({Content: "感谢您对我们的支持"})
-			/*加载*/
-		   	$.DialogByZ.Loading('image/loading.png') 
-		},
-		init_screen:function(data){
-			
+				});
+				function getListData(page){
+					console.log(page);
+					getListDataFromNet(page.num, page.size, function(data){
+						mescroll.endSuccess(data.length);
+						console.log(data.length);
+						setListData(data);
+					});
+				}
+				function setListData(data){
+					var oHtml='';
+					for (var i = 0; i < 10; i++) {
+						if(i%2 == 0){
+							oHtml+='<li class="listLeft"><img class="pd-img" src="img/l_1.png"/><p class="pd-name"><img class="pd-img" src="img/l_2.png"/></p><p class="pd-price">满20减3元</p><p class="pd-sold">200积分</p></li>'
+						}else{
+							oHtml+='<li class="listRight"><img class="pd-img" src="img/l_1.png"/><p class="pd-name"><img class="pd-img" src="img/l_2.png"/></p><p class="pd-price">满20减3元</p><p class="pd-sold">200积分</p></li>'
+						}
+					}
+					$('#dataList').attr('otype',1);
+					$('#dataList').append(oHtml);
+					$('.swiper-wrapper').html('<div class="swiper-slide"><img src="img/swiper.png" alt="" /></div><div class="swiper-slide"><img src="img/1.jpg" alt="" /></div> <div class="swiper-slide"><img src="img/swiper.png" alt="" /></div>');
+					var mySwiper = new Swiper ('.swiper-container', {
+					    direction: 'horizontal',
+					    loop: true,
+					    autoplay : 1500,
+					    // 如果需要分页器
+					    pagination: '.swiper-pagination',
+					    autoplayDisableOnInteraction : false,
+					    paginationClickable :true,
+					}) 
+				}
+				
+				function getListDataFromNet(pageNum,pageSize,successCallback) {
+	                setTimeout(function () {
+	                	/*$.ajax({
+			                type: 'GET',
+			                url: '',
+			                dataType: 'json',
+			                success: function(data){*/
+			                	var data=pdlist1;
+			                	var listData=[];
+								for (var i = (pageNum-1)*pageSize; i < pageNum*pageSize; i++) {
+				            		if(i==data.length) break;
+				            		listData.push(data[i]);
+				            	}
+								console.log(pageNum)
+								if(pageNum == 2)listData = [];
+			                	successCallback(listData);
+			               /* }
+		            	});*/
+	                },1000)
+				}
+			},
+			oClick:function(){
+				$('.intergral').on('click',function(){
+					window.location.href = 'myIntegral.html';
+				});
+				$('.myTreas').on('click',function(){
+					window.location.href = 'myTreas.html';
+				});
+			}
 		}
-	}
-	o.init()
-}
+		o.init();
+	</script>
 
-</script>
 </html>
-

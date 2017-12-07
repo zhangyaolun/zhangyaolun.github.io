@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>积分记录</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/mescroll.css">
+		<link rel="stylesheet" href="css/myIntergral.css">
+	</head>
+	<script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+    </script>
+	<body>
+		<div class="myIntergral">
+			<img src="img/head_1.png" alt="" class="backInt"/>
+			<div class="intHistroy_nav">
+				<img src="img/h_0.png" class="his_nav" />
+				<div id="mescroll" class="mescroll" style="height:12.5rem;top: 3.5rem;width: 83%;left: .8rem;">					
+					<img src="img/h_4.png" class="his_click" />
+					<div class="intHistroy_list">
+						<img src="img/h_1.png"/>
+						<img src="img/h_2.png"/>
+						<img src="img/h_3.png" class="imgBorder"/>
+					</div>
+					<ul class="intList" id="intList">
+						<!--<li class="clear">
+							<div class="his_name left">
+								<span>商城使用-蝙蝠侠</span>
+								<div class="his_time">2017-11-28 10:55:55</div>
+							</div>
+							<div class="his_num right" style="color: #ff0000;">+300</div>
+						</li>
+						<li class="clear">
+							<div class="his_name left">
+								<span>商城使用-蝙蝠侠</span>
+								<div class="his_time">2017-11-28 10:55:55</div>
+							</div>
+							<div class="his_num right" style="color: #0fca0f;">-300</div>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/pdlist1.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		FastClick.attach(document.body);
+		var o = {
+			init:function(){
+				o.oClick();
+				o.scrollData();
+				
+			},
+			scrollData:function(){
+				var mescroll = new MeScroll("mescroll", {
+					up: {
+						clearEmptyId: "intList", 
+						callback: getListData, 
+					}
+				});
+				function getListData(page){
+					getListDataFromNet(page.num, page.size, function(data){
+						mescroll.endSuccess(data.length);
+						setListData(data);
+					});
+				}
+				function setListData(data){
+					var oHtml='';
+					for (var i = 0; i < 10; i++) {
+						oHtml+='<li class="clear"><div class="his_name left"><span>商城使用-蝙蝠侠</span><div class="his_time">2017-11-28 10:55:55</div></div><div class="his_num right" style="color: #ff0000;">+300</div></li><li class="clear"><div class="his_name left"><span>商城使用-蝙蝠侠</span><div class="his_time">2017-11-28 10:55:55</div></div><div class="his_num right" style="color: #0fca0f;">-300</div></li>'
+					}
+					$('#intList').append(oHtml);
+				}
+				
+				function getListDataFromNet(pageNum,pageSize,successCallback) {
+					console.log(pageNum)
+	                setTimeout(function () {
+	                	/*$.ajax({
+			                type: 'GET',
+			                url: '',
+			                dataType: 'json',
+			                success: function(data){*/
+			                	var data=pdlist1;
+			                	var listData=[];
+								for (var i = (pageNum-1)*pageSize; i < pageNum*pageSize; i++) {
+				            		if(i==data.length) break;
+				            		listData.push(data[i]);
+				            	}
+								if(pageNum == 2)listData = [];
+			                	successCallback(listData);
+			               /* }
+		            	});*/
+	                },1000)
+				}
+			},
+			oClick:function(){
+				$('.backInt').on('click',function(){
+					window.history.back();
+				});
+				$('.his_click').on('click',function(){
+					$('.intHistroy_list').slideDown(500);;
+				});
+				$('.intHistroy_list img').on('click',function(){
+					$('.intHistroy_list').slideUp(500);;
+				});
+			}
+		}
+		o.init();
+	</script>
+
+</html>

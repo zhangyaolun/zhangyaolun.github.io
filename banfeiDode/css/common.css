@@ -16,6 +16,10 @@ body{
 -moz-user-select:none; 
 -ms-user-select:none; 
 user-select:none;
+width: 100%;
+height:auto;
+background: url('../img/bd.png') no-repeat ;
+background-size: 100%;
 }
 .back{
     position: fixed;
@@ -28,24 +32,36 @@ user-select:none;
     border-radius: 10%;
     display: none;
 }
-
-/*滚动条*/
-::-webkit-scrollbar {   
-	width: 6px;
-	margin: 0 3px;
-	display: none;
+/*显示积分数字*/
+@font-face{
+	font-family: myFirstFont;
+	src: url('Skranji-Bold.ttf');
 }
-/* 滚动槽 */
-/*::-webkit-scrollbar-track { 
-	-webkit-box-shadow: inset 0 0 4px #dcdcdc; 
-	border-radius: 8px;
-}*/
-/* 滚动条滑块 */
-::-webkit-scrollbar-thumb {    
-	border-radius: 8px;    
-	background: #dcdcdc;   
-	-webkit-box-shadow: inset 0 0 4px #f0f0f0;
+/*文字字体*/
+@font-face{
+	font-family: fontFangZheng;
+	src: url('font.ttf');
 }
-::-webkit-scrollbar-thumb:window-inactive {   
-	background: #f0f0f0;
+/*文字数字字体*/
+@font-face{
+	font-family: fontBold;
+	src: url('Bold.ttf');
+}
+.backInt{
+    width: 1rem;
+    height: 1rem;
+    position: fixed;
+    top: .7rem;
+    left: .25rem;
+}
+.myIntergral{
+	width: 100%;
+	height: auto;
+}
+/*列表*/
+.mescroll{
+	position: fixed;
+	top: 2.1rem;
+	bottom: 0;
+	height: auto;
 }

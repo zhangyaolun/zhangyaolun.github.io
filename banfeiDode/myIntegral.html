@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>我的积分</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/homepage.css"/>
+    <script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+    </script>
+</head>
+ 
+<body>
+	<div class="myIntergral">
+		<img src="img/head_1.png" alt="" class="backInt"/>
+		<div class="contInt">
+			<img src="img/m_1.png" alt="" class="headInt"/>	
+			<div class="contInt_title">11500415646</div>
+			<div class="contInt_history">
+				<img src="img/m_5.png" alt="" />
+				<img src="img/m_3.png" alt="" class="contInt_img"/>
+			</div>
+		</div>
+		
+		<div class="mainInt">
+			<img src="img/m_7.png" class="main_1"/>
+			<img src="img/m_8.png" class="main_2"/>
+			<img src="img/m_9.png" class="main_3"/>
+		</div>
+		
+		<div class="botInt">
+			<img src="img/m_10.png" alt="" class="headInt"/>
+			<ul>
+				<li>
+					<img src="img/m_11.png" alt="" class="botInt_left"/>
+					<div class="botInt_img">
+						<img src="img/m_12.png" alt="" class="botInt_title"/>
+						<img src="img/m_13.png" alt="" class="botInt_way" />
+					</div>
+				</li>
+				<li>
+					<img src="img/m_14.png" alt="" class="botInt_left"/>
+					<div class="botInt_img">
+						<img src="img/m_16.png" alt="" class="botInt_title" style="width: 50%;"/>
+						<img src="img/m_15.png" alt="" class="botInt_way" />
+					</div>
+				</li>
+				<li>
+					<img src="img/m_4.png" alt="" class="botInt_left"/>
+					<div class="botInt_img">
+						<img src="img/m_17.png" alt="" class="botInt_title" style="width: 80%;"/>
+						<img src="img/m_13.png" alt="" class="botInt_way" />
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+window.onload=function(){
+	FastClick.attach(document.body);
+	var o = {
+		init:function(){
+			FastClick.attach(document.body);
+			o.indexClick();
+		},
+		moreDate:function(){
+			
+		},
+		indexClick:function(){
+			$('.backInt').on('click',function(){
+				window.history.back();
+			});
+			$('.contInt_history').on('click',function(){
+				window.location.href = 'intHistory.html';
+			});
+			$('.main_3').on('click',function(){
+				window.location.href = 'intChange.html';
+			});
+		},
+		moreLoad:function(){
+			
+		},
+		oJect:function(){
+			
+		},
+		init_screen:function(){
+			
+		}
+	}
+	o.init()
+}
+</script>
+</html>
+

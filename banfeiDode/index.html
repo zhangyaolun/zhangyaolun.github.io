@@ -9,14 +9,6 @@
 		<link rel="stylesheet" href="css/mescroll.css">
 		<link rel="stylesheet" href="css/swiper.css">
 		<link rel="stylesheet" href="css/homepage.css">
-		<style type="text/css">
-			body{
-				width: 100%;
-  				height:auto;
-	        	background: url('img/bg.png') no-repeat ;
-	        	background-size: 100%;
-	        }
-		</style>
 	</head>
 	<script>
         document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
@@ -31,8 +23,8 @@
 		<div id="mescroll" class="mescroll">
 			
 			<ul class="homenav clear">
-				<li>
-					<img src="img/n_1.png" alt="" />
+				<li class="intergral">
+					<img src="img/n_1.png" alt=""/>
 					<em>积分<i>100000</i></em>
 				</li>
 				<li>
@@ -94,7 +86,6 @@
 	</body>
 	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/mescroll.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/pdlist1.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
@@ -104,19 +95,22 @@
 			init:function(){
 				showLoginDialog('积分商城');
 				o.scrollData();
+				o.oClick();
 			},
 			scrollData:function(){
 				var mescroll = new MeScroll("mescroll", {
 					up: {
+						page:{size:100},
 						clearEmptyId: "dataList", 
 						callback: getListData, 
 					}
+					
 				});
 				function getListData(page){
 					console.log(page);
 					getListDataFromNet(page.num, page.size, function(data){
 						mescroll.endSuccess(data.length);
-						console.log(data);
+						console.log(data.length);
 						setListData(data);
 					});
 				}
@@ -129,6 +123,7 @@
 							oHtml+='<li class="listRight"><img class="pd-img" src="img/l_1.png"/><p class="pd-name"><img class="pd-img" src="img/l_2.png"/></p><p class="pd-price">满20减3元</p><p class="pd-sold">200积分</p></li>'
 						}
 					}
+					$('#dataList').attr('otype',1);
 					$('#dataList').append(oHtml);
 					$('.swiper-wrapper').html('<div class="swiper-slide"><img src="img/swiper.png" alt="" /></div><div class="swiper-slide"><img src="img/1.jpg" alt="" /></div> <div class="swiper-slide"><img src="img/swiper.png" alt="" /></div>');
 					var mySwiper = new Swiper ('.swiper-container', {
@@ -155,11 +150,18 @@
 				            		if(i==data.length) break;
 				            		listData.push(data[i]);
 				            	}
+								console.log(pageNum)
+								if(pageNum == 2)listData = [];
 			                	successCallback(listData);
 			               /* }
 		            	});*/
 	                },1000)
 				}
+			},
+			oClick:function(){
+				$('.intergral').on('click',function(){
+					window.location.href = 'myIntegral.html';
+				});
 			}
 		}
 		o.init();
