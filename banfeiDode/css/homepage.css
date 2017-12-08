@@ -91,13 +91,7 @@
 	margin: 4% 0 2% 4%;
 }
 
-/*列表*/
-.mescroll{
-	position: fixed;
-	top: 2.1rem;
-	bottom: 0;
-	height: auto;
-}
+
 /*展示上拉加载的数据列表*/
 .data-list{
 	width: 100%;
@@ -321,7 +315,7 @@
 	display: inline-block;
 	vertical-align: middle;
 }
-.exchang_item li .exItem_name{
+/*.exchang_item li .exItem_name{
 	width: 34%;
 	display: inline-block;
 	vertical-align: middle;
@@ -347,7 +341,7 @@
 .exchang_item li .exItem_name .exItem_way i{ 
 	color: #ca800c;
 	font-family: fontBold;
-}
+}*/
 .exchang_item li .exItem_time{ 
 	display: inline-block;
 	width: 20%;
@@ -369,25 +363,71 @@
 
 /*我的宝库*/
 .myTreas_nav{
-	width: 100%;
-	height: 1.5rem;
-	margin-top: 20%;
-	border-bottom: 1px solid #999;
-	border-top: 1px solid #999;
+	width: 90%;
+	height: 15rem;
+	margin-top: 22%;
+	margin-left: 5%;
+	background: url('../img/t_0.png') no-repeat ;
+	background-size: 100% 98%;
+	position: relative;
 }
-.myTreas_nav span{
+.myTreas_nav .headInt{top: -.6rem;}
+.myTreas_spanNav{padding-top: 15%;}
+.myTreas_spanNav div{
+	width: 80%;
+	margin: 0 auto;
+	padding: 1% .5% .5% 1%;
+	box-sizing: border-box;
+	background: url('../img/tN_0.png') no-repeat ;
+	background-size: 100% 98%;
+}
+.myTreas_nav div img{
 	display: inline-block;
 	width: 49%;
-	height: 1.5rem;
-	line-height: 1.5rem;
+}
+.myTreas_click{
+	position: absolute;
+	bottom: 10%;
+	left: 32%;
+}
+.myTreas_item{
+	height: auto;
+}
+.myTreas_item li{
+	width: 90%;
+	padding: 2% 4%;
+	margin-left: 5%;
 	box-sizing: border-box;
-	text-align: center;
+	white-space: nowrap;
+	background: url('../img/c_9.png') no-repeat ;
+	background-size: 100% 98%;
 }
-.myTreas_nav .myTreas_spanNav{
-	border-right: 1px solid #999;
+.myTreas_item .exItem_name{
+    margin-left: 3%;
+    box-sizing: border-box;
+} 
+.myTreas_item .exItem_name span {
+    padding: 5% 0 3% 0;
 }
-.myTreas_nav .myTreas_active{
-	background: #ccc;
+.myTreas_item li .exItem_img{
+	width: 15%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.myTreas_item li .exItem_name{
+	width: 60%;
+}
+.myTreas_item li .myTreas_input{
+	width: 22%;
+	display: inline-block;
+	vertical-align: middle;
+	background: url('../img/t_2.png') no-repeat ;
+	background-size: 75% 98%;
+}
+.myTreas_item li .myTreas_input img{
+    width: 35%;
+    margin-left: 18%;
+    padding: 7% 0;
 }
 /*我的宝库*/
 #mescroll1{

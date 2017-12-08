@@ -17,31 +17,44 @@
 			<img src="img/head_1.png" alt="" class="backInt"/>
 			
 			<div class="myTreas_nav">
-				<span class="myTreas_active myTreas_spanNav" i="0">实物专区</span>
-				<span i="1">虚拟专区</span>
+				<img src="img/t_1.png" alt="" class="headInt"/>
+				<div class="myTreas_spanNav">
+					<div>
+						<img src="img/tN_1.png" alt="" i="0" class="spanNav_one"/>
+						<img src="img/tN_3.png" alt="" i="1" class="spanNav_two"/>
+					</div>
+				</div>
+				
+				<div id="mescroll0" class="mescroll" style="top: 3rem;height: 9rem;">
+					<ul class="myTreas_item" id="intList0">
+						<li>
+							<img src="img/c_6.png" alt="" class="exItem_img"/>
+							<div class="exItem_name">
+								<span>超级英雄-蝙蝠侠</span>
+								<div class="exItem_way">15天后过期</div>
+							</div>
+							<div class="myTreas_input">
+								<img src="img/t_3.png" alt=""/>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				<div id="mescroll1" class="mescroll" style="top: 3.6rem;">
+					<ul class="exchang_item" id="intList1">
+						<li>
+							333333333333
+						</li>
+					</ul>
+				</div>
+				
+				<div class="myTreas_click">
+					<img src="img/t_5.png"/>
+				</div>
 			</div>
 			
-			<div id="mescroll0" class="mescroll" style="top: 3.6rem;">
-				<ul class="exchang_item" id="intList0">
-					<li>
-						<img src="img/hn_1.png" alt="" class="exItem_img"/>
-						<div class="exItem_name">
-							<span>皮卡皮卡猴</span>
-							<div class="exItem_way">可兑换200积分</div>
-						</div>
-						<img src="img/hn_1.png" alt="" class="exItem_time"/>
-						<input type="checkbox" name="" id="" value="" />
-					</li>
-				</ul>
-			</div>
 			
-			<div id="mescroll1" class="mescroll" style="top: 3.6rem;">
-				<ul class="exchang_item" id="intList1">
-					<li>
-						333333333333
-					</li>
-				</ul>
-			</div>
+			
 		</div>
 	</body>
 	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -62,12 +75,16 @@
 				//初始化首页
 				mescrollArr[0]=initMescroll("mescroll0", "intList0");
 				
-				$(".myTreas_nav span").click(function(){
+				$(".myTreas_spanNav img").click(function(){
 					var i=Number($(this).attr("i"));
+					if(i == 0){
+						$(".spanNav_one").attr('src','img/tN_1.png');
+						$(".spanNav_two").attr('src','img/tN_3.png');
+					}else{
+						$(".spanNav_one").attr('src','img/tN_2.png');
+						$(".spanNav_two").attr('src','img/tN_4.png');
+					}
 					if(curNavIndex!=i) {
-						//更改列表条件
-						$(".myTreas_nav .myTreas_active").removeClass("myTreas_active");
-						$(this).addClass("myTreas_active");
 						//隐藏当前列表
 						$("#mescroll"+curNavIndex).hide();
 						//显示对应的列表
@@ -117,8 +134,14 @@
 				/*设置列表数据*/
 				function setListData(data){
 					var oHtml='';
-					for (var i = 0; i < 10; i++) {
-							oHtml+='<li><img src="img/hn_1.png" alt="" class="exItem_img"/><div class="exItem_name"><span>皮卡皮卡猴</span><div class="exItem_way">可兑换200积分</div></div><img src="img/hn_1.png" alt="" class="exItem_time"/><img src="img/hn_1.png" alt="" class="exItem_click"/></li>'
+					if(curNavIndex == 0){
+						for (var i = 0; i < 10; i++) {
+							oHtml+='<li><img src="img/c_6.png" alt="" class="exItem_img"/><div class="exItem_name"><span>超级英雄-蝙蝠侠</span><div class="exItem_way">15天后过期</div></div><div class="myTreas_input"><img src="img/t_3.png" alt=""/></div></li>'
+						}
+					}else{
+						for (var i = 0; i < 10; i++) {
+							oHtml+='777777777'
+						}
 					}
 					$("#intList"+curNavIndex).append(oHtml);
 				}

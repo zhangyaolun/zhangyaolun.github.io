@@ -58,14 +58,16 @@
 }
 .exchang_item{
 	width: 100%;
-    margin-top: 10%;
     height: auto;
 }
 .exchang_item li{
 	width: 100%;
-    padding: 2% 0 2% 4%;
+    padding: 3% 0 2% 4%;
+    margin: 2% 0;
 	box-sizing: border-box;
 	white-space: nowrap;
+	background: url('../img/c_9.png') no-repeat ;
+	background-size: 100%;
 }
 
 .exchang_item_first{
@@ -135,15 +137,5 @@
 .mescroll::-webkit-scrollbar {   
 	width: 6px;
 	margin: 0 3px; 
-}
-/* 滚动槽 */
-.mescroll::-webkit-scrollbar-track { 
-	background: #cba164;    
-	border-radius: 8px;
-}
-/* 滚动条滑块 */
-.mescroll::-webkit-scrollbar-thumb {    
-	border-radius: 8px;    
-	background: #ffd41a;   
-	-webkit-box-shadow: inset 0 0 2px #666;
+	display: none;
 }

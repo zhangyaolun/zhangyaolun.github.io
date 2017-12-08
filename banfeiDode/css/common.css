@@ -11,7 +11,7 @@ a,a:hover{text-decoration:none}
 .left{float: left;}
 .right{float: right;}
 em,i{font-style: normal;}
-body{ 
+html,body{ 
 -webkit-user-select:none; 
 -moz-user-select:none; 
 -ms-user-select:none; 
@@ -46,6 +46,33 @@ background-size: 100%;
 @font-face{
 	font-family: fontBold;
 	src: url('Bold.ttf');
+}
+.exItem_name{
+	width: 34%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.exItem_name span{ 
+	color: #7c2b08;
+	width: 100%;
+	font-size: .47rem;
+	padding: 5% 0;
+    display: inline-block;
+	font-weight: 800;
+	font-family: fontFangZheng;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.exItem_name .exItem_way{ 
+	color: #ca800c;
+	font-size: .38rem;
+	font-weight: 800;
+	font-family: fontFangZheng;
+}
+.exItem_name .exItem_way i{ 
+	color: #ca800c;
+	font-family: fontBold;
 }
 .backInt{
     width: 1rem;
