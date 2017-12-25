@@ -8,6 +8,30 @@ function scrolltopBack(obj){
 	})
 }
 
+function mySelf(){
+	var ab = '';
+	var sucess = function(data) {
+		ab = data.result.points;
+	}
+	doPost('/mall/items/getScore', '', sucess);
+	return ab;
+}
+
+
+
+function getParameter(param){
+    var query = decodeURI(window.location.search);//获取URL地址中？后的所有字符
+    var iLen = param.length;//获取你的参数名称长度
+    var iStart = query.indexOf(param);//获取你该参数名称的其实索引
+    if (iStart == -1)//-1为没有该参数
+        return "";
+    iStart += iLen + 1;
+    var iEnd = query.indexOf("&", iStart);//获取第二个参数的其实索引
+    if (iEnd == -1)//只有一个参数
+        return query.substring(iStart);//获取单个参数的参数值
+   return query.substring(iStart, iEnd);//获取第二个参数的值
+}
+
 /*检查Android或ios*/
 function isAndIsiOS(){
 	var u = navigator.userAgent;
@@ -18,6 +42,12 @@ function isAndIsiOS(){
 	}else{
 		return 2;
 	}
+}
+
+function checkNotEmpty(str) {
+    if (str != null && str.length > 0&&str!='')
+        return true;
+    return false;
 }
 
 /*获取url中的值*/
@@ -34,6 +64,52 @@ function getParameter(param)
         return query.substring(iStart);//获取单个参数的参数值
     return query.substring(iStart, iEnd);//获取第二个参数的值
 }
+
+function DateMinus(sDate){ 
+　　var sdate = new Date(sDate.replace(/-/g, "/")); 
+　　var now = new Date(); 
+　　var days = sdate.getTime() - now.getTime(); 
+　　var day = parseInt(days / (1000 * 60 * 60 * 24)); 
+	var dateTime = '';
+	if(day == 0){
+		dateTime = '<i>1</i>天后过期';
+	}else if(day > 0){
+		dateTime = '<i>'+day+'</i>天后过期';
+	}else{
+		dateTime = '已过期';
+	}
+　　return dateTime; 
+}
+function DateChang(sDate){ 
+　　var sdate = new Date(sDate.replace(/-/g, "/")); 
+　　var now = new Date(); 
+　　var days = sdate.getTime() - now.getTime(); 
+　　var day = parseInt(days / (1000 * 60 * 60 * 24)); 
+	var dateTime = '';
+	if(day == 0){
+		dateTime = '剩余<i>1</i>天';
+	}else if(day > 0){
+		dateTime = '剩余<i>'+day+'</i>天';
+	}else{
+		dateTime = '已过期';
+	}
+　　return dateTime; 
+}
+
+function setCookie(name,value){
+	var Days = 1;
+	var exp = new Date();
+	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+function getCookie(name){
+	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	if(arr=document.cookie.match(reg))
+	return unescape(arr[2]);
+	else
+	return null;
+}
+
 
 /*生成32位数*/
 function getNum(){  
@@ -58,25 +134,19 @@ function doPost(url,data,callback){
         success : succFun
     });
     function succFun(datas) {
-        if(datas.status==999){
+        if(datas.httpCode==999){
 
         }
-        if(datas.status==500){
+        if(datas.httpCode==500){
             alert(datas.message);
         }
-        if(datas.status==200){
+        if(datas.httpCode==200){
             callback(datas);
-        }if(datas.status==201){
+        }if(datas.httpCode==201){
             setLoginState(false)
         }
     }
 }
-/* <a class="btn-right" href="javascript:;"><img src="img/icon1.png"/></a>*/
-function showLoginDialog(data){
-    var a='<p class="header"><a class="btn-left" href="javascript:;"><img src="img/head_1.png"/></a><img src="img/head_2.png" class="headerImg"/></p>';
-    $("body").append(a);
-}
-
 /*弹层*/
 ;(function($,window,document,undefined){
    //默认参数

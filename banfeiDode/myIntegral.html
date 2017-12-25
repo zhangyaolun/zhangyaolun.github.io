@@ -16,15 +16,16 @@
 		<img src="img/head_1.png" alt="" class="backInt"/>
 		<div class="contInt">
 			<img src="img/m_1.png" alt="" class="headInt"/>	
-			<div class="contInt_title">11500415646</div>
+			<div class="contInt_title"></div>
 			<div class="contInt_history">
 				<img src="img/m_5.png" alt="" />
 				<img src="img/m_3.png" alt="" class="contInt_img"/>
 			</div>
 		</div>
 		
-		<div class="mainInt">
+		<div class="exItem_name mainInt">
 			<img src="img/m_7.png" class="main_1"/>
+			<!--<span class="main_2">抓中的娃娃兑换积分</span>-->
 			<img src="img/m_8.png" class="main_2"/>
 			<img src="img/m_9.png" class="main_3"/>
 		</div>
@@ -67,6 +68,8 @@ window.onload=function(){
 	var o = {
 		init:function(){
 			FastClick.attach(document.body);
+			var ab = mySelf();
+			$(".contInt_title").html(ab || 0);
 			o.indexClick();
 		},
 		moreDate:function(){
@@ -79,7 +82,7 @@ window.onload=function(){
 			$('.contInt_history').on('click',function(){
 				window.location.href = 'intHistory.html';
 			});
-			$('.main_3').on('click',function(){
+			$('.mainInt').on('click',function(){
 				window.location.href = 'intChange.html';
 			});
 		},

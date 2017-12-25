@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>客服中心</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/homepage.css"/>
+    <script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+    </script>
+</head>
+ 
+<body>
+	<div class="myIntergral">
+		<img src="img/head_1.png" alt="" class="backInt"/>
+		<div class="contInt mI_main">
+			<img src="img/mI_2.png" alt="" class="headInt"/>	
+			<textarea name="反馈内容" rows="" cols="" placeholder="请输入需要反馈的内容"></textarea>
+			<img src="img/mI_6.png" alt="" class=" headBot"/>	
+		</div>
+		
+		
+		<div class="botInt mI_main mI_bot">
+			<img src="img/mI_3.png" alt="" class="headInt"/>
+			<img src="img/mI_5.png" alt="" class="mIbot_img"/>
+			<img src="img/mI_4.png" alt="" class="mIbot_img"/>
+		</div>
+	</div>
+</body>
+
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+window.onload=function(){
+	FastClick.attach(document.body);
+	var o = {
+		init:function(){
+			FastClick.attach(document.body);
+			$(".contInt_title").html(getCookie('points'));
+			o.indexClick();
+		},
+		indexClick:function(){
+			$('.backInt').on('click',function(){
+				window.history.back();
+			});
+			$('.headBot').on('click',function(){
+				if(!checkNotEmpty($('textarea').val()))return;
+				$('textarea').val('');
+				window.location.href = 'myImsuccess.html';
+			});
+		}
+	}
+	o.init()
+}
+</script>
+</html>
+

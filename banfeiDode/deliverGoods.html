@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>发货</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/mescroll.css">
+		<link rel="stylesheet" href="css/homepage.css">
+	</head>
+	<script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+    </script>
+	<body>
+		<div class="myIntergral">
+			<img src="img/head_1.png" alt="" class="backInt"/>
+			
+			<div class="myTreas_nav deliveGoods">
+				<img src="img/d_1.png" alt="" class="headInt"/>
+				
+				<div id="mescroll" class="mescroll mesBack" style="top: 1rem;height: 13rem;width: 90%;margin-left: 5%;">
+					<ul class="myTreas_item" id="intList">
+						
+					</ul>
+					<!--<li>
+						<img src="img/c_6.png" alt="" class="exItem_img"/>
+						<div class="exItem_name">
+							<span>超级英雄-蝙蝠侠</span>
+							<div class="exItem_way">运费：包邮</div>
+						</div>
+						<div class="goods_img">
+							<img src="img/d_2.png" alt=""/>
+						</div>
+					</li>-->
+					<div class="goods_cont goods_None clear">
+						<div class="cont_name left">配送至 :&nbsp;</div>
+						<i class="goods_titleNone left">您还没填写收货信息，马上去填写。</i>												
+						<img src="img/d_6.png" alt=""  class="right"/>
+					</div>
+					
+					<div class="goods_cont goods_tit clear">
+						<div class="cont_name left">配送至 : &nbsp;</div>
+						<div class="goods_name left">
+							<div class="goods_n clear"><em class="left"></em><em class="right"></em></div>
+							<div class="goods_adress"></div>
+						</div>		
+						<img src="img/d_6.png" alt="" class="right"/>
+					</div>
+					
+					<div class="goods_main">
+						<span>发货说明 :</span><i>某物某货某物某货某物某货某物某货某物某货某物某货某物某货</i>
+					</div>
+					<div class="myTreas_cli" style="bottom: 5%;">
+						<img src="img/d_3.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		FastClick.attach(document.body);
+		var o = {
+			init:function(){
+				var oData = getCookie('shop').split(','),oHtml='';
+				if(oData.length>1){
+					for(var i=0;i<oData.length;i++){
+						var setAttr = oData[i].split('|');
+						oHtml+='<li oid="'+setAttr[0]+'"><img src="'+setAttr[1]+'" alt="" class="exItem_img"/><div class="exItem_name"><span>'+setAttr[2]+'</span><div class="exItem_way">运费：包邮</div></div><div class="goods_img" index="'+i+'"><img src="img/d_2.png" alt=""/></div></li>'
+					}
+				}else{
+					var setAttr = oData[0].split('|');
+					oHtml+='<li oid="'+setAttr[0]+'"><img src="'+setAttr[1]+'" alt="" class="exItem_img"/><div class="exItem_name"><span>'+setAttr[2]+'</span><div class="exItem_way">运费：包邮</div></div></li>'
+				}
+				$('.myTreas_item').html(oHtml);
+				var myGoodsA = getCookie('myGoodsA');
+				if(myGoodsA){
+					setCookie('myGoods',myGoodsA);
+					var myGoodsAdata = JSON.parse(myGoodsA.replace(/'/g, '"'));
+					$('.goods_tit').show();
+					$('.goods_tit .goods_n .left').html(myGoodsAdata.receiverName);
+					$('.goods_tit .goods_n .right').html(myGoodsAdata.receiverPhone);
+					$('.goods_tit .goods_adress').html(myGoodsAdata.province+myGoodsAdata.city+myGoodsAdata.county+myGoodsAdata.street);
+				}else{
+					o.scrollData();
+				}
+				o.oClick(oData);
+			},
+			scrollData:function(){
+				var sucess = function(data){
+					if(data.result){
+						setCookie('myGoods',JSON.stringify(data.result).replace(/"([^"]*)"/g, "'$1'") );
+						$('.goods_tit').show();
+						$('.goods_tit .goods_n .left').html(data.result.receiverName);
+						$('.goods_tit .goods_n .right').html(data.result.receiverPhone);
+						$('.goods_tit .goods_adress').html(data.result.province+data.result.city+data.result.county+data.result.street);
+					}else{
+						$('.goods_None').show();
+					}
+				}
+				doPost('/mall/addr/flagAddr','',sucess);
+			},
+			oClick:function(oData){
+				$('.backInt').on('click',function(){
+					window.history.back();
+				}); 
+				$('.goods_None').on('click',function(){
+					window.location.href = 'myNewAddress.html?oIndex=1';
+				});
+				$('.goods_tit').on('click',function(){
+					window.location.href = 'myAddress.html';
+				});
+				var ticketId = getNum();
+				$('.myTreas_cli').on('click',function(){
+					var oId = '';
+					for(var s=0;s<$('.myTreas_item li').length;s++){
+						oId = $('.myTreas_item li').eq(s).attr('oid')+','+oId
+					}
+					if(getCookie('myGoods')){
+						var _result = JSON.parse(getCookie('myGoods').replace(/'/g, '"'));
+						var dData = {
+							'ticketId':ticketId,
+							'receiverName':_result.receiverName,
+							'receiverPhone':_result.receiverPhone,
+							'province':_result.province,
+							'city':_result.city,
+							'county':_result.county,
+							'street':_result.street,
+							'memberDeliveryDetail':_result.province+_result.city+_result.county+_result.street,
+							'payType':'0',
+							'orderItemIds':oId.substring(0, oId.length - 1)
+						}
+						var sucessdata = function(data){
+							console.log(data)
+							window.location.href = 'myGoodsSuccess.html';
+						}
+						doPost('/mall/order/createOrder',dData,sucessdata);
+					}
+				});
+				$('.goods_img').on('click',function(){
+					var _index = $(this).attr('index');
+					oData.splice(parseInt(_index),1);
+					setCookie('shop',oData.join(','));
+					$(this).parent().remove();
+					if($('.myTreas_item li').length == 1){
+						$('.myTreas_item li .goods_img').hide()
+					}
+					setTimeout(function(){
+						window.location.reload();
+					},200)
+					
+				});
+			}
+		}
+		o.init();
+	</script>
+
+</html>

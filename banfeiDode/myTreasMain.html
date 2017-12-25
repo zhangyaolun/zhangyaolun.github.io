@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>使用详情</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/homepage.css">
+	</head>
+	<script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+    </script>
+	<body>
+		<div class="myIntergral">
+			<img src="img/head_1.png" alt="" class="backInt"/>
+			<div class="contInt contInt_treasMain" style="height: 5.5rem;margin: 20% 0 0 5%;">
+				<img src="img/tM_1.png" alt="" class="headInt" style="top: -.8rem;"/>	
+				<img src="img/l_1.png" alt="" class="change_img"/>	
+				<div class="exItem_name treasMain_way">
+					<span>满20减3元代金卷</span>
+					<div class="exItem_way"></div>
+				</div>
+			</div>
+			<div class="contInt_treasMain treasMain_title" style="height: 6.8rem;">				
+				<div class="treasMain_main ">
+					<span>使用规则 : </span><i>规则规规则规则规则则规则</i>
+				</div>
+			</div>
+			<div class="treasMain_click">
+				<img src="img/tM_4.png"/>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		FastClick.attach(document.body);
+		var o = {
+			init:function(){
+				var myGoodsAdata = JSON.parse(getParameter('typeData').replace(/'/g, '"'));
+				console.log(myGoodsAdata)
+				$('.exItem_name span').html(myGoodsAdata.itemDescription);
+				$('.exItem_way').html(DateMinus(myGoodsAdata.expiryDate));
+				/*$('.change_img').attr('src',myGoodsAdata.productImage);*/
+				o.oClick();
+				o.scrollData();
+			},
+			scrollData:function(){
+				
+			},
+			oClick:function(){
+				$('.backInt').on('click',function(){
+					window.history.back();
+				});
+				$('.treasMain_click img').on('click',function(){
+					/*var isAndiOS = isAndIsiOS();
+					if(isAndiOS == '1'){
+						var Intent = plus.android.importClass("android.content.Intent");
+		                var Bundle = plus.android.importClass("android.os.Bundle");
+		                var main = plus.android.runtimeMainActivity();
+		                var intent = new Intent("com.activity.RegisterActivity");
+		                var bundle = new Bundle();
+		                intent.putExtras(bundle);
+		                main.startActivity(intent);
+					}else{
+						
+					}*/
+				});
+			}
+		}
+		o.init();
+	</script>
+
+</html>

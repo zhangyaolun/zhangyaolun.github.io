@@ -17,7 +17,7 @@
 			<img src="img/head_1.png" alt="" class="backInt"/>
 			<div class="intHistroy_nav">
 				<img src="img/h_0.png" class="his_nav" />
-				<div id="mescroll" class="mescroll" style="height:12.5rem;top: 1rem;width: 83%;left: .8rem;">					
+				<div id="mescroll" class="mescroll mesBack" style="height:12.5rem;top: 1rem;width: 83%;left: 6%;">					
 					<img src="img/h_4.png" class="his_click" />
 					<div class="intHistroy_list">
 						<img src="img/h_1.png"/>
@@ -40,6 +40,7 @@
 							<div class="his_num right" style="color: #0fca0f;">-300</div>
 						</li>-->
 					</ul>
+					<img src="img/dH_3.png"  class="dataNone"/>
 				</div>
 			</div>
 		</div>
@@ -53,49 +54,43 @@
 		var o = {
 			init:function(){
 				o.oClick();
-				o.scrollData();
-				
+				o.scrollData(0);
 			},
-			scrollData:function(){
-				var mescroll = new MeScroll("mescroll", {
-					up: {
-						clearEmptyId: "intList", 
-						callback: getListData, 
+			scrollData:function(otype){
+				$('#intList').html('');
+            	var sucess = function(data) {
+            		console.log(data)
+					if(data.result.length == 0){
+						$('#intList .mescroll-empty').hide();
+						$('.intList').css('border','none');
+						$('.dataNone').show();
+					}else{
+						$('.dataNone').hide();
+						setListData(data.result);
 					}
-				});
-				function getListData(page){
-					getListDataFromNet(page.num, page.size, function(data){
-						mescroll.endSuccess(data.length);
-						setListData(data);
-					});
 				}
+				doPost('/mall/order/getScoreChangeRecords',' ', sucess);
+				
 				function setListData(data){
 					var oHtml='';
-					for (var i = 0; i < 10; i++) {
-						oHtml+='<li class="clear"><div class="his_name left"><span>商城使用-蝙蝠侠</span><div class="his_time">2017-11-28 10:55:55</div></div><div class="his_num right" style="color: #ff0000;">+300</div></li><li class="clear"><div class="his_name left"><span>商城使用-蝙蝠侠</span><div class="his_time">2017-11-28 10:55:55</div></div><div class="his_num right" style="color: #0fca0f;">-300</div></li>'
+					if(otype == '0'){
+						for (var i = 0; i < data.length; i++) {
+							oHtml+='<li class="clear"><div class="his_name left"><span>'+data[i].reason+'</span><div class="his_time">'+data[i].createTime+'</div></div><div class="his_num right" style="color: #0fca0f;">'+data[i].scoreChange+'</div></li>'
+						}
+					}else if(otype == '1'){
+						for (var i = 0; i < data.length; i++) {
+							if(data[i].scoreChange > 0){
+								oHtml+='<li class="clear"><div class="his_name left"><span>'+data[i].reason+'</span><div class="his_time">'+data[i].createTime+'</div></div><div class="his_num right" style="color: #0fca0f;">'+data[i].scoreChange+'</div></li>'
+							}
+						}
+					}else{
+						for (var i = 0; i < data.length; i++) {
+							if(data[i].scoreChange <= 0){
+								oHtml+='<li class="clear"><div class="his_name left"><span>'+data[i].reason+'</span><div class="his_time">'+data[i].createTime+'</div></div><div class="his_num right" style="color: #0fca0f;">'+data[i].scoreChange+'</div></li>'
+							}
+						}
 					}
-					$('#intList').append(oHtml);
-				}
-				
-				function getListDataFromNet(pageNum,pageSize,successCallback) {
-					console.log(pageNum)
-	                setTimeout(function () {
-	                	/*$.ajax({
-			                type: 'GET',
-			                url: '',
-			                dataType: 'json',
-			                success: function(data){*/
-			                	var data=pdlist1;
-			                	var listData=[];
-								for (var i = (pageNum-1)*pageSize; i < pageNum*pageSize; i++) {
-				            		if(i==data.length) break;
-				            		listData.push(data[i]);
-				            	}
-								if(pageNum == 2)listData = [];
-			                	successCallback(listData);
-			               /* }
-		            	});*/
-	                },1000)
+					$('#intList').html(oHtml);
 				}
 			},
 			oClick:function(){
@@ -103,10 +98,12 @@
 					window.history.back();
 				});
 				$('.his_click').on('click',function(){
-					$('.intHistroy_list').slideDown(500);;
+					$('.intHistroy_list').slideDown(500);
 				});
 				$('.intHistroy_list img').on('click',function(){
-					$('.intHistroy_list').slideUp(500);;
+					var _index = $(this).index();
+					o.scrollData(_index);
+					$('.intHistroy_list').slideUp(500);
 				});
 			}
 		}

@@ -11,7 +11,7 @@
     </script>
     <style>
     	*{font-size:14px;}
-		p{text-align:center;background:#ccc;padding:10px 0;margin:20px 0 0 0; color:#fff}
+		p{text-align:center;background:#ccc;padding:10px 0;margin:20px 0 0 0; color:#fff;}
     </style>
 </head>
  
@@ -59,7 +59,7 @@ window.onload=function(){
 			$(window).scroll(function(){
 				if ($(window).scrollTop() != '0'){
 					$('.back').show();
-				}else{
+                } else {
 					$('.back').hide();
 				}
 			　　var scrollTop = $(this).scrollTop();
@@ -77,16 +77,16 @@ window.onload=function(){
 			/*弹出确定*/
 	        $.DialogByZ.Alert({Title: "提示", Content: "您的请求失败",BtnL:"确定",FunR:Immediate}); 
 		    /*弹出确定取消*/
-	        $.DialogByZ.Confirm({Title: "", Content: "投资前需开通第三方存管账户</br>确保资金安全",FunL:confirmL,FunR:Immediate})
+	        $.DialogByZ.Confirm({Title: "", Content: "投资前需开通第三方存管账户</br>确保资金安全",FunL:confirmL,FunR:Immediate});
 			/*下方提示*/
-		    $.DialogByZ.Autofade({Content: "感谢您对我们的支持"})
+		    $.DialogByZ.Autofade({Content: "感谢您对我们的支持"});
 			/*加载*/
 		   	$.DialogByZ.Loading('image/loading.png') 
 		},
 		init_screen:function(data){
 			
 		}
-	}
+	};
 	o.init()
 }
 

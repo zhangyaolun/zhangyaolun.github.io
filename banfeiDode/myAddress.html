@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>收货信息</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.css"/>
+		<link rel="stylesheet" href="css/homepage.css">
+	</head>
+	<script>
+        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+    </script>
+	<body>
+		<div class="myIntergral">
+			<img src="img/head_1.png" alt="" class="backInt"/>
+			
+			<div class="myTreas_nav" style="height: 13.8rem;">
+				<img src="img/a_0.png" alt="" class="headInt"/>
+				
+				<div id="mescroll3" class="mescroll mesBack" style="top: .9rem;height: 12.2rem;">
+					<ul class="address_item">
+						<!--<li>
+							<div class="item_name clear"><em class="left">张耀伦</em><em class="right">15238382469</em></div>							
+							<div class="item_detail">上海上海事上海事上海事事</div>						
+							<div class="item_more clear">
+								<div class="more_name left">
+									<span class="spanactive">默认地址</span>
+								</div>
+								<div class="more_right right">
+									<span class="more_title"><img src="img/a_6.png" alt="" />
+									<i >编辑</i></span>
+									<span class="more_delete"><img src="img/a_7.png" alt="" />
+									<i >删除</i></span>
+								</div>
+							</div>
+						</li>
+						<li class="item_active">
+							<div class="item_name clear"><em class="left">张耀伦</em><em class="right">15238382469</em></div>							
+							<div class="item_detail">上海上海事上海事上海事事</div>						
+							<div class="item_more clear">
+								<div class="more_name left">
+									<span class="spanactive">默认地址</span>
+								</div>
+								<div class="more_right right">
+									<span class="more_title"><img src="img/a_6.png" alt="" />
+									<i >编辑</i></span>
+									<span class="more_delete"><img src="img/a_7.png" alt="" />
+									<i >删除</i></span>
+								</div>
+							</div>
+						</li>-->
+					</ul>
+					<img src="img/a_8.png" alt="" class="address_clickImg"/>
+					<img src="img/a_9.png"  class="address_noneImg"/>
+				</div>
+			</div>
+			<div class="treasMain_click" style="width: 55%;left: 22.5%;bottom: 3%;">
+				<img src="img/a_3.png"/>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/comment.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		FastClick.attach(document.body);
+		var o = {
+			init:function(){
+				o.oClick();
+				o.xData();
+			},
+			xData:function(){
+				var sucess = function(data){
+					console.log(data)
+					var oHtml='',_res = data.result;
+					if(_res){
+						for (var i = 0; i < _res.length; i++) {
+							if(!_res[i].defaultFlg){
+								oHtml+='<li oid="'+JSON.stringify(_res[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="item_name clear"><em class="left">'+_res[i].receiverName+'</em><em class="right">'+_res[i].receiverPhone+'</em></div><div class="item_detail">'+_res[i].province+_res[i].city+_res[i].county+_res[i].street+'</div><div class="item_more clear"><div class="more_name left"><span class="spanactive" index="'+i+'">默认地址</span></div><div class="more_right right"><span class="more_title" index="'+i+'"><img src="img/a_6.png" alt="" /><i >编辑</i></span><span class="more_delete" index="'+i+'"><img src="img/a_7.png" alt="" /><i >删除</i></span></div></div></li>'
+							}else{
+								oHtml+='<li class="item_spanactive" oid="'+JSON.stringify(_res[i]).replace(/"([^"]*)"/g, "'$1'")+'"><div class="item_name clear"><em class="left">'+_res[i].receiverName+'</em><em class="right">'+_res[i].receiverPhone+'</em></div><div class="item_detail">'+_res[i].province+_res[i].city+_res[i].county+_res[i].street+'</div><div class="item_more clear"><div class="more_name left"><span class="spanactive" index="'+i+'">默认地址</span></div><div class="more_right right"><span class="more_title" index="'+i+'"><img src="img/a_6.png" alt="" /><i >编辑</i></span><span class="more_delete" index="'+i+'"><img src="img/a_7.png" alt="" /><i >删除</i></span></div></div></li>'
+							}
+						}
+						$('.address_item').html(oHtml);
+						$('.address_item li').eq(0).addClass('item_active');
+						$('.address_clickImg').on('click',function(){
+							var indexNum = zfunIndex();
+							setCookie('myGoodsA',$('.address_item li').eq(indexNum).attr('oid'));
+							window.history.back();
+							function zfunIndex(){
+								var zIndex = '';
+								for (var z = 0; z < $('.address_item li').length; z++) {
+									if($('.address_item li').eq(z).hasClass('item_active')){
+										return zIndex=z;
+									}
+								}
+							}
+						});
+						/*设置默认地址*/
+						$(".address_item li").bind('click',function(event){
+							var _target = event.target,
+								oIndex = $(this).index();
+							$('.address_item li').removeClass('item_active').eq(oIndex).addClass('item_active');
+							if(_target.classList.value == 'spanactive'){
+								var _index = _target.attributes.
+	index.value;
+								var _result = JSON.parse($('.address_item li').eq(_index).attr('oid').replace(/'/g, '"'));
+								var modsucess= function(data){
+									$('.address_item li').removeClass('item_spanactive').eq(_index).addClass('item_spanactive');
+								}
+								var modData = {
+									'receiverName':_result.receiverName,
+									'receiverPhone':_result.receiverPhone,
+									'province':_result.province,
+									'city':_result.city,
+									'county':_result.county,
+									'street':_result.street,
+									'defaultFlg':true,
+									'id':_result.id
+								}
+								doPost('/mall/addr/modAddr',modData,modsucess);
+							}
+							if(_target.parentNode.classList.value == "more_title"){
+								var _index = _target.parentNode.attributes.
+	index.value;
+								var _resultData = $('.address_item li').eq(_index).attr('oid');
+								setCookie('myAdress',_resultData);
+								window.location.href = 'myNewAddress.html';
+							}
+							if(_target.parentNode.classList.value == "more_delete"){
+								var _index = _target.parentNode.attributes.
+	index.value;
+								var _resultdel = JSON.parse($('.address_item li').eq(_index).attr('oid').replace(/'/g, '"'));
+								var modsucess= function(data){
+									window.history.go(0);
+									$('.address_item li').eq(_index).remove();
+								}
+								var delData = {
+									'id':_resultdel.id
+								}
+								doPost('/mall/addr/delAddr',delData,modsucess);
+							}
+						})
+					}else{
+						$('.address_clickImg').hide();
+						$('.address_noneImg').show();
+					}
+					
+					return;
+				}
+				doPost('/mall/addr/addrList','',sucess);
+			},
+			oClick:function(){
+				$('.backInt').on('click',function(){
+					window.history.back();
+				});
+				
+				$('.treasMain_click').on('click',function(){
+					if($('.address_item li').length == '0'){
+						window.location.href = 'myNewAddress.html?oIndex=1';
+					}else{
+						window.location.href = 'myNewAddress.html';
+					}
+				});
+			}
+		}
+		o.init();
+	</script>
+
+</html>
