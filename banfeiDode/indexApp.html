@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    
+    
+</head>
+<body>
+	<button class="updownapp">点击按钮</button>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//判断ios和安卓
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+	var url = {
+		open: 'onetuu://32113212',        //app中原生自定义的打开连接
+		down: 'https://itunes.apple.com/cn/app/id1232721588',  //ios下载地址
+		ando: 'http://sj.qq.com/myapp/detail.htm?apkName=com.diandao.feng.rabbit'  //安卓下载地址
+	};
+
+	$(".updownapp").click(function() {
+		location.href = 'onetuu://32113212';
+		var iframe = document.createElement('iframe');
+		var body = document.body;
+		iframe.style.cssText = 'display:none;width=0;height=0';
+		body.appendChild(iframe);
+		iframe.src = url.open;
+
+		setTimeout(function() {
+			if(isiOS) {
+				location.href = url.down;
+			} else {
+				location.href = url.ando;
+			}
+		}, 250);
+	})
+</script>
+</body>
+</html>
