@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="author" content="Alun" />
+		<style>
+			*{margin: 0;padding: 2%;}
+			html,body{font-size: 14px;color: #666;}
+			.center{text-align: center;font-size: 20px;margin-top: 5%;}
+			.center_right{text-align: right;margin-right: 5%;}
+			p{ line-height: 100px;text-indent:2em;}
+		</style>
+	</head>
+	<body style="background: #f6f6f4;">
+			<p class="tit center"></p>
+			<p class="author center_right"></p>
+		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		    $(function(){
+			    $.ajax({
+				    url:'https://interface.meiriyiwen.com/article/today',
+				    type:'get',
+				    data:{'dev':'1'},
+					dataType: 'json', 
+				    success:function(data){
+				    	var data = data.data;
+				    	$('.tit').html(data.title);
+				    	$('.author').html(data.author);
+				    	$('.author').after(data.content);
+				    }
+			    }); 
+			});
+		</script>
+	</body>
+</html>
