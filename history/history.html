@@ -6,9 +6,9 @@
 		<meta name="author" content="Alun" />
 		<style>
 			*{margin: 0;padding: 2%;}
-			html,body{color: #666;}
-			.center{text-align: center;margin-top: 5%;}
-			.center_right{text-align: right;margin-right: 5%;color: #999;}
+			html,body{color: #666;font-size: 3vw;}
+			.center{text-align: center;margin-top: 5%;font-size: 5vw;}
+			.center_right{text-align: right;margin-right: 5%;color: #999;font-size: 2vw;}
 			p{ line-height: 100px;text-indent:2em;}
 			.statement{color: #000;}
 		</style>
@@ -16,7 +16,7 @@
 	<body style="background: #f6f6f4;">
 		<p class="tit center"></p>
 		<p class="author center_right"></p>
-		<div class="statement"><span>声明：</span>以上内容获取 API均由产品公司自身提供，本人皆从网络获取。获取与共享之行为或有侵犯产品权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目</div>	
+		<div class="statement"></div>	
 		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 		    $(function(){
@@ -30,6 +30,7 @@
 				    	$('.tit').html(data.title);
 				    	$('.author').html(data.author);
 				    	$('.author').after(data.content);
+				    	$('.statement').html('<span>声明：</span>以上内容获取 API均由产品公司自身提供，本人皆从网络获取。获取与共享之行为或有侵犯产品权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目');
 				    }
 			    }); 
 			});
