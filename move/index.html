@@ -22,7 +22,7 @@
 </header>
 <div class="recommend clearfix">
 	<h2 class="title">
-        <span>正在上映的电影-上海</span>
+        <span class="move_top">正在上映的电影</span>
         <!--<a class="fr" href="library.html">更多 ></a>-->
     </h2>
     <div class="container">
@@ -38,6 +38,7 @@
             if(num == 1){
            	    var city = position.city;
           	    city = city.substring(0,city.length-1);
+          	    move_top.html('正在上映的电影 -'+city);
               	var odata = {
 		     		'apikey':'0b2bdeda43b5688921839c8ecb20399b',
 		     		'city':city,
