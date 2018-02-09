@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+   
+    <title></title>
+</head>
+<style>
+    html,body,.poster-bg,.poster-bg img{
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<body>
+<!--全屏背景-->
+<div class="poster-bg">
+    <!--电影背景图-->
+    <img src="images/poster1.jpg" alt=""/>
+</div>
+<!--电影详情-->
+<div class="detail">
+    <div class="title">电影详情</div>
+    <div class="container">
+        <div class="name rlt">
+            <span style="font-size: 25px" class="move_title"></span>
+            <span class="move_year"></span>
+            <div class="star abs">
+                <dl>
+                    <dt></dt>
+                    <dd></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="main">
+            <p><span class="move_name"></span></p>
+            <p><span class="move_genres"></span></p>
+            <p><span class="move_casts"></span></p>
+            <p><span class="move_durations"></span></p>
+            <p class="rlt" style="margin-top: 20px;">剧情简介：
+                <!--简介-->
+                <span class="part move_summary"></span>
+            </p>
+        </div>
+        <div class="pic-box rlt">
+            <div class="swiper-container" id="swiper_photos">
+			    <div class="swiper-wrapper move_Photoss">
+			       
+			    </div>
+			    <!-- 如果需要分页器 -->
+			    <div class="swiper-pagination move_pagination"></div>
+			    <!-- 如果需要导航按钮 -->
+			    <div class="swiper-button-prev"></div>
+			    <div class="swiper-button-next"></div>
+			</div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+	var oid = getParameter('oid');
+	$.ajax({
+	    url:'http://api.douban.com/v2/movie/subject/'+oid+'?apikey=0b2bdeda43b5688921839c8ecb20399b',
+	    type:'get',
+		dataType: 'jsonp',
+		jsonp:"callback", 
+		jsonpCallback:"succe_jsonp", 
+	    success:function(data){
+	    	$('.move_title').html(data.title);
+	    	$('.move_year').html(data.pubdates[0]);
+	    	$('.star dd').html('('+data.wish_count+'人想看)');
+	    	$('.move_name').html('导演：'+data.directors[0].name);
+	    	var oGenres = '';
+	    	for(i in data.genres){
+	    		oGenres+=data.genres[i]+' , '
+	    	}
+	    	oGenres = oGenres.substring(0,oGenres.length-2)
+	    	$('.move_genres').html('类型：'+oGenres);
+	    	var oCasts = '';
+	    	for(s in data.casts){
+	    		oCasts+=data.casts[s].name+' , '
+	    	}
+	    	oCasts = oCasts.substring(0,oCasts.length-2)
+	    	$('.move_casts').html('主演：'+oCasts);
+	    	$('.move_durations').html('时长：'+data.durations[0]);
+	    	$('.move_summary').html(data.summary);
+	    	if(data.photos){
+	    		var oPhotos = '';
+		    	for(p in data.bloopers){
+		    		oPhotos+='<div class="swiper-slide"><img src="'+data.bloopers[p].medium+'" alt="" style="width:100%;"/></div>'
+		    	}
+		    	$('.move_Photoss').html(oPhotos);
+	    		
+	    		var mySwiper = new Swiper ('#swiper_photos', {
+				    direction: 'horizontal',
+				    loop: true,
+				    // 如果需要分页器
+				    pagination: '.move_pagination',
+				      // 如果需要前进后退按钮
+				    nextButton: '.swiper-button-next',
+				    prevButton: '.swiper-button-prev'
+			    })   
+	    	}
+	    }
+    }); 
+</script>
+</body>
+</html>
