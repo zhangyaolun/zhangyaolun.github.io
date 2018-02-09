@@ -18,7 +18,6 @@
 <!--全屏背景-->
 <div class="poster-bg">
     <!--电影背景图-->
-    <img src="images/poster1.jpg" alt=""/>
 </div>
 <!--电影详情-->
 <div class="detail">
@@ -39,7 +38,7 @@
             <p><span class="move_genres"></span></p>
             <p><span class="move_casts"></span></p>
             <p><span class="move_durations"></span></p>
-            <p class="rlt" style="margin-top: 20px;">剧情简介：
+            <p class="rlt" style="margin-top: 20px;">
                 <!--简介-->
                 <span class="part move_summary"></span>
             </p>
@@ -87,7 +86,7 @@
 	    	oCasts = oCasts.substring(0,oCasts.length-2)
 	    	$('.move_casts').html('主演：'+oCasts);
 	    	$('.move_durations').html('时长：'+data.durations[0]);
-	    	$('.move_summary').html(data.summary);
+	    	$('.move_summary').html('剧情简介：'+data.summary);
 	    	if(data.photos){
 	    		var oPhotos = '';
 		    	for(p in data.bloopers){
