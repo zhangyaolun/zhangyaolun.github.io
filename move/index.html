@@ -20,54 +20,13 @@
 </iframe> 
 <header>
 </header>
-<div class="recommend clearfix">
-	<h2 class="title">
-        <span class="move_top">正在上映的电影</span>
-        <!--<a class="fr" href="library.html">更多 ></a>-->
-    </h2>
-    <div class="container">
-        <div style="text-align: center;width:100%;">加载中...</div>
-    </div>
-</div>
 <script type="text/javascript">
-	var num = 1;
 	window.addEventListener('message', function(event) {
 	    var position = event.data; 
-	    if(sessionStorage.getItem('position'))return;
+	    console.log(position)
 	    if(position && position.module == 'geolocation') { 
-            if(num == 1){
-           	    var city = position.city;
-          	    city = city.substring(0,city.length-1);
-          	    $('.move_top').html('正在上映的电影 -'+city);
-              	var odata = {
-		     		'apikey':'0b2bdeda43b5688921839c8ecb20399b',
-		     		'city':city,
-		     		'start':1,
-		     		'count':'36',
-		     		'client':'',
-		     		'udid':''
-		     	}
-                $.ajax({
-				    url:'https://api.douban.com/v2/movie/in_theaters',
-				    type:'get',
-				    data:odata,
-					dataType: 'jsonp',
-					jsonp:"callback", 
-					jsonpCallback:"success_jsonp", 
-				    success:function(data){
-				    	var _restults = data.subjects,ohtml='';
-				    	for(i in _restults){
-				    		if(i%3 == 0){
-				    			ohtml+='<dl class="fl" ><dt><a href="detail.html?oid='+_restults[i].id+'"><img class="auto" src="'+_restults[i].images.medium+'" alt=""/></a><div class="score abs">'+_restults[i].rating.average+'分</div></dt><dd><a href="detail.html">'+_restults[i].title+'</a></dd></dl>'
-				    		}else{
-				    			ohtml+='<dl class="fl" style="margin: 0 0 0 2%"><dt><a href="detail.html?oid='+_restults[i].id+'"><img class="auto" src="'+_restults[i].images.medium+'" alt=""/></a><div class="score abs">'+_restults[i].rating.average+'分</div></dt><dd><a href="detail.html">'+_restults[i].title+'</a></dd></dl>'
-				    		}
-				    	}
-				    	$('.container').html(ohtml);
-				    }
-			 	}); 
-			 	num = 2;
-           }
+       	    var city = position.city;
+      	    city = city.substring(0,city.length-1);
         } else { 
         }     
 	}, false);

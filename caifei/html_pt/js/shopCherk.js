@@ -1,12 +1,10 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		if(!getCookie('userName')){
-			window.location.href = 'login.html';
-		}
+		
 		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));
 		o.clerkClick();
-		o.oDate();
+		
 	},
 	clerkClick:function(months,currPage){
 		$('.clerkItem').on('click','em',function(){

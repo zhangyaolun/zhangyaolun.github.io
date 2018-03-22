@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* 触屏版常用层与动作等样式*/
+body{background: #fff;}
+.nctouch-search-layout { margin-top: 2rem;}
+.nctouch-search-layout dl { padding : 0.8rem 0.5rem 0.5rem; text-align: left;}
+.nctouch-search-layout dt { font-size: 0.7rem; line-height: 1rem; color: #111; margin-bottom: 0.4rem; }
+.nctouch-search-layout dt a{float:right;}
+.nctouch-search-layout dt a i.del{width:0.8rem;height:0.8rem;display:inline-block;background:url(../images/delete.png) no-repeat center;background-size:contain;}
+.nctouch-search-layout dd {}
+.nctouch-search-layout ul { font-size: 0; display: block;}
+.nctouch-search-layout li { display: inline-block; background-color: #eaeaea; border: solid 0.05rem #EEE; margin: 0 0.4rem 0.4rem 0;}
+.nctouch-search-layout li a { display: block; padding: 0.2rem 0.6rem; font-size: 0.5rem; line-height: 0.6rem; color: #444;}
+.nctouch-search-layout .hot-keyword li { border-radius: 0.75rem;}
+.nctouch-search-layout .history-keyword li { border-radius: 0.75rem;}

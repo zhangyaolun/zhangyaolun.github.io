@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/nctouch_products_list.css" />
+  <link rel="stylesheet" type="text/css" href="../../lib/css/weui.css" />
+</head>
+
+<body>
+  <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <div class="content hide" id="app">
+    <!--头部搜索-->
+    <header id="header" class="fixed favheader">
+      <div class="header-wrap">
+        <div class="header-l">
+          <a href="member.html"> <i class="back"></i> </a>
+        </div>
+        <div class="header-tab"><a :href="[curFalg == 1?'javascript:void(0)':'favorites.html?title=1']" :class="[curFalg == 1?'cur':'']">商品收藏</a><a :href="[curFalg == 2?'javascript:void(0)':'favorites.html?title=2']" :class="[curFalg == 2?'cur':'']">店铺收藏</a></div>
+        <div class="header-r"> <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a> </div>
+      </div>
+    </header>
+    <!-- 内容部分 -->
+    <div class="nctouch-main-layout">
+
+      <div class="grid" v-show="listShow">
+        <ul class="goods-secrch-list fav-list" id="favorites_list">
+
+          <li class="goods-item" v-for="(item,k) in itemList" :id="'favitem_'+item.goods_id">
+            <a :href="'../product/product_detail.html?goods_id='+item.goods_id">
+              <span class="goods-pic"><img :src="item.detail.goods_image"></span>
+              <dl class="goods-info"><dt class="goods-name"><h4>{{item.detail.goods_name}}</h4></dt>
+              </dl>
+              <dd class="goods-sale">
+                <span class="goods-price">￥<em>{{item.detail.goods_price}}</em></span>
+              </dd>
+            </a>
+            <a href="javascript:void(0);" nc_type="fav_del" class="fav-del" @click="delList(item.goods_id,k)"></a>
+          </li>
+
+        </ul>
+      </div>
+      <!--无收藏商品-->
+      <div class="nctouch-norecord favorite-goods" v-show="goodsFalg">
+        <div class="norecord-ico"><i></i></div>
+        <dl>
+          <dt>您还没有关注任何商品</dt>
+          <dd>可以去看看哪些商品值得收藏</dd>
+        </dl>
+        <a href="../home/home.html" class="btn">随便逛逛</a>
+      </div>
+      <!--无收藏店铺-->
+      <div class="nctouch-norecord favorite-store" v-show="storeFalg">
+        <div class="norecord-ico"><i></i></div>
+        <dl>
+          <dt>您还没有关注任何店铺</dt>
+          <dd>可以去看看哪些店铺值得收藏</dd>
+        </dl>
+        <a href="../home/home.html" class="btn">随便逛逛</a>
+      </div>
+      <!--数据请求加载提示-->
+      <div class="pre-loading" v-show="preLoading"></div>
+      <!--弹框-->
+      <div class="weui-preToast" v-show="preToast">
+        <div class="weui-toast"></div>
+      </div>
+    </div>
+    <!-- 内容部分结束 -->
+  </div>
+  <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+          goodsFalg:false,
+          storeFalg:false,
+          preLoading:true,
+          itemList:[],
+          preToast:false,
+          curFalg:1,
+          listShow:true
+      },
+      computed: {
+      },
+      mounted: function () {
+        FastClick.attach(document.body);
+        this.curFalg = commentJs.getUrlKey('title');
+        commentJs.downMenuSpot('favheader', 3);
+        commentJs.toastLoading('加载中...');
+        commentJs.appShowhide('app');
+        this.oListData();
+      },
+
+      methods: {
+          oListData:function(){//主菜单列表
+              let _this = this;
+              let suc = function (data){
+                  console.log(data)
+                  setTimeout(function(){
+                      _this.preLoading = false;
+                      _this.itemList = data.data.items;
+                      if(_this.curFalg == 2){
+                          _this.listShow = false;
+                          _this.storeFalg = true;
+                      };
+                  },300);
+              }
+              commentJs.doPost('../../json/favorites.json','',suc);
+          },
+          delList(id,index){//删除
+              let _this = this;
+              _this.itemList.forEach(function (v,k) {
+                  console.log(k)
+                  if(v.goods_id == id){
+                      console.log(id)
+                      _this.itemList.splice(k,1);
+                      _this.preToast = true;
+                      let fun = function(){
+                          _this.preToast = false;
+                      }
+                      commentJs.toastTitle('weui-toast','删除成功',fun);
+                  }
+              });
+          }
+      }
+
+
+    })
+  </script>

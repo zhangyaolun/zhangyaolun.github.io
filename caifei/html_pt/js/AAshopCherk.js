@@ -1,12 +1,9 @@
 var o = {
 	init:function(){
 		FastClick.attach(document.body);
-		if(!getCookie('userName')){
-			window.location.href = 'login.html';
-		}
 		$('.clerkTop img').attr('src','/shop/shopstaff-qrcode/'+getCookie('id'));
 		o.clerkClick();
-		o.oDate();
+		
 		o.mobile();
 	},
 	clerkClick:function(event,obj){// 点击弹层

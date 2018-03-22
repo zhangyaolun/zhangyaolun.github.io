@@ -17,9 +17,11 @@ var o = {
 		},15000)
 		if(!position){
 			window.addEventListener('message', function(event) {
+				
 				if($('.nearbyMain li').eq(0).html() == '暂无数据')return;
 			    // 接收位置信息
 			    var position = event.data; 
+			    console.log(position)
 			    if(sessionStorage.getItem('position'))return;
 			    if(position && position.module == 'geolocation') { //定位成功,防止其他应用也会向该页面post信息，需判断module是否为'geolocation'
 	                sessionStorage.setItem('position',JSON.stringify(position));

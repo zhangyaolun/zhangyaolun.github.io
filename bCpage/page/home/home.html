@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta name="screen-orientation" content="portrait" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../../comment/css/new-style.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/css/swiper-4.1.6.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/home.css">
+</head>
+
+<body>
+	<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/js/swiper.js" type="text/javascript" charset="utf-8"></script>
+	<div class="content hide" id="app">
+		<!--头部搜索-->
+		<header class="head-fixed"></header>
+		<!-- 内容部分 -->
+		<div class="homePage">
+			<!-- 轮播 -->
+			<div class="swiper">
+				<div class="swiper-container swiper-top-container swiper-container-new swiper-container-horizontal swiper-container-android swiper-container1">
+					<div class="swiper-wrapper" >
+						<div class="swiper-slide" v-for="item in swiperList"><img :src="item.image"></div>
+					</div>
+					<div class="swiper-pagination swiper-pagination1"></div>
+				</div>
+			</div>
+			<!-- 轮播结束 -->
+			<section class="assure">
+				<ul class="clear">
+					<li><img src="../../images/zheng.png">正品行货</li>
+					<li><img src="../../images/zheng.png">全国联保</li>
+					<li><img src="../../images/zheng.png">全场包邮</li>
+					<li><img src="../../images/zheng.png">免费分期</li>
+				</ul>
+			</section>
+			<div style="background: #f5f5f5;float: left;width: 100%;">
+				<div class="jd-express-news">
+					<a report-eventid="MHome_BJDTitle" report-eventlevel="1" report-eventparam="785" page_name="index" class="J_ping jd-news-tit"
+					 href="tmpl/uartlist.html?qazdfg=1521080371">
+						电商&nbsp;<span style="background: #F02F2F;color: #fff;padding: 3px;border-radius: 5px;">快报</span>
+						</a>
+					<div id="scroll-news" class="news-list-wrapper">
+						<ul id="alluart_showlist" class="news-list" style="transform: translate3d(0px, 0px, 0px); margin-top: 0px;">
+							<li class="news-item">
+								<a report-eventid="MHome_BJDNews" report-eventlevel="1" report-eventparam="14" page_name="index" href="tmpl/uart_detail.html?uart_id=14&amp;qazdfg=1521080371"
+								 class="J_ping">售后说明</a>
+							</li>
+						</ul>
+					</div>
+					<a report-eventid="MHome_BJDNewsMore" report-eventlevel="1" report-eventparam="785" page_name="index" class="J_ping jd-news-more"
+					 href="tmpl/uartlist.html?qazdfg=1521080371"><i class="line"></i>更多</a>
+				</div>
+			</div>
+
+			<ul class="nav-class tc four">
+				<!-- 若此ul里面有四个li则将class的three改为four -->
+				<li>
+					<a href="javascript:;"><i></i>
+						<p>品牌专区</p>
+					</a>
+				</li>
+				<li>
+					<a href="seckill_list.html"><i></i>
+						<p>秒杀风暴</p>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;"><i></i>
+						<p>伙拼成团</p>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;"><i></i>
+						<p>在线办卡</p>
+					</a>
+				</li>
+			</ul>
+
+			<!--<nav>
+				<ul class="clearfix">
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>领券中心</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>商城秒杀</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>签到有礼</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>品牌特惠</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>拼团活动</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>品牌专区</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>分享返利</span></a></li>
+					<li><a href="#"> <img src="../../images/nav_icon1.png" alt=""><span>在线办卡</span></a></li>
+				</ul>
+			</nav>-->
+
+
+			<div class="nctouch-home-layout mrb150" id="main-container2"><!-- bort1-->
+				<div class="bgf ">
+					<div class="ad ">
+						<a href="../product/product_detail.html" class="tc"><img src="http://jiansheyinhang.oss-cn-shanghai.aliyuncs.com/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521266385130537.jpg" alt=""> </a>
+					</div>
+				</div><!--- bort1 borb1 mrb45 padb63 mrt20 -->
+				<div class="bgf">
+
+
+					<div class="user_de">
+						<ul class="new-goods clearfix wrap" style="width: 100% !important;margin-bottom: 0.4rem;">
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=588&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											富士INSTAX 拍立得 MINI迪斯尼
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/86eed725c53de6350c89c5b0234cddf0/10017/6/image/20171122/1511322362719208.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">69.08</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">69.08</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥829.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=1833&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											富士（FUJIFILM）INSTAX 一次成像相机 MINI9相机：冰霜蓝
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180206/1517885744215128.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">38.25</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">38.25</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥459.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2350&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											富士（FUJIFILM）INSTAX 一次成像相机 MINI90相机
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180319/1521436073721153.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">99</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">99</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1188.00</div>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div><!-- bort1-->
+				<div class="bgf ">
+					<div class="ad ">
+						<a href="../product/product_detail.html" class="tc"><img src="http://jiansheyinhang.oss-cn-shanghai.aliyuncs.com/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521267022118916.jpg" alt=""> </a>
+					</div>
+				</div><!--- bort1 borb1 mrb45 padb63 mrt20 -->
+				<div class="bgf">
+
+
+					<div class="user_de">
+						<ul class="new-goods clearfix wrap" style="width: 100% !important;margin-bottom: 0.4rem;">
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2322&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Emporio Armani 阿玛尼 男士女士灰色印花牛皮手拿包 钱包 YEM474
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180306/1520318643673331.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">124.17</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">124.17</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1490.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2329&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Emporio Armani 阿玛尼 男包手提包公文包单肩包 YEM823
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180306/1520320737828185.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">273.33</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">273.33</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥3280.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2331&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Emporio Armani 阿玛尼 铝镁合金 黑色 21寸 拉杆箱
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180306/1520321145232169.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">306.67</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">306.67</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥3680.00</div>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div><!-- bort1-->
+				<div class="bgf ">
+					<div class="ad ">
+						<a href="../product/product_detail.html" class="tc"><img src="http://jiansheyinhang.oss-cn-shanghai.aliyuncs.com/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521267114814578.jpg" alt=""> </a>
+					</div>
+				</div><!--- bort1 borb1 mrb45 padb63 mrt20 -->
+				<div class="bgf">
+
+
+					<div class="user_de">
+						<ul class="new-goods clearfix wrap" style="width: 100% !important;margin-bottom: 0.4rem;">
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=1690&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											飞利浦(PHILIPS)烤面包机HD2582/00
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20171215/1513325054661527.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">27.92</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">27.92</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥335.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=1906&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											飞利浦（PHILIPS）超薄智能自动扫地机器人FC8820/81
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180206/1517906146221411.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">132.5</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">132.5</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1590.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=1966&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											飞利浦（PHILIPS）Viva Collection智能电饭煲HD3157/21
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180207/1518005859838914.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">24.92</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">24.92</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥299.00</div>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div><!-- bort1-->
+				<div class="bgf ">
+					<div class="ad ">
+						<a href="../product/product_detail.html?cat_id=1&amp;qazdfg=1521184631" class="tc"><img src="http://jiansheyinhang.oss-cn-shanghai.aliyuncs.com/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521267216338384.jpg" alt=""> </a>
+					</div>
+				</div><!--- bort1 borb1 mrb45 padb63 mrt20 -->
+				<div class="bgf">
+
+
+					<div class="user_de">
+						<ul class="new-goods clearfix wrap" style="width: 100% !important;margin-bottom: 0.4rem;">
+
+							<li style="width: 42% !important;padding: 0.3rem !important;">
+								<a href="../product/product_detail.html?goods_id=257&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											博朗Braun 多功能手持式搅拌机 MQ325
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/86eed725c53de6350c89c5b0234cddf0/10020/6/image/20171121/1511247637536697.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">24.92</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">24.92</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥299.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li style="width: 42% !important;padding: 0.3rem !important;margin: 0.4rem 0 0rem 0.3rem !important;">
+								<a href="../product/product_detail.html?goods_id=569&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Miji 德国米技 EO9L 10升电烤箱家用 烘焙多功能
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/86eed725c53de6350c89c5b0234cddf0/10019/6/image/20171122/1511320627206883.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">20.75</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">20.75</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥249.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li style="margin: 0.4rem 0 0rem 0.44rem !important;">
+								<a href="../product/product_detail.html?goods_id=1181&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											美国艾罗伯特（iRobot）智能拖地擦地机器人 Braava381
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/86eed725c53de6350c89c5b0234cddf0/10019/6/image/20171123/1511428284137418.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">208.25</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">208.25</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥2499.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=1251&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											德龙Delonghi Icona复古系列 泵压式咖啡机 ECO310 甜蜜奶油色
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/86eed725c53de6350c89c5b0234cddf0/10020/6/image/20171123/1511444833507606.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">173.33</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">173.33</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥2080.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=1464&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											3M 空气净化器 家用KJ2025-SL 除pm2.5雾霾
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20171204/1512377035268476.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">83.25</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">83.25</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥999.00</div>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div><!-- bort1-->
+				<div class="bgf ">
+					<div class="ad ">
+						<a href="../product/product_detail.html?cat_id=94&amp;qazdfg=1521184734" class="tc"><img src="http://jiansheyinhang.oss-cn-shanghai.aliyuncs.com/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521267415140781.jpg" alt=""> </a>
+					</div>
+				</div><!--- bort1 borb1 mrb45 padb63 mrt20 -->
+				<div class="bgf">
+
+
+					<div class="user_de">
+						<ul class="new-goods clearfix wrap" style="width: 100% !important;margin-bottom: 0.4rem;">
+
+							<li style="width: 42% !important;padding: 0.3rem !important;">
+								<a href="../product/product_detail.html?goods_id=1960&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											kindle全新入门款升级版6英寸电子墨水触控显示屏电子书阅读器wifi黑色/白色
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180207/1518000527195510.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">46.5</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">46.5</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥558.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li style="width: 42% !important;padding: 0.3rem !important;margin: 0.4rem 0 0rem 0.3rem !important;">
+								<a href="../product/product_detail.html?goods_id=1970&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Bose SoundSport Free 真无线蓝牙耳机：颜色随机
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180208/1518059920955388.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">157.33</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">157.33</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1888.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li style="margin: 0.4rem 0 0rem 0.44rem !important;">
+								<a href="../product/product_detail.html?goods_id=2120&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											大疆（DJI）“晓”SPARK掌上智能无人机 高清航拍 自拍神器
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10017/6/image/20180226/1519636717290286.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">241.58</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">241.58</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥2899.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2123&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											HUAWEI WATCH 2 华为第二代智能运动手表4G版 独立SIM卡通话 GPS心率FIRSTBEAT运动指导 NF
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10017/6/image/20180226/1519637154568773.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">157.33</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">157.33</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1888.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2345&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											JBL Pulse3 音乐脉动3 炫彩蓝牙小音箱 音响 低音炮 便携迷你音响 音箱 防水设计 典雅黑
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180312/1520849763386437.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">124.92</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">124.92</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1499.00</div>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div><!-- bort1-->
+				<div class="bgf ">
+					<div class="ad ">
+						<a href="../product/product_detail.html?cat_id=459&amp;qazdfg=1521184782" class="tc"><img src="http://jiansheyinhang.oss-cn-shanghai.aliyuncs.com/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521267513106824.jpg" alt=""> </a>
+					</div>
+				</div><!--- bort1 borb1 mrb45 padb63 mrt20 -->
+				<div class="bgf">
+
+
+					<div class="user_de">
+						<ul class="new-goods clearfix wrap" style="width: 100% !important;margin-bottom: 0.4rem;">
+
+							<li style="width: 42% !important;padding: 0.3rem !important;">
+								<a href="../product/product_detail.html?goods_id=86&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											飞利浦/PHILIPS 奢宠礼遇粉钻牙刷 HX9362/67 粉色
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/86eed725c53de6350c89c5b0234cddf0/10011/6/image/20171118/1510978368133836.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+
+										<div class="black">￥<span class="common_fenqi">83.25</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥999.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li style="width: 42% !important;padding: 0.3rem !important;margin: 0.4rem 0 0rem 0.3rem !important;">
+								<a href="../product/product_detail.html?goods_id=1444&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Emporio Armani牛皮可缩放双面腰带Y4S218
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180206/1517919585928681.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">83.25</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">83.25</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥999.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li style="margin: 0.4rem 0 0rem 0.44rem !important;">
+								<a href="../product/product_detail.html?goods_id=1931&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											外交官珍品细框拉杆箱 YH-6162-508
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180206/1517907518713613.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">30.67</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">30.67</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥368.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2005&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Emporio Armani 阿玛尼 商务 时尚 双肩背包 Y3L015
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180226/1519627254477026.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">106.67</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">106.67</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥1280.00</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="../product/product_detail.html?goods_id=2347&amp;qazdfg=1521534504">
+									<div>
+										<div class="tit">
+
+											Casio卡西欧TR-M10&nbsp;自拍神器美颜数码相机
+
+										</div>
+
+										<div class="act_img"><img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180312/1520850108807803.jpg?x-oss-process=image/resize,m_lfit,h_360,w_360" alt=""></div>
+										<!--<div style="font-size: 0.2rem !important;float: left;width: 100%;margin-top: 0.4rem;color: black;    background: none !important;">分期价:￥<span style="font-size: 15px;font-weight: bold;color: #fd3d53;">285.75</span>×12期</div>-->
+
+										<div class="black">￥<span class="common_fenqi">285.75</span>×12期</div>
+										<div class="black paddingleft" style="color: #949292 !important;">商城价:￥3429.00</div>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div></div>
+
+
+
+
+
+
+
+
+			<!-- 商品列表 -->
+			<!--<div class="product-area">
+				<div class="title">{{product.name}}<span class="more">MORE>></span></div>
+				<ul class="product">
+					<li v-for="product in items">
+						<a :href="'../product/product_detail.html?id=' + product.id">
+							<img :src="product.common_image">
+							<h3>{{product.common_name}}</h3>
+							<span class="fenQi">￥ <i>{{product.common_fenqi_price}}</i> &times; {{product.common_fenqi}} 期</span>
+							<span class="mallPrice">商城价：{{product.common_price}}</span>
+							<span class="buyNow">购买</span>
+						</a>
+					</li>
+				</ul>
+			</div>-->
+			<!-- 商品列表结束 -->
+
+		</div>
+		<!-- 内容部分结束 -->
+
+
+
+
+
+
+		<!--尾部切换-->
+		<footer class="footer bort1"></footer>
+
+		<!--回到顶部-->
+		<div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
+	</div>
+	<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+                oBackTopFixed:false,
+                swiperList:[],
+                product: {},
+                items: {},
+			},
+			computed: {
+
+			},
+			mounted: function () {
+				let _this = this
+				FastClick.attach(document.body);
+				commentJs.homeHader();
+				commentJs.headerFooter(0);
+				commentJs.appShowhide('app');
+                commentJs.BackToTop('fix-block-r');
+                window.addEventListener('scroll', this.handleScroll);
+				this.getInfo();
+                this.login();
+			},
+
+			methods: {
+				getInfo() {
+					let _this = this;
+					var suc = function (data) {
+						console.log(data)
+						_this.swiperList = data.data.module_data[0].slider_list.item;
+                        setTimeout(function(){
+                            var mySwiper = new Swiper('.swiper-container1', {autoplay: 3000,loop: true,pagination: '.swiper-pagination1'});
+                        },200);
+					}
+					commentJs.doPost('http://paycenter.g-town.com.cn//index.php?ctl=Index&met=index&typ=json&ua=wap&sub_site_id=0', '', suc);
+				},
+				login(){
+                    /*var suc = function (data) {
+                        console.log(data)
+                    }
+                    let oData = {
+                        username:'admin',
+                        password:'123456',
+                        rememberMe:true
+					}
+                    commentJs.doPost('/login',oData, suc);*/
+				},
+                oBackTop(){//回到顶部
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+				},
+                handleScroll(){
+                    let _this = this;
+                    let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                    scrollTop > 100 ? _this.oBackTopFixed = true : _this.oBackTopFixed = false;
+				}
+			}
+
+
+		})
+	</script>
+</body>
+
+</html>

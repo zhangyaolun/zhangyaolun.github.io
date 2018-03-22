@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta name="screen-orientation" content="portrait" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/nctouch_cart.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/shopCar.css" />
+	</head>
+
+	<body>
+		<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<div class="content hide" id="app">
+			<!--头部搜索-->
+			<header id="header" class="fixed header">
+				<div class="header-wrap">
+					<div class="header-l">
+						<a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+					</div>
+					<div class="header-title">
+						<h1>购物车</h1>
+					</div>
+					<div class="JS-header-edit" v-show="headerEdit" @click="headerClick">{{headerTitle}}</div>
+					<div class="header-r">
+						<a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a>
+					</div>
+				</div>
+			</header>
+			<!--购物车-->
+			<div class="nctouch-main-layout">
+				<div id="cart-list-wp" class="mb50">
+					<div class="nctouch-cart-container" v-if="mainEmpty">
+						<div v-for="(item,i) in shopList">
+							<dl class="nctouch-cart-store">
+								<dt>
+				                    <span class="store-check"> 
+									    <input type="checkbox" :class="item.checkStatus?'store_checked':''" @click="changChecke(i)"/>
+									    <i class="store-title">{{item.shop_name}}</i> 
+									</span>
+				                    <span class="JS-edit fr" @click="JSedit(i)" v-show="JSeditShowTitle">编辑</span>
+				                </dt>
+							</dl>
+							<ul class="nctouch-cart-item">
+								<li cart_id="1906" class="cart-litemw-cnt" v-for="(itemCh,k) in item.List">
+									<div class="buy-li">
+										<div class="goods-check">
+											<input type="checkbox" :class="itemCh.checkStatus?'store_checked':''" @click="changList(k,i)">
+										</div>
+										<div class="goods-pic">
+											<a :href="'../product/product_detail.html?id='+itemCh.goods_id">
+												<img :src="itemCh.goods_image_url"> </a>
+										</div>
+										<dl class="goods-info" :class="[JSeditShow == i || JSeditShowhide?'hide':'showInline']">
+											<dt class="goods-name">
+				                                <a :href="'../product/product_detail.html?id='+itemCh.goods_id">{{itemCh.goods_name}}</a>
+				                            </dt>
+											<dd class="goods-type">{{itemCh.spec_val_str}}</dd>
+											<span class="goods-price">￥<em>{{itemCh.goods_price}}</em></span>
+										</dl>
+										<div class="edit-area" :class="[JSeditShow == i || JSeditShowhide?'show':'hide']">
+											<div class="goods-del" cart_id="1906" @click="dialogWrapperClick(itemCh.goods_id)">删除</div>
+											<div class="goods-subtotal">
+												<span class="goods-price"></span>
+												<div class="value-box">
+													<span class="minus">
+			                                            <a href="javascript:void(0);" @click="reduceChang(itemCh,k,i)">&nbsp;</a>
+			                                        </span>
+													<span>
+			                                            <input type="number" min="1" class="buy-num buynum" v-model="itemCh.goods_num">
+			                                        </span>
+													<span class="add">
+			                                            <a href="javascript:void(0);" @click="plusChang(itemCh,k,i)">&nbsp;</a>
+			                                        </span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!--购物车空显示-->
+					<div class="nctouch-norecord cart" v-else>
+						<div class="norecord-ico"><i></i></div>
+						<dl>
+							<dt>您的购物车还是空的</dt>
+							<dd>去挑一些中意的商品吧</dd>
+						</dl>
+						<a href="../home/home.html" class="btn">随便逛逛</a>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="nctouch-cart-bottom">
+				<div class="all-check" @click="checkAll">
+					<input type="checkbox" :class="checkAll_checked?'store_checked':''"><span class="selected-all">全选</span>
+				</div>
+				<div class="total">
+					<dl class="total-money">
+						<dt>合计总金额：</dt>
+						<dd>￥<em>{{allmoney | currency}}</em></dd>
+					</dl>
+				</div>
+
+				<div class="check-out ok" v-if="subShow" @click="payMent">
+					<a href="javascript:void(0)" >{{subTitle | subTitleCurrency}}</a>
+				</div>
+				<div :id="[!subShow?'batchRemove':'']" v-else @click="btnMoreDel">删除</div>
+			</div>
+
+			<div class="pre-loading" v-show="preLoading"></div>
+
+			<div class="simple-dialog-wrapper" v-show="dialogWrapper"><div class="s-dialog-mask" style="height:667px;"></div><div style="left: 50%; top: 333.5px; margin-left: -111px;" class="s-dialog-wrapper s-dialog-skin-red"><div class="s-dialog-content">确认删除吗？</div><div class="s-dialog-btn-wapper"><a href="javascript:void(0)" class="s-dialog-btn-ok">确定</a><a href="javascript:void(0)" class="s-dialog-btn-cancel" @click="btnCancel">取消</a></div></div></div>
+
+			<!--尾部切换-->
+			<footer class="footer bort1"></footer>
+		</div>
+		<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					headerEdit: true,
+                    headerTitle:'编辑',
+                    JSeditShowTitle:true,
+                    JSeditShowhide: false,
+                    checkAll_checked: false,
+					preLoading: true,
+					mainEmpty: true,
+					JSlistShow: true,
+					subTitle:0,
+                    subShow:true,
+					JSeditShow: -1,
+                    dialogWrapper:false,
+					allmoney: 0,
+					shopList: [
+
+					],
+					checkedNum: [],
+					checkedPrice: [],
+					addCheckId: []
+				},
+				computed: {},
+				mounted: function() {
+					FastClick.attach(document.body);
+					commentJs.appShowhide('app');
+					commentJs.downMenuSpot('header', 1);
+                    commentJs.toastLoading('购物车数据读取中...');
+					commentJs.headerFooter(2);
+					let _this = this;
+					setTimeout(function() {
+						_this.preLoading = false;
+						_this.oListData();
+					}, 800);
+				},
+				filters: {
+					currency: function(value) {
+						return parseFloat(value).toFixed(2);
+					},
+                    subTitleCurrency: function(value) {
+                        return '去付款('+value+')';
+                    }
+				},
+				methods: {
+					oListData() { //主菜单列表
+						let _this = this;
+						let suc = function(data) {
+							_this.shopList = data.data.items;
+                            _this.addproductId();
+                            _this.addproductNum();
+						}
+						commentJs.doPost('../../json/shopCar.json', '', suc);
+					},
+					JSedit(i) {//点击各店铺编辑
+						let _this = this;
+						_this.JSlistShow = !_this.JSlistShow;
+                        _this.JSeditShow = i;
+						let htmlTitle = $('.nctouch-cart-container .JS-edit').eq(i).html();
+                        $('.nctouch-cart-container .JS-edit').html('编辑');
+                        htmlTitle == '编辑' ? $('.nctouch-cart-container .JS-edit').eq(i).html('完成') : ($('.nctouch-cart-container .JS-edit').eq(i).html('编辑'),_this.JSeditShow = -1);
+					},
+					reduceChang(items, newindex, oldindex) {
+                        let _this = this;
+                        if(items.goods_num < 2) return;
+						items.goods_num--;
+                        _this.shopList[oldindex].List[newindex].checkStatus?_this.addproductNum():(_this.changList(newindex, oldindex),_this.addproductNum());
+					},
+					plusChang(items, newindex, oldindex) {
+                        let _this = this;
+						items.goods_num++;
+                        _this.shopList[oldindex].List[newindex].checkStatus?_this.addproductNum():(_this.changList(newindex, oldindex),_this.addproductNum());
+					},
+					changChecke(index) { //主店铺选中
+						let _this = this;
+						_this.shopList[index].checkStatus = !_this.shopList[index].checkStatus;
+						for(let i = 0, m = _this.shopList[index].List.length; i < m; i++) {
+							_this.shopList[index].checkStatus ? _this.shopList[index].List[i].checkStatus = true : _this.shopList[index].List[i].checkStatus = false;
+						}
+                        _this.allcheckedInput();
+                        _this.addproductNum();
+					},
+					changList(newindex, oldindex) { //店铺下的商品选中
+						let _this = this;
+						_this.shopList[oldindex].List[newindex].checkStatus = !_this.shopList[oldindex].List[newindex].checkStatus;
+                        _this.checkedInput(oldindex);
+                        _this.allcheckedInput();
+                        _this.addproductNum();
+					},
+					checkAll() { //全选
+                        let _this = this;
+                        _this.checkAll_checked = !_this.checkAll_checked;
+						for(let i = 0, m = _this.shopList.length; i < m; i++) {
+                            _this.checkAll_checked ? _this.shopList[i].checkStatus = true : _this.shopList[i].checkStatus = false;
+							for(let j = 0, n = this.shopList[i].List.length; j < n; j++) {
+                                _this.checkAll_checked ? _this.shopList[i].List[j].checkStatus = true : _this.shopList[i].List[j].checkStatus = false;
+							}
+						}
+                        _this.allcheckedInput();
+                        _this.addproductNum();
+					},
+					checkedInput(oldindex) { //点击单个检验选中
+						let numm = true;
+						for(let i = 0, m = this.shopList[oldindex].List.length; i < m; i++) {
+							if(!this.shopList[oldindex].List[i].checkStatus) numm = false;
+						}!numm ? this.shopList[oldindex].checkStatus = false : this.shopList[oldindex].checkStatus = true
+						this.allcheckedInput();
+                        this.addproductNum();
+					},
+					allcheckedInput() { //点击单个检验全部选中
+						let numm = true;
+						for(let i = 0, m = this.shopList.length; i < m; i++) {
+							for(let j = 0, n = this.shopList[i].List.length; j < n; j++) {
+								if(!this.shopList[i].List[j].checkStatus) numm = false;
+							}
+						}
+						numm ? this.checkAll_checked = true : this.checkAll_checked = false;
+					},
+					addproductId() { //查询选中
+						this.addCheckId = [];
+                        this.addCheckNum = [];
+						let vm = this;
+						this.shopList.forEach(function(v, k) {
+							v.List.forEach(function(m, n) {
+								if(m.checkStatus) {
+                                    vm.addCheckId.push(m.goods_id);
+                                    vm.addCheckNum.push(m.goods_num);
+								}
+							})
+						})
+					},
+                    addproductNum() { //查询选中商品数量
+                        let vm = this;
+						vm.subTitle = 0;
+                        vm.addproductId();
+                        vm.addCheckNum.forEach(function(v, k) {
+                            vm.subTitle = parseInt(vm.subTitle) + parseInt(v);
+                        })
+                    },
+                    headerClick(){//头部编辑&完成
+						let _this = this;
+						if(_this.headerTitle == '编辑'){
+                            _this.headerTitle ='完成';
+                            _this.JSeditShowTitle = false;
+                            _this.JSeditShowhide = true;
+                            _this.subShow = false;
+						}else{
+                            _this.headerTitle = '编辑';
+                            _this.JSeditShowTitle = true;
+                            _this.JSeditShowhide = false;
+                            _this.JSeditShow = -1;
+                            _this.subShow = true;
+                            $('.nctouch-cart-container .JS-edit').html('编辑');
+                            _this.addproductNum();
+						}
+					},
+                    dialogWrapperClick(id){//单个删除点击
+                        this.dialogWrapper = true;
+					},
+					dialogWrapperClick(id){//单个删除点击
+						this.dialogWrapper = true;
+					},
+                    btnCancel(){//删除取消
+                        this.dialogWrapper = false;
+					},
+                    btnMoreDel(){//多选删除
+                        this.dialogWrapper = true;
+                    },
+                    payMent(){//去付款
+						if(this.subTitle == 0) return;
+						window.location.href = 'shopOrder.html';
+					}
+				}
+                /*http://paycenter.g-town.com.cn//index.php?ctl=Goods_Goods&met=goods&typ=json&goods_id=2346&k=U3MFdQNpAXRWXAVtVmQHbgA8ADddOwNkDTgDdlVgCGhWYgNpD24GXgQ4AmcFbgRgW3AEcAc5AjJVKFZaW2RcMFM7BTY%3D&u=10088&cid=&lbs_geo=&ua=wap&miaoshaid=68&lbs_geo_wechat=
+                http://paycenter.g-town.com.cn//index.php?ctl=Goods_Goods&met=goods&typ=json&goods_id=2346&k=U3MFdQNpAXRWXAVtVmQHbgA8ADddOwNkDTgDdlVgCGhWYgNpD24GXgQ4AmcFbgRgW3AEcAc5AjJVKFZaW2RcMFM7BTY%3D&u=10088&cid=&lbs_geo=&ua=wap&miaoshaid=68&lbs_geo_wechat=*/
+
+
+			})
+		</script>
+
+	</body>
+
+</html>
