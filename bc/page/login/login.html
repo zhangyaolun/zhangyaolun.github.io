@@ -57,7 +57,7 @@
                                     <div class="item item-fore1">
                                         <label for="userName" class="login-label name-label"></label>
                                         <span class="input-icon">
-                                            <input type="text" class="itxt lo_user_account" name="username" required placeholder="邮箱/用户名/手机号" @focus="focuslogin" @blur="blurlogin" v-model="loginValue" id="userName" minlength="2">
+                                            <input type="text" class="itxt lo_user_account" name="username" required placeholder="邮箱/用户名/手机号" @focus="focuslogin" autocomplete="off" value="loginValue" v-model="loginValue" id="userName" minlength="2">
                                              <div class="clear-btn clear-icon js_clear_btn" :class="[loginname?'show':'hide']" @click="clear_btn_click"></div>
                                         </span>
                                     </div>
@@ -113,6 +113,7 @@
             },
             clear_btn_click() {//清空输入框的值
                 this.loginValue = '';
+                $('#userName').focus();
             },
             pass_text_click() {//密码显示与隐藏
                 this.passname = !this.passname;
