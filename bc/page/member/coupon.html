@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+  <style>
+    #header.favheader{background: #fff}
+    .pre-loading{background: rgba(248,248,248,0);}
+  </style>
+</head>
+
+<body>
+  <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <div class="content hide" id="app">
+    <!--头部搜索-->
+    <header id="header" class="fixed favheader">
+      <div class="header-wrap">
+        <div class="header-l">
+          <a href="member.html"> <i class="back"></i> </a>
+        </div>
+        <div class="tit">优惠券</div>
+        <div class="header-r"> <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a> </div>
+      </div>
+    </header>
+    <!-- 内容部分 -->
+    <ul class="v-list-tab bgf borb1">
+      <li class="vocher_status_li" v-for="(item,k) in itemList" :class="[vocherStatus == k?'active':'']"><a href="javascript:void(0);" @click="itemClick(k)">{{item}}</a></li>
+    </ul>
+    <!-- 内容部分结束 -->
+
+    <div class="v-list" id="v_list">
+      <ul v-if="vList">
+          <li class="clearfix pass">
+
+            <div class="fl">
+              <div>
+                <h3 class="dpm">美的满199减20</h3>
+                <time>2018-02-28 23:59:59前有效</time>
+              </div>
+            </div>
+            <div class="fr">
+              <p class="tc"><b>￥</b><span>20</span></p>
+              <div class="tc"><span>购满199.00元使用</span></div>
+            </div>
+            <i class="icon-pase"></i>
+          </li>
+      </ul>
+      <div class="nctouch-norecord order" style="width: 13rem;left:40%" v-else>
+        <a href="/tmpl/coupon_list.html?qazdfg=1521598906"><img src="../../images/coupon_tishi.jpg" style="width:100%"></a>
+      </div>
+    </div>
+
+    <!--数据请求加载提示-->
+    <div class="pre-loading" v-show="preLoading"></div>
+
+  </div>
+  <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+          preLoading:true,
+          itemList:['全部','未使用','已使用','已失效'],
+          vocherStatus:0,
+          vList:true
+      },
+      computed: {
+      },
+      mounted: function () {
+        FastClick.attach(document.body);
+        this.curFalg = commentJs.getUrlKey('title');
+        commentJs.downMenuSpot('favheader', 4);
+        //commentJs.toastLoading('加载中...');
+        commentJs.appShowhide('app');
+        this.oListData();
+      },
+
+      methods: {
+          oListData:function(){//主菜单列表
+              let _this = this;
+              let suc = function (data){
+                  setTimeout(function(){
+                      _this.preLoading = false;
+                  },1000);
+              }
+              commentJs.doPost('../../json/favorites.json','',suc);
+          },
+          itemClick(index){//点击选择tab
+              this.vocherStatus = index;
+              index%2 == 0?this.vList = true:this.vList = false;
+          }
+      }
+
+
+    })
+  </script>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/login.css"/>
+    <style>
+        body {
+            background: #fff !important;
+        }
+    </style>
+</head>
+
+<body>
+<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/validator.js" type="text/javascript" charset="utf-8"></script>
+<div class="content hide" id="app">
+    <!--头部搜索-->
+    <header id="header" class="fixed header">
+        <div class="header-wrap">
+            <div class="header-l">
+                <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+            </div>
+            <div class="header-title">
+                <h1>账户登录</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-cont">
+        <div class="login-wrap login-wrap-content" style="">
+            <div class="login-form">
+
+                <div class="login-box" style="visibility: visible;">
+                    <div class="mt tab-h" style="display:none;">
+                    </div>
+                    <div class="msg-wrap" style="display:none;">
+                        <div class="msg-error"></div>
+                    </div>
+                    <div class="mc">
+                        <div class="form">
+                            <form class="form-login" id="formlogin" action="" method="post">
+                                <div class="errorHandler alert alert-danger no-display"></div>
+                                <fieldset>
+                                    <div class="item item-fore1">
+                                        <label for="userName" class="login-label name-label"></label>
+                                        <span class="input-icon">
+                                            <input type="text" class="itxt lo_user_account" name="username" required placeholder="邮箱/用户名/手机号" @focus="focuslogin" @blur="blurlogin" v-model="loginValue" id="userName" minlength="2">
+                                             <div class="clear-btn clear-icon js_clear_btn" :class="[loginname?'show':'hide']" @click="clear_btn_click"></div>
+                                        </span>
+                                    </div>
+                                    <div class="item item-fore2">
+                                        <label class="login-label pwd-label" for="password"></label>
+                                        <span class="input-icon">
+                                            <input :type="[passname?'text':'password']" id="password" name="password" class="itxt itxt-error lo_user_password" autocomplete="off" placeholder="密码" required minlength="6" maxlength="30">
+                                            <div :class="[passname?'clear-btn eye-icon active':'clear-btn eye-icon']" @click="pass_text_click"></div>
+                                        </span>
+                                    </div>
+                                    <div class="item item-fore5">
+                                        <button type="submit" class="login-btn center" @click="submit">
+                                            <span class="btn-img btn-entry">登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="wap-show">
+                    <a href="javascript:void(0);" target="_blank"><b></b>立即注册</a>|<a href="javascript:void(0);" class=""
+                                                                                     target="_blank">忘记密码</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pre-loading" v-show="preLoading"></div>
+</div>
+<script src="../../lib/js/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            preLoading: false,
+            loginname: false,
+            loginValue: '',
+            passname: false,
+        },
+        mounted: function () {
+            FastClick.attach(document.body);
+            commentJs.appShowhide('app');
+            commentJs.toastLoading('登录中...');
+        },
+        methods: {
+            focuslogin() {//失去焦点清除消失
+                this.loginname = true;
+            },
+            blurlogin() {//获取焦点清除显示
+                this.loginname = false;
+            },
+            clear_btn_click() {//清空输入框的值
+                this.loginValue = '';
+            },
+            pass_text_click() {//密码显示与隐藏
+                this.passname = !this.passname;
+            },
+            submit() {
+                $.validator.setDefaults({
+                    submitHandler: function(form) {
+                        console.log(form)
+                    }
+                });
+                var validator = $('.form-login').validate({
+                    errorElement: "em",
+                    messages: {
+                        username : {
+                            required: "用户名不能为空",
+                            minlength: "用户名的最小长度为2"
+                        },
+                        password : {
+                            required: "密码不能为空",
+                            minlength: "密码长度不能少于6个字符",
+                            maxlength: "密码长度不能超过16个字符"
+                        }
+                    }
+                });
+            }
+        }
+    })
+</script>
+
+</body>
+
+</html>

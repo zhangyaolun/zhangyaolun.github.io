@@ -1,0 +1,398 @@
+html {
+    background: #fff
+}
+.pre-loading {
+    background: rgba(248,248,248,1);
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.goods-option-value {
+    margin-bottom: 2rem;
+}
+
+#buynum.chose-product-num {
+    border: 1px solid #ed5564;
+}
+
+.goods-detail-foot .otreh-handle {
+    width: 40%;
+}
+
+.goods-detail-foot .buy-handle {
+    width: 60%;
+}
+
+.goods-detail-foot .buy-handle a.add-cart, .goods-option-foot .buy-handle a.add-cart {
+    background: #ffb03f !important;
+}
+
+.goods-detail-foot .buy-handle a.buy-now, .goods-option-foot .buy-handle a.buy-now {
+    background: #f23030 !important;
+}
+
+.goods-detail-bottom img {
+    width: 100% !important;
+}
+
+.goods-detail-foot .otreh-handle a.fenxiang i, .goods-option-foot .otreh-handle a.fenxiang i {
+    background-image: url(../images/fenxiang.png);
+    background-size: 90%;
+}
+
+.goods-detail-price .sold {
+    right: 1rem !important;
+}
+
+.fnTimeCountDown {
+    right: 0.4rem !important;
+}
+
+.goods-detail-turn {
+    bottom: 0rem !important;
+}
+
+.goods-detail-pic .swiper-wrapper .swiper-slide img {
+    width: 90% !important;
+    margin-top: 29px;
+    margin-left: 6%;
+}
+.goods-detail-pic .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #ED5564;
+}
+.transparent {
+    background-color: rgb(255, 255, 255) !important;
+    border-bottom: solid 0.05rem #EEE !important;
+}
+
+.header-l a {
+    width: 1rem !important;
+    height: 1rem !important;
+    padding: 0.4775rem !important;
+    margin: 0px !important;
+}
+
+.header-l a i.back {
+    width: 85% !important;
+    height: 82% !important;
+    margin: 10% !important;
+    background-image: url(../images/bbc-bg45.png) !important;
+    background-position: 50% 50% !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
+    opacity: 0.75 !important;
+}
+
+.titlebar-container-menu-item {
+    width: 40%;
+    float: left;
+    text-align: center;
+    height: 1.95rem;
+    line-height: 1.95rem;
+    margin-left: 1.5rem;
+}
+
+.titlebar-container-menu-primary-divider {
+    width: 10%;
+    float: left;
+}
+
+.titlebar-container-menu-primary-third-item {
+    width: 36%;
+    float: left;
+    text-align: center;
+    height: 1.95rem;
+    line-height: 1.95rem;
+    margin-left: 0rem;
+}
+
+.titlebar-container-menu-item span {
+    font-size: 14px;
+    margin-left: 2px;
+    vertical-align: middle;
+    color: #555;
+}
+
+.am-header-icon-custom {
+    width: 19px;
+    vertical-align: middle;
+}
+
+.title-divider-img {
+    width: 19px;
+    height: 33px;
+    vertical-align: middle;
+    margin-top: 8px;
+}
+
+#qrcode_div {
+    display: block;
+    font-size: 14px;
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    transition: transform 300ms;
+    width: 100%;
+    z-index: 1110;
+}
+
+#close_qr, #close_salesbutton {
+    padding-right: 41px;
+    display: block;
+    width: 93%;
+    height: 50px;
+    text-align: right;
+    margin-top: 20px;
+}
+
+#code_img {
+    max-height: 606px;
+    width: 90%;
+    background: white;
+    min-height: 100px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#refresh_qr {
+    width: 50%;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    text-align: center;
+}
+
+.refresh {
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    text-align: center;
+}
+
+.refresh span {
+    float: left;
+    color: white;
+    vertical-align: middle;
+}
+
+#screen {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+    display: none;
+}
+
+.goods-detail-foot .buy-handle a {
+    float: left;
+}
+
+#sellDiv {
+    display: block;
+    font-size: 14px;
+    border-radius: 0;
+    top: 30%;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    transition: transform 300ms;
+    width: 100%;
+    z-index: 1110;
+}
+
+#sales_confirm {
+    max-height: 606px;
+    width: 90%;
+    background: white;
+    min-height: 100px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sellcontent {
+    padding: 25px;
+}
+
+.sell_content_row2 {
+    padding-top: 10px;
+}
+
+.sellp2 {
+    font-size: 15px;
+}
+
+.dlg_commit_left {
+    background: #5D9CEC;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    color: #fff;
+    font-size: 19px;
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+.zicol {
+    color: #5D9CEC;
+}
+
+.sellp1 {
+    font-size: 23px;
+}
+
+.sellspan1 {
+    font-weight: bold;
+}
+
+.goods-detail-foot .otreh-handle a sup {
+    right: 0rem !important;
+}
+.helper {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.7);
+    -webkit-transition: all .5s;
+    z-index: 9999;
+}
+.helper .forward {
+    position: fixed;
+    width: 78%;
+    height: 50%;
+    top: 16px;
+    right: -37px;
+    margin: 0 auto;
+    left: 0;
+    background: url(../images/fengxianghelp.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#miao_screen {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+    display: none;
+}
+#S_miaosha{
+    display: block;
+    font-size: 14px;
+    border-radius: 0;
+    top: 15%;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    transition: transform 300ms;
+    width: 100%;
+    z-index: 1110;
+}
+
+#miao_confirm{
+    height: 13rem;
+    max-height: 13rem;
+    min-height: 100px;
+    width: 14rem;
+    max-width: 14rem;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    background:url(../images/miao_tishi.png)  no-repeat;
+    background-size:100% 100%;
+    padding-bottom: 40px;
+}
+#miao_confirm_con{
+    /* background: #fff; */
+    width: 81%;
+    margin: 0 auto;
+    margin-top: 10rem;
+    border-radius: 10px;
+    /* background: url(../images/new_icon/miao_bai.png); */
+    background-size: 100% 100%;
+    min-height: 114px;
+    padding-top: 24px;
+}
+#miao_confirm_con p{
+    font-size: .6rem;
+    line-height: 18px;
+    line-height: 18px;
+    width: 97%;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+    color: #64b243;
+
+}
+#miao_confirm_con p:last-child{
+    color:#A39F99;
+    margin-top: 0.3rem !important;
+}
+#miao_confirm_img{
+    margin: 0 auto;
+}
+#miao_confirm_close{
+    font-size: 18px;
+    color: #fff;
+    background: #77B053;
+    padding: 8px 28px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.to_index i{
+    background-image: url(../images/to_index.png);
+    display: inline-block;
+    width: 1rem;
+    height: 0.9rem;
+    margin: 0.15rem auto 0.05rem auto;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 80%;
+    opacity: 0.65;
+}
+.goods-detail-item .item-con {
+    vertical-align: middle;
+}
+
+.item-more {
+    top: .8rem;
+}
+.item-more2 {
+    top: .5rem;
+}
+.goods-detail-item .itme-name {
+    vertical-align: middle;
+}
+.goods-detail-price dt {
+    color: #4A4A4A !important;
+}

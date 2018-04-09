@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	    <meta name="screen-orientation" content="portrait"/>
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name="full-screen" content="yes">
+	    <meta name="x5-fullscreen" content="true">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../lib/css/base.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/search.css"/>
+	</head>
+	<body>
+		<script src="../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<div class="content hide" id="app">
+			<!--头部搜索-->
+			<header id="header" class="header">
+				<div class="header-wrap">
+					<div class="header-l">
+						<a href="javascript:history.go(-1)"><i class="back"></i></a>
+					</div>
+					<div class="header-inp clearfix header-inp-ser" :class="[goodsWrite? 'write' : '']">
+						<div class="goods-class" @click="goodsChange">
+							<span>{{goodsValue}}</span>
+							<i class="icon-drapdown"></i>
+						</div>
+						<ul class="goods-class-sel" :class="[goodsClass? 'show' : 'hide']">
+							<li class="active search_kind" @click="goodsList('宝贝')"><i class="icon"></i><span>宝贝</span></li>
+							<li class="search_kind" @click="goodsList('店铺')"><i class="icon"></i><span>店铺</span></li>
+						</ul>
+						<input type="text" class="search-input" value="" v-model="inputVal" id="keyword" placeholder="请输入搜索关键词" maxlength="50" autocomplete="on" autofocus="">
+						<span class="input-del" @click="goodsinputDel"></span>
+					</div>
+					<div class="header-r"><a id="header-nav" href="javascript:void(0);" class="search-btn" @click="goodsSearch">搜索</a></div>
+				</div>
+			</header>
+			<div id="store-wrapper">
+			    <div class="nctouch-search-layout">
+			        <dl class="hot-keyword">
+			            <dt>热门搜索</dt>
+			            <dd id="hot_list_container">
+			                <ul id="hot_kw_url">
+			                	<li v-for="(hItem,i) in hotSeach" @click="goodsHotList(hItem)"><a href="javascript:;">{{hItem}}</a></li>
+			                </ul>
+			            </dd>
+			        </dl>
+			        <dl class="history-keyword hide">
+			            <dt>历史搜索<a href="javascript:void(0);" id="clear-history" class="clear-history"><i class="icon del"></i></a></dt>
+			            <dd id="search_his_list_container">
+			                <ul id="history_kw_url"></ul>
+			                
+			            </dd>
+			        </dl>
+			    </div>
+			</div>
+    	</div>
+   	 	<script src="../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    	
+        new Vue({
+            el: '#app',
+            data: {
+			    message: '-00000',
+			    goodsClass:false,
+			    goodsValue:'宝贝',
+			    goodsWrite:false,
+			    inputVal:'',
+			    hotSeach:['茶杯','衣服','美食','电脑','电视']
+			},
+			computed: {
+			    
+			},
+			mounted: function (){
+				FastClick.attach(document.body);
+				commentJs.appShowhide('app');
+            },
+            watch: {
+				inputVal(curVal,oldVal){
+					curVal.length > 0?this.goodsWrite = true:this.goodsWrite = false;
+				}
+            },
+			methods: {
+			  goodsChange:function(){//宝贝&店铺显示隐藏
+			  	this.goodsClass = !this.goodsClass;
+			  },
+			  goodsList:function(val) {//宝贝&店铺选择
+			    this.goodsValue = val;
+			    this.goodsClass = !this.goodsClass;
+			  },
+			  goodsinputDel:function() {//删除搜索
+			    this.inputVal = '';
+			  },
+			  goodsHotList:function(val) {//点击热搜
+			    window.location.href = '../page/product/product_item.html?title='+val;
+			  },
+			  goodsSearch:function() {//点击搜索
+			    this.goodsValue == '宝贝'?window.location.href = '../page/product/product_item.html?title='+this.inputVal:window.location.href = '../../page/search.html?title='+this.inputVal;
+			  }
+			}
+
+
+        })
+    </script>
+		
+	</body>
+</html>

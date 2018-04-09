@@ -1,0 +1,157 @@
+{
+  "cmd_id": -140,
+  "status": 200,
+  "msg": "success",
+  "data": {
+    "items": [
+      {
+        "cat_id": "436",
+        "cat_name": "\u8155\u8868",
+        "child": [
+          {
+            "cat_id": "437",
+            "cat_name": "\u5973\u8868",
+            "cat_parent_id": "436",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "437"
+          },
+          {
+            "cat_id": "438",
+            "cat_name": "\u7537\u8868",
+            "cat_parent_id": "436",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "438"
+          },
+          {
+            "cat_id": "440",
+            "cat_name": "\u513f\u7ae5\u8868",
+            "cat_parent_id": "436",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "440"
+          },
+          {
+            "cat_id": "441",
+            "cat_name": "\u6237\u5916\u624b\u8868",
+            "cat_parent_id": "436",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "441"
+          }
+        ]
+      },
+      {
+        "cat_id": "452",
+        "cat_name": "\u65f6\u5c1a\u9970\u54c1",
+        "child": [
+          {
+            "cat_id": "453",
+            "cat_name": "\u624b\u94fe\/\u624b\u956f",
+            "cat_parent_id": "452",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "453"
+          },
+          {
+            "cat_id": "455",
+            "cat_name": "\u8033\u9970",
+            "cat_parent_id": "452",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "455"
+          },
+          {
+            "cat_id": "456",
+            "cat_name": "\u9888\u9970",
+            "cat_parent_id": "452",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "456"
+          },
+          {
+            "cat_id": "458",
+            "cat_name": "\u9970\u54c1\u914d\u4ef6",
+            "cat_parent_id": "452",
+            "cat_pic": "",
+            "type_id": "15",
+            "cat_commission": "5",
+            "cat_is_wholesale": "0",
+            "cat_is_virtual": "0",
+            "cat_templates": "0",
+            "cat_displayorder": "0",
+            "cat_level": "0",
+            "cat_show_type": "0",
+            "cat_wap_backdrop": "",
+            "cat_wap_color": "",
+            "id": "458"
+          }
+        ]
+      }
+    ]
+  }
+}

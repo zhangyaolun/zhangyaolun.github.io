@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>个人中心</title>
+  <link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="../../lib/css/swiper-4.1.6.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/member.css">
+</head>
+
+<body>
+  <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <div class="content hide" id="app">
+    <!--头部搜索-->
+    <header id="header" :class="[(!scroTitle)?'transparent':'posf']">
+      <div class="header-wrap">
+        <div class="header-l">
+          <a href="javascript:history.go(-1)"> <i :class="[(!scroTitle)?'back back2':'back']"></i> </a>
+        </div>
+        <div class="header-title" :class="[scroTitle?'show':'hide']">
+          <h1>我的商城</h1>
+        </div>
+        <div class="header-r">
+          <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a>
+        </div>
+      </div>
+    </header>
+    <!-- 内容部分 -->
+    <div class="memberCenter">
+      <div class="member-top member-top1">
+        <div class="mine-head-bg">
+          <div class="member-info">
+            <a class="default-avatar logbtn" href="javascript:void(0);" style="display:block;"></a>
+            <a class="to-login logbtn" href="../login/login.html">点击登录</a></div>
+        </div>
+        <div class="sign"><a class="logbtn" href="javascript:void(0);"><i class="goods-sign"></i><b class="middle">签到</b></a></div>
+      </div>
+      <div class="member-collect borb1">
+        <div class="member-collect"><span><a class="logbtn" href="favorites.html?title=1"><em>0</em><p>商品收藏</p></a> </span><span><a class="logbtn" href="favorites.html?title=2"><em>0</em><p>店铺收藏</p></a> </span></div>
+      </div>
+      <div class="member-center bort1 mt5 ">
+        <dl>
+          <dt>
+            <a @click="skewOrder(4)">
+              <h3>我的订单</h3>
+              <h5>查看全部订单<i class="arrow-r"></i></h5>
+            </a>
+          </dt>
+          <dd>
+            <ul id="order_ul">
+              <li v-for="(item,k) in orderList" @click="skewOrder(k)"><a class="logbtn"><i :class="'cc-0'+k"></i><p>{{item}}</p></a></li>
+            </ul>
+          </dd>
+        </dl>
+        <dl class="mt5 bort1">
+          <dt>
+            <a id="paycenter">
+              <h3><i class="mc-02"></i>我的财产</h3>
+              <!--<h5>查看全部财产<i class="arrow-r"></i></h5>-->
+            </a>
+          </dt>
+          <dd>
+            <ul class="property-overview">
+              <li>
+                <h3><i></i><span>奖励金</span></h3>
+                <strong id="user_money">￥0</strong>
+              </li>
+              <li>
+                <h3><i></i><span>积分</span></h3>
+                <strong id="user_points">0</strong>
+              </li>
+            </ul>
+          </dd>
+          <!-- <dt><a href="../cart_list.html">
+                <h3><i class="mc-02"></i>我的购物车</h3>
+                <h5>查看购物车<i class="arrow-r"></i></h5>
+            </a></dt> -->
+        </dl>
+        <!-- <dl class="bort1">
+             <dt><a href="member_voucher.html">
+                <h3><i class="mc-03"></i>代金券</h3>
+                <h5><i class="arrow-r"></i></h5>
+            </a></dt>
+        </dl> -->
+        <dl class="bort1">
+          <dt>
+            <a href="coupon.html">
+              <h3><i class="mc-03"></i>优惠券</h3>
+              <h5><i class="arrow-r"></i></h5>
+            </a>
+          </dt>
+        </dl>
+
+        <dl class="bort1">
+          <dt>
+            <a @click="skewLover">
+              <h3><i class="mc-03"></i>粉丝团</h3>
+              <h5><i class="arrow-r"></i></h5>
+            </a>
+          </dt>
+        </dl>
+
+
+        <dl class="mt5 bort1">
+          <dt>
+            <a href="../map/map_list.html">
+              <h3><i class="mc-04"></i>收货地址管理</h3>
+              <h5><i class="arrow-r"></i></h5>
+            </a>
+          </dt>
+        </dl>
+        <dl style="border-top: solid 0.05rem #EEE;">
+          <dt>
+            <a @click="setMember">
+              <h3><i class="mc-05"></i>用户设置</h3>
+              <h5><i class="arrow-r"></i></h5>
+            </a>
+          </dt>
+        </dl>
+        <!-- <dl style="border-top: solid 0.05rem #EEE;">
+            <dt><a href="member_infocon.html">
+                <h3><i class="mc-05"></i>用户信息</h3>
+                <h5><i class="arrow-r"></i></h5>
+            </a></dt>
+        </dl>
+  <dl style="border-top: solid 0.05rem #EEE;" class="mt5">
+            <dt><a href="directseller.php">
+                <h3><i class="mc-06"></i>分销中心</h3>
+                <h5><i class="arrow-r"></i></h5>
+            </a></dt>
+        </dl>-->
+      </div>
+    </div>
+    <!-- 内容部分结束 -->
+
+
+    <!--尾部切换-->
+    <footer class="footer bort1"></footer>
+  </div>
+  <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+          orderList:['待付款','待发货','待收货','退款/退货'],
+          scroTitle:false
+      },
+      computed: {
+      },
+      mounted: function () {
+        FastClick.attach(document.body);
+        commentJs.downMenuSpot('transparent', 2);
+        commentJs.homeHader();
+        commentJs.headerFooter(3);
+        commentJs.appShowhide('app');
+        window.addEventListener('scroll', this.handleScroll);
+      },
+
+      methods: {//头部显示
+        handleScroll() {
+            let _this = this;
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 50 ? _this.scroTitle = true : _this.scroTitle = false;
+        },
+        // 查看订单
+        skewOrder(index) {
+          console.log(index)
+          window.location.href = '../order/order_list.html?title='+index;
+        },
+        // 优惠券
+        skewCoupon() {
+
+        },
+        // 粉丝团
+        skewLover() {
+
+        },
+        // 管理收货地址
+        mangerAddress() {
+            window.location.href = '../map/map_list.html';
+        },
+        // 设置
+        setMember() {
+
+        },
+      }
+
+
+    })
+  </script>
