@@ -35,7 +35,7 @@
 		        <ul id="nav_ul">
 		            <li><a href="javascript:void(0);" :class="[current_falg?'current':'']" id="sort_default" @click="goodsSort">{{goodsValue}}<i></i></a></li>
 		            <li><a href="javascript:void(0);" :class="[(!current_falg)?'current':'']" @click="browseVolume">销量优先</a></li>
-		            <li class="browse-mode"><a href="javascript:void(0);" @click="browseMode"><span class="browse-grid"></span></a></li>
+		            <li class="browse-mode"><a href="javascript:void(0);" @click="browseMode"><span :class="[browseMode_falg?'browse-list':'browse-grid']"></span></a></li>
 		        </ul>
 		        <div class="ser-adv"><a href="javascript:void(0);" id="search_adv"><span style="vertical-align: middle;">筛选</span><i></i></a></div>
 		    </div>

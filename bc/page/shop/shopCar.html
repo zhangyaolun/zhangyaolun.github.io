@@ -57,18 +57,19 @@
 											<input type="checkbox" :class="itemCh.checkStatus?'store_checked':''" @click="changList(k,i)">
 										</div>
 										<div class="goods-pic">
-											<a :href="'../product/product_detail.html?id='+itemCh.goods_id">
-												<img :src="itemCh.goods_image_url"> </a>
+											<a :href="'../product/product_detail.html?goods_id='+itemCh.goods_id">
+												<img :src="itemCh.goods_image_url">
+											</a>
 										</div>
 										<dl class="goods-info" :class="[JSeditShow == i || JSeditShowhide?'hide':'showInline']">
 											<dt class="goods-name">
-				                                <a :href="'../product/product_detail.html?id='+itemCh.goods_id">{{itemCh.goods_name}}</a>
+				                                <a :href="'../product/product_detail.html?goods_id='+itemCh.goods_id">{{itemCh.goods_name}}</a>
 				                            </dt>
 											<dd class="goods-type">{{itemCh.spec_val_str}}</dd>
 											<span class="goods-price">￥<em>{{itemCh.goods_price}}</em></span>
 										</dl>
 										<div class="edit-area" :class="[JSeditShow == i || JSeditShowhide?'show':'hide']">
-											<div class="goods-del" cart_id="1906" @click="dialogWrapperClick(itemCh.goods_id)">删除</div>
+											<div class="goods-del" @click="dialogWrapperClick(itemCh.goods_id)">删除</div>
 											<div class="goods-subtotal">
 												<span class="goods-price"></span>
 												<div class="value-box">
