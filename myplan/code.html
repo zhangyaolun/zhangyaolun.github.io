@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="code" style="width: 500px;height: 500px;"></div>  
+		<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+		
+		<script>  
+				var myDate=new Date();
+			var date = myDate.getFullYear() + "-" + sup(myDate.getMonth()) + "-" + sup(myDate.getDate());
+			var time = sup(myDate.getHours()) + ":" + sup(myDate.getMinutes()) + ":" + sup(myDate.getSeconds());
+			function sup ( n ) { return (n<10) ? '0'+n : n; }
+			
+			
+				alert(myDate.getHours())
+				alert(date + " " + time)
+		</script> 
+	</body>
+</html>

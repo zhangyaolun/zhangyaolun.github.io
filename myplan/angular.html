@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-app='myApp'> 
+		<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
+		<!--ng-init="logo='000'"-->
+		<div ng-controller="mianCon" >
+			<span>name:{{logo+' | '+logoCont}}</span>
+			<button ng-click='btnClick()'></button>
+			<button ng-click='logoContClick()'>logoCont</button>
+		</div>
+		<div ng-controller="contCon" >
+			<span>name:{{logoCont | reverse}}</span>
+			<button ng-click='logoContClick()' >logoContClick</button>
+			<table border="1">
+			    <tr ng-repeat="x in records" ng-class="{{$index%2?'a':'b'}}">
+			        <td>{{x.Name}}</td>
+			        <td>{{x.Country}}</td> 
+			    </tr>
+			</table>
+		</div>
+		
+		<script type="text/javascript">
+			var app = angular.module('myApp',[]);
+			app.controller('mianCon',function($scope){
+				$scope.logo = '1111';
+				$scope.btnClick = function(){
+					$scope.logo = '999';
+				};
+			});
+			app.controller('contCon',function($scope,$rootScope){
+				$rootScope.logoCont = '890';
+				$rootScope.logoContClick = function(){
+					$rootScope.logoCont == '888'?$rootScope.logoCont = '8777':$rootScope.logoCont = '888';
+					
+				};
+				 $scope.records = [
+			       {
+			            "Name" : "Alfreds Futterkiste",
+			            "Country" : "Germany"
+			        },{
+			            "Name" : "Berglunds snabbköp",
+			            "Country" : "Sweden"
+			        },{
+			            "Name" : "Centro comercial Moctezuma",
+			            "Country" : "Mexico"
+			        },{
+			            "Name" : "Ernst Handel",
+			            "Country" : "Austria"
+			        }
+			    ]
+							
+				
+				
+			});
+			app.filter('reverse', function() { //可以注入依赖
+			    return function(text) {
+			        return text.split("").reverse().join("");
+			    }
+			});
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
