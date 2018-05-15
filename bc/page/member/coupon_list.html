@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/nctouch_products_list.css" />
+  <link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+  <link rel="stylesheet" type="text/css" href="../../comment/css/indexCommon.css" />
+  <style>
+    #header.favheader{background: #fff}
+    .pre-loading{background: rgba(248,248,248,0);}
+  </style>
+</head>
+
+<body>
+  <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/js/weui.js"></script>
+  <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <div class="content hide" id="app">
+    <!--头部搜索-->
+    <header id="header" class="fixed favheader">
+      <div class="header-wrap">
+        <div class="header-l">
+          <a href="member.html"> <i class="back"></i> </a>
+        </div>
+        <div class="tit">领劵中心</div>
+        <div class="header-r"> <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a> </div>
+      </div>
+    </header>
+    <!-- 内容部分 -->
+    <div class="goods-search-list-nav">
+      <ul id="nav_ul">
+        <li v-for="(item,i) in itemList"> <a href="javascript:void(0);" :class="[vocherStatus==i?'current':'']" @click="itemListClick(i)">{{item}}</a></li>
+      </ul>
+    </div>
+    <!-- 内容部分结束 -->
+
+    <div class="nctouch-main-layout mt40 mb20">
+      <div id="product_list" class="list">
+        <ul class="goods-secrch-list" v-show="vList" style="line-height: 1.2;">
+          <li class="goods-item integral-list clear" v-for="(item,k) in product">
+            <dl class="goods-info integral-info clear">
+              <dt class="goods-condition">
+                <span class="rulename"><i style="color: #000">{{item.name}} </i>满{{item.limitPay | oPriceCurrency}}-{{item.quota | oPriceCurrency}}</span>
+                <span class="youxiaoqi">有效期至{{item.effectiveTime | oTimeCurrency}}</span>
+                <span class="lingqunum">{{item.fetchAmount}}人领取</span>
+              </dt>
+              <dd class="goods-lingqu">
+                <a href="">
+                  <h4>￥<em>{{item.quota | oPriceCurrency}}</em></h4>
+                </a>
+                <span><a href="javascript:void(0)" class="btn btn-exchange" @click="oCouponClick(item.id)">立即领取</a></span>
+              </dd>
+            </dl>
+          </li>
+
+        </ul>
+      </div>
+      <div style="width:100%;float: left;">
+        <div class="mrule">
+          <p>优惠券领取说明：</p>
+          <p>1.购买相应品牌商品并满足一定金额方可使用优惠券。</p>
+          <p>2.优惠券需在有效期内使用，每张优惠券只能使用一次。 </p>
+          <p>3.成功付款后优惠券被抵扣不再返还，未支付取消订单优惠券返回用户账户。</p>
+          <p>4.订单发货后仍可享受7天无理由退货政策。</p>
+          <p>5.优惠券不得与其他优惠同时使用。</p>
+          <p>详情可致电咨询：400-006-6830。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fix-block-r">
+      <a href="javascript:void(0);" id="exchangeall" @click="oCouponAllClick">一键领取</a>
+    </div>
+    <!--数据请求加载提示-->
+    <div class="pre-loading" v-show="preLoading"></div>
+
+  </div>
+  <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/member/coupon_list.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

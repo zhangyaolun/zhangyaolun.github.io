@@ -1,83 +1,12 @@
-.JS-header-edit {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 50px;
-    text-align: right;
-    line-height: 1.95rem;
-    font-size: 0.7rem;
-}
-.store-title {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: .2rem;
-}
-
-.goods-check .store_checked,
-.store-check .store_checked,
-.all-check .store_checked {
-    border-color: #fd3d53;
-    background-color: #fd3d53;
-}
-
-.all-check span {
-    margin-left: .2rem;
-}
-.selected-all {
-    font-size: 0.6rem;
-    vertical-align:middle;
-}
-.nctouch-cart-item li .edit-area {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 0.5rem;
-    width: 12rem;
-    height:73%;
-}
-.JS-header-edit {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 50px;
-    text-align: right;
-    line-height:1.95rem;
-    font-size:0.7rem;
-}
-#batchRemove {
-    float: right;
-    text-align: center;
-    color:#FFF ;
-    font-size: 0.7rem;
-    line-height: 2rem;
-    width:20%;
-    background: -webkit-linear-gradient(to right, #d92e66, #ec5a6f);
-    background: linear-gradient(to right,#d92e66, #ec5a6f);
-}
-
-.nctouch-cart-bottom {
-    bottom: 2.5rem;
-
-}
-.nctouch-norecord .norecord-ico i {
-    background-position: 40% 60% !important;
-}
-.store-check .store_checked:after,
-.goods-check .store_checked:after,
-.all-check .store_checked:after {
-    content: '';
-    position: absolute;
-    left: 0.1rem;
-    top: 0.14rem;
-    width: 0.4rem;
-    height: 0.2rem;
-    border-left: 0.065rem solid #fff;
-    border-bottom: 0.065rem solid #fff;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-.shiYan {
-    margin-top: 10%;
-}
+.JS-header-edit{position:absolute;z-index:1;top:0;right:50px;text-align:right;line-height:1.95rem;font-size:.7rem}
+.store-title{display:inline-block;vertical-align:middle;margin-left:.2rem}
+.all-check .store_checked,.goods-check .store_checked,.store-check .store_checked{border-color:#fd3d53;background-color:#fd3d53}
+.all-check span{margin-left:.2rem}
+.selected-all{font-size:.6rem;vertical-align:middle}
+.nctouch-cart-item li .edit-area{display:none;position:absolute;right:0;top:.5rem;width:12rem;height:73%}
+.JS-header-edit{position:absolute;z-index:1;top:0;right:50px;text-align:right;line-height:1.95rem;font-size:.7rem}
+#batchRemove{float:right;text-align:center;color:#FFF;font-size:.7rem;line-height:2rem;width:20%;background:-webkit-linear-gradient(to right,#d92e66,#ec5a6f);background:linear-gradient(to right,#d92e66,#ec5a6f)}
+.nctouch-cart-bottom{bottom:2.5rem}
+.nctouch-norecord .norecord-ico i{background-position:40% 60%!important}
+.all-check .store_checked:after,.goods-check .store_checked:after,.store-check .store_checked:after{content:'';position:absolute;left:.1rem;top:.14rem;width:.4rem;height:.2rem;border-left:.065rem solid #fff;border-bottom:.065rem solid #fff;-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}
+.shiYan{margin-top:10%}

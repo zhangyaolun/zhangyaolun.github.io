@@ -1,40 +1,7 @@
 
-/*默认顶部*/
-/*header, 
-.header { background: #F8F8F8; height: 1.95rem; position: absolute; z-index: 8; top: 0; left: 0; right: 0; bottom: auto; border-bottom: solid 0.05rem #EEE; }
-header.fixed { position: fixed; background: rgba(248,248,248,0.95); z-index: 9;}
-.header-wrap { display: block; max-width: 320px; max-width: 640px; margin: 0 auto; text-align: center; }
-.header-l { display: block; width: 1.95rem; height: 1.95rem; position: absolute; top: 0; left: 0; }
-.header-l a { position: relative; z-index: 1; display: inline-block; width: 1rem; height: 1rem; padding: 0.4775rem; }
-.header-l a i { display: block; width: 100%; height: 100%; }
-#chat_msg_log i{width:50%;}
-.header-l a i.back { width: 85%; height: 82%; margin: 10%; background-image: url(../images/bbc-bg45.png); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; opacity: 0.75; }
-.header-l a i.back2{ background-image: url(../images/bbc-bg43.png) !important;}
-.header-l a i.close { width: 80%; height: 80%; margin: 10%; background-image: url(../images/close_window.png); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; opacity: 0.75; }
-.header-l a i.set { background-image: url(../images/bbc-bg50.png); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; opacity: 0.35; }
-.header-l a i.home { width: 80%; height: 80%; margin: 10%; background-image: url(../images/home_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 90%; opacity: 0.7; }*/
-/*头部下拉菜单*/
-/*.nctouch-nav-layout { display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: transparent; z-index:999;}
-.nctouch-nav-menu { display: block; position: absolute; top: 0.7rem; right: 0.1rem; width:2.3rem; }
-.nctouch-nav-menu .arrow { display: block; float: right; width: 0; height: 0; margin-right: 0.4rem; font-size: 0; line-height: 0; border-width: 0.16rem; border-color: transparent transparent rgba(85,85,85,0.95) transparent; border-style: dashed dashed solid dashed; }
-.nctouch-nav-menu ul { display: block; clear: both; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#F2555555', endColorstr='#F2555555');
-background: rgba(85,85,85,0.95); border-radius: 0.08rem; }
-.nctouch-nav-menu li { position: relative; z-index: 1; border-bottom: solid 0.01rem #999; }
-.nctouch-nav-menu li:last-child { border-bottom: none 0; }
-.nctouch-nav-menu li a { display: block; height:0.85rem; font-size: 0.3rem; line-height: 0.85rem; color: #FFF;padding:0,0.2rem; }
-.nctouch-nav-menu li a i { display: inline-block; width: 0.72rem; height:100%; vertical-align:top; margin-right: 0.12rem; background-position: 50% 50%; background-size:50%; background-repeat: no-repeat; }
-.nctouch-nav-menu li a i.message { background-image: url(../images/bbc-bg36.png); }
-.nctouch-nav-menu li a i.cart { background-image: url(../images/bbc-bg15.png);}
-.nctouch-nav-menu li a i.home { background-image: url(../images/bbc-bg20.png);}
-.nctouch-nav-menu li a i.search { background-image: url(../images/bbc-bg49.png);}
-.nctouch-nav-menu li a i.categroy { background-image: url(../images/bbc-bg.png);}
-.nctouch-nav-menu li a i.member { background-image: url(../images/bbc-bg13.png);}
-.nctouch-nav-menu li sup { display: none !important; position: absolute; z-index: 1; top: 0.5rem; right: 0.5rem; width: 0.36rem; height: 0.36rem; background-color: #ED5564; border-radius: 100%; }*/
 /*头部透明*/
 .transparent { background-color: transparent; border-bottom: none; }
-.transparent .header-l a i.set { background-image: url(../images/bbc-bg16.png); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; opacity: 1; }
 .transparent .header-title, .transparent .header-nav { display: none; }
-.transparent .header-r a i.more { background-image: url(../images/bbc-bg46.png); background-position: 50% 50%; background-repeat: no-repeat; background-size: 100%; opacity: 1; }
 .transparent .header-r a sup { top: -0.05rem; right:  -0.05rem; width: 0.35rem; height: 0.35rem; background-color: #ED5564; border: solid 0.05rem #FFF; border-radius: 100%; }
 .transparent .nctouch-nav-menu .arrow { opacity: 0.55; }
 .transparent .nctouch-nav-menu ul { background: rgba(85,85,85,0.55); }
@@ -136,7 +103,7 @@ li{list-style:none;}
 /*标题二*/
 .common-tit2{width:4rem;height:1.13rem;line-height:1.13rem;font-size:0.6rem; display:inline-block;background: -webkit-linear-gradient(to right, #fa6f7f, #d93144);
     background: linear-gradient(to right,#fa6f7f, #d93144);padding-left:0.25rem;box-sizing:border-box;border-top-right-radius:0.6rem;border-bottom-right-radius: 0.6rem;position:relative;top:-0.6rem;}
-.common-tit2 i.icon{width:0.6rem;height:1.13rem;display:inline-block;background:url(../images/icon-hot.png) no-repeat center;background-size:contain;vertical-align:top;margin-right:0.3rem;}
+.common-tit2 i.icon{width:0.6rem;height:1.13rem;display:inline-block;background:url(../../images/icon-hot.png) no-repeat center;background-size:contain;vertical-align:top;margin-right:0.3rem;}
 .common-tit2 span{color:#fff;vertical-align: middle;display:inline-block;line-height: 1.13rem;}
 /*布局一*/
 .layout1 {position:relative;width:15.9rem;margin:auto;}
@@ -167,4 +134,3 @@ li{list-style:none;}
 .overhide{height:180px;overflow:hidden;}
 .new-goods li .table{height:100%;display: table;}
 
- 

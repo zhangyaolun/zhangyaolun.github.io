@@ -24,7 +24,8 @@ var o = {
 			    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 			});
 			wx.ready(function(){
-				   wx.onMenuShareTimeline({
+				//分享到朋友圈
+				   wx.onMenuShareTimeline({  
 				    title: '伴飞共享卡上线了!', // 分享标题
 				    link: 'http://www.banfeikeji.com/html/shopMend.html?openId='+getParameter('openId'), 
 				    imgUrl: 'http://md-pay-image.oss-cn-hangzhou.aliyuncs.com/logo.jpg', // 分享图标
@@ -35,6 +36,7 @@ var o = {
 				        // 用户取消分享后执行的回调函数
 				    }
 				});
+				//分享到朋友
 				wx.onMenuShareAppMessage({
 				    title: '伴飞共享卡上线了', // 分享标题
 				    desc: '一起分享，一起打折。', // 分享描述

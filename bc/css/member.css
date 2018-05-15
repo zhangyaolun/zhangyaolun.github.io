@@ -5,7 +5,6 @@
 .transparent .header-r a sup { right: 0.3rem !important; top: 0.3rem !important;}
 .member-body .header-back { display: none; }
 .member-top1{height:7.27rem;background:url(../images/head_bg.png) no-repeat center;background-size:cover;}
-.member-top2{margin-top:1.95rem;margin-bottom:0.6rem;height:10rem;background:url(../images/in-bg.png) no-repeat center;background-size:contain;}
 .member-top {/* -webkit-animation:changeBg 20s infinite; -moz-animation:changeBg 20s infinite; animation:changeBg 20s infinite;background-color:#ED5564;*/ text-align: center; width: 100%;  position: relative; z-index: 1;}
 .mine-head-bg{width:100%;/*height:8rem;*/}
 @-webkit-keyframes changeBg{
@@ -64,7 +63,13 @@
 95% { top: 52%}
 100% { top: 50%;}
 }
-
+.member-top2 {
+  margin-top: 1.95rem;
+  margin-bottom: 0.6rem;
+  height: 10rem;
+  background: url(../images/in-bg.png) no-repeat center;
+  background-size: contain;
+}
 
 .member-info .default-avatar { background-color: rgba(0,0,0,0.5); background-image: url(../images/member_w.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 60%; width: 4rem; height: 4rem; margin: 0 auto; border-radius: 100%;}
 .member-info .to-login { font-size: 0.8rem; color: #FFF; line-height: 1rem; height: 1rem; margin: 0.25rem auto;}
@@ -80,10 +85,6 @@
 .member-collect span a { display: block;}
 .member-collect span em { font-weight: lighter; font-size: 0.9rem; color: #666; line-height: 1rem; text-align: center; vertical-align: top; display: inline-block; min-width: 1rem; height: 1rem; margin: 0 auto;}
 .member-collect span i { vertical-align: top; display: inline-block; width: 1rem; height: 1rem; margin: 0 auto;}
-.member-collect span i.favorite-goods { background-image: url(../images/favorite_w.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%;}
-.member-collect span i.favorite-store { background-image: url(../images/store_w.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%;}
-.member-collect span i.goods-browse { background-image: url(../images/bbc-bg41.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 71%;}
-.member-collect span i.goods-sign { background-image: url(../images/icon-sign.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%;}
 
 .member-collect span p { font-size: 0.6rem; line-height: 1rem; color: #666; height: 1rem;}
 
@@ -99,8 +100,6 @@
 .member-center dt h3 i.mc-03 { background-image: url(../images/icon-v.png);}
 .member-center dt h3 i.mc-04 { background-image: url(../images/icon-a.png);background-size:60%;}
 .member-center dt h3 i.mc-05 { background-image: url(../images/icon-u.png);}
-.member-center dt h3 i.mc-06 { background-image: url(../images/icon-f.png);}
-.member-center dt h3 i.mc-07 { background-image: url(../images/fenxiao-det.png);}
 
 /*.member-center dt h3 i.mc-dis{background-image:url(../images/bbc-bgdis.png);}
 .member-center dt h3 i.mc-distlog{background-image:url(../images/distlog.png);}*/
@@ -122,11 +121,6 @@ i.cc-01 { background-image: url(../images/icon-toget.png); background-size:conta
 i.cc-02 { background-image: url(../images/icon-tohave.png); background-size:contain;background-repeat:no-repeat;}
 i.cc-03 { background-image: url(../images/icon-toback.png); background-size:contain;background-repeat:no-repeat;}
 i.cc-05 { background-image: url(../images/icon-toback.png); background-size:contain;background-repeat:no-repeat;}
-i.cc-06 { background-image: url(../images/bbc-bg38.png); background-size: cover;}
-i.cc-07 { background-image: url(../images/bbc-bg3.png); background-size: cover;}
-i.cc-08 { background-image: url(../images/bbc-bg17.png); background-size: cover;}
-i.cc-09 { background-image: url(../images/bbc-bg31.png); background-size: cover;}
-i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover !important;}
 .member-center dd ul li p { font-size: 0.55rem; color: #666; line-height: 1rem; height: 1rem;}
 
 .property-overview li{
@@ -172,7 +166,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 /*每日签到*/
 .my-pointnum { position: absolute; z-index: 1; top: 3rem; left: 1.8rem; text-align: center; font-size: 0.55rem; color: #FFF; line-height: 0.9rem; text-shadow: 0.05rem 0.05rem 0 rgba(0,0,0,0.15);}
 .my-pointnum em{margin-bottom:0.2rem;display:inline-block;}
-.my-pointnum em i.icon{width:1rem;height:0.9rem;margin-right:0.2rem; display:inline-block;background:url(../images/new/mine-int.png) no-repeat center;background-size:contain;vertical-align:middle;}
+.my-pointnum em i.icon{width:1rem;height:0.9rem;margin-right:0.2rem; display:inline-block;background:url(../images/mine-int.png) no-repeat center;background-size:contain;vertical-align:middle;}
 .my-pointnum em b{font-weight:normal;vertical-align: middle;display:inline-block;font-size:0.6rem;}
 .my-pointnum span { display: block; font-size: 0.9rem;margin-top:0.2rem; }
 .sign-box { position: absolute; z-index: 1; top:30%; left: 50%;padding: 0.2rem; margin: -2rem auto auto -2rem;/* background-image: url(../images/sign_btn.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%;*/ border-radius: 100%;}
@@ -180,7 +174,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .sign-btn h2 { font-size: 1.2rem; line-height: 1.4rem; font-weight:500;margin-bottom:0.3rem;}
 .sign-btn h6 { font-size: 0.6rem; line-height: 1.2rem;/* border-top: solid 0.05rem #EEE*/}
 .signin-help { position: absolute; z-index: 1; top: 6%; right:0; text-align: center; font-size: 0.55rem; color: #FFF; line-height: 1.4rem;width:4.6rem;border-radius:0.68rem 0 0 0.68rem;background:rgba(0,0,0,0.2);}
-.signin-help i{display:inline-block;width:1rem;height:0.8rem;background:url(../images/new/act-say.png) no-repeat center;background-size:contain;margin-right:0.2rem;vertical-align:middle;}
+.signin-help i{display:inline-block;width:1rem;height:0.8rem;background:url(../images/act-say.png) no-repeat center;background-size:contain;margin-right:0.2rem;vertical-align:middle;}
 /*.signin-help i { border: solid 0.05rem #FFF; width: 0.7rem; height: 0.7rem; display:block; border-radius: 100%; line-height: 0.7rem; color: #FFF; font-weight: 600; margin: 0.1rem auto 0 auto;}
 */.member-top h3.int-daily {position: absolute;left:0;bottom:0; font-size: 0.7rem; line-height: 1rem; padding: 0.4rem; overflow: hidden;background:#fff;border-bottom:1px solid #e3e3e3;width:100%;box-sizing:border-box;text-align:left;}
 .member-top h3 a { float: right; font-size: 0.55rem; line-height: 1rem; color: #333;}
@@ -194,12 +188,12 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-order-search form { position: relative; z-index: 1;}
 .nctouch-order-search .input-del { position: absolute; z-index: 1; top: 0.26rem;right:0.5rem; display:none; width: 0.975rem; height: 0.975rem; background-image: url(../images/cancel_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 60%; opacity: 0.4;}
 .nctouch-order-search .write .input-del { display: block;}
-.nctouch-order-search input[type="text"] { display: inline-block; width: 100%;padding:0.1rem 0.25rem 0.1rem 1.6rem;border: none; border-radius:1rem; font-size: 0.6rem; background-color:#f2f2f2; line-height: 1rem;border:1px solid #e3e3e3;box-sizing:border-box;}
+.nctouch-order-search input[type="text"] { display: inline-block; width: 100%;padding:0.1rem 0.25rem 0.1rem 1.6rem;border: none; border-radius:1rem;height: 30px; font-size: 0.6rem; background-color:#f2f2f2; line-height: 1rem;border:1px solid #e3e3e3;box-sizing:border-box;}
 /*.nctouch-order-search input[type="button"] { display: inline-block; width: 1rem; height: 1rem; margin-left: 0.5rem; background-color: transparent; background-image: url(../images/bbc-bg30.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.5; border: none;}
 */
 .nctouch-order-search input[type="button"]{background: none;border: none;line-height: 1.95rem;font-size:0.65rem;color:#888;}
 .nctouch-order-search .ser-area{position:relative;display:inline-block;width:80%;}
-.nctouch-order-search .ser-area i{ display: inline-block; width: 0.6rem; height: 1.5rem; margin-left: 0.5rem; background-color: transparent; background-image: url(../images/bbc-bg30.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.4; border: none;position:absolute;left:0.2rem;top:0;}
+.nctouch-order-search .ser-area i{ display: inline-block; width: 0.6rem; height: 1.5rem; margin-left: 0.5rem; background-color: transparent; background-image: url(../images/bbc-bg30.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.4; border: none;position:absolute;left:0.2rem;top:0.2rem;}
 /*订单列表*/
 .nctouch-order-list { display: block; clear: both; width: 100%;}
 .nctouch-order-list ul {}
@@ -263,7 +257,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-order-item-footer .store-totle time { float: left; font-size: 0.55rem; line-height: 0.9rem; color: #BBB;}
 .nctouch-order-item-footer .store-totle .refund-sum { font-size: 0.6rem; color: #000; line-height: 0.9rem;}
 .nctouch-order-item-footer .store-totle .refund-sum em { color: #ED5564; font-weight: 600;}
-.nctouch-order-item-footer .handle { position: relative; z-index: 1; text-align: right; height: 1.2rem; padding: 0.4rem 2.5%;}
+.nctouch-order-item-footer .handle { position: relative; z-index: 1; text-align: right;  padding: 0.4rem 2.5%;}
 /*.nctouch-order-item-footer .handle .del {z-index: 1; top: 0.4rem; left: 0; display: block; height: 1.2rem; font-size: 0.6rem; line-height: 1.2rem; color: #888;}
 .nctouch-order-item-footer .handle .del i { display: inline-block; vertical-align: top; width: 1rem; height: 1.1rem; background-image: url(../images/bbc-bg27.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.9;}*/
 .nctouch-order-item-footer .handle p { position: absolute; z-index: 1; top: 0.4rem; left: 0; display: block; font-size: 0.6rem; line-height: 1.2rem; color: #ED5564; display: inline-block; }
@@ -271,22 +265,18 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .check-payment em { font-size: 0.7rem; font-weight: 600;}
 
 /*订单详情*/
-.order-status-bg{background:url(../images/new/order-bg.png) no-repeat center !important;background-size:contain !important;height:4.1rem;padding:0 !important;}
+.order-status-bg{background:url(../images/order-bg.png) no-repeat center !important;background-size:contain !important;height:4.1rem;padding:0 !important;}
 .order-status-bg *{color:#fff !important;vertical-align: middle;}
 .order-status-bg h3,.order-status-bg .order-state{margin-top:0.8rem;}
 .nctouch-oredr-detail-block { position: relative; z-index: 1; display: block; padding: 0.4rem 0; background: #FFF; border-bottom: solid 0.05rem #e3e3e3;}
 .nctouch-oredr-detail-block h3 { display: inline-block; vertical-align: top; height: 1rem;margin-bottom:0.3rem; margin-left: 0.54rem; font-size: 0.6rem; line-height: 1rem; color:#444;}
 .nctouch-oredr-detail-block h3 i { display: inline-block; vertical-align:middle; width: 1rem; height: 1.2rem; margin-right: 0.2rem; background-position: 50% 50%; background-repeat: no-repeat; background-size:contain;}
-.nctouch-oredr-detail-block h3 i.orders { background-image: url(../images/mc_01_b.png);}
-.nctouch-oredr-detail-block h3 i.msg { background-image: url(../images/mcc_04.png);}
-.nctouch-oredr-detail-block h3 i.invoice { background-image: url(../images/mcc_08_b.png);}
-.nctouch-oredr-detail-block h3 i.pay { background-image: url(../images/mcc_06_b.png);}
-.nctouch-oredr-detail-block h3 i.phone { background-image: url(../images/new/phone.png);}
+.nctouch-oredr-detail-block h3 i.phone { background-image: url(../images/phone.png);}
 .nctouch-oredr-detail-block .order-state { float: right; height: 1rem; margin-right: 0.5rem; font-size: 0.6rem; color: #ED5564; line-height: 1rem; }
 .nctouch-oredr-detail-block .msg-phone { display: inline-block; vertical-align: top; font-size: 0.6rem;line-height: 1rem; height: 1rem; margin-left: 0.2rem;}
 .nctouch-oredr-detail-block .msg-again { position: absolute; z-index: 1; top: 0.2rem; right: 0.5rem; background: #F5F5F5; font-size: 0.6rem; line-height: 1rem; padding: 0.2rem 0.3rem; color: #333; border: solid #EEE 0.05rem; border-radius: 0.2rem;}
 .nctouch-oredr-detail-block .info { margin-left:0.54rem; font-size: 0.55rem; line-height: 0.9rem;color:#888;margin-right:0.5rem;}
-.nctouch-oredr-detail-block i.icon-arrow { position: absolute; z-index: 1; top: 50%; right: 0.5rem; display: block; width: 0.5rem; height: 0.5rem; margin-top: -0.25rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.5; }
+.nctouch-oredr-detail-block i.icon-arrow { position: absolute; z-index: 1; top: 50%; right: 0.5rem; display: block; width: 0.5rem; height: 0.5rem; margin-top: -0.25rem;opacity: 0.5; }
 .nctouch-oredr-detail-add { position: relative; z-index: 1; width: 100%;}
 .nctouch-oredr-detail-add i.icon-add { position: absolute; z-index: 1; top: 0rem; left: 0.4rem; display: block; width: 1rem; height: 100%; background-image: url(../images/location_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; }
 .nctouch-oredr-detail-add dl { margin: 0 0 0 1.6rem; padding: 0 0.5rem 0 0;}
@@ -300,8 +290,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 /*虚拟订单码列表*/
 .nctouch-vr-order-codes { background-color: #FFF; margin-top: 0.5rem; border-top: solid 0.05rem #EEE;}
 .nctouch-vr-order-codes .tit { display: block; overflow: hidden; height: 1rem; padding: 0.4rem;}
-.nctouch-vr-order-codes .tit h3 { float: left; font-size: 0.7rem; line-height: 1rem;}
-.nctouch-vr-order-codes .tit h3 i { display: inline-block; vertical-align: top; width: 1rem; height: 1rem; margin-right: 0.2rem; background-image: url(../images/vrcode_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 70%; opacity: 0.9;}
+.nctouch-vr-order-codes .tit h3 { float: left; font-size: 0.7rem; line-height: 1rem;opacity: 0.9;}
 .nctouch-vr-order-codes .tit span { float: right; text-align: right; width: 60%; height: 1rem; overflow: hidden; font-size: 0.55rem; line-height: 1rem; color: #999;}
 .nctouch-vr-order-codes ul { border-top: solid #EEE 0.05rem; padding-left: 0.5rem;}
 .nctouch-vr-order-codes li { display: block; height: 1rem; padding: 0.4rem 0.2rem; font-size: 0.8rem; line-height: 1rem; color: #36BC9B; border-bottom: solid #EEE 0.05rem;}
@@ -321,10 +310,9 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-vr-order-location .default p { position: absolute; z-index: 1; right: 0.5rem; top: 0.5rem; border-left: solid 0.05rem #EEE; padding-left: 0.5rem;}
 .nctouch-vr-order-location .default p a { display: block;  width: 2rem; height: 2rem; background-image: url(../images/tel_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.65;}
 .nctouch-vr-order-location .more-location { border-top: solid #EEE 0.05rem; font-size: 0.6rem; line-height: 0.9rem; padding: 0.5rem; position: relative;}
-.nctouch-vr-order-location .more-location a { display: block; color: #ED5564; font-weight: 600;}
-.nctouch-vr-order-location .more-location i { position: absolute; z-index:1; top: 0.5rem; right: 0.5rem; width: 0.8rem; height: 0.9rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 78%; opacity: 0.65;}
+.nctouch-vr-order-location .more-location a { display: block; color: #ED5564; font-weight: 600;background-repeat: no-repeat; background-position: 50% 50%; background-size: 78%; opacity: 0.65;}
 .transparent-map { background-color: transparent; border-bottom: none; }
-.transparent-map .header-l a { width: 1.35rem; height: 1.35rem; margin: 0.2775rem; padding: 0; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#BFFFFFFF', endColorstr='#BFFFFFFF'); background:rgba(255,255,255,0.75); border: solid 0.05rem #EEE; border-radius: 100%;}
+.transparent-map .header-l a { width: 1.35rem; height: 1.35rem; margin: 0.2775rem; padding: 0;  border: solid 0.05rem #EEE; border-radius: 100%;}
 .transparent-map .header-l a i.back { width: 60%; height: 60%; margin: 20%; background-image: url(../images/arrow_left_r.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 1;}
 
 /* 虚拟码再次发送 */
@@ -346,11 +334,10 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-oredr-detail-delivery .info { margin: 0 1rem 0 1.2rem; min-height: 1.6rem;}
 .nctouch-oredr-detail-delivery .info p { font-size: 0.7rem; line-height: 0.9rem; color: #000;}
 .nctouch-oredr-detail-delivery .info time { font-size: 0.6rem; line-height: 0.9rem; color: #777;}
-.nctouch-oredr-detail-delivery .arrow-r { position: absolute; z-index: 1; top: 0.9rem; right: 0.5rem; display: block; width: 0.8rem; height: 0.9rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 65%; opacity: 0.65;}
+.nctouch-oredr-detail-delivery .arrow-r { position: absolute; z-index: 1; top: 0.9rem; right: 0.5rem; display: block; width: 0.8rem; height: 0.9rem;opacity: 0.65;}
 
 /*订单物流*/
 .nctouch-order-deivery-info { background: #FFF; position: relative; z-index: 1;}
-.nctouch-order-deivery-info i { position: absolute; z-index: 1; top: 0.8rem; left: 0.6rem; width: 1rem; height: 1rem; background-image: url(../images/mcc_03.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.7;}
 .nctouch-order-deivery-info dl { height: 1.8rem; margin-left: 2.5rem; padding: 0.5rem 0;}
 .nctouch-order-deivery-info dt { font-size: 0.7rem; line-height: 1rem; color: #333;}
 .nctouch-order-deivery-info dd { font-size: 0.6rem; line-height: 0.9rem; color: #888;}
@@ -377,7 +364,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .evaluation-info .goods-info { display: block; min-height: 2.8rem; padding: 0.38rem 0; margin: 0 0 0 3.1rem; position: relative; z-index: 1;}
 .evaluation-info .goods-info .goods-name { overflow: hidden; height: 1.6rem; font-size: 0.6rem; line-height: 0.9rem; margin-bottom: 0.4rem; color: #333;}
 .evaluation-info .goods-info .goods-rate { display: block; min-height: 0.9rem; font-size: 0.55rem; color: #888; line-height: 0.9rem;}
-.evaluation-info .star-level { display: inline-block; vertical-align: top; font-weight: 0; margin-left: 0.2rem;}
+.evaluation-info .star-level { display: inline-block; vertical-align: top; margin-left: 0.2rem;}
 .evaluation-info .star-level i { display: inline-block; vertical-align: top; width: 0.75rem; height: 0.75rem; background-repeat: no-repeat; background-position: 50% 50%; background-size: 90%;}
 .evaluation-info .star-level i.star-level-solid { background-image: url(../images/star_r.png);}
 .evaluation-info .star-level i.star-level-hollow { background-image: url(../images/star_b.png); opacity: 0.3;}
@@ -389,7 +376,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 
 .evaluation-upload-block { font-size: 0;}
 .evaluation-upload-block .tit { display: inline-block; vertical-align: top; width: 1.5rem; height: 1.7rem; padding: 0.3rem 0.3rem 0 0; }
-.evaluation-upload-block .tit i { display: block; width: 100%; height: 0.9rem; background-image: url(../images/upload-pic.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 70%; opacity: 0.15;}
+.evaluation-upload-block .tit i { display: block; width: 100%; height: 0.9rem;  opacity: 0.15;}
 .evaluation-upload-block .tit p { display: block; width: 100%; height: 0.9rem; text-align: center; color: #BBB; font-size: 0.55rem; line-height: 0.9rem;}
 .evaluation-upload-block .nctouch-upload { margin-right: 0.3rem;}
 
@@ -397,7 +384,7 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-evaluation-store dl { position: relative; z-index: 1; display: block; height: 1.6rem;}
 .nctouch-evaluation-store dt { position: absolute; z-index: 1; top: 0.4rem; left: 2rem; display: block; width: 3rem; height: 0.9rem; font-size: 0.7rem; line-height: 0.9rem;}
 .nctouch-evaluation-store dd { display: block; margin: 0 0 0 6rem; padding-top: 0.4rem; height: 0.9rem;}
-.nctouch-evaluation-store .star-level { display: inline-block; vertical-align: top; font-weight: 0; margin-left: 0.2rem;}
+.nctouch-evaluation-store .star-level { display: inline-block; vertical-align: top; margin-left: 0.2rem;}
 .nctouch-evaluation-store .star-level i { display: inline-block; vertical-align: top; width: 0.8rem; height: 0.9rem; background-repeat: no-repeat; background-position: 50% 50%; background-size: 95%;}
 .nctouch-evaluation-store .star-level i.star-level-solid { background-image: url(../images/star_r.png);}
 .nctouch-evaluation-store .star-level i.star-level-hollow { background-image: url(../images/star_b.png); opacity: 0.3;}
@@ -443,28 +430,29 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-asset-info .container .rule dd { font-size: 0.5rem; line-height: 0.68rem; height: auto;}
 
 /* 触屏版资产日志形列表 */
-.nctouch-log-list { padding-left: 0.5rem; background-color: #FFF;}
-.nctouch-log-list li { position: relative; z-index: 1; display: block; padding: 0.5rem 0; border-bottom: solid 0.05rem #EEE;}
+.nctouch-log-list { padding: 0.5rem; background-color: #FFF;}
+.nctouch-log-list li { padding: 0.5rem 0 .2rem; border-bottom: solid 0.05rem #EEE;}
 .nctouch-log-list li .detail { min-height: 1.8rem; margin: 0 50% 0 0; font-size: 0.55rem; word-wrap:break-word; line-height: 0.9rem; color: #555;}
-.nctouch-log-list li .money { position: absolute; z-index: 1; top: 0.5rem; right: 0.5rem; height: 0.9rem; font-weight: 0.7rem; line-height: 0.9rem;}
-.nctouch-log-list.tx .money { right: 1.5rem;}
+.nctouch-log-list li .moneyP {height: 1.2rem;}
+.nctouch-log-list li .money {float: right;}
+.nctouch-log-list li .moneyN {font-size: .6rem;
+  color: #777;line-height: 1.5rem}
 .nctouch-log-list li .money.add { color: #ED5564;}
 .nctouch-log-list li .money.reduce { color: #36BC9B;}
 .nctouch-log-list li .date { position: absolute; z-index: 1; bottom: 0.4rem; right: 0.5rem; height: 0.9rem; font-size: 0.5rem; line-height: 0.9rem; color: #999;}
 .nctouch-log-list.tx .date { right: 1.5rem;}
 .nctouch-log-list li dl {}
 .nctouch-log-list li dt { font-size: 0.7rem; line-height: 1rem; font-weight: 600; color: #333; height: 1rem; margin-bottom: 0.2rem;}
-.nctouch-log-list li dt i { display: inline-block; vertical-align: top; width: 1rem; height: 1rem; margin-right: 0.1rem; background-image: url(../images/mcc_11_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 65%; opacity: 0.4;}
+.nctouch-log-list li dt i { display: inline-block; vertical-align: top; width: 1rem; height: 1rem; margin-right: 0.1rem; opacity: 0.4;}
 .nctouch-log-list li dt span { font-size: 0.55rem; color: #4FC0E8;}
 .nctouch-log-list li dd { font-size: 0.55rem; line-height: 0.65rem; color: #777;}
-.nctouch-log-list li .arrow-r { position: absolute; z-index: 2; top: 50%; right: 0.4rem; display: block; width: 0.8rem; height: 0.9rem; margin-top: -0.4rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-repeat: 50% 50%; background-size: 80%; opacity: 0.3;}
+.nctouch-log-list li .arrow-r { position: absolute; z-index: 2; top: 50%; right: 0.4rem; display: block; width: 0.8rem; height: 0.9rem; margin-top: -0.4rem;opacity: 0.3;}
 
 /* 触屏版代金卡券列表 */
 .nctouch-tickets { display: block; padding: 0.5rem 0.5rem 0 0.5rem;}
 .nctouch-tickets .ticket-item { position: relative; z-index: 1; display: block; margin-bottom: 0.5rem;}
-.nctouch-tickets .ticket-item .border-left { position: absolute; z-index: 1; top: 0; left: 0; bottom: 0; display: block; width: 0.20rem; background-image: url(../images/ticket_border_w.png); background-repeat: repeat-y; background-position: 0 50%; background-size: 89%;}
-.nctouch-tickets .ticket-item .border-right { position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; display: block; width: 0.20rem; background-image: url(../images/ticket_border_r.png); background-repeat: repeat-y; background-position: 0 50%; background-size: 89%;}
-.nctouch-tickets .ticket-item.invalid .border-right { background-image: url(../images/ticket_border_b.png);}
+.nctouch-tickets .ticket-item .border-left { position: absolute; z-index: 1; top: 0; left: 0; bottom: 0; display: block; width: 0.20rem;}
+.nctouch-tickets .ticket-item .border-right { position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; display: block; width: 0.20rem; }
 .nctouch-tickets .ticket-item .block-center { display: block; height: 3rem; margin: 0 0.20rem; background: #FFF; font-size: 0; box-shadow: 0 0.05rem 0.05rem rgba(0,0,0,0.1);}
 .nctouch-tickets .ticket-item .store-info { position: relative; z-index: 1; display: inline-block; vertical-align: top; width: 65%; height: 3rem;}
 .nctouch-tickets .ticket-item .store-avatar { position: absolute; z-index: 1; top: 0.5rem; left: 0.5rem; width: 2rem; height: 2rem; background: #FFF;}
@@ -475,11 +463,8 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .nctouch-tickets .ticket-item .ticket-info { position: relative; z-index: 1; display: inline-block; vertical-align: top; width: 35%; height: 3rem;}
 .nctouch-tickets .normal .ticket-info { background-color: #ED5564;}
 .nctouch-tickets .invalid .ticket-info { background-color: #AAB2BD;}
-.nctouch-tickets .ticket-item .bg-ico { position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; left: 0; background-image: url(../images/store_w.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.15;}
-.nctouch-tickets .ticket-item .bg-ico.rp { background-image: url(../images/mcc_09_w.png);}
-.nctouch-tickets .invalid .watermark { position: absolute; z-index: 3; top: 0; right: 0; bottom: 0; left: 0; background-image: url(../images/ticket_ysx.png); background-repeat: no-repeat; background-size: 60% 50%; background-size: 50%; opacity: 0.50;}
-.nctouch-tickets .invalid .watermark.ysx { background-image: url(../images/ticket_ysx.png)}
-.nctouch-tickets .invalid .watermark.ysy { background-image: url(../images/ticket_ysy.png)}
+.nctouch-tickets .ticket-item .bg-ico { position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.15;}
+.nctouch-tickets .invalid .watermark { position: absolute; z-index: 3; top: 0; right: 0; bottom: 0; left: 0;opacity: 0.50;}
 
 .nctouch-tickets .ticket-item .ticket-info dl { position: absolute; z-index: 2; right: 0.5rem; bottom: 0.5rem; display: block; text-align: right; height: 1.8rem;}
 .nctouch-tickets .ticket-item .ticket-info dt { font-size: 1rem; line-height: 1.2rem; color: #FFF;}
@@ -514,8 +499,8 @@ i.cc-10 { background-image: url(../images/bbc-bg23.png); background-size: cover 
 .im-contact a,.to-call a{display:inline-block; line-height:1.6rem;width:5.45rem;color:#fff !important;border-radius:0 0.78rem 0.78rem 0;background: -webkit-linear-gradient(to right, #3fcbac, #3fc4cc);
   background: linear-gradient(to right,#3fcbac, #3fc4cc);font-size:0.68rem;}
 .im-contact a i.im,.to-call a i.tel{width:1rem;height:1.6rem;display:inline-block;margin-right:0.45rem;margin-left:0.59rem; float:left;}
-.im-contact a i.im{background:url(../images/new/im.png) no-repeat center;background-size:contain;}
-.to-call a i.tel{background:url(../images/new/tel.png) no-repeat center;background-size:contain;}
+.im-contact a i.im{background:url(../images/im.png) no-repeat center;background-size:contain;}
+.to-call a i.tel{background:url(../images/tel.png) no-repeat center;background-size:contain;}
 @media (max-width:400px){
   .nctouch-order-item-con .goods-info{width:9.2rem;}
 }

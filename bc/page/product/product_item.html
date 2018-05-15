@@ -1,236 +1,150 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-	    <meta name="screen-orientation" content="portrait"/>
-	    <meta name="apple-mobile-web-app-capable" content="yes">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="format-detection" content="telephone=no">
-	    <meta name="full-screen" content="yes">
-	    <meta name="x5-fullscreen" content="true">
-		<title></title>
-	    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
-	    <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css"/>
-	    <link rel="stylesheet" type="text/css" href="../../css/nctouch_products_list.css"/>
-	    <style type="text/css">
-            .nctouch-full-mask.left {left: 25%;}
-            .nctouch-main-layout-a {top: 0;}
-            .secreen-layout .bottom {padding: 0.5rem 0;}
-            #reset {background: #70696a;}
-        </style>
-	</head>
-	<body>
-		<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
-		
-		<div class="content" id="list">
-			
-			<!--头部搜索-->
-			<header id="header" class="header nctouch-product-header fixed"></header>
-			
-			<!--条件选择-->
-			<div class="goods-search-list-nav">
-		        <ul id="nav_ul">
-		            <li><a href="javascript:void(0);" :class="[current_falg?'current':'']" id="sort_default" @click="goodsSort">{{goodsValue}}<i></i></a></li>
-		            <li><a href="javascript:void(0);" :class="[(!current_falg)?'current':'']" @click="browseVolume">销量优先</a></li>
-		            <li class="browse-mode"><a href="javascript:void(0);" @click="browseMode"><span :class="[browseMode_falg?'browse-list':'browse-grid']"></span></a></li>
-		        </ul>
-		        <div class="ser-adv"><a href="javascript:void(0);" id="search_adv"><span style="vertical-align: middle;">筛选</span><i></i></a></div>
-		    </div>
-		    
-		    <!--上架时间-->
-		    <div id="sort_inner" class="goods-sort-inner hide" :class="[goodsShow?'show':'hide']">
-		        <span v-for='(item,i) in goodsList'><a href="javascript:void(0);" :class="[goodsIndex == i? 'cur' : '']"  @click="init_get_list('', '',i)">{{item}}<i></i></a></span>
-		    </div>
-		    
-		    <!--商品内容-->
-		    <div class="nctouch-main-layout mt40 mb20">
-		        <div id="product_list" :class="[browseMode_falg?'list':'grid']">
-		            <ul class="goods-secrch-list" v-if="norecordShow">
-				        <li class="goods-item"  v-for="(items,i) in itemList" :id="items.common_id" >
-								<span class="goods-pic">
-									<a :href="'product_detail.html?goods_id='+items.common_id">
-				                        <img :src="items.common_image">
-				                    </a>
-								</span>
-				            <dl class="goods-info">
-				                <dt class="goods-name">
-				                    <a :href="'product_detail.html?goods_id='+items.common_id">
-				                        <h4>{{items.common_name}}</h4>
-				                        <h6></h6>
-				                    </a>
-				                </dt>
-								<dd>
-									<span style="font-size: 0.6rem;">￥<em style="font-size: 0.8rem;color: #EC5464;font-weight: bold;">{{items.common_fenqi_price}}</em> × {{i | number }}期</span>
-								</dd>
-				                <dd class="goods-sale">
-				                    <a :href="'product_detail.html?goods_id='+items.common_id">
-										<span class="goods-price" style="color: #000000;">商城价：￥<em>{{items.common_price}}</em></span>
-									</a>
-									<div class="goods-assist">
-										<a href="javascript:void(0);"></a>
-										<div class="goods-store">销量：{{items.common_salenum}}</div>
-									</div>
-				                </dd>
-				            </dl>
-				        </li>
-		            </ul>
-		            <!--显示无数据-->
-		            <div class="nctouch-norecord search" v-else>
-			            <div class="norecord-ico"><i></i></div>
-			            <dl>
-			                <dt>没有找到任何相关信息</dt>
-			                <dd>选择或搜索其它商品分类/名称...</dd>
-			            </dl>
-			            <a href="javascript:history.go(-1)" class="btn">重新选择</a>
-			        </div>
-		        </div>
-		    </div>
-		    
-		    <!--筛选-->
-		    <div class="nctouch-full-mask hide JS-search right" style="z-index: 1999;">
-		        <div class="nctouch-full-mask-bg"></div>
-		        <div class="nctouch-full-mask-block">
-		            <div class="header" style="display: none;">
-		                <div class="header-wrap">
-		                    <div class="header-l"><a href="javascript:void(0);"><i class="back"></i></a></div>
-		                    <div class="header-title">
-		                        <h1>商品筛选</h1>
-		                    </div>
-		                    <div class="header-r"><a href="javascript:void(0);" class="text reset">重置</a></div>
-		                </div>
-		            </div>
-		            <div class="nctouch-main-layout-a secreen-layout" id="list-items-scroll"><div style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-		            <dl>
-		                <dt>商品类型</dt>
-		                <dd>
-		                    <a href="javascript:void(0);" nctype="items" id="actgoods">促销</a>
-							<a href="javascript:void(0);" nctype="items" id="normalpro">正常</a>
-		                    <!--<a href="javascript:void(0);" nctype="items" id="virtual">虚拟</a>-->
-		                </dd>
-		            </dl>
-		            <dl>
-		                <dt>价格区间</dt>
-		                <dd>
-		                    <span class="inp-balck"><input type="text" id="price_from" nctype="price" pattern="[0-9]*" class="inp" placeholder="最低价"></span>
-		                    <span class="line"></span>
-		                    <span class="inp-balck"><input nctype="price" type="text" id="price_to" pattern="[0-9]*" class="inp" placeholder="最高价"></span>
-		                </dd>
-		            </dl>
-		            <div class="bottom">
-		                <a href="javascript:void(0);" class="btn-l reset" id="reset">重置</a>
-		            </div>
-		            <div class="bottom">
-		                <a href="javascript:void(0);" class="btn-l" id="search_submit">筛选</a>
-		            </div>
-		        </div></div>
-		        </div>
-		    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_products_list.css"/>
+    <style type="text/css">
+        .nctouch-full-mask.left{left:25%}
+        .nctouch-main-layout-a{top:0}
+        .secreen-layout .bottom{padding:.5rem 0}
+        #reset{background:#70696a}
+        #sort_inner{margin-top: 4rem;position: absolute;z-index: 9999;width: 100%;}
+    </style>
+</head>
+<body>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
 
-			<div class="pre-loading" v-show="preLoading"></div>
+    <div class="content" id="list">
 
-			<!--回到顶部-->
-			<div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
-    	</div>
-   	 	<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-    	
-    var vm = new Vue({
-        	el: '#list',
-            data: {
-			    goodsShow: false,
-			    norecordShow: true,
-            	browseMode_falg: true,
-                current_falg:true,
-                oBackTopFixed:false,
-                preLoading:true,
-			    goodsIndex:0,
-			    goodsList:['上架时间','价格从高到低','价格从低到高'],
-			    goodsValue:'上架时间',
-			    itemList:[],
-				page:1
-			},
-			computed: {
-			    
-			},
-            filters: {
-                number: function(value) {
-					if(vm.itemList){
-                        return (vm.itemList[value].common_price/vm.itemList[value].common_fenqi_price).toFixed(0);
-					}
-				}
-			},
-			mounted: function () {
-				FastClick.attach(document.body);
-                commentJs.toastLoading('加载中...');
-				commentJs.staticSearch(2);
-                commentJs.BackToTop('fix-block-r');
-                window.addEventListener('scroll', this.handleScroll);
-				//显示数据与与数据显示
-				let cat_id = commentJs.getUrlKey('cat_id'),
-					_this = this;
-				cat_id?_this.norecordShow = true:_this.norecordShow = false;
-                setTimeout(function () {_this.oData(cat_id,_this.page);},10);
-				/*筛选显示、隐藏*/
-				commentJs.animationLeft({
-		            valve: "#search_adv",
-		            wrapper: ".nctouch-full-mask",
-		            scroll: "#list-items-scroll",
-		            openCallback: function() {
-		                $(".JS-search").css("z-index", 1999);
-		                $("body").append("<div  style=\" cursor:pointer;\" id=\"ldg_lockmask\"></div>");
-		            }
-		        });
-		        
-            },
-			
-			methods: {
-		      oData:function (cat_id,page) {
-		          let _this = this;
-                  let callback = (data) => {
-                      console.log(data)
-                      data.data.items.forEach((v,k)=>{
-                          _this.itemList.push(v);
-                      })
-                      _this.preLoading = false;
-                  }
-                  o.productGoodsDetail(cat_id,page,callback);
-		      },
-			  goodsSort:function(){//显示/隐藏上架时间选择
-			  	this.goodsShow?this.goodsShow = false:this.goodsShow = true;
-                this.current_falg = true;
-			  },
-			  init_get_list:function(one,two,index){//上架时间选择 
-			  	this.goodsIndex = index;
-			  	this.goodsValue = this.goodsList[index];
-			  	this.goodsShow = false;
-			  },
-			  oBackTop(){//回到顶部
-				document.body.scrollTop = 0;
-				document.documentElement.scrollTop = 0;
-			  },
-			  handleScroll(){
-				let _this = this;
-				let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-				scrollTop > 100 ? _this.oBackTopFixed = true : _this.oBackTopFixed = false;
-			    if(window.innerHeight + $(document).scrollTop() == document.body.scrollHeight){
-                    _this.oData(_this.page++);
-			    }
-			  },
-              browseMode:function(){//list变换显示方式
-				this.browseMode_falg = !this.browseMode_falg;
-		      },
-		      browseVolume:function(){//排序跟销量切换
-            	this.current_falg = false;
-       		  }
-			}
+        <!--头部搜索-->
+        <header id="header" class="header nctouch-product-header fixed"></header>
 
+        <!--条件选择-->
+        <div class="goods-search-list-nav">
+            <ul id="nav_ul">
+                <li><a href="javascript:void(0);" :class="[current_falg?'current':'']" id="sort_default" @click="goodsSort">{{goodsValue}}<i></i></a>
+                </li>
+                <li><a href="javascript:void(0);" :class="[(!current_falg)?'current':'']" @click="browseVolume">销量优先</a>
+                </li>
+                <li class="browse-mode"><a href="javascript:void(0);" @click="browseMode"><span
+                        :class="[browseMode_falg?'browse-list':'browse-grid']"></span></a></li>
+            </ul>
+            <div class="ser-adv"><a href="javascript:void(0);" id="search_adv"><span style="vertical-align: middle;">筛选</span><i></i></a></div>
+        </div>
 
-        })
-    </script>
-		
-	</body>
+        <!--上架时间-->
+        <div id="sort_inner" class="goods-sort-inner hide" :class="[goodsShow?'show':'hide']">
+            <span v-for='(item,i) in goodsList'>
+                <a href="javascript:void(0);" :class="[goodsIndex == i? 'cur' : '']" @click="init_get_list(i)">{{item}}<i></i></a></span>
+        </div>
+
+        <!--商品内容-->
+        <div class="nctouch-main-layout mt40 mb20">
+            <div id="product_list" :class="[browseMode_falg?'list':'grid']">
+                <ul class="goods-secrch-list" v-if="norecordShow">
+                    <li class="goods-item" v-for="(items,i) in itemList" :id="items.common_id">
+                        <span class="goods-pic">
+                            <a :href="'product_detail.html?goods_id='+items.id">
+                                <img :src="items.mainPic" alt="">
+                            </a>
+                        </span>
+                        <dl class="goods-info">
+                            <dt class="goods-name">
+                                <a :href="'product_detail.html?goods_id='+items.id">
+                                    <h4>{{items.name}}</h4>
+                                    <h6>{{items.description}}</h6>
+                                </a>
+                            </dt>
+                            <dd>
+                                <span style="font-size: 0.6rem;">￥<em style="font-size: 0.8rem;color: #EC5464;font-weight: bold;">{{items.instalmentPrice | priceTofixed}}</em> × {{items.stagingNum | number }}期</span>
+                            </dd>
+                            <dd class="goods-sale">
+                                <a :href="'product_detail.html?goods_id='+items.id">
+                                    <span class="goods-price"
+                                          style="color: #000000;">商城价：￥<em>{{items.price | priceTofixed}}</em></span>
+                                </a>
+                                <div class="goods-assist">
+                                    <a href="javascript:void(0);"></a>
+                                    <div class="goods-store">销量：{{items.salesVolume}}</div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!--显示无数据-->
+                <div class="nctouch-norecord search" v-else>
+                    <div class="norecord-ico"><i></i></div>
+                    <dl>
+                        <dt>没有找到任何相关信息</dt>
+                        <dd>选择或搜索其它商品分类/名称...</dd>
+                    </dl>
+                    <a href="javascript:history.go(-1)" class="btn">重新选择</a>
+                </div>
+            </div>
+        </div>
+
+        <!--筛选-->
+        <div class="nctouch-full-mask hide JS-search right"  style="z-index: 1999;">
+            <div class="nctouch-full-mask-bg"></div>
+            <div class="nctouch-full-mask-block">
+                <div class="header" style="display: none;">
+                    <div class="header-wrap">
+                        <div class="header-l"><a href="javascript:void(0);"><i class="back"></i></a></div>
+                        <div class="header-title">
+                            <h1>商品筛选</h1>
+                        </div>
+                        <div class="header-r"><a href="javascript:void(0);" class="text reset">重置</a></div>
+                    </div>
+                </div>
+                <div class="nctouch-main-layout-a secreen-layout" id="list-items-scroll">
+                    <div style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                        <dl>
+                            <dt>商品类型</dt>
+                            <dd>
+                                <a href="javascript:void(0);" v-for="(it,p) in goodsType" :class="[goodsTypeIndex==p?'current':'']" id="actgoods" @click="goodsTypeClick">{{it}}</a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>价格区间</dt>
+                            <dd>
+                                <span class="inp-balck">
+                                    <input type="text" id="price_from" nctype="price" pattern="[0-9]*" class="inp" placeholder="最低价" v-model="datas.rangeMin"></span>
+                                <span class="line"></span>
+                                <span class="inp-balck">
+                                    <input nctype="price" type="text" id="price_to" pattern="[0-9]*" class="inp" placeholder="最高价" v-model="datas.rangeMax"></span>
+                            </dd>
+                        </dl>
+                        <div class="bottom">
+                            <a href="javascript:void(0);" class="btn-l reset" id="reset" @click="resetClick">重置</a>
+                        </div>
+                        <div class="bottom">
+                            <a href="javascript:void(0);" class="btn-l" id="searchSubmit" @click="searchSubmit">筛选</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pre-loading" v-show="preLoading"></div>
+
+        <!--回到顶部-->
+        <div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
+    </div>
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/product/product_item.js" type="text/javascript" charset="utf-8"></script>
+</body>
 </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/member.css">
+    <style>
+        .transparent {background: #fff;position: fixed !important;}
+    </style>
+</head>
+
+<body>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <div class="content hide" id="app">
+        <!--头部搜索-->
+        <header id="header" class="transparent ">
+            <div class="header-wrap">
+                <div class="header-l">
+                    <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+                </div>
+                <div class="header-title show">
+                    <h1>登录领积分</h1>
+                </div>
+                <div class="header-r">
+                    <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a>
+                </div>
+            </div>
+        </header>
+        <!-- 内容部分 -->
+        <div class="member-top member-top2">
+            <div class="my-pointnum">
+                <em><i class="icon"></i><b>我的积分</b></em>
+                <span id="pointnum">{{userPointPoint}}</span></div>
+            <div class="sign-box" id="signdiv">
+                <div id="signinbtn" class="sign-btn" style="display:none;">
+                    <h2>登录</h2>
+                    <h6>+<span class="points_signin">50</span> 积分</h6>
+                </div>
+                <div id="completedbtn" class="sign-btn" style="">
+                    <h2>已登录</h2>
+                    <h6>+<span class="points_signin">50</span> 积分</h6>
+                </div>
+            </div>
+            <div id="description_link" class="signin-help" @click="oPointActivity"><i class="icon"></i>活动说明</div>
+            <h3 class="int-daily">积分日志<a href="integral_detail.html">查看我的积分</a></h3>
+        </div>
+
+        <div class="signin-list mrb30">
+
+            <ul id="loglist" class="nctouch-default-list">
+
+                <li class="signin-c" v-for="(item,i) in oPointList">
+                    会员积分<em>{{item.changeType | oChangeType}}{{item.changePoints}}</em><span>{{item.createTime | oCreateTime}}日会员登录获得</span>
+                </li>
+
+                <li class="loading" :class="[itemListFalg?'show':'hide']">
+                    <div class="spinner"><i></i></div>
+                    数据读取中
+                </li>
+
+
+            </ul>
+        </div>
+
+        <ul class="integral-foot-tab">
+            <li><a href="integral_exchange.html"><i class="icon"></i><span>积分兑换</span></a></li>
+            <li class="active"><a href="javascript:void (0);"><i class="icon"></i><span>我的积分</span></a></li>
+        </ul>
+
+        <div class="simple-dialog-wrapper" :class="[userPointActivity?'show':'hide']">
+            <div class="s-dialog-mask" style="height:100%;"></div>
+            <div style="left: 50%; top: 30%; margin-left: -133px;" class="s-dialog-wrapper s-dialog-skin-block"><div class="s-dialog-content">
+            <h4>活动说明</h4>
+            <ul>
+                <li>1、每人每天登录只可获取一次积分。</li>
+                <li>2、网站可根据活动举办的实际情况，在法律允许的范围内，对本活动规则变动或调整。</li>
+                <li>3、对不正当手段（包括但不限于作弊、扰乱系统、实施网络攻击等）参与活动的用户，网站有权禁止其参与活动，取消其获奖资格（如奖励已发放，网站有权追回）。</li>
+                <li>4、活动期间，如遭遇自然灾害、网络攻击或系统故障等不可抗拒因素导致活动暂停举办，网站无需承担赔偿责任或进行补偿。</li>
+            </ul>
+
+        </div><div class="s-dialog-btn-wapper"><a href="javascript:void(0)"  @click="oPointActFalg">确定</a></div></div>
+        </div>
+
+
+        <!-- 内容部分结束 -->
+        <!--回到顶部-->
+        <div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
+        <!--数据请求加载提示-->
+        <div class="pre-loading" v-show="preLoading"></div>
+    </div>
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/member/integral.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

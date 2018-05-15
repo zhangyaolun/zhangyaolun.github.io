@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/font.css">
+    <link rel="stylesheet" type="text/css" href="../../css/palyCenter.css">
+    <style>
+        .pc_user_about{background:#fff}
+        .transparent .header-r a i.more{background-image:url(../../images/bbc-bg48.png)}
+        .pc_news h4,.pc_transaction h4,.pc_user_about h4{line-height:49px!important}
+
+    </style>
+</head>
+
+<body>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <div class="content hide" id="app">
+        <!--头部搜索-->
+        <header id="header" class="transparent">
+            <div class="header-wrap">
+                <div class="header-l">
+                    <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+                </div>
+                <div class="header-title show">
+                    <h1>财富概况</h1>
+                </div>
+                <div class="header-r">
+                    <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a>
+                </div>
+            </div>
+        </header>
+        <!-- 内容部分 -->
+        <div class="pc_user_about wrap">
+            <div class="pc_user_mes clearfix">
+                <div class="pc_user_mes_lf fl clearfix">
+                    <!--<p class="pc_user_mes_lf_img fl"><img src="http://wx.qlogo.cn/mmopen/vi_32/gRtEud3Tl0lm3LIhOuJ0znvDzpppptOqXkdj7CUV0vBeF2SayeibdBobD3Bb70ICdP29Q0trxtVIsamdmNiacKDA/132"></p>-->
+                    <div class="pc_user_mes_lf_text fr">
+                        <dl class="clearfix">
+                            <dt><i class="iconfont icon-yonghuming"></i>用户名称</dt>
+                            <dd>v10088</dd>
+                        </dl>
+                        <dl class="clearfix">
+                            <dt><i class="iconfont icon-shangcidenglushijian"></i>上次登录时间</dt>
+                            <dd>2018-04-14 11:27:22</dd>
+                        </dl>
+
+
+                        <dl class="clearfix">
+                            <dt><i class="iconfont icon-shimingrenzheng"></i>实名认证</dt>
+                            <dd><a href="http://jh.g-town.com.cn//index.php?ctl=Info&amp;met=certification&amp;typ=e">
+                                未认证
+                            </a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <div class="pc_user_mes_rt fr clearfix">
+                    <div class="pc_user_mes_rt_text fl">
+                        <dl class="clearfix dl-public">
+                            <dt class="dt_pad">￥0.00</dt>
+                            <dd style="color: #4dceff;">已到账金额</dd>
+                        </dl>
+                        <dl class="clearfix dl-public">
+                            <dt>￥0.00</dt>
+                            <dd style="color: #ffc24d;">待结算金额</dd>
+                        </dl>
+                        <dl class="clearfix pc_a_btn dl-public">
+                            <dd><a target="_blank" onclick="get_user_identity(event, this)"
+                                   href="http://jh.g-town.com.cn//index.php?ctl=Info&amp;met=withdraw&amp;typ=e"
+                                   class="pc_btn btn_active">提现 </a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pc_transaction wrap" @click="reward_detail">
+            <h4>
+                <a target="_blank" href="javascript:void (0);">订单明细<span class="right"><img
+                        src="http://jh.g-town.com.cn//paycenter/static/default/images/jiantou.png"></span></a>
+            </h4>
+        </div>
+        <div class="pc_transaction wrap">
+            <h4>提现记录</h4>
+            <div class="pc_table_head clearfix">
+                <p class="pc_trans_time"><span>创建时间</span></p>
+                <p class="pc_trans_other">
+                    <span class="pc_table_num">名称&nbsp;|&nbsp;对方&nbsp;|&nbsp;交易号</span><span class="wp20">金额</span><span
+                        class="wp20">状态</span><span class="wp20">操作</span>
+                </p>
+            </div>
+        </div>
+        <!-- 内容部分结束 -->
+
+    </div>
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/member/reward.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

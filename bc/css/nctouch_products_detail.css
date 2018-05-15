@@ -50,7 +50,6 @@
 .goods-detail-price .sold { position: absolute; z-index: 1; top: 0.25rem; right:2rem; display: block; font-size: 0.55rem; line-height: 1rem; height: 1rem;}
 .goods-detail-price .sold i.icon-time{display:inline-block;width:1rem;height:1rem;background:url(../images/icon-time.png) no-repeat center;background-size:contain;margin-right:0.2rem;vertical-align: middle;}
 .goods-detail-price .activity { font-size: 0.45rem; line-height: 0.6rem; vertical-align: middle; display: inline-block; height: 0.6rem; padding-right: 0.1rem; margin-top: 0.05rem; border: solid #EC5464 0.05rem; color: #EC5464;}
-.goods-detail-price .activity i { display: inline-block; vertical-align: middle; margin-right: 0.1rem; width: 0.6rem; height: 0.6rem; background: #ED5564 url(../images/mobile_w.png) no-repeat 50% 50%; background-size: 80%;}
 .fnTimeCountDown{font-size:0.55rem;color:#DB4453;position: absolute; z-index: 1;top:1.4rem;right:1.4rem;}
 .integral-detail dd{display: block;}
 .integral-detail dt{color:#777;}
@@ -74,8 +73,8 @@
 #for-sale .item-more{top:0.8rem !important;}
 .goods-detail-item .item-con { display: inline-block;vertical-align: top;}
 .goods-detail-item .item-con dl { display: block; line-height: 0.9rem;}
-.goods-detail-item .item-con dt { font-size: 0.6rem; color: #333;line-height: 1.3rem;}
-.goods-detail-item .item-con dd { font-size: 0.55rem; color: #888;}
+.goods-detail-item .item-con dt { font-size: 0.6rem; color: #666;line-height: 1.3rem;}
+.goods-detail-item .item-con dd { font-size: 0.55rem; color: #666;}
 #get_area_selected_content{font-size: 0.55rem; color: #888;}
 .item-more.location { background-image: url(../images/location_b.png); opacity: 0.55;background-size:90%;}
 /*促销活动*/
@@ -110,14 +109,14 @@
 .goods-detail-o2o .default p a { display: block;  width: 2rem; height: 2rem; background-image: url(../images/tel_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 50%; opacity: 0.65; margin: 0;}
 .goods-detail-o2o .more-location { border-top: solid #EEE 0.05rem; font-size: 0.6rem; line-height: 0.9rem; padding: 0.5rem; position: relative;}
 .goods-detail-o2o .more-location a { display: block; color: #ED5564; font-weight: 600;}
-.goods-detail-o2o .more-location i { position: absolute; z-index:1; top: 0.5rem; right: 0.5rem; width: 0.8rem; height: 0.9rem; background-image: url(../images/arrow_right_b.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 80%; opacity: 0.4;}
+.goods-detail-o2o .more-location i { position: absolute; z-index:1; top: 0.5rem; right: 0.5rem; width: 0.8rem; height: 0.9rem; }
 
 
 /*已选规格*/
 .goods-detail-sel { display: block;}
-.goods-detail-sel dt { font-size: 0;}
-.goods-detail-sel dt span { display: inline-block;border: solid 0.05rem #CCC; font-size: 0.55rem; line-height: 1.1rem; padding: 0 0.2rem; color: #777;}
-.goods-detail-sel dt span em { color: #333;}
+.goods-detail-sel dt { font-size: 0;color: #4A4A4A!important;}
+.goods-detail-sel dt span { display: inline-block;line-height: 1.1rem; padding: 0 0.2rem; color: #4A4A4A!important;}
+
 
 .goods-detail-contract { padding-bottom: 0.5rem;}
 .goods-detail-contract dt { display: block; height: 0.9rem; font-size: 0.6rem; line-height: 0.9rem; margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden;}
@@ -151,6 +150,7 @@
 /*商品详情店铺*/
 .goods-detail-store { display: block; position: relative; z-index: 1; padding: 0 0.5rem; margin: 0.5rem 0 0; background: #FFF; border: solid #EEE; border-width: 0.05rem;}
 .goods-detail-store .store-name { height: 0.9rem; padding: 0.5rem 0 0.25rem  0; font-size: 0.7rem; line-height: 0.9rem; color: #333; }
+.goods-detail-store .store-name a{margin-right:1rem;color: #666;}
 .goods-detail-store .store-name .icon-store { display: inline-block; width: 0.8rem; height: 0.9rem; vertical-align: top; margin-right: 0.4rem; background-image: url(../images/bbc-bg7.png); background-repeat: no-repeat; background-position: 50% 50%; background-size: 100%; opacity: 0.75;}
 .goods-detail-store .store-rate { padding: 0.4rem 0 0.5rem 0;font-size: 0; }
 .goods-detail-store .store-rate span { display: inline-block; width: 33.33%; font-size: 0.55rem;color: #888;text-align:center; }
@@ -196,7 +196,6 @@
 .goods-options-stock dt { display: block; height: 0.9rem; padding: 0.1rem 0; font-size: 0.6rem; color: #444; line-height: 0.9rem;}
 .goods-options-stock dd { display: block; font-size: 0rem;}
 .goods-options-stock dd a { display: inline-block;padding: 0.25rem 0.4rem; margin-left: 0.3rem; margin-bottom: 0.3rem; font-size: 0.55rem; color: #444; line-height: 0.7rem; background:#f5f5f5;/* border: solid 0.05rem #BBB; border-radius: 0.15rem;*/border-radius:0.3rem;}
-.goods-options-stock dd a:first-child { margin-left: 0;}
 .goods-options-stock dd a.current {color: #FFF; background: #ED5564; border: none;}
 .goods-option-value { display: block;/* height: 1.2rem;*/ padding: 0.5rem; margin-bottom: 2rem; line-height: 1.2rem; font-size: 0.6rem; color:#444; border-top: solid 0.05rem #EEE;}
 
@@ -206,8 +205,8 @@
 .integral-price em{color:#DB4453;margin-right:6px;}
 .integral-price i{font-size:0.6rem;}
 /*商品详情底部*/
-.goods-detail-foot { position: fixed; z-index: 1; top: auto; left: 0; right: 0; bottom: 0; height: 2rem; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#F2F5F5F5', endColorstr='#F2F5F5F5');background:rgba(245,245,245,0.95);}
-.goods-detail-foot { height: 2rem; filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#F2F5F5F5', endColorstr='#F2F5F5F5');background:rgba(245,245,245,0.95);}
+.goods-detail-foot { position: fixed; z-index: 1; top: auto; left: 0; right: 0; bottom: 0; height: 2rem; background:rgba(245,245,245,0.95);}
+.goods-detail-foot { height: 2rem;background:rgba(245,245,245,0.95);}
 .goods-option-foot { position: absolute; z-index:1; bottom: 0; left: 0; right: 0;}
 .goods-detail-foot .otreh-handle,
 .goods-option-foot .otreh-handle { float: left; width: 48%; font-size: 0;}
@@ -234,7 +233,7 @@
 .goods-detail-foot .buy-handle a,
 .goods-option-foot .buy-handle a { display: block; height: 2rem; font-size: 0.7rem; font-weight: 600; line-height: 2rem; color: #FFF; text-align: center;}
 .goods-detail-foot .no-buy a,
-.goods-option-foot .no-buy a { filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */ -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: grayscale(100%); filter: gray; opacity: 0.8;}
+.goods-option-foot .no-buy a {  opacity: 0.8;}
 .goods-detail-foot .buy-handle a.add-cart,
 .goods-option-foot .buy-handle a.add-cart { float: right; width: 55%; background:-webkit-linear-gradient(to right, #d92e66, #ec5a6f);background:linear-gradient(to right,#d92e66, #ec5a6f);}
 .goods-detail-foot .buy-handle a.buy-now,

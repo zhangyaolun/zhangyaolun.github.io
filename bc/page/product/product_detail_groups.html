@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/swiper-4.1.6.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/fight-groups.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_products_detail.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/productsDetail.css"/>
+</head>
+
+<body>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/tz_fly.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../../lib/js/iscroll.js"></script>
+    <script src="../../lib/js/swiper.js" type="text/javascript" charset="utf-8"></script>
+
+    <div class="content hide" id="list">
+
+        <!--详情头部-->
+        <header id="header_r" :class="[searchBarFixed?'posf':'transparent']">
+            <div class="header-wrap-new" style="display: block;max-width: 640px;margin: 0 auto;text-align: center;"
+                 :class="[headerTabShow? 'show' : 'hide']">
+                <div class="header-l">
+                    <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+                </div>
+                <div class="titlebar-container-menu-item">
+                    <a href="../member/member.html">
+                        <img class="am-header-icon-custom" src="../../images/20160051201.png">
+                        <span>个人中心</span>
+                    </a>
+                </div>
+                <div class="titlebar-container-menu-primary-divider">
+                    <img class="title-divider-img" src="../../images/line_nobg.png">
+                </div>
+                <div id="showcode" class="titlebar-container-menu-primary-third-item  titlebar-container-menu-item"
+                     @click="codeClick">
+                    <img class="am-header-icon-custom" src="../../images/20160051203.png">
+                    <span>二维码</span>
+                </div>
+            </div>
+            <div class="header-wrap" :class="[!headerTabShow? 'show' : 'hide']">
+                <div class="header-l">
+                    <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+                </div>
+                <ul class="header-nav">
+                    <li>
+                        <a href="#">商品</a>
+                    </li>
+                    <li class="cur">
+                        <a href="javascript:void(0);" id="goodsBody">详情</a>
+                    </li>
+                    <li>
+                        <a href="../service/service.html">客服</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <!--轮播图-->
+        <div class="swiper goods-detail-top">
+            <div class="swiper-container swiper-top-container swiper-container-new swiper-container-horizontal swiper-container-android goods-detail-pic">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="item in swiperList"><img :src="item"></div>
+                </div>
+                <div class="swiper-pagination" style="bottom: 0;"></div>
+            </div>
+        </div>
+
+        <div class="nctouch-main-layout nctouch-main-layout-bottom" v-show="!preLoading">
+            <ul class="pt_goods_previews">
+                <li class="borb1 mt0">
+                    <div class="swiper-pt-banner swiper-container swiper-container-horizontal">
+                        <ul class="swiper-wrapper" id="pt_goods_image">
+                            <li class="swiper-slide swiper-slide-active" style="width: 375px;"><img
+                                    src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180321/1521616756770001.jpg">
+                            </li>
+                        </ul>
+                        <div class="swiper-pt-pagination swiper-pagination-clickable swiper-pagination-bullets"><span
+                                class="swiper-pagination-bullet swiper-pagination-bullet-active"></span></div>
+                    </div>
+                    <div class="pt_goods_title">
+                        <strong class="common-red">[<label id="pt_person_num">10</label>人团]</strong>
+                        <p class="pt_goods_name">富士（FUJIFILM）INSTAX 一次成像相机 MINI7s相机：黑白熊猫版</p>
+                    </div>
+                    <dl class="clearfix">
+                        <dt class="fl">
+                        <p style=" font-size: 0.7rem;color: #333;">￥<em style="font-size: 0.8rem;color: #DB4453;">
+                            <span id="fen_pt_price">29.92</span></em> × 12期</p>
+
+                        <p class="part1"><strong class="common-red" style="color: #5d5c5c;marign-top:.1rem;">拼团价：￥<label
+                                id="pt_price">359.00</label></strong><em class="common-red free-ship" id="pt_transport_fee"
+                                                                         style="color: #5d5c5c;">包邮</em></p>
+
+                        <p class="part2"><b class="through">商城价：￥<label id="pt_price_ori">399.00</label></b></p>
+
+                        </dt>
+                        <dd class="fr" style="margin-top: 0.4rem;">
+                            <em class="pt_surplus">仅剩<label id="pt_goods_stock">100</label>件</em><em
+                                class="pt_surplus">已拼<label id="pt_buyer_num">0</label>件</em>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+            <h4 class="pt_tit borb1 bort1 pt_tit_mrt"><a href="javascript:;" id="pt_mark_url" style="display: none;"><span>以下小伙伴发起的团购，你可直接参与</span><span
+                    id="more" style="float:right">更多<i class="icon fr" id="pt_mark_icon"></i></span></a></h4>
+            <ul class="pt_det_lists" id="pt_mark_list"></ul>
+            <h4 class="pt_tit borb1 pt_tit_mrb"><a href="javascript:;"><span>支付成功即算参团，时间截止人数不足自动退款</span><i
+                    class="icon fr"></i></a></h4>
+            <h4 class="pt_tit borb1 bort1" onclick="show_mask('goods_spec',1)" id="spec"><a
+                    href="javascript:;"><span>已选择：<span id="pt_goods_spec">黑白熊猫版&nbsp;</span></span><i class="icon fr"></i></a>
+            </h4>
+
+            <div class="goods-detail-store">
+                <a href="#" id="pt_store_url">
+                    <div class="store-name"><i class="icon-store"></i><label id="pt_store_name">海牙湾商城龙卡专区</label></div>
+                    <input type="hidden" name="pt_member_id" id="pt_member_id" value="10011">
+                </a>
+            </div>
+            <div class="goods-detail-bottom" id="goods-detail-bottom">
+                <p>
+                    <img src="http://paycenter.g-town.com.cn//image.php/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180312/1520849546791573.jpg"
+                         title="1520849546791573.jpg" alt="详情页.jpg"></p>
+                <p>尺寸：112x121x50.5mm</p>
+                <p><br></p>
+            </div>
+            <div class="pt_bottom_btn">
+                <a href="javascript:;" class="btn_style1 js-buy" data-type="alone"><span id="bt_price_one">389.00</span><em>单独购买</em></a>
+                <a href="javascript:;" class="btn_style2 js-buy" data-type="pintuan"><span id="bt_price">359.00</span><em>一键拼单</em></a>
+            </div>
+        </div>
+
+        <!--二维码-->
+
+        <div id="screen" :class="[shopCode?'show':'hide']" @touchmove.prevent>
+            <div id="qrcode_div" class="show">
+                <div id="close_qr" style="padding-right: 41px;">
+                    <div @click="shopCodeNone">
+                        <img src="../../images/new_icon/btn_close.png" width="30"/>
+                    </div>
+                </div>
+                <div id="code_img" style="max-height: 606px;"><img :src="Codeimages" style="width: 100%;height: 100%;">
+                </div>
+                <div id="refresh_qr">
+                    <div class="refresh">
+                        <span>长按图片保存二维码</span>
+                        <img onclick="get_qrcode();" src="../../images/new_icon/refresh.png"
+                             style="vertical-align: middle;width: 18px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--数据请求加载提示-->
+        <div class="pre-loading" v-show="preLoading"></div>
+
+        <!--收藏弹框提示-->
+        <div class="weui-preToast" v-show="preToast">
+            <div class="weui-toast"></div>
+        </div>
+
+    </div>
+
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/product/product_detail_groups.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

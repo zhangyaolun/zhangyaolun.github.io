@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/font.css">
+    <link rel="stylesheet" type="text/css" href="../../css/palyCenter.css">
+    <style>
+        .transparent {background: #f5f5f5 !important;}
+        .transparent .header-r a i.more {background-image: url(../../images/bbc-bg48.png);}
+        .pc_user_about h4, .pc_transaction h4, .pc_news h4 {line-height: 49px !important;}
+    </style>
+</head>
+
+<body>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <div class="content hide" id="app">
+        <!--头部搜索-->
+        <header id="header" class="transparent posf">
+            <div class="header-wrap">
+                <div class="header-l">
+                    <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+                </div>
+                <div class="header-title show">
+                    <h1>订单明细</h1>
+                </div>
+                <div class="header-r">
+                    <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a>
+                </div>
+            </div>
+        </header>
+        <!-- 内容部分 -->
+        <div class="bg_pcenter">
+            <div class="recharge-content-top content-public clearfix">
+                <div class="left">
+                    <span>最近交易</span>
+                </div>
+                <div class="right">
+                    <div class="mg clearfix">
+                        <p class="splitLine-mg">奖励金余额 <a> ￥0.00</a>元 <span class="splitLine">丨</span></p>
+                        <p>
+                            <a href="javascript:void (0);"><i class="iconfont icon-lajitong"
+                                                              style="vertical-align: middle;display: inline-block"></i><span>回收站</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="recharge-content-center content-public clearfix">
+                <div class="Second clearfix">
+                    <a class="acb">类型：</a>
+                    <div class="trade_class">
+                        <span class="btn btn_active"><a href="javascript:void (0);">全部</a></span>
+                        <span class=""><a href="javascript:void (0);">奖励金</a></span>
+                    </div>
+                </div>
+                <div class="Second clearfix">
+                    <a class="acb">状态：</a>
+                    <div class="trade_class">
+                        <span class="btn btn_active"><a href="javascript:void (0);">全部</a></span>
+                        <span class=""><a href="javascript:void (0);">待结算</a></span>
+                        <span class=""><a href="javascript:void (0);">已到账</a></span>
+                        <span class=""><a href="javascript:void (0);">无效订单</a></span>
+                    </div>
+                </div>
+                <div class="first clearfix">
+                    <div class="time">
+                        <a class="acb">时间：</a>
+                        <div class="trade_class">
+                            <div id="search_form">
+                                <p class="order_time" style="float:left;">
+                                    <input type="text" value="" class="text w70" id="start_date" name="start_date" placeholder="开始时间" autocomplete="off">
+                                    <em style="margin-top: 3px;">&nbsp;– &nbsp;</em>
+                                    <input type="text" value="" class="text w70" id="end_date" name="end_date" autocomplete="off" placeholder="结束时间">
+                                </p>
+                                <a class="button btn_search_goods sous btn btn_active" href="javascript:void(0);">搜索</a>
+                            </div>
+                            <div class="day">
+                                今天<a class="splitLine">丨</a> 最近： <span class="btn btn_active"><a
+                                    href="javascript:void (0);">全部</a></span>
+                                <span class=""><a href="javascript:void (0);">1个月</a></span>
+                                <span class=""><a href="javascript:void (0);">3个月</a></span>
+                                <span class=""><a href="javascript:void (0);">1年</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="recharge-content-bottom content-public">
+            <div class="pc_transaction">
+                <div class="pc_trans_lists clearfix" v-for="(item,k) in reward_order">
+                    <div class="pc_trans_time pc_trans_det_time">{{item.time}}</div>
+                    <div class="pc_trans_det pc_trans_other">
+                        <p class="pc_table_num">
+                            <span>{{item.type}}</span>
+                            <span class="jyh">交易号:{{item.num}}</span>
+                        </p>
+                        <p class="wp20"><span>￥{{item.price}}</span></p>
+                        <p class="wp20"><span>已取消</span></p>
+                        <p class="wp20"><a href="javascript:void (0);" class="cb">详情</a>&nbsp;|&nbsp;<a href="javascript:void(0)" class="delete cb" title="删除">删除</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 内容部分结束 -->
+        <!--数据请求加载提示-->
+        <div class="pre-loading" v-show="preLoading"></div>
+        <!--回到顶部-->
+        <div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
+    </div>
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/member/reward_detail.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

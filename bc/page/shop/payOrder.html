@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/palyCenter.css"/>
+    <style>
+        body{background: #fff;}
+        .pay-head>div{height: 2rem;}
+        .pre-loading {top: 1.95rem !important;}
+    </style>
+</head>
+
+<body>
+<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<div class="content hide" id="app">
+    <!--头部搜索-->
+    <header id="header" class="fixed header">
+        <div class="header-wrap">
+            <div class="header-l">
+                <a href="javascript:history.go(-1)"> <i class="back"></i> </a>
+            </div>
+            <div class="header-title">
+                <h1>订单确认</h1>
+            </div>
+            <div class="header-r">
+                <a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup></sup></a>
+            </div>
+        </div>
+    </header>
+    <!--购物车-->
+    <div class="recharge2-content-top content-public clearfix">
+
+        <div class="clearfix pay-head">
+            <div>
+                <dl>
+                    <dt>支付单号：</dt>
+                    <dd>{{orderPayNumber}}</dd>
+                </dl>
+            </div>
+            <div>
+                <dl>
+                    <dt>订单号：</dt>
+                    <dd>{{orderNumber}}</dd>
+                </dl>
+            </div>
+            <div class="fr">
+                <dl>
+                    <dt>支付金额：</dt>
+                    <dd>￥{{orderPayment | currency}}</dd>
+                </dl>
+            </div>
+        </div>
+
+
+        <div class="module-new">
+
+
+            <!--  最后在线支付需要支付的金额  -->
+            <input type="hidden" name="online_pay" id="online_pay" autocomplete="off" value="829">
+
+            <div class="online_pay">
+                <p class="online_title tl">选择在线支付 </p>
+                <div v-for="(item,k) in paytype" :class="[parIndex == k?'box-public box0 pay_method_sel':'box-public box0']" @click="parClick(k)">
+                    <div class="mallbox-public">
+                        <img :src="item.src" :alt="item.title">
+                    </div>
+                    <span class="sel_icon"></span>
+                </div>
+            </div>
+
+
+            <div class="recharge2-content-center content-public">
+                <div class="pc_trans_btn clearfix"><a id="submit" class="btn_big btn_active submit_able" style="float:left;">确认付款</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pre-loading" v-show="preLoading"></div>
+
+</div>
+<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/shop/payOrder.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+
+</html>

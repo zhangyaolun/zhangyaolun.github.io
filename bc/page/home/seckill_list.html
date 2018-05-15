@@ -126,55 +126,60 @@
 
 					<div id="seckill-body" class="allmiao seckill_1" :class="[seckill_index == 1?'show':'hide']" style="display:none; background: url(http://img.g-town.com.cn/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521273883573264.jpg ); background-repeat: repeat;background-size: 100%;">
 
-						<div class="list-head">
-							<!--<span class="buy-txt buy-txt-black" id="seckillBuyTxt">即将开场 先下单先得哦</span><span class="time">-->
-							<span class="time">
-						<span class="static-txt-end">开始时间：</span>
-						<div style="float: right;color: #ff0000;display: inline-block;font-size: 12px;margin-right: 5px;line-height: 43px;">{{soonSeckillList.miaosha_start_time}}</div>
-					</span>
+						<img src="../../images/qidai.JPG" v-show="!soonSeckillList.rule" style="width: 100%">
 
-						</div>
-						<div class="skill-hot">
-							<ul class="good-list bdr-b seckilling">
-								<li class="bdr-bom" v-for="item in soonSeckillList.rule">
-									<a :href="'../product/product_detail.html?goods_id='+item.goods_id+'&miaoshaid='+item.miaosha_id">
-										<div class="skill-pic">
-											<div class="img">
-												<img :src="item.goods_image" style="animation: fade 400ms 0s;">
+						<div v-show="soonSeckillList.rule">
+							<div class="list-head">
+								<!--<span class="buy-txt buy-txt-black" id="seckillBuyTxt">即将开场 先下单先得哦</span><span class="time">-->
+								<span class="time">
+								<span class="static-txt-end">开始时间：</span>
+								<div style="float: right;color: #ff0000;display: inline-block;font-size: 12px;margin-right: 5px;line-height: 43px;">{{soonSeckillList.miaosha_start_time}}</div>
+							</span>
+
+							</div>
+							<div class="skill-hot">
+								<ul class="good-list bdr-b seckilling">
+									<li class="bdr-bom" v-for="item in soonSeckillList.rule">
+										<a :href="'../product/product_detail.html?goods_id='+item.goods_id+'&miaoshaid='+item.miaosha_id">
+											<div class="skill-pic">
+												<div class="img">
+													<img :src="item.goods_image" style="animation: fade 400ms 0s;">
+												</div>
 											</div>
-										</div>
-										<div class="skill-right">
-											<p class="g-title">{{item.goods_name}}</p>
-											<div class="g-jindu ">
-												<div class="sale-count">仅剩<em>{{item.pro_goods_stock}}</em>件</div>
-												<div class="kill-progress" id="progress-b2">
-													<div class="skill-pro-bg">
-														<p class="skill-iteam-progress">
+											<div class="skill-right">
+												<p class="g-title">{{item.goods_name}}</p>
+												<div class="g-jindu ">
+													<div class="sale-count">仅剩<em>{{item.pro_goods_stock}}</em>件</div>
+													<div class="kill-progress" id="progress-b2">
+														<div class="skill-pro-bg">
+															<p class="skill-iteam-progress">
 															<span class="skill-pro-insetbg">
 																<span class="skill-iteam-pro" :style="'width:'+item.pro_goods_stock_jindu"></span>
 															</span>
-														</p>
+															</p>
+														</div>
 													</div>
 												</div>
+												<p style="color: #333 !important;    font-size: 14px;">￥<span class="doller">{{item.miaosha_price | miaosha_fenqi_price}} </span>× 12期</p>
+												<p class="f-s-12">秒杀价:￥{{item.miaosha_price}}<span style="float: right;    margin-right: 21px;    font-size: 12px;    margin-top: 2px;">商城价:￥<em style="text-decoration:  line-through;">{{item.goods_price}}</em></span></p>
 											</div>
-											<p style="color: #333 !important;    font-size: 14px;">￥<span class="doller">{{item.miaosha_price | miaosha_fenqi_price}} </span>× 12期</p>
-											<p class="f-s-12">秒杀价:￥{{item.miaosha_price}}<span style="float: right;    margin-right: 21px;    font-size: 12px;    margin-top: 2px;">商城价:￥<em style="text-decoration:  line-through;">{{item.goods_price}}</em></span></p>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
+										</a>
+									</li>
+								</ul>
+							</div>
 
-						<div style="width:100%;">
-							<div class="mrule">
-								<p>1、秒杀活动于10:00时间开始，提前下单不享受秒杀价。</p>
-								<p>2、秒杀商品每人每个商品限购1单。</p>
-								<p>3、每个秒杀活动商品数量有限，抢完为止。</p>
-								<p>4、秒杀活动商品不退不换。</p>
-								<p>5、秒杀优惠活动不得与其他优惠同时使用。</p>
-								<p>详情可致电咨询：400-006-6830。</p>
+							<div style="width:100%;">
+								<div class="mrule">
+									<p>1、秒杀活动于10:00时间开始，提前下单不享受秒杀价。</p>
+									<p>2、秒杀商品每人每个商品限购1单。</p>
+									<p>3、每个秒杀活动商品数量有限，抢完为止。</p>
+									<p>4、秒杀活动商品不退不换。</p>
+									<p>5、秒杀优惠活动不得与其他优惠同时使用。</p>
+									<p>详情可致电咨询：400-006-6830。</p>
+								</div>
 							</div>
 						</div>
+
 
 					</div>
 				</div>
@@ -187,60 +192,9 @@
 			</div>
 		</div>
 
-
-
 		<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
-		<script>
-            new Vue({
-                el: '#list',
-                data: {
-                    preToast:false,
-                    preLoading:true,
-                    seckill_index:0,//正在秒杀与即将开抢切换
-                    SeckillList:[],//正在秒杀商品数据
-                    soonSeckillList:[],//即将秒杀商品数据
-                },
-                computed: {},
-                mounted: function() {
-                    let _this = this;
-                    FastClick.attach(document.body);
-                    commentJs.downMenuSpot('favheader', 4);
-                    commentJs.toastLoading('加载中...');
-                    window.addEventListener('scroll', this.handleScroll);
-                    commentJs.fnTimeCountDown();
-                    setTimeout(function () {_this.oListData();},10);
-                },
-                filters: {
-                    miaosha_fenqi_price: function(v) {
-                        return (v/12).toFixed(2);
-                    }
-                },
-                methods: {
-                    oListData:function(){//主菜单列表
-                        let _this = this;
-                        var sucSeckill = function (data) {
-                            console.log(data)
-							_this.SeckillList = data.data.items[0];
-                            _this.soonSeckillList = data.data.items[1];
-                            _this.preLoading = false;
-                        }
-                        o.seckillGoods(sucSeckill);
-                    },
-                    handleScroll() {
-                        /*let _this = this;
-                        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-                        let offsetTop = document.querySelector('#product_detail_html').offsetTop;
-                        scrollTop > (offsetTop / 2) ? _this.searchBarFixed = true : (_this.searchBarFixed = false);
-                        scrollTop > 620 ? _this.headerTabShow = false : _this.headerTabShow = true;*/
-                    },
-                    week_change_list(index) { //点击tab切换
-                        this.seckill_index = index;
-                    }
-                }
-
-            })
-		</script>
+		<script src="../../js/home/seckill_list.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/member.css">
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_cart.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+    <style>
+        .pre-loading {top: 1.95rem;}
+    </style>
+</head>
+
+<body>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/weui.js"></script>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <div class="content" id="app">
+        <!--头部搜索-->
+        <header id="header" class="fixed order_header">
+            <div class="header-wrap">
+                <div class="header-l"><a href="javascript:history.go(-1)"><i class="back"></i></a></div>
+                <div class="tit">订单详情</div>
+                <div class="header-r"><a id="header-nav" href="javascript:void(0);"><i class="more"></i><sup style="display: inline;"></sup></a></div>
+            </div>
+        </header>
+
+        <!-- 内容部分 -->
+        <div class="nctouch-main-layout mb20">
+            <div class="nctouch-order-list" id="order-info-container"><div class="nctouch-oredr-detail-block order-status-bg">
+                <h3>交易状态</h3>
+                <div class="order-state">已完成</div>
+                <div class="info hide">支付超时自动取消</div>
+            </div>
+
+                <div class="nctouch-oredr-detail-block">
+                    <div class="nctouch-oredr-detail-add">
+                        <i class="icon-add"></i>
+                        <dl>
+                            <dt>收货人：<span>韩晨明</span><span style="float: right">13916467657</span></dt>
+                            <dd>收货地址：<span class="addr-detail">上海 杨浦区 政立路415号中航天盛广场a座9楼</span></dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="nctouch-oredr-detail-block ">
+
+                    <div class="order-det-overview clearfix">
+                        <h3 class="fl">发票信息</h3>
+                        <div class="info fr">不需要发票</div>
+                    </div>
+
+
+                    <div class="order-det-overview clearfix">
+                        <h3 class="fl">付款方式</h3>
+                        <div class="info fr">在线支付</div>
+                    </div>
+
+                </div>
+                <div class="nctouch-order-item mt5">
+                    <div class="nctouch-order-item-head">
+
+                        <a class="store"><i class="icon"></i>海牙湾商城龙卡专区</a>
+
+                    </div>
+                    <div class="nctouch-order-item-con">
+
+                        <div class="goods-block detail">
+                            <a href="http://shop.g-town.com.cn//tmpl/product_detail.html?goods_id=2331&amp;qazdfg=1526284013">
+                                <div class="goods-pic">
+                                    <img src="http://img.g-town.com.cn/shop/data/upload/media/00020e8a6780294db329d41fd9770968/10011/6/image/20180306/1520321145232169.jpg">
+                                </div>
+                                <dl class="goods-info">
+                                    <dt class="goods-name">Emporio Armani 阿玛尼 铝镁合金 黑色 21寸 拉杆箱</dt>
+
+
+                                    <dd class="goods-type">颜色:黑色; </dd>
+
+                                </dl>
+                            </a>
+                            <div class="goods-subtotal">
+                                <span class="goods-price">￥<em>3680.00</em></span>
+                                <span class="goods-num">x1</span>
+                            </div>
+
+                            <a href="order_refund.html" class="goods-return">退款</a>
+
+                        </div>
+
+
+                        <div class="goods-subtotle">
+                            <dl>
+                                <dt>运费</dt>
+                                <dd>￥<em>0.00</em></dd>
+                            </dl>
+                            <dl class="t">
+                                <dt>平台优惠券抵扣</dt>
+                                <dd>￥<em>0.00</em></dd>
+                            </dl>
+                            <dl class="t">
+                                <dt>实付款<em class="col8 fz4">（含运费）</em></dt>
+                                <dd>￥<em>3680.00</em></dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                </div>
+
+                <span class="im-contact">
+                    <a href="javascript:void(0);" class="kefu" style="display: none;"><i class="im"></i>联系客服</a>
+                </span>
+
+                <div class="nctouch-oredr-detail-block mt5 bort1">
+                    <ul class="order-log">
+                        <li>订单编号：DD-10011-6-102-20180509114727-0001</li>
+                        <li>创建时间：2018-05-09 11:47:27</li>
+                    </ul>
+                </div>
+
+                <div class="nctouch-oredr-detail-bottom">
+                    <div class="hide"><p class="hide">退款/退货中...</p></div>
+                    <div class="hide"><a href="javascript:void(0);" class="btn cancel-order">取消订单</a></div>
+                    <div class="hide"> <a href="javascript:void(0);" class="btn hide viewdelivery-order">查看物流</a></div>
+                        <div class="hide"><a href="javascript:void(0);" class="btn key sure-order">确认收货</a></div>
+                            <div class=""><a href="javascript:void(0);" class="btn delete-order">删除订单</a></div>
+                                <div class="hide"><a href="javascript:void(0);"  class="btn key check-payment">订单支付</a></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--数据请求加载提示-->
+        <div class="pre-loading" v-show="preLoading"></div>
+
+    </div>
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/order/order_detail.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

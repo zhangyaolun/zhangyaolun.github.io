@@ -108,7 +108,8 @@ a {
 .weui-icon-delete:before {
     content: "\EA11"
 }[class*=" weui-icon_"]:before,[class^=weui-icon_]:before {
-     margin: 0
+     margin: 0;
+     font-size: 2.5em;
  }
 
 .weui-icon-success {
@@ -2050,7 +2051,7 @@ a.weui-media-box:active {
 
 .weui-icon_toast.weui-icon-success-no-circle:before {
     color: #fff;
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 .weui-icon_toast.weui-loading {

@@ -34,74 +34,42 @@
       </div>
     </header>
     <!-- 内容部分 -->
-    <ul class="v-list-tab bgf borb1">
+    <ul class="v-list-tab bgf borb1" style="position: fixed;top: 0;width: 100%;z-index: 3;">
       <li class="vocher_status_li" v-for="(item,k) in itemList" :class="[vocherStatus == k?'active':'']"><a href="javascript:void(0);" @click="itemClick(k)">{{item}}</a></li>
     </ul>
     <!-- 内容部分结束 -->
 
-    <div class="v-list" id="v_list">
+    <div class="v-list" id="v_list" style="position: relative;top: 4rem;">
       <ul v-if="vList">
-          <li class="clearfix pass">
-
+          <li :class="[item.couponStatus==0?'clearfix yes':'clearfix pass']" v-for="item in product">
             <div class="fl">
               <div>
-                <h3 class="dpm">美的满199减20</h3>
-                <time>2018-02-28 23:59:59前有效</time>
+                <h3 class="dpm">{{item.couponDto.name}}</h3>
+                <time>{{item.couponDto.effectiveTime | oTimeCurrency}}前有效</time>
               </div>
             </div>
             <div class="fr">
-              <p class="tc"><b>￥</b><span>20</span></p>
-              <div class="tc"><span>购满199.00元使用</span></div>
+              <p class="tc"><b>￥</b><span>{{item.couponDto.quota | oPriceCurrency}}</span></p>
+              <div class="tc"><span>购满{{item.couponDto.limitPay | priceCurrency}}元使用</span></div>
             </div>
-            <i class="icon-pase"></i>
+            <i :class="[item.couponDto.couponIcon==0?'icon-pase':'icon-pass']"></i>
           </li>
+
       </ul>
-      <div class="nctouch-norecord order" style="width: 13rem;left:40%" v-else>
-        <a href="/tmpl/coupon_list.html?qazdfg=1521598906"><img src="../../images/coupon_tishi.jpg" style="width:100%"></a>
+      <div class="nctouch-norecord order" style="width: 13rem;left:40%;top: 6rem;" v-else>
+        <a href="coupon_list.html"><img src="../../images/coupon_tishi.jpg" style="width:100%"></a>
       </div>
     </div>
 
+    <!--回到顶部-->
+    <div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
     <!--数据请求加载提示-->
     <div class="pre-loading" v-show="preLoading"></div>
 
   </div>
   <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
-  <script>
-    new Vue({
-      el: '#app',
-      data: {
-          preLoading:true,
-          itemList:['全部','未使用','已使用','已失效'],
-          vocherStatus:0,
-          vList:true
-      },
-      computed: {
-      },
-      mounted: function () {
-        FastClick.attach(document.body);
-        this.curFalg = commentJs.getUrlKey('title');
-        commentJs.downMenuSpot('favheader', 4);
-        //commentJs.toastLoading('加载中...');
-        commentJs.appShowhide('app');
-        this.oListData();
-      },
+  <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/member/coupon.js" type="text/javascript" charset="utf-8"></script>
+</body>
 
-      methods: {
-          oListData:function(){//主菜单列表
-              let _this = this;
-              let suc = function (data){
-                  setTimeout(function(){
-                      _this.preLoading = false;
-                  },1000);
-              }
-              commentJs.doPost('../../json/favorites.json','',suc);
-          },
-          itemClick(index){//点击选择tab
-              this.vocherStatus = index;
-              index%2 == 0?this.vList = true:this.vList = false;
-          }
-      }
-
-
-    })
-  </script>
+</html>
