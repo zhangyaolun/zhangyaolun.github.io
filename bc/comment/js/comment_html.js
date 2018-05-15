@@ -257,7 +257,7 @@ var commentJs = {
             wurl = wurl+'?code=123';
         }
 
-        var shareData={title:'海牙湾商城龙卡专区',link:wurl,imgUrl:'https://shop.g-town.com.cn/images/new_icon/wx_logo.png'};
+        var shareData={title:'海牙湾商城龙卡专区',link:wurl,imgUrl:'http://shop.g-town.com.cn/images/new_icon/wx_logo.png'};
         var _result = '';
         var suc = function (datas) {
             console.log(datas);
