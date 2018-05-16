@@ -1,0 +1,112 @@
+<!DOCTYPE html>  
+<html>  
+  <head>  
+    <title>HTML5获取麦克风音频,输出到扬声器</title>  
+    <meta charset="UTF-8">  
+    <meta name="keywords" content="keyword1,keyword2,keyword3">  
+    <meta name="description" content="this is my page">  
+    <meta name="content-type" content="text/html; charset=UTF-8">  
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<style>
+	    #micList {
+	        width:300px; margin-left:auto; border-radius:10px 10px 10px 10px; margin-top:20px;
+	        border:1px solid white; margin-right:auto; box-shadow:2px 2px 2px yellow;
+	    }
+	    ul {
+	        list-style-type:none; border:0px solid white;
+	        width:200px;
+	    }
+	    ul li {
+	        width:200px; height:30px; line-height:30px; border:0px solid yellow; text-align:left;
+	        margin-top:5px; text-shadow:3px 3px 2px white; font-size:25px;
+	    }
+	    ul li img {
+	        
+	    }
+	    .change {
+	        color:#808080;  text-shadow:3px 3px 2px #808080;
+	    }
+	</style>
+    <script type="text/javascript">  
+        var audioCtx;  
+        try  
+        {  
+            audioCtx=new (window.AudioContext || window.webkitAudioContext)();  
+        }  
+        catch(e)  
+        {  
+            console.log("Your browser does not support AudioContext!");  
+        }  
+        navigator.getUserMedia=(navigator.getUserMedia || navigator.webkitGetUserMedia ||   
+                                navigator.mozGetUserMedia || navigator.msGetUserMedia);  
+        if(navigator.getUserMedia)   
+        {  
+        	
+            navigator.getUserMedia(  
+            {  
+                audio:true  
+            },  
+            function(stream)  
+            {  
+                var source=audioCtx.createMediaStreamSource(stream);  
+                var biquadFilter=audioCtx.createBiquadFilter();  
+                var analyser = audioCtx.createAnalyser();
+                
+                biquadFilter.type="lowshelf";  
+                biquadFilter.frequency.value=1000;  
+                biquadFilter.gain.value=25;  
+                source.connect(biquadFilter);  
+                biquadFilter.connect(audioCtx.destination);  
+                var canvas = document.getElementById('canvas'),
+			        cwidth = canvas.width,
+			        cheight = canvas.height - 2,
+			        meterWidth = 20, //width of the meters in the spectrum
+			        gap = 4, //gap between meters
+			        capHeight = 2,
+			        capStyle = '#fff',
+			        meterNum = 400 / (20 + 2), //count of the meters
+			        capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
+			    ctx = canvas.getContext('2d'),
+			    gradient = ctx.createLinearGradient(0, 0, 0, 110);
+			    gradient.addColorStop(1, '#0f0');
+			    gradient.addColorStop(0.5, '#ff0');
+			    gradient.addColorStop(0, '#f00');
+			    
+                biquadFilter.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                
+                console.log(analyser)
+                function renderFrames() {
+                	var array = new Uint8Array(analyser.frequencyBinCount);
+			    	console.log(array[0])
+			        analyser.getByteFrequencyData(array);
+			        
+			        var step = Math.round(array.length / meterNum); //sample limited data from the total array
+			        
+			        ctx.clearRect(0, 0, cwidth, cheight);
+			        var i = 0;
+			        var value = array[i * step ];
+			            ctx.fillStyle = gradient; //set the filllStyle to gradient for a better look
+			            ctx.fillRect(i * 22 /*meterWidth+gap*/ , cheight - value/3 + capHeight, meterWidth, cheight); //the meter
+			       
+			        //requestAnimationFrame(renderFrames);
+			    }
+			    renderFrames();
+            },  
+            function(err)  
+            {  
+                console.log("The following gUM error occured: "+err);  
+            });  
+        }  
+        else   
+        {  
+            console.log("getUserMedia not supported on your browser!");  
+        }  
+    </script>  
+  </head>  
+  <body>  
+  	<canvas id='canvas' width="400" height="110"></canvas>
+    This is my HTML page. <br>  
+  </body>  
+</html>  

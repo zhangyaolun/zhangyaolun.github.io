@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5绚丽动画音乐播放效果</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery-3.0.0.min.js"></script>
+<style>
+    #micList {
+        width:300px; margin-left:auto; border-radius:10px 10px 10px 10px; margin-top:20px;
+        border:1px solid white; margin-right:auto; box-shadow:2px 2px 2px yellow;
+    }
+    ul {
+        list-style-type:none; border:0px solid white;
+        width:200px;
+    }
+    ul li {
+        width:200px; height:30px; line-height:30px; border:0px solid yellow; text-align:left;
+        margin-top:5px; text-shadow:3px 3px 2px white; font-size:25px;
+    }
+    ul li img {
+        
+    }
+    .change {
+        color:#808080;  text-shadow:3px 3px 2px #808080;
+    }
+</style>
+</head>
+<body>
+<h3>音乐播放器</h3>
+<canvas id='canvas' width="400" height="110"></canvas>
+<br>
+<br>
+<audio src="images/dmx.mp3" controls="controls" loop="loop" id="audioDemo" autoplay="autoplay">亲 您的浏览器不支持html5的audio标签</audio>
+<script src="js/script.js"></script>
+
+</body>
+</html>
