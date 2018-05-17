@@ -6,8 +6,9 @@
 	</head>
 	<body>
 		<script src="js/jquery-3.0.0.min.js"></script>
+		<input type="file" accept="audio/*" capture="microphone">
 		<canvas id="canvas" width="400" height="300"></canvas><br />
-		<audio></audio>
+		<audio class="audio" onchange="streams(event)"></audio>
 		<button class="recorderControl">录制</button>
 		<audio controls="controls" id="record_play"></audio>
 		<script> 
@@ -17,12 +18,17 @@
 			var context=new AudioContext;
 			promise.then(function(stream){
 				
-				var audio=document.querySelector("audio")
+				var audio=document.querySelector(".audio");
 				audio.src=URL.createObjectURL(stream);
+				
 				var recorder=new MediaRecorder(stream);
 				
 				var recorderControl=document.querySelector(".recorderControl");
 				var record_play=document.querySelector("#record_play");
+				
+				streams = function(e){
+					console.log(e)
+				}
 				
 				
 				//创建节点

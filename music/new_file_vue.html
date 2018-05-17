@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+</head>
+
+<body>
+	<script src="RecorderService.js" type="text/javascript" charset="utf-8"></script>
+    <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+    
+    <div class="content" id="app">
+    	<div class="">123</div>
+    </div>
+    <script type="text/javascript">
+    	new Vue({
+		    el: '#app',
+		    data: {
+		        oBackTopFixed:false,
+		        preLoading:true,
+		        rewardNum: 0,//奖励金总额
+		        putforwardList: [],//奖励金提取记录
+		        putforwardFalg:false,//提取记录显示与隐藏
+		        page:1,
+		        count:10,
+		    },
+		    computed: {},
+		    created () {
+			    this.recorderSrvc = new RecorderService()
+			    this.recorderSrvc.em.addEventListener('recording', (evt) => this.onNewRecording(evt))
+			},
+		    mounted: function () {
+		    },
+		
+		    methods: {
+		        onNewRecording (evt) {
+		        	console.log(evt);
+			      this.recordings.push(evt.detail.recording)
+			    }
+		    }
+		
+		})
+    </script>
+</body>
+
+</html>
