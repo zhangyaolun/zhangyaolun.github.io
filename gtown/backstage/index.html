@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>渠道订单管理</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css" id="">
+		<link rel="stylesheet" href="css/bootstrap-editable.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+							
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner taxRate_container">
+				<div class="main-content">
+					<div class="container">
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-md-12">
+								<div class="panel panel-white">
+									<div class="panel-heading pan_head">
+											<!--<label class="col-sm-2 control-label center" >渠道编号</label><div class="col-sm-3 label_div"><input type="text" placeholder="请输入渠道编号" id="form-field-1" class="form-control" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></div>
+											<label class="col-sm-2 control-label center">渠道</label>
+											<div class="col-sm-3 label_div" style="margin-bottom: 10px;">
+												<select id="form-field-select-2" class="form-control channal_id">
+													<option value="全部"><font style="vertical-align: inherit;">全部</font></option>
+												</select>
+											</div>-->
+											<div class="buttonDiv">
+												<!--<button type="button" class="btn btn-primary button_search"><font style="vertical-align: inherit;">搜索</font></button>-->
+												<button type="button" class="btn btn-warning button_newAdd" style="margin: 0 3% 0 0;">新增</button>	
+												<button type="button" class="btn btn-danger button_del">删除</button>	
+											</div>	
+									</div>
+									<div class="panel-body">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped table-hover mainTable" id="myTable">
+												<thead>
+													<tr>
+														<th class="center">
+															<div class="checkbox-table">
+																<input type="checkbox" class="flat-grey selectall butCheckbox_more" style="vertical-align: bottom;">
+															</div>
+														</th>
+														<th class="center">渠道编号</th>
+														<th class="center">渠道名称</th>
+														<th class="center">传输方式</th>
+														<th class="center">文件前缀</th>
+														<th class="center">获取路径</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!--<tr>
+														<td class="center">
+														<div class="checkbox-table">
+															<label>
+																<input type="checkbox" name="test" class="flat-grey foocheck">
+															</label>
+														</div></td>
+														<td class="center">1111</td>
+														<td class="center">广发商城</td>
+														<td class="center">execl</td>
+														<td class="center">gf</td>
+														<td class="center">/usr/order</td>
+														<td class="center">
+															<a href="javascript:;" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="编辑"><i class="fa fa-edit"></i></a>								
+														</td>
+													</tr>-->
+												</tbody>
+											</table>
+											<div class="col-sm-12 userIndex_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">暂无数据</div>
+										</div>
+									</div>
+									<!--<div class="center userPage">
+										<ul id="page"></ul>
+									</div>-->
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv elasticIndex" style="overflow: auto;">
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title">新增渠道订单管理</h4>							
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+									<div class="panel-body" style="padding: 15px 0;">
+										<div class="col-sm-12" style="margin-top: 10px;">
+											<table class="table table-bordered" id="index_tableOne"> 
+												<thead>
+													<tr>
+														<th class="center">渠道编号</th>
+														<th class="center">渠道名称</th>
+														<th class="center">传输方式</th>
+														<th class="center">文件前缀</th>
+														<th class="center">获取目录</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="center"><input type="text" placeholder="请输入渠道编号" autocomplete="off" class="form-control filePreCode form_control"/></td>
+														<td class="center">
+															<select class="col_width channal_id" style="width: 150px;">
+															</select>
+														</td>
+														<td class="center">
+															<select class="col_width transmission" style="width: 150px;">
+																<option value="execl">execl</option>
+																<option value="txt">txt</option>
+																<option value="api">api</option>
+															</select>
+														</td>
+														<td class="center"><input type="text" placeholder="请输入文件前缀" autocomplete="off" class="form-control filePrefix form_control"/></td>
+														<td class="center"><input type="text" placeholder="请输入获取目录" autocomplete="off" class="form-control route form_control"/></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-12" style="margin-top: 10px;">
+											<table class="table table-bordered table-striped" id="index_tableTwo">
+												<tbody>
+													<tr>
+														<td class="center table_name">订单号</td>
+														<td class="center"><input type="text" placeholder="请输入订单号" class="form-control two_orderld"></td>
+														<td class="center table_name">总价</td>
+														<td class="center"><input type="text" placeholder="请输入总价" class="form-control two_total"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">下单时间</td>
+														<td class="center"><input type="text" placeholder="请选择下单时间" class="form-control two_orderTime"></td>
+														<td class="center table_name">收货人姓名</td>
+														<td class="center"><input type="text" placeholder="请输入收货人姓名" class="form-control two_userNanme"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">商品编号</td>
+														<td class="center"><input type="text" placeholder="请输入商品编号" class="form-control two_itemCode" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></td>
+														<td class="center table_name">手机号码</td>
+														<td class="center"><input type="text" placeholder="请输入手机号码" class="form-control two_phone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">商品规格</td>
+														<td class="center"><input type="text" placeholder="请输入商品规格" class="form-control two_itemPpecs"></td>
+														<td class="center table_name">省</td>
+														<td class="center"><input type="text" placeholder="请输入省份" class="form-control two_province"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">数量</td>
+														<td class="center"><input type="text" placeholder="请输入数量" class="form-control two_count" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
+														<td class="center table_name">市</td>
+														<td class="center"><input type="text" placeholder="请输入城市" class="form-control two_city"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">单价</td>
+														<td class="center"><input type="text" placeholder="请输入单价" class="form-control two_price"></td>
+														<td class="center table_name">区</td>
+														<td class="center"><input type="text" placeholder="请输入区" class="form-control two_area"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">收货地址</td>
+														<td class="center"><input type="text" placeholder="请输入收货地址" class="form-control two_address"></td>
+														<td class="center table_name">邮编</td>
+														<td class="center"><input type="text" placeholder="请输入邮编" class="form-control two_zipCode" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
+													</tr>
+													<tr>
+														<td class="center table_name">订单备注</td>
+														<td class="center"><input type="text" placeholder="请输入订单备注" class="form-control two_remark"></td>
+														<td class="center table_name">发票</td>
+														<td class="center"><input type="text" placeholder="请输入发票类型" class="form-control two_invoice"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-12 center butAdd_div" style="">
+											<button type="button" class="btn btn-primary butAdd_sure">确定</button>
+										</div>	
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-editable.min.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/indexMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				indexMain.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>

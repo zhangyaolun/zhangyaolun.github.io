@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>服务单</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap-editable.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner ordre_container"  >
+				<div class="main-content">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12" >
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<div class="col-md-12 panel_head ">
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center">状态</label>
+												<select class="form-control col-sm-3 form_control status">
+													<option value="-1">全部</option>
+													<option value="0">异常</option>
+													<option value="1">已完成</option>
+													<option value="2">进行中</option>
+													<option value="3">待更进</option>
+												</select>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center ">销售渠道</label>
+												<select class="form-control col-sm-3 form_control channal_id"></select>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center ">处理人</label>
+												<select class="form-control col-sm-3 form_control to_do_user_id">
+													
+												</select>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">时间</label>
+												<div class="input-daterange input-group form_control" id="datepicker">  
+										            <input type="text" class="form-control stime" autocomplete="off" name="start" id="qBeginTime" style="width: 100%;" placeholder="请选择开始时间"/>  
+										            <span class="input-group-addon">至</span>  
+										            <input type="text" class="form-control etime" autocomplete="off" name="end" id="qEndTime"  style="width: 100%;" placeholder="请选择结束时间"/>  
+										        </div> 
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >渠道订单号</label>
+												<input type="text" placeholder="请输入渠道订单号" autocomplete="off" class="form-control channel_order_no form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >OMS订单号</label>
+												<input type="text" placeholder="请输入OMS订单号" autocomplete="off" class="form-control order_no form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >紧急状态</label>
+												<select class="form-control col-sm-3 form_control emerLevel">
+													<option value="-1">全部</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+												</select>
+											</div>
+											<div class="col-md-12 ">
+												<button type="button" class="btn btn-primary btn_distribution " style="float: left;">服务单分配</button>
+												<button type="button" class="btn btn-info customer_Add right">添加服务单</button>
+												<button type="button" class="btn btn-primary butAdd_primary right">查询</button>	
+											</div>
+										</div>
+									</div>
+									<div class="panel-body customer_body">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped" id='body_table'>
+												<thead>
+													<tr>
+														<th class="center check">
+															<input type="checkbox" autocomplete="off" class="flat-grey selectall butTable_more" style="vertical-align: bottom;">
+														</th>
+														<th class="center">渠道订单编号</th>
+														<th class="center">OMS订单编号</th>
+														<th class="center">销售渠道</th>
+														<th class="center">紧急状态</th>
+														<th class="center">创建时间</th>
+														<th class="center">最后跟进时间</th>
+														<th class="center">跟进人</th>
+														<th class="center">状态</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="col-sm-12 userIndex_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">暂无数据</div>
+										</div>
+									</div>
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+						<div class="elasticDiv custmerIndex">
+							<div class="col-md-9 " style="margin: 50px 18%;">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<div class="panel-tools">	
+											<a class="btn btn-md btn-link panel-close cusDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+										</div>
+										<div style="font-size:16px ;"></div>
+									</div>
+									<div class="panel-body">
+										<div class="col-sm-12 orderScroller" style="margin-top: 10px;">
+											<table class="table table-bordered" id="sample-table-3">
+												<thead>
+													<tr>
+														<th class="center">渠道订单编号</th>
+														<th class="center">OMS订单编号</th>
+														<th class="center">销售渠道</th>
+														<th class="center">紧急状态</th>
+														<th class="center">跟进人</th>
+														<th class="center">状态</th>
+														<th class="center">备注</th>
+													</tr>
+												</thead>
+												<tbody>
+													
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-12 orderScroller" style="margin-top: 10px;">
+											<table class="table table-bordered" id="sample-table-2">
+												<thead>
+													<tr>
+														<th class="center">跟进人</th>
+														<th class="center">售前备注</th>
+														<th class="center">售后备注</th>
+														<th class="center">处理时间</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="col-sm-12 customer_table_false" style="margin: 10px 0 15px;text-align:center;white-space: nowrap;">暂无数据</div>
+										</div>
+										<div class="col-sm-12 center clear" style="margin: 50px 0 20px;">
+											<button type="button" class="btn btn-primary  left custmerIndex_tr butSUK_custmerLeft" style="margin-left: 3%;">完成</button>			
+											<button type="button" class="btn btn-primary butSUK_custmerIndex custmerIndex_tr">确定</button>			
+											<button type="button" class="btn btn-primary  right custmerIndex_tr butSUK_custmerRight" style="margin-right: 3%;">异常</button>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						
+						<div class="elasticDiv customerAddIndex">
+							<div class="col-md-10 " style="margin: 50px 15%;">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<div class="panel-tools">	
+											<a class="btn btn-md btn-link panel-close cusDiv_close" href="javascript:void(0);"> <i class="fa fa-times"></i> </a>
+										</div>
+										<div style="font-size:16px ;"></div>
+									</div>
+									<div class="panel-body">
+										<div class="col-sm-10 ">
+											<div class="col-sm-12">
+												<div class="col-sm-6 label_div" style="white-space: nowrap;"><label class="center" style="line-height: 30px;height: 30px;">渠道订单号</label><input type="text" autocomplete="off" placeholder="请输入渠道订单号" class="form-control channelOrderNo" style="display: inline-block;width: 80%;margin-left: 5%;"></div>
+												<div class="col-sm-6 label_div" style="white-space: nowrap;"><label class="center" style="line-height: 30px;height: 30px;">OMS订单号</label><input type="text" autocomplete="off" placeholder="请输入OMS订单号" class="form-control omsOrderNo" style="display: inline-block;width: 80%;margin-left: 5%;"></div>
+												<div class="buttonDiv">
+													<button type="button" class="btn btn-primary buttonshop_search " style="margin-left: 60px;">查询</button>	
+												</div>	
+											</div>
+											
+										</div>
+										<div class="col-sm-12" style="margin: 50px 0 20px 0;">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th class="center">OMS订单号</th>
+														<th class="center">订单联系方式</th>
+														<th class="center">紧急状态</th>
+														<th class="center">类型</th>
+														<th class="center">售前/售后单</th>
+														<th class="center">附件</th>
+														<th class="center">备注</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="center"><span class="orderNo"></span></td>
+														<td class="center"><span class="orderPhone"></span></td>
+														<td class="center">
+															<select class="form-control col-sm-3 emerAddLevel">
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+															</select>
+														</td>
+														<td class="center">
+															<select class="form-control col-sm-3 serviceTypeLevel">
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+															</select>
+														</td>
+														<td class="center">
+															<select class="form-control col-sm-3 preType">
+																<option value="2">售后单</option>
+																<option value="1">售前单</option>
+															</select>
+														</td>
+														<td class="center" style="width: 150px;"><div class="col-sm-6 label_div">
+															<button type="button" class="btn btn-info buttonchanSKU_newAdd" oSrc='' style="margin-right: 15px;">上传附件</button>
+															<input type="file" autocomplete="off" name="file" class="ci_upload buttonchanSKU_inputFile" id="file" style="display:none;"/>
+														</td>
+														<td class="center" style="width: 30%;"><textarea name="" rows="4" cols="3" class="memo"></textarea></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-12 center " style="margin: 50px 0 20px;">		
+											<button type="button" class="btn btn-primary butSUK_nextTwo">确定</button>		
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class="elasticDiv orderAddIndex">
+							<div class="col-md-10 " style="margin: 50px 15%;">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<div class="panel-tools">	
+											<a class="btn btn-md btn-link panel-close cusDiv_close" href="javascript:void(0);"> <i class="fa fa-times"></i> </a>	
+										</div>
+										<div style="font-size:16px ;">请选择分配人员</div>
+									</div>
+									<div class="panel-body clear">
+										<div class="col-sm-5 left" style="margin: 0 auto;">
+											<select class="form-control col-sm-3 form_control orderStatus">
+												<option value="">请选择用户</option>
+											</select>
+										</div>
+										<div class="col-sm-5 right" style="margin: 0 auto;">
+											<select class="form-control col-sm-3 form_control orderGroup">
+												
+											</select>
+										</div>
+										<div class="col-sm-12 center " style="margin: 50px 0 20px;">		
+											<button type="button" class="btn btn-primary butOrder_nextTwo">确定</button>		
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/ajaxfileupload.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/ajaxfileupload.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/indexMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				customerMain.init();
+			});
+			
+		</script>
+	<!-- end: BODY -->
+</html>

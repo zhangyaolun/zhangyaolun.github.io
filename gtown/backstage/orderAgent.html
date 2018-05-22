@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>订单代发</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap-editable.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner ordre_container" >
+				<div class="main-content">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12" >
+								<div class="panel panel-white" >
+									<div class="panel-heading">
+										<div class="col-md-12 panel_head">
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >渠道订单编号</label>
+												<input type="text" placeholder="请输入渠道订单编号" autocomplete="off" class="form-control channelOrderNo form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >联系电话</label>
+												<input type="text" placeholder="请输入联系电话" autocomplete="off" class="form-control phone form_control" onkeyup="value=value.replace(/[^\d]/g,'')">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >采购单号</label>
+												<input type="text" placeholder="请输入采购单号" autocomplete="off" class="form-control purchaseNo form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">导单时间</label>
+												<div class="input-daterange input-group form_control" id="datepicker">  
+										            <input type="text" class="form-control stime" autocomplete="off" name="start" id="qBeginTime" style="width: 100%;" placeholder="请选择开始时间"/>  
+										            <span class="input-group-addon">至</span>  
+										            <input type="text" class="form-control etime" autocomplete="off" name="end" id="qEndTime"  style="width: 100%;" placeholder="请选择结束时间"/>  
+										        </div>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >OMS订单编号</label>
+												<input type="text" placeholder="请输入OMS订单编号" autocomplete="off" class="form-control orderNo form_control">
+											</div>
+											
+											<div class="col-md-12 clear">
+												<button type="button" class="btn btn-info button_purchase" style="float: left;">生成采购单</button>	
+												<button type="button" class="btn btn-info button_cancel" style="float: left;">取消代发</button>
+												<button type="button" class="btn btn-info button_examineSpu" style="float: left;">订单导出</button>
+												<button type="button" class="btn btn-info button_upAll" style="float: right;">全部导出</button>
+												<button type="button" class="btn btn-info buttonchanSKU_newAdd" style="float: right;">物流匹配</button>
+												<button type="button" class="btn btn-primary button_search" style="float: right;">查询</button>
+												<input type="file" name="file" class="buttonchanSKU_inputFile" style="display: none;" id='file'/>
+											</div>
+										</div>
+									</div>
+									<div class="panel-body orderGoods_body">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped" >
+												<thead>
+													<tr>
+														<th class="center">
+															<input type="checkbox" class="flat-grey foocheck butTable_more">
+														</th>
+														<th class="center">销售渠道</th>
+														<th class="center">渠道订单号</th>
+														<th class="center">渠道商品编号</th>
+														<th class="center">商品SKU编号</th>
+														<th class="center">商品名称</th>
+														<th class="center">OMS订单号</th>
+														<th class="center">子订单编号</th>
+														<th class="center">处理状态</th>
+														<th class="center">收货地址</th>
+														<th class="center">导单时间</th>
+														<th class="center">商品单价</th>
+														<th class="center">数量</th>
+														<th class="center">合计价格</th>
+														<th class="center">采购单号</th>
+														<th class="center">子采购单号</th>
+														<th class="center">是否退换货</th>
+														<th class="center">快递单号</th>
+														<th class="center">快递公司</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody id="content_tab">
+												</tbody>
+											</table>
+											<div class="col-sm-12 userIndex_table_false" style="margin: 10px 0 15px;text-align:center;white-space: nowrap;">
+												<font style="vertical-align: inherit;">暂无数据</font>
+											</div>
+										</div>
+									</div>
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv goodslIndex">
+						<div class="col-md-9" style="margin: 10% 20%;overflow: auto;" >
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close sukDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+									<div style="font-size:16px ;">生成采购单</div>
+								</div>
+								<div class="panel-body">
+									<div class="col-md-12 products_lable" >
+										<div class="col-md-12 ">
+											<table class="table table-bordered table-striped table-hover">
+												<thead>
+													<tr>
+														<th class="center">商品SKU编号</th>
+														<th class="center">商品名称</th>
+														<th class="center">商品单价</th>
+														<th class="center">数量</th>
+														<th class="center">采购价</th>
+														<th class="center">供应商</th>
+														<th class="center">毛利</th>
+														<th class="center">毛利率</th>
+													</tr>
+												</thead>
+												<tbody id="products_thbody">
+													<!--<td class="center"></td>
+													<td class="center"></td>
+													<td class="center"></td>
+													<td class="center"></td>
+													<td class="center"><div class="goodsl_input"><input id="B10021030" type="text" style="width: 100px;" placeholder="请输入采购价" autocomplete="off" name="pprice" class="form-control form_control"><ul class="goodsl_ul"><li>1</li><li>1</li><li>1</li></ul></div></td>
+													<td class="center"></td>
+													<td class="center"></td>
+													<td class="center"></td>-->
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="col-sm-12 center">
+										<button type="button" class="btn btn-primary btn_products" style="margin: 40px 0 20px;">提交</button>	
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv emineIndex">
+						<div style="width:30%;position: absolute;left:0;right:0;top:0;bottom:0;margin: 15% auto 0;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close examineIndex_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12" style="line-height:30px;margin-bottom: 50px;text-align: center;font-size: 16px;">确定导出这些订单？</div>
+									<div class="col-sm-12 center">
+										<button type="button" class="btn btn-primary btn_exmine" style="padding: 6px 40px;">确定</button>	
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv button_cancelIndex">
+						<div style="width:30%;position: absolute;left:0;right:0;top:0;bottom:0;margin: 15% auto 0;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close button_cancelIndex_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12" style="line-height:30px;margin-bottom: 50px;text-align: center;font-size: 16px;">确定取消这些订单？</div>
+									<div class="col-sm-12 center">
+										<button type="button" class="btn btn-primary btn_button_cancel" style="padding: 6px 40px;">确定</button>	
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv lackIndex">
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close lackIndex_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+									<div style="font-size:16px ;">信息详情</div>
+								</div>
+								<div class="panel-body">
+									<div class="col-md-12 products_lable orderScroller" >
+										<table class="table table-bordered table-striped" id="upData">
+											<thead>
+												<tr>
+													<th class="center">信息</th>
+												</tr>
+											</thead>
+											<tbody>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/ajaxfileupload.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/bootstrap-editable.min.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/orderMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				orderAgent.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>商品上架审核</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner ordre_container">
+				<div class="main-content">
+					<div class="container">
+						<!--品牌管理-->
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-md-12 ">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<div class="col-sm-12 panel_head clear">
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center">SPU编号</label>
+												<input type="text" placeholder="请输入SPU编号" autocomplete="off" class="form-control spu_id form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center">上架渠道</label>
+												<select class="form-control col-sm-2 form_control channal_id form_control">
+												<!--<option value="美世库博B2C"><font style="vertical-align: inherit;">美世库博B2C</font></option>-->
+												</select>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">商品价格</label>
+												<div class="input-daterange input-group">
+													<input type="text" placeholder="" autocomplete="off" class="form-control checkMoneyOne" style="width: 100%;display: inline-block;" onkeyup="this.value>=0?$('.checkMoneyTwo').removeAttr('disabled'):$('.checkMoneyTwo').attr('disabled','true');">
+													<span class="input-group-addon">至</span>  
+													<input type="text" placeholder="" autocomplete="off" disabled="true" class="form-control checkMoneyTwo" style="width: 100%;display: inline-block;">
+												</div>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">商品名称</label>
+												<input type="text" placeholder="请输入商品名称" autocomplete="off" id="form-field-1" class="form-control product_name form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center">所属分类</label>
+												<select class="form-control col-sm-2 form_control category_id form_control">
+												<!--<option value="全部"><font style="vertical-align: inherit;">全部</font></option>-->
+												</select>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">品牌</label>
+												<select class="form-control col-sm-2 form_control brand_id form_control">
+												<!--<option value="广发商城"><font style="vertical-align: inherit;">广发商城</font></option>-->
+												</select>
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">审核状态</label>
+												<select class="form-control col-sm-2 form_control status">
+													<option value="1">待审核</option>
+													<option value="2">已审核</option>
+												</select>
+											</div>
+											<div class="col-sm-12">
+												<button type="button" class="btn btn-light-azure button_examineSpu hide" style="margin-right: 10px;">审核</button>	
+												<button type="button" class="btn btn-primary button_search" style="margin-right: 10px;">查询</button>	
+											</div>
+										</div>
+										
+									</div>
+									<div class="panel-body" style="margin-top: 20px;">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="table_data">
+												<thead>
+													<tr>
+														<th class="center">
+															<div class="checkbox-table ">
+																<label><input type="checkbox" class="flat-grey selectall butTable_more" style="vertical-align: bottom;">
+															</label>
+															</div>
+														</th>
+														<th class="center">商品编号</th>
+														<th class="center">商品名称</th>
+														<th class="center">税率</th>
+														<th class="center">商品类型</th>
+														<th class="center">商品分类</th>
+														<th class="center">产品性质</th>
+														<th class="center">售价</th>
+														<th class="center">建议售价</th>
+														<th class="center">分期价</th>
+														<th class="center">期数</th>
+														<th class="center">产品经理</th>
+														<th class="center">上架渠道</th>
+													</tr>
+												</thead>
+												<tbody id="content_tab">
+												</tbody>
+											</table>
+											<div class="col-sm-12 userIndex_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">暂无数据</div>
+										</div>
+									</div>
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+						
+					</div>
+					<div class="elasticDiv productsIndex">
+						<div class="col-md-9" style="margin: 10% 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close sukDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+									<div style="font-size:16px ;">详情</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12" style="white-space: nowrap;">
+										<table class="table table-bordered table-striped table-hover" id="sample_table">
+											<thead>
+												<tr>
+													<th class="center">SKU编号</th>
+													<th class="center">销售属性</th>
+													<th class="center">售价</th>
+													<th class="center">税率</th>
+													<th class="center">毛利</th>
+													<th class="center">毛利率</th>
+													<th class="center">天猫价</th>
+													<th class="center">京东价</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+										<div class="col-sm-12 userIndex_table" style="margin: 10px 0 15px;text-align:center;white-space: nowrap;">暂无数据</div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv examineIndex">
+						<div style="width:30%;position: absolute;left:0;right:0;top:0;bottom:0;margin: 15% auto 0;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close sukDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12" style="line-height:30px;margin-bottom: 50px;text-align: center;font-size: 16px;">确定审核这些商品？</div>
+									<div class="col-sm-12 center">
+										<button type="button" class="btn btn-primary btn_exmine" style="padding: 6px 40px;">确定</button>	
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/spuMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				examineMain.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>

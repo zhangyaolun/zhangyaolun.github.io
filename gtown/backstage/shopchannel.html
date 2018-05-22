@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>渠道分类管理</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/summernote.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+		<style>
+			.ordre_container .panel_head .btn {float: left;}
+			.buttonUser_Role{margin-right: 12px !important;}   
+		</style>
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner ">
+				<div class="main-content">
+					<div class="container ordre_container">
+						<!--品牌管理-->
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-md-12">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<div class="col-sm-12 panel_head clear">
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-2 control-label center">渠道</label>
+												<select class="form-control col-sm-3 form_control channal_id" autocomplete="off">
+												</select>
+											</div>
+											<div class="col-sm-6 clear">
+												<button type="button" class="btn btn-primary button_search" style="margin-right: 8%;">查询</button>	
+												<button type="button" class="btn btn-warning sukAdd">新增</button>	
+											</div>
+										</div>
+									</div>
+									<div class="panel-body" style="margin-top: 20px;">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="table_data">
+												<thead>
+													<tr>
+														<th class="center">渠道编号</th>
+														<th class="center">分类查询码</th>
+														<th class="center">分类名称</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-12 userIndex_table_false" style="margin: 10px 0 15px;text-align:center;white-space: nowrap;">
+											<font style="vertical-align: inherit;">暂无数据</font>
+										</div>
+									</div>
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv channelIndex">
+						<div class="col-md-9" style="margin: 10% 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close sukDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+									<div style="font-size:16px ;"><font style="vertical-align: inherit;">新增分类</font></div>
+								</div>
+								<div class="panel-body">
+									<div class="col-md-12 products_lable" >
+										<table class="table table-bordered table-striped table-hover">
+											<tbody>
+												<tr>
+													<td class="center">分类名称</td>
+													<td class="center"><input type="text" placeholder="请输入分类名称" class="form-control taxRate_number"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12 center " style="margin: 50px 0 20px;">
+										<button type="button" class="btn btn-primary butSUK_nextTwo">确定</button>			
+									</div>	
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/ajaxfileupload.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/indexMain.js"></script>
+		<script src="js/spuMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				shopchannelMain.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>

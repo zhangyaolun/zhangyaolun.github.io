@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>品牌管理</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner taxRate_container">
+				<div class="main-content">
+					<div class="container">
+						<!--品牌管理-->
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-md-12">
+								<div class="panel panel-white">
+									<div class="panel-heading pan_head">
+										<label class="col-sm-4 control-label center">品牌名</label><div class="col-sm-5 label_div">
+											<input type="text" placeholder="请输入品牌名" id="form-field-1" autocomplete="off" class="form-control"></div>
+										<div class="buttonDiv clear">
+											<button type="button" class="btn btn-primary buttonshop_search " style="margin-left: 15px;">查询</button>	
+											<!--<button type="button" class="btn btn-warning brandAdd right" style="">新增</button>-->
+										</div>	
+									</div>
+									<div class="panel-body">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="shop_table">
+												<thead>
+													<tr>
+														<th class="center">品牌名称</th>
+														<th class="center">行业排名</th>
+														<th class="center">年销售额(万)</th>
+														<th class="center">适合人群</th>
+														<th class="center">建议渠道</th>
+														<th class="center">价格区间</th>
+														<th class="center">推荐理由</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!--<tr>
+														<td class="center">老人头</td>
+														<td class="center"><img src="images/avatar-1-small.jpg"/></td>
+														<td class="center">前十</td>
+														<td class="center">5000</td>
+														<td class="center">所有人</td>
+														<td class="center">所有</td>
+														<td class="center">100.00-200.00</td>
+														<td class="center"></td>
+													</tr>-->
+												</tbody>
+											</table>
+											<div class="col-sm-12 userIndex_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">
+												<font style="vertical-align: inherit;">暂无数据</font>
+											</div>
+										</div>
+									</div>
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+						<div class="elasticDiv elasticIndex" style="overflow: auto;">
+							<div class="col-md-9" style="margin: 100px 20%;">
+								<div class="panel panel-white">
+									<div class="panel-heading">
+										<h4 class="panel-title">新增品牌</h4>							
+										<div class="panel-tools">	
+											<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+										</div>
+									</div>
+										<div class="panel-body" style="padding: 15px 0;">
+											<div class="col-sm-12" style="margin-top: 10px;">
+												<table class="table table-bordered table-striped" id="index_tableTwo">
+													<tbody>
+														<tr>
+															<td class="center ">品牌名</td>
+															<td class="center"><input type="text" placeholder="请输入品牌名" autocomplete="off" class="form-control brandName"></td>
+															<td class="center">行业排名</td>
+															<td class="center"><input type="text" placeholder="请输入行业排名" autocomplete="off" class="form-control industryRanking" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></td>
+														</tr>
+														<tr>
+															<td class="center">年销售额</td>
+															<td class="center"><input type="text" placeholder="请输入年销售额，单位(万)" autocomplete="off" class="form-control yearSales" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></td>
+															<td class="center">适合人群</td>
+															<td class="center"><input type="text" autocomplete="off" placeholder="请输入适合人群年龄区间，如：16-60" class="form-control fit"></td>
+														</tr>
+														<tr>
+															<td class="center">建议渠道</td>
+															<td class="center"><input type="text" autocomplete="off" placeholder="请输入建议渠道" class="form-control proposalChannel"></td>
+															<td class="center">价格区间</td>
+															<td class="center"><input type="text" autocomplete="off" placeholder="请输入价格区间，如：0-4999" class="form-control priceSection"></td>
+														</tr>
+														<tr>
+															<td class="center">推荐理由</td>
+															<td class="center" colspan="3">
+																<textarea name="" rows="4" cols="" autocomplete="off" placeholder="请输入推荐理由" class="form-control recommendedReasons"></textarea>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="col-sm-12 center butAdd_div" style="">
+												<button type="button" class="btn btn-primary butAdd_sure">确定</button>
+											</div>	
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/spuMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				shopMain.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>

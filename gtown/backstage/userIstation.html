@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>账号管理</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap-editable.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs">Peter Clark</span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner taxRate_container">
+				<div class="main-content">
+					<div class="container">
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-md-12">
+								<div class="panel panel-white">
+									<div class="panel-heading pan_head">
+										<label class="col-sm-4 control-label center">账号</label><div class="col-sm-4 label_div"><input type="text" autocomplete="off" placeholder="请输入账号" id="form-field-1" class="form-control userSeaName"></div>							
+										<div class="buttonDiv">
+											<button type="button" class="btn btn-primary buttonUser_search"><font style="vertical-align: inherit;">查询</font></button>	
+											<button type="button" class="btn btn-warning buttonUser_newAdd"><font style="vertical-align: inherit;">新建账号</font></button>	
+										</div>	
+									</div>
+									<div class="panel-body userIndex_table">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="sample-table-2">
+												<thead>
+													<tr>
+														<th class="center">账号</th>
+														<th class="center">邮箱</th>
+														<th class="center">是否有效</th>
+														<th class="center">姓名</th>
+														<th class="center">角色</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody id="user_table">
+													<!--<tr>
+														<td class="center">123</td>
+														<td class="center">@126</td>
+														<td class="center">禁用</td>
+														<td class="center">张</td>
+														<td class="center">管理员</td>
+														<td class="center">
+															<a href="javascript:;" class="btn btn-xs btn-blue tooltips buttonUser_Enable" duata-placement="top" data-original-title="启用"><i class="fa">启用</i></a>								
+															<a href="javascript:;" class="btn btn-xs btn-blue tooltips buttonUser_Role" data-placement="top" data-original-title="角色"><i class="fa">角色</i></a>	
+														</td>
+													</tr>-->
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-12 userIndex_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">
+											<font style="vertical-align: inherit;">暂无数据</font>
+										</div>
+									</div>
+									<!--分页-->
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+						
+					</div>
+					<div class="elasticDiv userIndex" >
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title"><font style="vertical-align: inherit;">新增账号</font></h4>							
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="padding: 15px 0;">
+									<div class="col-sm-12" style="margin-top: 10px;">
+										<table class="table table-bordered table-striped table-hover">
+											<thead>
+												<tr>
+													<th class="center">账号</th>
+													<th class="center">邮箱</th>
+													<th class="center">姓名</th>
+													<th class="center">启用/禁用</th>
+													<th class="center">角色</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="center"><span class="userIstation_num" data-type="text" data-title="账号">点击输入账号</span></td>
+													<td class="center"><span class="userIstation_email" data-type="text" data-title="邮箱">点击输入邮箱</span></td>
+													<td class="center"><span class="userIstation_name" data-type="text" data-title="姓名">点击输入姓名</span></td>
+													<td class="center">
+														<input type="radio" value="true" id="radio_checked1" name="optionsRadios" class="grey" checked>
+														<label class="radio-inline" for="radio_checked1" style="vertical-align: top;margin: 0;padding: 0;">启用</label>
+														<input type="radio" value="false" name="optionsRadios" class="grey" id="radio_checked2">
+														<label class="radio-inline" for="radio_checked2" style="vertical-align: top;margin: 0;padding: 0;">禁用</label>
+													</td>
+													<td class="center userIsInput_checkbox" >
+														<!--<label class="checkbox-inline">
+															<input type="checkbox" class="green" value="" checked="checked"><font style="vertical-align: inherit;"></font>
+														</label>-->
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									
+									<div class="col-sm-12 center" style="">
+										<button type="button" class="btn btn-primary buttonUser_true"><font style="vertical-align: inherit;">确定</font></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv userIndexRole" >
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title"><font style="vertical-align: inherit;">角色修改</font></h4>										
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12 checkbox_input">
+										<label class="checkbox-inline">
+											<input type="checkbox" class="green" value="" checked="checked"><font style="vertical-align: inherit;">复选框2</font>
+										</label>
+									</div>
+									<div class="col-sm-12 center" style="margin-top: 20px;">
+										<button type="button" class="btn btn-primary buttonUserRole_true"><font style="vertical-align: inherit;">确定</font></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv userIndexClass" >
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title"><font style="vertical-align: inherit;">分类修改</font></h4>										
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12 userIndexClass_input">
+										<!--<label class="checkbox-inline" userischeckid="33c77e730f994e3c8fe4b0d2f4f29a8e" style="margin: 0 30px 0 0 !important;line-height: 25px;"><input type="checkbox" class="green" value=""><font style="vertical-align: inherit;">系统管理员</font></label>-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv userIndexChannel" >
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title"><font style="vertical-align: inherit;">渠道修改</font></h4>										
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="">
+									<div class="col-sm-12 userIndexChannel_input">
+										<label class="checkbox-inline">
+											<input type="checkbox" class="green" value="" checked="checked"><font style="vertical-align: inherit;">复选框2</font>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/bootstrap-editable.min.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/systemMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				userIstation.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>

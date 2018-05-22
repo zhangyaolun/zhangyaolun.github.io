@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>超管模式</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="css/styles-responsive.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="css/themes/theme-style3.css" type="text/css">
+		<link rel="stylesheet" href="css/indexStyle.css" type="text/css">
+	</head>
+	<body>
+		
+		<div class="main-wrapper">
+			<!-- start: TOPBAR -->
+			<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="javascript:;">
+									<span class="username hidden-xs"></span> <i class="fa fa-caret-down "></i>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+									<li>
+										<a href="javascript:;" class="login_out">退出登录</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
+			<!-- end: TOPBAR -->
+			<!-- start: PAGESLIDE LEFT -->
+			<a class="closedbar inner hidden-sm hidden-xs" href="javascript:;">
+			</a>
+			<nav id="pageslide-left" class="pageslide inner">
+				<div class="navbar-content">
+					<!-- start: SIDEBAR -->
+					<div class="main-navigation left-wrapper transition-left">
+						<div class="navigation-toggler hidden-sm hidden-xs">
+							<a href="#main-navbar" class="sb-toggle-left">
+							</a>
+						</div>
+						<!-- start: MAIN NAVIGATION MENU -->
+						<ul class="main-navigation-menu mainMenu">
+						</ul>
+						<!-- end: MAIN NAVIGATION MENU -->
+					</div>
+					<!-- end: SIDEBAR -->
+				</div>
+			</nav>
+			<!-- end: PAGESLIDE LEFT -->
+			<!-- start: MAIN CONTAINER -->
+			<div class="main-container inner ordre_container" >
+				<div class="main-content">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12" >
+								<div class="panel panel-white" >
+									<div class="panel-heading">
+										<div class="col-md-12 panel_head">
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >渠道订单编号</label>
+												<input type="text" placeholder="请输入渠道订单编号" autocomplete="off" class="form-control spuCode form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-2 control-label center">销售渠道</label>
+												<select class="form-control col-md-2 form_control channal_id form_control"></select>
+											</div>
+											<!--<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center">渠道商品编号</label>
+												<input type="text" placeholder="请输入渠道商品编号" class="form-control channel_sku_code form_control">
+											</div>-->
+											<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center" >OMS订单编号</label>
+												<input type="text" placeholder="请输入OMS订单编号" autocomplete="off" class="form-control orderNo form_control" />
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-md-2 control-label center">订单状态</label>
+												<select class="form-control col-md-2 form_control order_status form_control" ></select>
+											</div>
+											<!--<div class="col-sm-3 input_div">
+												<label class="col-md-4 control-label center">SKU商品编号</label>
+												<input type="text" placeholder="请输入SKU商品编号" class="form-control skuCode form_control">
+											</div>-->
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">收货人</label>
+												<input type="text" placeholder="请输入收货人姓名" autocomplete="off" class="form-control user_name form_control">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">联系电话</label>
+												<input type="text" placeholder="请输入联系电话" autocomplete="off" class="form-control user_phone form_control" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')">
+											</div>
+											<div class="col-sm-3 input_div">
+												<label class="col-sm-4 control-label center">导单时间</label>
+												<div class="input-daterange input-group form_control" id="datepicker">  
+										            <input type="text" class="form-control stime" autocomplete="off" name="start" id="qBeginTime" style="width: 100%;" placeholder="请选择开始时间"/>  
+										            <span class="input-group-addon">至</span>  
+										            <input type="text" class="form-control etime" autocomplete="off" name="end" id="qEndTime"  style="width: 100%;" placeholder="请选择结束时间"/>  
+										        </div> 
+											</div>
+											<div class="col-md-12 ">
+												<button type="button" class="btn btn-primary button_search" style="margin-right: 0;"><font style="vertical-align: inherit;">查询</font></button>
+											</div>
+										</div>
+									</div>
+									<div class="panel-body" style="margin-top: 20px;">
+										<div class="col-md-12 orderScroller">
+											<table class="table table-bordered table-hover stock_table table-striped" >
+												<thead>
+													<tr>
+														<th class="center">销售渠道</th>
+														<th class="center">渠道订单号</th>
+														<th class="center">OMS订单号</th>
+														<th class="center">订单状态</th>
+														<th class="center">收货人</th>
+														<th class="center">联系电话</th>
+														<th class="center">收货地址</th>
+														<th class="center">商品总价</th>
+														<th class="center">折扣</th>
+														<th class="center">是否退换货</th>
+														<th class="center">支付方式</th>
+														<th class="center">订单价格</th>
+														<th class="center">导单时间</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="col-sm-12 userIndex_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">
+												<font style="vertical-align: inherit;">暂无数据</font>
+											</div>
+										</div>
+									</div>
+									<div class="center userPage">
+										<ul id="page"></ul>
+									</div>
+								</div>
+								<!-- end: TABLE WITH IMAGES PANEL -->
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv orderSalelIndex">
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close sukDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="col-md-12 products_lable" >
+										<div style="font-size:16px ;margin-top: 0;"><font style="vertical-align: inherit;">订单明细</font></div>
+										<div class="orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="listDetail">
+												<thead>
+													<tr>
+														<th class="center">渠道商品编号</th>
+														<th class="center">商品SKU编号</th>
+														<th class="center">商品名称</th>
+														<th class="center">产品经理</th>
+														<th class="center">商品单价</th>
+														<th class="center">数量</th>
+														<th class="center">合计价格</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="col-sm-12 listDetail_table_false" style="margin-top: 10px;text-align:center;white-space: nowrap;">
+												<font style="vertical-align: inherit;">暂无数据</font>
+											</div>
+										</div>
+										<div class="json_add json_show">
+											<a class="btn btn-beige butAdd_primary" href="javascript:void(0)" style="margin: 10px 0;"><i class="fa fa-plus"></i></a>
+										</div>
+										<div class="orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="listDetail2">
+												<thead>
+													<tr>
+														<th class="center">渠道商品编号</th>
+														<th class="center">商品SKU编号</th>
+														<th class="center">商品名称</th>
+														<th class="center">产品经理</th>
+														<th class="center">商品单价</th>
+														<th class="center">数量</th>
+														<th class="center">合计价格</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="center"></td>
+														<td class="center"><input type="text" placeholder="请输入商品SKU编号" class="form-control json_add_sku"></td>
+														<td class="center"></td>
+														<td class="center"></td>
+														<td class="center"></td>
+														<td class="center"><input type="text" placeholder="请输入数量" class="form-control json_add_num" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
+														<td class="center"></td>
+														<td class="center"><a href="javascript:;" class="btn btn-xs btn-blue json_add_btn">确定</a></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="col-md-12 products_lable" >
+										<div style="font-size:16px ;margin-top: 20px;"><font style="vertical-align: inherit;">物流明细</font></div>
+										<div class="orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="listwout">
+												<thead>
+													<tr>
+														<th class="center">快递单号</th>
+														<th class="center">仓库</th>
+														<th class="center">出库时间</th>
+														<th class="center">快递公司</th>
+														<th class="center">操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="col-sm-12 listwout_table_false" style="margin: 10px 0 15px;text-align:center;white-space: nowrap;">
+												<font style="vertical-align: inherit;">暂无数据</font>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 products_lable" >
+										<div style="font-size:16px ;margin-top: 0;"><font style="vertical-align: inherit;">备注</font></div>
+										<div class="orderScroller">
+											<table class="table table-bordered table-striped table-hover" id="listTitle">
+												<thead>
+													<tr>
+														<th class="center">售前备注</th>
+														<th class="center">售后备注</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="col-sm-12 customer_table_false" style="margin: 10px 0 15px;text-align:center;white-space: nowrap;">
+												<font style="vertical-align: inherit;">暂无数据</font>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv modElasticIndex" style="overflow: auto;">
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title">信息修改</h4>							
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close roleDiv_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="padding: 15px 0;">
+									<div class="col-sm-12 orderScroller" style="margin-top: 10px;">
+										<table class="table table-bordered table-striped">
+											<tbody>
+												<tr>
+													<td class="center table_name">收货人</td>
+													<td class="center"><input type="text" placeholder="请输入收货人" class="form-control modconsignee"></td>
+													<td class="center table_name">联系电话</td>
+													<td class="center"><input type="text" placeholder="请输入联系电话" class="form-control modPhone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
+												</tr>
+												<tr>
+													<td class="center table_name">收货地址</td>
+													<td class="center"><input type="text" placeholder="请输入收货地址" class="form-control modAddress"></td>
+													<td class="center table_name">商品总价</td>
+													<td class="center"><input type="text" placeholder="请输入商品总价" class="form-control modproductTotal"></td>
+												</tr>
+												<tr>
+													<td class="center table_name">省</td>
+														<td class="center"><input type="text" placeholder="请输入省" class="form-control two_province"></td>
+													<td class="center table_name">订单价格</td>
+													<td class="center"><input type="text" placeholder="请输入订单价格" class="form-control modorderTotal" ></td>
+												</tr>
+												<tr>
+													<td class="center table_name">市</td>
+													<td class="center"><input type="text" placeholder="请输入市" class="form-control two_city"></td>
+													<td class="center table_name">折扣</td>
+													<td class="center"><input type="text" placeholder="请输入折扣，如：0.5" class="form-control modorderRate"></td>
+												</tr>
+												<tr>
+													<td class="center table_name">区</td>
+														<td class="center"><input type="text" placeholder="请输入区" class="form-control two_area"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12 center butAdd_div" style="">
+										<button type="button" class="btn btn-primary butAdd_sure">确定</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv modDetailIndex" style="overflow: auto;">
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title">信息修改</h4>							
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close modDetail_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="padding: 15px 0;">
+									<div class="col-sm-12 orderScroller" style="margin-top: 10px;">
+										<table class="table table-bordered table-striped">
+											<tbody>
+												<tr>
+													<td class="center table_name">商品SKU编号</td>
+													<td class="center"><input type="text" placeholder="请输入商品SKU编号" class="form-control modDSkuCode"></td>
+													<td class="center table_name">商品名称</td>
+													<td class="center"><input type="text" placeholder="请输入商品名称" class="form-control modDproductName"></td>
+												</tr>
+												<tr>
+													<td class="center table_name">商品单价</td>
+													<td class="center"><input type="text" placeholder="请输入商品单价" class="form-control modDprice"></td>
+													<td class="center table_name">数量</td>
+													<td class="center"><input type="text" placeholder="请输入数量" class="form-control modDreNum" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12 center butAdd_div" style="">
+										<button type="button" class="btn btn-primary modDetail_sure">确定</button>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="elasticDiv ExpressDetailIndex" style="overflow: auto;">
+						<div class="col-md-9" style="margin: 100px 20%;">
+							<div class="panel panel-white">
+								<div class="panel-heading">
+									<h4 class="panel-title">信息修改</h4>							
+									<div class="panel-tools">	
+										<a class="btn btn-md btn-link panel-close ExpressDetail_close" href="javascript:;"> <i class="fa fa-times"></i> </a>
+									</div>
+								</div>
+								<div class="panel-body" style="padding: 15px 0;">
+									<div class="col-sm-12 orderScroller" style="margin-top: 10px;">
+										<table class="table table-bordered table-striped">
+											<tbody>
+												<tr>
+													<td class="center table_name">快递单号</td>
+													<td class="center"><input type="text" placeholder="请输入快递单号" class="form-control trackingNumber"></td>
+													<td class="center table_name">仓库编码</td>
+													<td class="center"><select class="form-control col-md-2 form_control warehouseCode form_control" ></select></td>
+												</tr>
+												<tr>
+													<td class="center table_name">出库时间</td>
+													<td class="center"><input type="text" class="form-control shipmentTime" autocomplete="off" name="start" id="shipmentTime" style="width: 100%;" placeholder="请选择出库时间"/></td>
+													<td class="center table_name">快递公司</td>
+													<td class="center"><input type="text" placeholder="请输入快递公司" class="form-control carrier"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12 center butAdd_div" style="">
+										<button type="button" class="btn btn-primary Express_sure">确定</button>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end: PAGE -->
+			</div>
+		</div>
+	</body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.blockUI.js"></script>
+		<script src="js/bootstrap-paginator.js"></script>
+		<script src="js/jquery.xctips.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+		<script src="js/perfect-scrollbar.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.velocity.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/orderMain.js"></script>
+		<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				orderSuper.init();
+			});
+		</script>
+	<!-- end: BODY -->
+</html>
