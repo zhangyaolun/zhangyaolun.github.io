@@ -1,6 +1,5 @@
 *{margin:0;padding:0;font-family:STHeiti-Light}
 body,html{max-width:750px;margin:auto;background:rgba(0,0,0,.5)}
-.lock{position:relative;width:100%;background:url(images/lock.jpg) no-repeat center;background-size:100%}
 .l_time{position:absolute;top:10%;width:100%;color:#fff;text-align:center}
 .l_date{font-size:2rem}
 .l_year{font-size:1.1rem}
