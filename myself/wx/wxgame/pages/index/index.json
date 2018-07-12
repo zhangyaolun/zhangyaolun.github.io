@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "dialog": "../../comment/Dialog/dialog",
+    "main": "../../comment/mainComment/main"
+  }
+}

@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="lunbo" wx:if="{{!canIUse}}">
+  <swiper class="widthHeight" indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}"
+    previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<main id="mainNav" content='充值专区' wx:if="{{!canIUse}}"></main>
+
+<view class="mint_tab ptblr" wx:if="{{!canIUse}}">
+    <view class="mint_tab_item center {{tab_num==index?'active':''}}" data-id='{{index}}' wx:for="{{tabList}}"  wx:key="{{index}}" bindtap="menuClick">
+        <image src='../../images/nav.png'/>
+        <text>{{item.name}}</text>
+        <view class='mint_tab_i'></view>
+    </view>
+</view>
+
+<view class="section mint_main ptblr" wx:if="{{!canIUse}}">
+  <view class='mint_main_input'>
+    <input type='number' maxlength="11" placeholder="请输入手机号" placeholder-class='placeholder'/>
+  </view>
+  <view class='mint_main_list clear'>
+    <view class='left'>
+      <view class="price">9.96元</view>
+      <text class='oldPrice'>原价: 10.00元</text>
+    </view>
+    <button type="default" size="mini" bindtap="default" class='right'> 购买 </button>
+  </view>
+</view>

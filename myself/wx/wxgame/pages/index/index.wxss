@@ -1,0 +1,71 @@
+@import "../../comment/style.wxss";
+
+
+.lunbo{
+    width:750rpx;
+    height:30%; 
+    margin:5% 0;
+}
+.slide-image{
+    width:97%;
+    height: 100%;
+    margin-left: 1.5%;
+}
+.slide-image{
+    border-radius: 15rpx;
+}
+
+.mint_tab{display: flex;height: 12%;font-size: 28rpx;}
+.mint_tab .mint_tab_item{
+  flex-flow:row nowrap;
+  flex-grow:1;
+  height:55%;
+}
+.mint_tab .mint_tab_item image{
+  width: 30%;
+  height: 100%;
+  display: block;
+  margin: 0 auto 10rpx;
+}
+.mint_tab .active{
+  color: #26a2ff;
+}
+.mint_tab .active .mint_tab_i{
+  width: 70rpx;
+  background: #32AAFF;
+  height: 5%;
+  border-radius:10rpx;
+  margin: 5rpx auto 0;
+}
+
+.mint_main{
+  font-size: 25rpx;
+  }
+.mint_main_input{
+  width: 100%;
+}
+.mint_main_input input{
+  width: 80%;
+  padding-left: 10rpx;
+   font-size: 28rpx;
+}
+.mint_main_input .placeholder{
+  color: #888;
+  font-size: 28rpx;
+}
+.mint_main_list{
+  margin: 30rpx 0;
+}
+.mint_main_list .price{
+ color: #222;
+ font-size: 35rpx;
+}
+.mint_main_list .oldPrice{
+ color: #888;
+ font-size: 25rpx;
+}
+.mint_main_list .oldPrice{
+ color: #888;
+ font-size: 25rpx;
+ text-decoration: line-through;
+}
