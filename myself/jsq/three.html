@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script>
+	        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
+	    </script>
+	</head>
+	<body class="bgf"><!--fddc01 -->
+		<script src="./js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/index.js" type="text/javascript" charset="utf-8"></script>
+		<div id="app" v-cloak class="w100">
+			
+			<div class="th_item w100 pt">
+				<span>总共缴纳</span>
+				<div class="money">{{money | currency}}<em>&nbsp;元</em></div>
+			</div>
+			
+			<div class="th_main_box w100 bgf">
+				<div class="thMain" v-for="(item,index) in itemList">
+					<div class="thMain_type clear borderBot" @click="thTypeClick(index)">
+						<span class="left">{{item.title}}</span>
+						<span>{{item.value}}</span>
+						<img src="img/more@2x.png" alt="" class="right icon" :class="[showHideFalg==index?'iconActive':'']"/>
+					</div>
+					<ul class="thMain_detail" v-if="showHideFalg==index">
+						<li class="clear borderBot" v-for="items in item.list">
+							<span class="left">{{items.name}}</span>
+							<span class="tax">{{items.tax}}</span>
+							<span class="right">{{items.value | currency}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="mainBox"></div>
+			
+			
+			<div class="pre-loading" v-show="preLoading">
+				<div class="pre-block"><div class="spinner"><i></i></div>数据加载中...</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+			    el: '#app',
+			    data: {
+			    	preLoading:true,//加载
+			        money:0,//总共缴纳
+			        showHideFalg:3,//个人缴纳与企业缴纳 0个人 1企业
+			        inputVal:0,//输入工资
+			        itemList:[
+			        	{
+			        		title:'个人缴纳:',
+			        		value:0,
+			        		oldvalue:0,
+			        		list:[
+			        			{name:'养老',value:0,tax:'8.0%',oldvalue:0,oldtax:'8.0%'},
+			        			{name:'医疗',value:0,tax:'2.0%',oldvalue:0,oldtax:'2.0%'},
+			        			{name:'工伤',value:0.00,tax:'-',oldvalue:0,oldtax:'-'},
+			        			{name:'失业',value:0,tax:'0.5%',oldvalue:0,oldtax:'0.2%'},
+			        			{name:'生育',value:0.00,tax:'-',oldvalue:0,oldtax:'-'},
+			        			{name:'公积金',value:0,tax:'7.0%',oldvalue:0,oldtax:'12%'}
+			        		]
+			        	},
+			        	{
+			        		title:'企业缴纳:',
+			        		value:0,
+			        		oldvalue:0,
+			        		list:[
+			        			{name:'养老',value:0,tax:'20%',oldvalue:0,oldtax:'19%'},
+			        			{name:'医疗',value:0,tax:'9.5%',oldvalue:0,oldtax:'9.0%'},
+			        			{name:'工伤',value:0,tax:'0.2%',oldvalue:0,oldtax:'0.4%'},
+			        			{name:'失业',value:0,tax:'0.5%',oldvalue:0,oldtax:'0.8%'},
+			        			{name:'生育',value:0,tax:'1.0%',oldvalue:0,oldtax:'-'},
+			        			{name:'公积金',value:0,tax:'7.0%',oldvalue:0,oldtax:'12%'}
+			        		]
+			        	}
+			        ]
+			    },
+			    filters: {
+			        currency: function (value) {
+			            return value!='-'?(parseFloat(value)).toFixed(2):'0.00';
+			        },
+			    },
+			    mounted: function () {
+			        var _this = this;
+			        FastClick.attach(document.body);
+			        _this.inputVal = sessionStorage.getItem('inputVal')*1;
+			        if(!_this.inputVal)return;
+			        _this.money = 0;
+			        _this.itemList.forEach(function(v,k){
+			        	v.value = 0;
+			        	v.oldvalue = 0;
+			        	v.list.forEach(function(m,n){
+			        		if(m.tax != '-'){
+			        			m.value = (parseFloat(m.tax)/100*_this.inputVal).toFixed(2);
+			        		}
+			        		if(m.oldtax != '-'){
+			        			m.oldvalue = (parseFloat(m.oldtax)/100*_this.inputVal).toFixed(2);
+			        		}
+			        		v.value = parseFloat(m.value) + parseFloat(v.value);
+			        		v.oldvalue = parseFloat(m.oldvalue) + parseFloat(v.oldvalue);
+			        	})
+			        	v.value = v.value.toFixed(2);
+			        	v.oldvalue = v.oldvalue.toFixed(2);
+			        	_this.money = parseFloat(v.value) + parseFloat(_this.money);
+			        })
+			        
+			       _this.preLoading = false;
+			        
+			    },
+			    methods: {
+			        thTypeClick: function (index) {//个人 企业切换查看点击
+			            var _this = this;
+			            this.showHideFalg == index?this.showHideFalg = 3:this.showHideFalg = index;
+			            if(this.showHideFalg == 1){
+			            	document.getElementById('mainBox').innerHTML = '<div id="main" class="mt"></div><div id="mains" class="mt"></div>';
+			            	_this.echarts();
+							_this.echartsT();
+			            }else{
+			            	if(document.getElementById('main')){
+			            		document.getElementById('main').remove();
+			            		document.getElementById('mains').remove();
+			            	}
+			            }
+			        },
+			        echarts:function(){//优化前收入与支出占比
+			        	var _this = this;
+			        	var myChart = echarts.init(document.getElementById('main'));
+						var option = {
+							title: { //标题组件，包含主标题和副标题。
+								text: '优化前收入与支出占比',//主标题文本，支持使用 \n 换行。
+								top:'bottom',
+            					left:'center',
+							},
+				            series: [
+				                {
+				                    name:'',
+				                    type:'pie',
+				                    radius: ['30%', '90%'],
+				                    label: {
+				                        normal: {
+				                            position:'inside',
+				                            formatter: "{b} \n {c}元 ",
+				                            align:'center',
+				                            fontSize: 15,
+				                            color:"#fff"
+				                        }
+				                    },
+				                    data:[
+				                        {value:0, name:'员工社保个税:'},//个人社保缴纳汇总+个人所得税
+				                        {value:0, name:'单位社保交金:'},//单位社保缴纳汇总
+				                        {value:0, name:'员工到手收入:'}//税后收入
+				                    ]
+				                },
+				                {
+				                    name:'',
+				                    type:'pie',
+				                    radius: ['0%', '33%'],
+				                    label: {
+				                        normal: {
+				                            position: 'center',
+				                    		formatter: "{b} \n {c}元 ",
+				                            fontSize: 18,
+				                            color:'#80F0E3'
+				                        }
+				                    },
+				                    data:[
+				                        {value:0, name:'单位总支出'}
+				                    ]
+				                }
+				            ],
+				        };
+				        option.series[0].data[0].value = (_this.itemList[0].oldvalue*1 + _this.taxFun(_this.inputVal)).toFixed(2);
+				        option.series[0].data[1].value = (_this.itemList[1].oldvalue*1).toFixed(2);
+				        option.series[0].data[2].value = (_this.inputVal - option.series[0].data[0].value).toFixed(2);
+				        option.series[1].data[0].value = (_this.inputVal*1 + _this.itemList[1].oldvalue*1).toFixed(2);
+				        myChart.setOption(option);
+			        },
+			        echartsT:function(){//仁仕通优化后收入与支出占比
+			        	var _this = this;
+			        	var myChart = echarts.init(document.getElementById('mains'));
+						var option = {
+							title: { //标题组件，包含主标题和副标题。
+								text: '仁仕通优化后收入与支出占比',//主标题文本，支持使用 \n 换行。
+								top:'bottom',
+            					left:'center',
+							},
+				            series: [
+				                {
+				                    name:'',
+				                    type:'pie',
+				                    radius: ['30%', '90%'],
+				                    label: {
+				                        normal: {
+				                            position:'inside',
+				                            formatter: "{b} \n {c}元 ",
+				                            align:'center',
+				                            fontSize: 15,
+				                            color:"#fff"
+				                        }
+				                    },
+				                    data:[
+				                        {value:0, name:'员工社保个税:'},//个人社保缴纳汇总+个人所得税
+				                        {value:0, name:'单位社保交金:'},//单位社保缴纳汇总
+				                        {value:0, name:'员工到手收入:'}//税后收入
+				                    ]
+				                },
+				                {
+				                    name:'',
+				                    type:'pie',
+				                    radius: ['0%', '33%'],
+				                    label: {
+				                        normal: {
+				                            position: 'center',
+				                    		formatter: "{b} \n {c}元 ",
+				                            fontSize: 18,
+				                            color:'#80F0E3'
+				                        }
+				                    },
+				                    data:[
+				                        {value:0, name:'单位总支出'}
+				                    ]
+				                }
+				            ],
+				        };
+				        option.series[0].data[0].value = (_this.itemList[0].value*1 + _this.taxFun(_this.inputVal)).toFixed(2);
+				        option.series[0].data[1].value = (_this.itemList[1].value*1).toFixed(2);
+				        option.series[0].data[2].value = (_this.inputVal - option.series[0].data[0].value).toFixed(2);
+				        option.series[1].data[0].value = (_this.inputVal*1 + _this.itemList[1].value*1).toFixed(2);
+				        myChart.setOption(option);
+			        },
+			        taxFun:function(val){//个人所得税
+			        	/*
+				         * <=5000             5   0
+				         * 5000  < - <=12000  10%  210
+				         * 12000 < - <=25000  20%  1410
+				         * 25000 < - <=35000  25%  2660
+				         * 35000 < - <=55000  30%  4410
+				         * 55000 < - <=80000  35%  7160
+				         * >80000             45%  15160
+				         * */
+				        var _tax = 0;
+				        if(parseFloat(val) <= 5000){
+				        	_tax = (this.inputVal - 5000)*0.05;
+				        }else if(5000 < parseFloat(val) && parseFloat(val) <= 12000){
+				        	_tax = (this.inputVal - 5000)*0.1 - 210;
+				        }else if(12000 < parseFloat(val) && parseFloat(val) <= 25000){
+				        	_tax = (this.inputVal - 5000)*0.2 - 1410;
+				        }else if(25000 < parseFloat(val) && parseFloat(val) <= 35000){
+				        	_tax = (this.inputVal - 5000)*0.25 - 2660;
+				        }else if(35000 < parseFloat(val) && parseFloat(val) <= 55000){
+				        	_tax = (this.inputVal - 5000)*0.30 - 4410;
+				        }else if(55000 < parseFloat(val) && parseFloat(val) <= 80000){
+				        	_tax = (this.inputVal - 5000)*0.35 - 7160;
+				        }else if(80000 < parseFloat(val)){
+				        	_tax = (this.inputVal - 5000)*0.45 - 15160;
+				        }
+				        return _tax;
+			        }
+			    }
+			})
+		</script>
+	</body>
+</html>
