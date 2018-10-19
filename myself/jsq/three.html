@@ -110,7 +110,7 @@
 			        	_this.money = parseFloat(v.value) + parseFloat(_this.money);
 			        })
 			        
-			       _this.preLoading = false;
+			    setTimeout(function(){_this.preLoading = false;},100) 
 			        
 			    },
 			    methods: {
@@ -246,18 +246,25 @@
 				         * */
 				        var _tax = 0;
 				        if(parseFloat(val) <= 5000){
-				        	_tax = (this.inputVal - 5000)*0.05;
+				        	console.log('09')
+				        	_tax = (this.inputVal)*0.05;
 				        }else if(5000 < parseFloat(val) && parseFloat(val) <= 12000){
+				        	console.log('09')
 				        	_tax = (this.inputVal - 5000)*0.1 - 210;
 				        }else if(12000 < parseFloat(val) && parseFloat(val) <= 25000){
+				        	console.log('09')
 				        	_tax = (this.inputVal - 5000)*0.2 - 1410;
 				        }else if(25000 < parseFloat(val) && parseFloat(val) <= 35000){
+				        	console.log('09')
 				        	_tax = (this.inputVal - 5000)*0.25 - 2660;
 				        }else if(35000 < parseFloat(val) && parseFloat(val) <= 55000){
+				        	console.log('09')
 				        	_tax = (this.inputVal - 5000)*0.30 - 4410;
 				        }else if(55000 < parseFloat(val) && parseFloat(val) <= 80000){
+				        	console.log('09')
 				        	_tax = (this.inputVal - 5000)*0.35 - 7160;
 				        }else if(80000 < parseFloat(val)){
+				        	console.log('09')
 				        	_tax = (this.inputVal - 5000)*0.45 - 15160;
 				        }
 				        return _tax;

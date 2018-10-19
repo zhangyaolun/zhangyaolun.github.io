@@ -34,13 +34,14 @@
 			new Vue({
 			    el: '#app',
 			    data: {
-			        preLoading:false,
+			        preLoading:true,
 			        inputVal:'',
 			        _a:0
 			    },
 			    mounted: function () {
 			        var _this = this;
 			        FastClick.attach(document.body);
+			        setTimeout(function(){_this.preLoading = false;},100) 
 			    },
 			    methods: {
 			    	inputChange:function () {//输入框子
@@ -54,10 +55,6 @@
 			        	if(this.inputVal == '')return;
 			        	sessionStorage.setItem('inputVal',(_this.inputVal*1).toFixed(2));
 			            window.location.href = "three.html"
-			        },
-			        oBackTop: function () {//回到顶部
-			            document.body.scrollTop = 0;
-			            document.documentElement.scrollTop = 0;
 			        },
 			    }
 			})
