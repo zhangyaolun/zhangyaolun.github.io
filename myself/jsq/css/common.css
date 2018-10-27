@@ -12,20 +12,25 @@ a,a:hover{text-decoration:none}
 .right{float: right;}
 em,i{font-style: normal;}
 [v-cloak]{display: none !important;}
-body{background: #f8f8f8;width: 100%;}
+body{background: #f7f7f7;width: 100%;}
 input,button{outline: none;border: none;}
 
-
+.posrP{position: relative;}
+.center{text-align: center;}
 .imgMiddle{vertical-align: middle;}
 .w100{width: 100%;}
 .bgf{background: #fff;}
 .mt{margin-top: .5rem;}
+.ml{margin-left: .15rem;}
 .pt{padding-top: .3rem;}
+.pt7{padding-top: .7rem;}
+.pb3{padding-bottom: 3rem;}
+
 
 .borderTop{border-top: 1px solid #ccc;}
 .borderBot{border-bottom: 1px solid #ccc;}
 
-
+.boxShadow{box-shadow: 0 1px 4px #ccc;}
 
 
 .pre-loading { background:rgba(248,248,248,1); position: fixed; z-index:999; top: 0; right: 0; bottom: 0; left: 0;}
@@ -60,7 +65,18 @@ input,button{outline: none;border: none;}
 }
 
 
-
+/*首页*/
+.home_item{
+	position:fixed;width:100%;height:100%;}
+	.home_btn{
+		
+    width: 90%;
+    height: 2rem;
+    margin: 0 auto;
+    left: 5%;
+    bottom: 6%;
+    position: absolute;
+	}
 /*two*/
 .t_item{
 	box-sizing: border-box;
@@ -81,66 +97,85 @@ input,button{outline: none;border: none;}
 }
 .t_item .t_list .title{
 	width: 20%;
-	color: #333;
+    color: #333;
+    font-size: .35rem;
+    font-weight: 600;
 }
 .t_item .t_list input{
 	width: 80%;
 	height: 100%;
+	background: rgba(0,0,0,0);
 }
 .t_btn{
 	width: 90%;
-    height: 1rem;
-    line-height: 1rem;
+    position: fixed;
+    height: 1.2rem;
+    line-height: 1.2rem;
     background: #ccc;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 7px;
     font-size: .4rem;
-    margin: 5%;
     color: #fff;
     display: inline-block;
+    left: 5%;
+    bottom: .3rem;
+    /*background: -webkit-gradient(linear, 0 0, 0 100%, from(red), to(blue));
+    background: -webkit-linear-gradient(red, blue);
+    background: -moz-linear-gradient(red, blue);
+    background: -o-linear-gradient(red, blue);
+    background: linear-gradient(red, blue);*/
 }
 .t_btnActive{
-    background: #fddc01;
-    color: #666;
+    background: #48a0f7;
+    color: #fff;
 }
 
 /*three*/
 .th_item{
 	box-sizing: border-box;
-	padding-left:5%;
 	font-size: .4rem;
-	color: #666;
-	background: #fddc01;
+	color: #fff;
+	height: 3.8rem;
+	box-sizing: border-box;
+	background: url(../img/bg_1.png) no-repeat 0 0;
+	background-size: 100% 100%;
 }
-.th_item span{
-	font-size: .5rem;
+.th_item .title{
+	font-size: .3rem;
+	padding-top: .1rem;
+	transform:scale(.8);
+	transform:scale(.8);
+	-ms-transform:scale(.8);
+	-moz-transform:scale(.8);
+	-webkit-transform:scale(.8);
+	-o-transform:scale(.8);
+}
+.th_item .money span{
+    font-size: .5rem;
 }
 .th_item .money{
-	height: 2.5rem;
-    line-height: 2.5rem;
-    font-size: .6rem;
+    font-size: .9rem;
+    font-weight: 600;
+    padding-top: .1rem;
 }
-.th_item .money em{font-size: .35rem;}
 .th_main_box{padding-left:5%;box-sizing: border-box;}
 .thMain_type{
 	width: 100%;
 	height: 1.3rem;
 	line-height: 1.3rem;
 }
+.thMain_type .icon_l{
+	display: inline-block;
+    vertical-align: middle;
+    width: .5rem;
+}
 .thMain .thMain_type .left{
 	font-size: .36rem;
-	width: 20%;
+	width: 70%;
 }
 .thMain .thMain_type,.thMain_detail li{
-	width: 100%;
-	padding-right:5%;box-sizing: border-box;
-}
-.iconActive{
-	transform:rotate(90deg);
-	-ms-transform:rotate(90deg); 	/* IE 9 */
-	-moz-transform:rotate(90deg); 	/* Firefox */
-	-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
-	-o-transform:rotate(90deg); 
+	width: 95%;
+	box-sizing: border-box;
 }
 .thMain_detail li{
 	height: 1.3rem;
@@ -157,5 +192,151 @@ input,button{outline: none;border: none;}
 .thMain_detail li span.tax{
 	color: #999;
 }
-#main{width: 100%;height: 11rem;}
-#mains{width: 100%;height: 11rem;margin-bottom: 1rem;}
+    
+    #mainBox .title{
+	width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    margin-left: 8%;
+    font-size: .38rem;
+    padding-top: .3rem;
+
+}
+    #mainBox .title:before{
+	    content: '';
+    position: absolute;
+    top: .55rem;
+    left: 5%;
+    background: #3f92ee;
+    width: 2px;
+    height: .5rem;
+
+}
+#mainBox{
+	position: relative;
+	width: 100%;
+    height: 9rem;
+    background: #fff;
+    margin-top: .5rem;
+
+}
+#mainBox #main{
+	width: 100%;
+	height: 7rem;}    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*个人缴纳*/
+.person_item{margin-top: 1.2rem;}
+.personItem_l,.personItem_r{
+	    text-align: center;
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    height: 2rem;
+	}
+	.personItem_l:after{
+	       content: '';
+    position: absolute;
+    top: 1.4rem;
+    right: 50%;
+    background: #ccc;
+    width: 1px;
+    height: 40px;
+	}
+.personItem_l .per_l_maoney,.personItem_r  .per_r_title{
+	height: 1rem;
+    line-height: 1rem;
+    font-size: .4rem;
+    font-weight: 600;
+}
+.personItem_l .per_l_maoney span,.personItem_r .per_r_title span{
+	font-size: .8rem;
+}
+.per_title{
+	font-size: .35rem;
+	transform:scale(.8);
+	transform:scale(.8);
+	-ms-transform:scale(.8);
+	-moz-transform:scale(.8);
+	-webkit-transform:scale(.8);
+	-o-transform:scale(.8);
+}  
+
+.person_main_box{
+	    width: 84%;
+    box-sizing: border-box;
+        margin: .7rem 8% 0;
+    background: url(../img/p4.png) no-repeat;
+    background-size: 100% 100%;
+}
+.person_main_box .per_main_top{
+	width: 80%;
+	padding: 0 1%;
+    margin: 0 10%;
+    height: 1.5rem;
+    box-sizing: border-box;
+    line-height: 1.1rem;
+    border-bottom: 1px solid #ccc;
+    padding-top: .4rem;
+    font-weight: 600;
+    font-size: .4rem;
+}
+.person_main_box ul{
+	width: 80%;
+	padding-bottom: 15%;
+    margin: 0 10%;
+}
+   .person_main_box ul li{
+   	padding: 0 1%;
+	height: 1rem;
+	line-height: 1rem;
+	
+    border-bottom: 1px solid #ccc;
+}
+   .person_main_box ul li .right{
+   	white-space: nowrap;
+   	    width: 80%;
+    text-align: right;
+}
+   .person_main_box ul li .right div{
+   	display: inline-block;
+   	width: 25%;
+}
+      .person_main_box ul li i{
+   	   width: 2px;
+    display: inline-block;
+        margin: 0 .15rem;
+    height: .31rem;
+    background: #ccc;
+}
+.person_Explain{
+	position: fixed;
+    bottom: .6rem;
+    width: 100%;
+    text-align: center;
+    color: #999;
+    font-size: .3rem;
+}
+    .person_Explain div{
+	    line-height: .5rem;
+}
+       .person_Explain div span{
+	color: #46a0f8;
+}
+          

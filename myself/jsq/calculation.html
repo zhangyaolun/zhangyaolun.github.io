@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<title></title>
+		<title>仁仕通上海社保计算器</title>
 		<link rel="stylesheet" type="text/css" href="css/common.css"/>
 		<script>
 	        document.getElementsByTagName("html")[0].style.fontSize=window.screen.width/10+"px";
@@ -14,10 +14,10 @@
 		<script src="./js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./js/index.js" type="text/javascript" charset="utf-8"></script>
 		<div id="app" v-cloak class="w100">
-			<div class="t_item mt w100 bgf borderTop">
+			<div class="t_item w100 bgf boxShadow">
 				<div class="t_list clear borderBot">
 					<span class="left title">当前城市</span>
-					<span>上海</span>
+					<span>{{city}}</span>
 					<img src="img/more@2x.png" alt="" class="right icon"/>
 				</div>
 				<div class="t_list clear">
@@ -34,6 +34,7 @@
 			new Vue({
 			    el: '#app',
 			    data: {
+			    	city:'上海',
 			        preLoading:true,
 			        inputVal:'',
 			        _a:0
@@ -54,7 +55,7 @@
 			        	var _this = this;
 			        	if(this.inputVal == '')return;
 			        	sessionStorage.setItem('inputVal',(_this.inputVal*1).toFixed(2));
-			            window.location.href = "three.html"
+			            window.location.href = "main.html"
 			        },
 			    }
 			})
