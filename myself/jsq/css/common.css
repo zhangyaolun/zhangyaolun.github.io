@@ -172,6 +172,7 @@ input,button{outline: none;border: none;}
 }
 .thMain .thMain_type .left{
 	font-size: .36rem;
+	font-weight: 600;
 	width: 70%;
 }
 .thMain .thMain_type,.thMain_detail li{
@@ -184,6 +185,7 @@ input,button{outline: none;border: none;}
 }
     
     #mainBox .title,#mainBoxs .titles{
+    	font-weight: 600;
     height: 1rem;
     line-height: 1rem;
     margin-left: 8%;
