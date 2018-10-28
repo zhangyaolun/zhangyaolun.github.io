@@ -33,20 +33,16 @@
 						</div>
 						<img src="img/p3.png" alt="" class="right icon"/>
 					</div>
-					<ul class="thMain_detail" v-if="showHideFalg==index">
-						<li class="clear borderBot" v-for="items in item.list">
-							<span class="left">{{items.name}}</span>
-							<span class="tax">{{items.tax}}</span>
-							<span class="right">{{items.value | currency}}</span>
-						</li>
-					</ul>
 				</div>
 			</div>
 			<div id="mainBox">
 				<div class="title">优化前收入与支出占比</div>
 				<div id="main"></div>
 			</div>
-			
+			<div id="mainBoxs">
+				<div class="titles">仁仕通优化后收入与支出占比</div>
+				<div id="mains"></div>
+			</div>
 			<div class="pre-loading" v-show="preLoading">
 				<div class="pre-block"><div class="spinner"><i></i></div>数据加载中...</div>
 			</div>
@@ -58,17 +54,23 @@
 			    	preLoading:true,//加载
 			        money:0,//总共缴纳
 			        showHideFalg:3,//个人缴纳与企业缴纳 0个人 1企业
-			        inputVal:0,//输入工资
+			        newVal:0,//工资
+			        inputVal:0,//优化后工资
+			        oldVal:0,//优化前
+			        personVal:0,//个人所得税优化后
+			        personValold:0,//个人所得税优化前
 			        itemList:[
 			        	{
 			        		title:'个人缴纳:',
 			        		value:0,
+			        		old:0,
 			        		img:'./img/p1.png',
 			        		list:[]
 			        	},
 			        	{
 			        		title:'企业缴纳:',
 			        		value:0,
+			        		old:0,
 			        		img:'./img/p2.png',
 			        		list:[]
 			        	}
@@ -82,28 +84,29 @@
 			    mounted: function () {
 			        var _this = this;
 			        FastClick.attach(document.body);
-			        _this.inputVal = sessionStorage.getItem('inputVal')*1;
+			        _this.newVal = sessionStorage.getItem('inputVal')*1;
+			        _this.inputVal = _ss(sessionStorage.getItem('inputVal')*1);
+			        _this.oldVal = _sss(sessionStorage.getItem('inputVal')*1);
 			        if(!_this.inputVal)return;
 			        _this.money = 0;
-			        
 			        _this.itemList[0].list = o[0].personalPayment;
 			        _this.itemList[1].list = o[0].enterprisePayment;
-			        
 			        _this.itemList.forEach(function(v,k){
 			        	v.value = 0;
+			        	v.old = 0;
 			        	v.list.forEach(function(m,n){
 			        		m.value = (parseFloat(m.tax)/100*_this.inputVal).toFixed(2);
 			        		v.value = parseFloat(m.value) + parseFloat(v.value);
+			        		v.old = (parseFloat(m.tax)/100*_this.oldVal) + parseFloat(v.old);
 			        	})
 			        	v.value = v.value.toFixed(2);
 			        	_this.money = parseFloat(v.value) + parseFloat(_this.money);
 			        })
-			        
-			        //_this.echarts();
+			        _this.personVal = _this.taxFun(_this.inputVal,1).toFixed(2);
+			        _this.personValold = _this.taxFun(_this.oldVal,2).toFixed(2);
+			        _this.echarts();
 					_this.echartsT();
-					
 			    	setTimeout(function(){_this.preLoading = false;},100) 
-			        
 			    },
 			    methods: {
 			        thTypeClick: function (index) {//个人 企业切换查看点击
@@ -112,77 +115,27 @@
 			            sessionStorage.setItem('moremoney',parseFloat(_this.money).toFixed(2));
 			            window.location.href = _url;
 			        },
-			        echarts:function(){//优化前收入与支出占比
+			        echarts:function(){//仁仕通优化后收入与支出占比
 			        	var _this = this;
-			        	var myChart = echarts.init(document.getElementById('main'));
+			        	var myChart = echarts.init(document.getElementById('mains'));
 						var option = {
-							title: { //标题组件，包含主标题和副标题。
-								text: '优化前收入与支出占比',//主标题文本，支持使用 \n 换行。
-								top:'bottom',
-            					left:'center',
-							},
-				            series: [
-				                {
-				                    name:'',
-				                    type:'pie',
-				                    radius: ['30%', '90%'],
-				                    label: {
-				                        normal: {
-				                            position:'inside',
-				                            formatter: "{b} \n {c}元 ",
-				                            align:'center',
-				                            fontSize: 15,
-				                            color:"#fff"
-				                        }
-				                    },
-				                    data:[
-				                        {value:0, name:'员工社保个税:'},//个人社保缴纳汇总+个人所得税
-				                        {value:0, name:'单位社保交金:'},//单位社保缴纳汇总
-				                        {value:0, name:'员工到手收入:'}//税后收入
-				                    ]
-				                },
-				                {
-				                    name:'',
-				                    type:'pie',
-				                    radius: ['0%', '33%'],
-				                    label: {
-				                        normal: {
-				                            position: 'center',
-				                    		formatter: "{b} \n {c}元 ",
-				                            fontSize: 18,
-				                            color:'#80F0E3'
-				                        }
-				                    },
-				                    data:[
-				                        {value:0, name:'单位总支出'}
-				                    ]
-				                }
-				            ],
-				        };
-				        option.series[0].data[0].value = (_this.itemList[0].oldvalue*1 + _this.taxFun(_this.inputVal)).toFixed(2);
-				        option.series[0].data[1].value = (_this.itemList[1].oldvalue*1).toFixed(2);
-				        option.series[0].data[2].value = (_this.inputVal - option.series[0].data[0].value).toFixed(2);
-				        option.series[1].data[0].value = (_this.inputVal*1 + _this.itemList[1].oldvalue*1).toFixed(2);
-				        myChart.setOption(option);
-			        },
-			        echartsT:function(){//仁仕通优化后收入与支出占比
-			        	var _this = this;
-			        	var myChart = echarts.init(document.getElementById('main'));
-						var option = {
-							tooltip: {
-						        trigger: 'item',
-						        formatter: "{a} <br/>{b}: {c} ({d}%)"
-						    },
 						    series: [
 						        {
-						            name:'访问来源',
+						            name:'',
 						            type:'pie',
-						            radius: [0, '30%'],
+						            radius: [0, '35%'],
+						            hoverAnimation:false,
 						            label: {
 						                normal: {
-						                    color:['#333'],
-						                    formatter: '{b}\n{c}',
-						                    position: 'inner'
+						                    color:['#fff'],
+						                    formatter: _this.get,
+						                    position: 'center',
+						                    rich: {
+						                        b: {
+						                            color:[''],
+						                            fontSize: 10
+						                        }
+						                    }
 						                }
 						            },
 						            labelLine: {
@@ -190,77 +143,148 @@
 						                    show: false
 						                }
 						            },
-						            color:['#fff'],
+						            color:['#7cacda'],
 						            data:[
-						                {value:335, name:'单位总支出'}
+						                {value:(_this.newVal*1 + _this.itemList[1].value*1).toFixed(2), name:'企业总支出'}
 						            ]
 						        },
 						        {
-						            name:'访问来源',
+						            name:'',
 						            type:'pie',
-						            radius: ['35%', '50%'],
+						            radius: ['40%', '60%'],
+						            hoverAnimation:false,
+						            labelLine: {
+						                normal: {
+						                    length:5
+						                }
+						            },
 						            label: {
 						                normal: {
-						                    formatter: '{b|{b} } ',
+						                    formatter: _this.get,
 						                    color:['#333'],
 						                    rich: {
 						                        b: {
 						                            color:[''],
-						                            fontSize: 16,
-						                            lineHeight: 33
+						                            fontSize: 10
 						                        }
 						                    }
 						                }
 						            },
 						            data:[
-						                {value:335, name:'直达 335'},
-						                {value:10, name:''},
-						                {value:310, name:'邮件营销 335'},
-						                {value:10, name:''},
-						                {value:234, name:'联盟广告 335'},
-						                 {value:10, name:''},
+						                {value:_this.itemList[0].value*1 + _this.personVal*1, name:'员工社保个税'},
+						                {value:(_this.newVal/1000)*15, name:''},
+						                {value:(_this.itemList[1].value*1).toFixed(2), name:'企业社保交金'},
+						                {value:(_this.newVal/1000)*15, name:''},
+						                {value:_this.newVal - (_this.itemList[0].value*1 +_this.personVal*1), name:'员工到手收入'},
+						                {value:(_this.newVal/1000)*15, name:''},
 						            ],
-						            color:['#9bc3f6','rgba(0,0,0,0)','#9dbadc','rgba(0,0,0,0)','#333','rgba(0,0,0,0)']
+						            color:['#9bc3f6','rgba(0,0,0,0)','#9dbadc','rgba(0,0,0,0)','#c9d6e6','rgba(0,0,0,0)']
+						        }
+						    ]
+				       };
+				        myChart.setOption(option);
+			        },
+			        echartsT:function(){//优化前收入与支出占比
+			        	var _this = this;
+			        	var myChart = echarts.init(document.getElementById('main'));
+						var option = {
+						    series: [
+						        {
+						            name:'',
+						            type:'pie',
+						            radius: [0, '35%'],
+						            label: {
+						                normal: {
+						                    color:['#fff'],
+						                    formatter: _this.get,
+						                    position: 'center',
+						                    rich: {
+						                        b: {
+						                            color:[''],
+						                            fontSize: 10
+						                        }
+						                    }
+						                }
+						            },
+						            hoverAnimation:false,
+						            labelLine: {
+						                normal: {
+						                    show: false,
+						                    length:5
+						                }
+						            },
+						            color:['#7cacda'],
+						            data:[
+						                {value:(_this.oldVal*1 + _this.itemList[1].old*1).toFixed(2), name:'企业总支出'}
+						            ]
+						        },
+						        {
+						            name:'',
+						            type:'pie',
+						            radius: ['40%', '60%'],
+						            hoverAnimation:false,
+						            labelLine: {
+						                normal: {
+						                    length:5
+						                }
+						            },
+						            label: {
+						                normal: {
+						                    formatter: _this.get,
+						                    color:['#333'],
+						                    rich: {
+						                        b: {
+						                            color:[''],
+						                            fontSize: 10
+						                        }
+						                    }
+						                }
+						            },
+						            data:[
+						                {value:_this.itemList[0].old*1 + _this.personValold*1, name:'员工社保个税'},
+						                {value:(_this.oldVal/1000)*15, name:''},
+						                {value:(_this.itemList[1].old*1).toFixed(2), name:'企业社保交金'},
+						                {value:(_this.oldVal/1000)*15, name:''},
+						                {value:_this.oldVal - (_this.itemList[0].old*1 +_this.personValold*1), name:'员工到手收入'},
+						                {value:(_this.oldVal/1000)*15, name:''},
+						            ],
+						            color:['#9bc3f6','rgba(0,0,0,0)','#9dbadc','rgba(0,0,0,0)','#c9d6e6','rgba(0,0,0,0)'],
+						            
 						        }
 						    ]
 				        };
-				       /* option.series[0].data[0].value = (_this.itemList[0].value*1 + _this.taxFun(_this.inputVal)).toFixed(2);
-				        option.series[0].data[1].value = (_this.itemList[1].value*1).toFixed(2);
-				        option.series[0].data[2].value = (_this.inputVal - option.series[0].data[0].value).toFixed(2);
-				        option.series[1].data[0].value = (_this.inputVal*1 + _this.itemList[1].value*1).toFixed(2);*/
 				        myChart.setOption(option);
 			        },
-			        taxFun:function(val){//个人所得税
+			        taxFun:function(val,type){//个人所得税
 			        	var _this = this;
-			        	/*
-				         * <=5000             5   0
-				         * 5000  < - <=12000  10%  210
-				         * 12000 < - <=25000  20%  1410
-				         * 25000 < - <=35000  25%  2660
-				         * 35000 < - <=55000  30%  4410
-				         * 55000 < - <=80000  35%  7160
-				         * >80000             45%  15160
-				         * */
+				        var _val = 0;
+				        type==1?_val=_this.itemList[0].value:_val=_this.itemList[0].old;
 				        var _tax = 0;
-				        if(parseFloat(val) <= 5000){
-				        	_tax = (this.inputVal - _this.itemList[0].value)*0.05;
+				        if(parseFloat(val) < 5000){
+				        	_tax = (parseFloat(val) - _val)*0.05;
 				        }else if(5000 < parseFloat(val) && parseFloat(val) <= 12000){
-				        	_tax = (this.inputVal - 5000 - _this.itemList[0].value)*0.1 - 210;
+				        	_tax = (parseFloat(val) - 5000 - _val)*0.1 - 210;
 				        }else if(12000 < parseFloat(val) && parseFloat(val) <= 25000){
-				        	_tax = (this.inputVal - 5000 - _this.itemList[0].value)*0.2 - 1410;
+				        	_tax = (parseFloat(val) - 5000 - _val)*0.2 - 1410;
 				        }else if(25000 < parseFloat(val) && parseFloat(val) <= 35000){
-				        	_tax = (this.inputVal - 5000 - _this.itemList[0].value)*0.25 - 2660;
+				        	_tax = (parseFloat(val) - 5000 - _val)*0.25 - 2660;
 				        }else if(35000 < parseFloat(val) && parseFloat(val) <= 55000){
-				        	_tax = (this.inputVal - 5000 - _this.itemList[0].value)*0.30 - 4410;
+				        	_tax = (parseFloat(val) - 5000 - _val)*0.30 - 4410;
 				        }else if(55000 < parseFloat(val) && parseFloat(val) <= 80000){
-				        	_tax = (this.inputVal - 5000 - _this.itemList[0].value)*0.35 - 7160;
+				        	_tax = (parseFloat(val) - 5000 - _val)*0.35 - 7160;
 				        }else if(80000 < parseFloat(val)){
-				        	_tax = (this.inputVal - 5000 - _this.itemList[0].value)*0.45 - 15160;
+				        	_tax = (parseFloat(val) - 5000 - _val)*0.45 - 15160;
 				        }
 				        return _tax;
-			        }
+			        },
+			        get:function(e){
+			        	if(e.name){
+			        		return e.name+"\n"+e.value+"元";
+			        	}
+			        },
 			    }
 			})
 		</script>
 	</body>
 </html>
+

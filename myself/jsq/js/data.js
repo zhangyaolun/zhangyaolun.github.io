@@ -19,70 +19,20 @@ var o = [
 		],
 	}
 ]
-/*pension:'8.0%',//养老
-medical:'2.0%',//医疗
-workinjury:'0.0%',//工伤
-unemployment:'0.5%',//失业
-birth:'0.0%',//生育
-fund:'7.0%',//公积金*/
 
-
-
-/*app.title = '嵌套环形图';
-
-option = {
-    tooltip: {
-        trigger: 'item',
-        formatter: "{a} <br/>{b}: {c} ({d}%)"
-    },
-    series: [
-        {
-            name:'访问来源',
-            type:'pie',
-            radius: [0, '30%'],
-            label: {
-                normal: {
-                    color:['#333'],
-                    formatter: '{b}\n{c}',
-                    position: 'inner'
-                }
-            },
-            labelLine: {
-                normal: {
-                    show: false
-                }
-            },
-            color:['#fff'],
-            data:[
-                {value:335, name:'单位总支出'}
-            ]
-        },
-        {
-            name:'访问来源',
-            type:'pie',
-            radius: ['35%', '50%'],
-            label: {
-                normal: {
-                    formatter: '{b|{b} }{c} ',
-                    color:['#333'],
-                    rich: {
-                        b: {
-                            color:[''],
-                            fontSize: 16,
-                            lineHeight: 33
-                        }
-                    }
-                }
-            },
-            data:[
-                {value:335, name:'直达'},
-                {value:10, name:'111'},
-                {value:310, name:'邮件营销'},
-                {value:10, name:'222'},
-                {value:234, name:'联盟广告'},
-                 {value:10, name:'333'},
-            ],
-            color:['#9bc3f6','rgba(0,0,0,0)','#9dbadc','rgba(0,0,0,0)','#333','rgba(0,0,0,0)']
-        }
-    ]
-};*/
+function _ss(val){
+	if(parseFloat(val)>20000){
+		return '12000.00';
+	}else if(parseFloat(val)>15000){
+		return '10000.00';
+	}else if(parseFloat(val)>10000){
+		return '8000.00';
+	}else if(parseFloat(val)>5000){
+		return '5000.00';
+	}else if(parseFloat(val)<5000){
+		return parseFloat(val).toFixed(2);
+	}
+}
+function _sss(val){
+	return parseFloat(val)>=21396?'21396.00':parseFloat(val)<4279.00?'4279.00':parseFloat(val).toFixed(2);
+}
