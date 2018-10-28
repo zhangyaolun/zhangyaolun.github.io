@@ -111,7 +111,6 @@ input,button{outline: none;border: none;}
     position: fixed;
     height: 1.2rem;
     line-height: 1.2rem;
-    background: #ccc;
     text-align: center;
     border-radius: 7px;
     font-size: .4rem;
@@ -119,6 +118,8 @@ input,button{outline: none;border: none;}
     display: inline-block;
     left: 5%;
     bottom: .3rem;
+    background: url(../img/p5.png) no-repeat;
+    background-size: 100% 100%;
     /*background: -webkit-gradient(linear, 0 0, 0 100%, from(red), to(blue));
     background: -webkit-linear-gradient(red, blue);
     background: -moz-linear-gradient(red, blue);

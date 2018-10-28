@@ -25,7 +25,7 @@
 					<input type="text" name="工资" id="" value="" v-model="inputVal"  @input="inputChange" placeholder="输入工资"/>
 				</div>
 			</div>
-			<button class="t_btn" @click="btnHref()" :class="[inputVal!=''?'t_btnActive':'']">计算</button>
+			<button class="t_btn" @click="btnHref()"></button>
 			<div class="pre-loading" v-show="preLoading">
 				<div class="pre-block"><div class="spinner"><i></i></div>数据加载中...</div>
 			</div>
