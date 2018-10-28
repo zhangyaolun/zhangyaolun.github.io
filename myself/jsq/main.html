@@ -104,6 +104,7 @@
 			        })
 			        _this.personVal = _this.taxFun(_this.inputVal,1).toFixed(2);
 			        _this.personValold = _this.taxFun(_this.oldVal,2).toFixed(2);
+			        
 			        _this.echarts();
 					_this.echartsT();
 			    	setTimeout(function(){_this.preLoading = false;},100) 
@@ -263,17 +264,17 @@
 				        if(parseFloat(val) < 5000){
 				        	_tax = (parseFloat(val) - _val)*0.05;
 				        }else if(5000 < parseFloat(val) && parseFloat(val) <= 12000){
-				        	_tax = (parseFloat(val) - 5000 - _val)*0.1 - 210;
+				        	_tax = (parseFloat(val) - 5000)*0.1 - 210;
 				        }else if(12000 < parseFloat(val) && parseFloat(val) <= 25000){
-				        	_tax = (parseFloat(val) - 5000 - _val)*0.2 - 1410;
+				        	_tax = (parseFloat(val) - 5000)*0.2 - 1410;
 				        }else if(25000 < parseFloat(val) && parseFloat(val) <= 35000){
-				        	_tax = (parseFloat(val) - 5000 - _val)*0.25 - 2660;
+				        	_tax = (parseFloat(val) - 5000)*0.25 - 2660;
 				        }else if(35000 < parseFloat(val) && parseFloat(val) <= 55000){
-				        	_tax = (parseFloat(val) - 5000 - _val)*0.30 - 4410;
+				        	_tax = (parseFloat(val) - 5000)*0.30 - 4410;
 				        }else if(55000 < parseFloat(val) && parseFloat(val) <= 80000){
-				        	_tax = (parseFloat(val) - 5000 - _val)*0.35 - 7160;
+				        	_tax = (parseFloat(val) - 5000)*0.35 - 7160;
 				        }else if(80000 < parseFloat(val)){
-				        	_tax = (parseFloat(val) - 5000 - _val)*0.45 - 15160;
+				        	_tax = (parseFloat(val) - 5000)*0.45 - 15160;
 				        }
 				        return _tax;
 			        },
