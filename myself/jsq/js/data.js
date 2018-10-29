@@ -29,7 +29,7 @@ function _ss(val){
 		return '8000.00';
 	}else if(parseFloat(val)>5000){
 		return '5000.00';
-	}else if(parseFloat(val)<5000){
+	}else if(parseFloat(val)<=5000){
 		return parseFloat(val).toFixed(2);
 	}
 }
