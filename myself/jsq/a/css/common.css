@@ -15,6 +15,9 @@ em,i{font-style: normal;}
 body{background: #f7f7f7;width: 100%;}
 input,button{outline: none;border: none;}
 
+.show{display: block;}
+.hide{display: none;}
+
 .posrP{position: relative;}
 .center{text-align: center;}
 .imgMiddle{vertical-align: middle;}
@@ -31,6 +34,14 @@ input,button{outline: none;border: none;}
 .borderBot{border-bottom: 1px solid #ccc;}
 
 .boxShadow{box-shadow: 0 1px 4px #ccc;}
+
+.rotatedeg{
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg); 	/* IE 9 */
+	-moz-transform:rotate(90deg); 	/* Firefox */
+	-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(90deg); 	/* Opera */
+}
 
 
 .pre-loading { background:rgba(248,248,248,1); position: fixed; z-index:999; top: 0; right: 0; bottom: 0; left: 0;}
@@ -159,18 +170,20 @@ input,button{outline: none;border: none;}
     font-weight: 600;
     padding-top: .1rem;
 }
-.th_main_box{padding-left:5%;box-sizing: border-box;}
+.th_main_box{padding-left:5%;box-sizing: border-box;padding-bottom: 5%;}
 .thMain_type{
 	width: 100%;
-	height: 1.3rem;
 	line-height: 1.3rem;
+}
+.thMain_type_tit{
+	height: 1.3rem;
 }
 .thMain_type .icon_l{
 	display: inline-block;
     vertical-align: middle;
     width: .5rem;
 }
-.thMain .thMain_type .left{
+.thMain .thMain_type .lefts{
 	font-size: .36rem;
 	font-weight: 600;
 	width: 70%;
@@ -216,7 +229,7 @@ input,button{outline: none;border: none;}
 
 
 
-
+.person_item{position: relative;margin-top: .5rem;}
 
 
 
@@ -231,7 +244,6 @@ input,button{outline: none;border: none;}
 
 
 /*个人缴纳*/
-.person_item{margin-top: 1.2rem;}
 .personItem_l,.personItem_r{
 	    text-align: center;
     width: 50%;
@@ -243,7 +255,7 @@ input,button{outline: none;border: none;}
 	.personItem_l:after{
 	       content: '';
     position: absolute;
-    top: 1.4rem;
+    top: .4rem;
     right: 50%;
     background: #ccc;
     width: 1px;
@@ -269,9 +281,9 @@ input,button{outline: none;border: none;}
 }  
 
 .person_main_box{
-	    width: 84%;
+	    width: 100%;
     box-sizing: border-box;
-        margin: .7rem 8% 0;
+        margin: .7rem 0;
     background: url(../img/p4.png) no-repeat;
     background-size: 100% 100%;
 }
@@ -288,9 +300,10 @@ input,button{outline: none;border: none;}
     font-size: .4rem;
 }
 .person_main_box ul{
-	width: 80%;
-	padding-bottom: 15%;
+	    width: 80%;
+    padding-bottom: 12%;
     margin: 0 10%;
+    padding-top: 5%;
 }
    .person_main_box ul li{
    	padding: 0 1%;

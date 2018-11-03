@@ -20,7 +20,7 @@ var o = [
 	}
 ]
 
-function _ss(val){
+function _ss(val){//优化后
 	if(parseFloat(val)>20000){
 		return '12000.00';
 	}else if(parseFloat(val)>15000){
@@ -33,6 +33,6 @@ function _ss(val){
 		return parseFloat(val).toFixed(2);
 	}
 }
-function _sss(val){
+function _sss(val){//优化前
 	return parseFloat(val)>=21396?'21396.00':parseFloat(val)<4279.00?'4279.00':parseFloat(val).toFixed(2);
 }

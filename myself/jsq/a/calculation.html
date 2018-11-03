@@ -18,7 +18,7 @@
 				<div class="t_list clear borderBot">
 					<span class="left title">当前城市</span>
 					<span>{{city}}</span>
-					<img src="img/more@2x.png" alt="" class="right icon"/>
+					<!--<img src="img/more@2x.png" alt="" class="right icon"/>-->
 				</div>
 				<div class="t_list clear">
 					<span class="left title">税前工资</span>
@@ -36,10 +36,9 @@
 			new Vue({
 			    el: '#app',
 			    data: {
-			    	city:'上海',
+			    		city:'上海',
 			        preLoading:true,
-			        inputVal:'',
-			        _a:0
+			        inputVal:''
 			    },
 			    mounted: function () {
 			        var _this = this;
@@ -56,7 +55,8 @@
 			        btnHref: function ()  {//计算
 			        	var _this = this;
 			        	if(this.inputVal == '')return;
-			        	sessionStorage.setItem('inputVal',(_this.inputVal*1).toFixed(2));
+			        		sessionStorage.setItem('inputVal',(_this.inputVal*1).toFixed(2));
+			        		sessionStorage.setItem('cityVal',_this.city);
 			            window.location.href = "main.html"
 			        },
 			    }
