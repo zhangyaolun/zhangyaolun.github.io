@@ -107,7 +107,8 @@ input,button{outline: none;border: none;}
 	margin-top: .5rem;
 }
 .t_item .t_list .title{
-	width: 20%;
+	/*width: 20%;*/
+    white-space: nowrap;
     color: #333;
     font-size: .35rem;
     font-weight: 600;

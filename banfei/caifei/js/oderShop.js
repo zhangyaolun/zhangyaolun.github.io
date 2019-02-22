@@ -4,15 +4,15 @@ var o = {
 		FastClick.attach(document.body);
 		var data = JSON.parse(getParameter('result').replace(/'/g, '"'));
 		if(data.pic.split(',').length >= 2){
-			$('.shop_img').attr("src",data.pic.split(',')[0]) 
+			$('.shop_img').attr("src",data.pic.split(',')[0])
 		}else{
-			$('.shop_img').attr("src",data.pic);  
+			$('.shop_img').attr("src",data.pic);
 		}
-		$('.pay_shop .shop_title').html(data.shopName);			
-		$('.pay_shop .emStyle').html(getParameter('num'));			
-		$('.pay_shop .over').css('width',getParameter('num')*12+'px');			
-		$('.shop_order em').html(data.address);	
-		$('.price_n').html((data.discountRate*10).toFixed(1));	
+		$('.pay_shop .shop_title').html(data.shopName);
+		$('.pay_shop .emStyle').html(getParameter('num'));
+		$('.pay_shop .over').css('width',getParameter('num')*12+'px');
+		$('.shop_order em').html(data.address);
+		$('.price_n').html((data.discountRate*10).toFixed(1));
 		o.ajaxDate();
 		o.click(data.id,(data.discountRate));
 	},
@@ -23,29 +23,29 @@ var o = {
 			'userShopId':userShopId,
 			'rate':rate,
 			'actualPay':($('.fexed_left i').attr('pay')*100).toFixed(0),
-			'actualScore':0,			
-			'noPrePay':($('#name_priceNon').val()*100).toFixed(0)||0			
+			'actualScore':0,
+			'noPrePay':($('#name_priceNon').val()*100).toFixed(0)||0
 		}
 		console.log(data)
 		if($('.code_display').css('display') == 'inline-block'){
 			if($('.order_bot .bot_image').hasClass('two')){
 				data.actualScore = $('.order_bot .order_code').html();
 			}
-		} 
-		var suc = function(data){   
+		}
+		var suc = function(data){
 			setCookie('payMent','1');
 			if(data.result.payType == 2){
 				window.location.href = 'payment.html?result='+getParameter('result')+'&num='+getParameter('num')+'&payNumber=1'+'&orderPayId='+data.result.orderId+'&userShopId='+userShopId+'&channel='+getParameter('channel');
 			}else{
-				WeixinJSBridge.invoke('getBrandWCPayRequest',{"appId" : data.result.appId,"timeStamp" : data.result.timeStamp, "nonceStr" : data.result.nonceStr, "package" : data.result. packagee,"signType" : "MD5", "paySign" : data.result.paySign },function(res){
-		            if(res.err_msg == "get_brand_wcpay_request:ok"){  
+				WeixinJSBridge.invoke('getBrandWCPayRequest',{"appId" : data.result.appId,"timeStamp" : data.result.timeStamp, "nonceStr" : data.result.nonceStr, "package" : data.result.packagee,"signType" : "MD5", "paySign" : data.result.paySign },function(res){
+		            if(res.err_msg == "get_brand_wcpay_request:ok"){
 		            	window.location.href = 'payment.html?result='+getParameter('result')+'&num='+getParameter('num')+'&payMoney='+data.result.actual_pay+'&totalMoney='+data.result.total+'&orderPayId='+data.result.orderId+'&userShopId='+userShopId+'&channel='+getParameter('channel')+'&payNumber=2';
-		            }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
-		               
+		            }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
+
 		            }else{
 		               alert(res.err_msg);
-		               alert("支付失败");  
-		            }  
+		               alert("支付失败");
+		            }
 				})
 			}
 		}
@@ -72,12 +72,12 @@ var o = {
 			}else{
 				if($('.pri_input input').val() == 0){
 				}
-				if(parseInt($('.pri_input input').val()) > 9999){ 
+				if(parseInt($('.pri_input input').val()) > 9999){
 					o.alertData('超过最大限额');
 					return;
 				}
 				var isNum= /(^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$)/;
-				
+
 				if(isNum.test($('.pri_input input').val())){
 					$('.pri_input input').attr('otype',$('.pri_input input').val())
 				}else{
@@ -90,7 +90,7 @@ var o = {
 			}
 			$('.fexed_left i').attr('pay',priceDate);
 		})
-		
+
 		$('#name_priceNon').bind('input propertychange',function(){
 			if($('#name_priceNon').val() == ''){
 				$('#name_priceNon').val('');
@@ -98,7 +98,7 @@ var o = {
 				o.comData(parseFloat(priceinput*rate));
 				o.hidehtml(parseFloat(priceinput*rate));
 			}else{
-				if(parseInt($('#name_priceNon').val()) > 9999){ 
+				if(parseInt($('#name_priceNon').val()) > 9999){
 					o.alertTwo('超过最大限额',rate);
 					return;
 				}
@@ -113,7 +113,7 @@ var o = {
 				o.hidehtml(parseFloat(priceTwo)*rate);
 			}
 		})
-		
+
 		$('.fexed_right').on('click',function(){
 			if($('.alertTan').css('display') == 'block')return;
 			if($('.pri_input input').val() <= 0){
@@ -124,7 +124,7 @@ var o = {
 			}
 			o.ajsxData(userShopId,rate);
 		});
-		
+
 		$('.order_bot img').on('click',function(){
 			var payCont = 0;
 			if($('#name_priceNon').val() == ''){
@@ -261,6 +261,6 @@ var o = {
 			$('.fexed_left .payMent').html('(折后价:￥'+priceTwo.toFixed(2)+')');
 		}
 	}
-	
+
 }
 o.init();
