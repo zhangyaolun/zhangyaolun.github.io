@@ -1,0 +1,6 @@
+input[type=checkbox]{ float: left; margin: 3px 3px 0 0;}
+.layui-table tr{ border-bottom: 1px solid #ddd; }
+.layui-table tr .child{ padding-left: 40px; }
+
+.layui-form-item{ border-bottom: 1px #ddd dashed; padding-bottom: 5px; }
+.layui-form-label{ width: 110px; }

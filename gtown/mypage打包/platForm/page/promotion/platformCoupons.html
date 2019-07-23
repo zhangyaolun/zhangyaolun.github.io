@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app" class="hide">
+    <!-- 商品管理 -->
+    <div class="wrapper page">
+      <div class="fixed-bar">
+        <div class="item-title">
+          <div class="subject">
+            <h3>平台优惠券</h3>
+            <h5>平台优惠券新增与管理 </h5>
+          </div>
+          <ul class="tab-base nc-row">
+            <li v-for="(nav,index) in productNav" :key="nav.index"  @click="getInfo(index)">
+              <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 搜索条件 -->
+      <div class="mod-search cf" id="report-search">
+        <div class="l" id="filter-menu">
+          <el-form method="post" id="dump-setting-form" name="settingForm" :model="productForm" ref="productForm">
+            <ul class="ul-inline fix">
+              <li>
+                <el-form-item label="" prop="couponStatus">
+                  <select class="select" name="city" lay-verify="required" v-model='productForm.couponStatus'>
+                        <option value="00">优惠券状态</option>
+                        <option value="1">有效</option>
+                        <option value="0">失效</option>
+                      </select>
+                </el-form-item>
+              </li>
+              <li>
+                <el-form-item label="" prop="couponName">
+                  <input type="text" id="couponName"  class="ui-input ui-input-ph" placeholder="优惠券名称" autocomplete="off"
+                    v-model="productForm.couponName">
+                </el-form-item>
+              </li>
+              <li><a class="ui-btn" id="search" @click="getInfo(current)">查询<i class="layui-icon">&#xe615;</i></a></li>
+            </ul>
+          </el-form>
+        </div>
+        <div class="fr">
+            <a class="ui-btn" id="addNew" @click="addCoupon('平台优惠券 - 新增优惠券模板')">新增<i class="layui-icon">&#xe654;</i></a>
+          <a class="ui-btn" id="audit" @click="refresh(current)">刷新<i class="el-icon-refresh"></i></a>
+        </div>
+      </div>
+      <!-- 搜索条件结束 -->
+
+      <!-- 表格数据渲染 -->
+      <div v-show="current==0">
+        <div class="cf">
+        <div class="grid-wrap">
+          <div class="productManger orderManger" v-if='productLists.length > 0'>
+            <!-- 表头 -->
+            <div class="produtHead">
+              <ul>
+                <li>操作</li>
+                <li class="productWidth">优惠券名称</li>
+                <li class="shopWidth">所属分类</li>
+                <!--<li class="shopWidth">优惠券图片</li>-->
+                <li>面额（元）</li>
+                <li>消费限额（元）</li>
+                <li class="shopWidth">开始时间</li>
+                <li class="shopWidth">结束时间</li>
+                <li class="shopWidth">最后修改时间</li>
+                <li>领取方式</li>
+                <li>状态</li>
+                <li>推荐</li>
+              </ul>
+            </div>
+            <!-- 表头结束 -->
+            <!-- 商品列表 -->
+            <div class="pruductList">
+              <ul v-for="(item,index) in productLists" :class="{'active':item.active}" @click="selectOrder(item,productLists)">
+                <li>
+                  <span class=" ui-icon-trash" title="删除" @click.stop="removeCoupon(item.id)"><i class="layui-icon">&#xe640;</i></span>
+                  <span class=" ui-icon-cart" title="优惠券详情" @click.stop="skewCoupon(item.id)"><i class="layui-icon">&#xe60a;</i></span>
+                  <span class=" ui-icon-pencil" title="编辑" @click.stop="editCoupon(item)"><i class="layui-icon">&#xe642;</i></span>
+                </li>
+                <li class="productWidth">{{item.name}}</li>
+                <li class="shopWidth">{{item.platform ?'品牌优惠券':'通用优惠券'}}</li>
+                <!--<li class="shopWidth"><img :src="item.couponPicture"></li>-->
+                <li>{{item.quota/100}}</li>
+                <li>{{item.limitPay/100}}</li>
+                <li class="shopWidth">{{item.beginTime}}</li>
+                <li class="shopWidth">{{item.effectiveTime}}</li>
+                <li class="shopWidth">{{item.lastModifiedTime }}</li>
+                <li >{{item.receiveMode }}</li>
+                <li>{{item.couponState?'有效':'失效'}}</li>
+                <li><span>{{item.isCommended?'是':'否'}}</span></li>
+              </ul>
+            </div>
+            <!-- 商品列表结束 -->
+          </div>
+          <div v-else style="text-align:center;margin:50px 0;">
+            暂无数据
+          </div>
+        </div>
+      </div></div>
+      <div v-show="current==1">
+        <div class="cf">
+          <div class="grid-wrap">
+            <div class="productManger orderManger" v-if='productLists.length > 0'>
+              <!-- 表头 -->
+              <div class="produtHead">
+                <ul>
+                  <li>操作</li>
+                  <li class="orderWidth">优惠券名称</li>
+                  <li>面额（元）</li>
+                  <li>消费限额（元）</li>
+                  <li>开始时间</li>
+                  <li>结束时间</li>
+                  <li>状态</li>
+                </ul>
+              </div>
+              <!-- 表头结束 -->
+              <!-- 商品列表 -->
+              <div class="pruductList">
+                <ul v-for="(item,index) in productLists" :class="{'active':item.active}" @click="selectOrder(item,productLists)">
+                  <li>
+                    <span class=" ui-icon-trash" title="删除" @click.stop="removeCoupon(item.id)"><i class="layui-icon">&#xe640;</i></span>
+                    <span class=" ui-icon-cart" title="优惠券详情" @click.stop="skewCoupon(item.id)"><i class="layui-icon">&#xe60a;</i></span>
+                    <span class=" ui-icon-pencil" title="编辑" @click.stop="editCoupon(item)"><i class="layui-icon">&#xe642;</i></span>
+                  </li>
+                  <li class="orderWidth">{{item.name }}</li>
+                  <li>{{item.quota  }}</li>
+                  <li>{{item.limitPay  }}</li>
+                  <li>{{item.effectiveTime  }}</li>
+                  <li>{{item.endTime }}</li>
+                  <li>{{item.couponState?'有效':'失效'}}</li>
+                </ul>
+              </div>
+              <!-- 商品列表结束 -->
+            </div>
+            <div v-else style="text-align:center;margin:50px 0;">
+              暂无数据
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 表格数据渲染结束 -->
+      <!-- 分页 -->
+      <!-- <div class="larry-table-page clearfix">				
+						<div id="page" class="page"></div>
+				</div> -->
+      <div class="pagination" v-show="total>0">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="1" :page-sizes="[10, 20, 30, 40]"
+          :page-size="pagecount" layout=" prev, pager, next,sizes" :total="total">
+        </el-pagination>
+      </div>
+      <!-- 分页器结束 -->
+    </div>
+    <!--新增优惠券-->
+    <div id="add"  style="display:none;">
+      <el-form method="post" id="dump-add-form" name="addForm" :model="addForm" ref="addForm" :rules="rules" label-width="25%" class="mt20">
+        <div class="ncap-form-default">
+          <el-form-item label="优惠券名称" prop="addNewName">
+            <el-input placeholder="" v-model="addForm.addNewName"></el-input>
+          </el-form-item>
+          <el-form-item label="优惠券类型" prop="navType">
+            <el-radio-group v-model="addForm.navType" @change = "changeNavType">
+              <el-radio v-for="(nav, index) in addForm.navs" :key="nav.index" :label="nav.type">{{nav.navName}}</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="关联品牌" prop="brandSelect" v-show = "addForm.navType==1">
+            <el-select v-model="addForm.brandSelect" placeholder="请选择">
+              <el-option v-for="select in brands" :key="select.id" :label="select.name" :value="select.id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="有效期" class="timeRange" style="width:80% !important;">
+            <div class="time" style="float:left;">
+              <el-form-item label="" prop="fromDate">
+                <!--<el-date-picker :editable='false' v-model="addForm.fromDate" type="datetime" value-format="timestamp" placeholder="选择日期时间"></el-date-picker>-->
+                <el-date-picker :editable='false' v-model="addForm.fromDate" type="datetime"  placeholder="选择日期时间"></el-date-picker>
+              </el-form-item>
+            </div>
+            <span style="float: left;margin:0 10px;font-size: 12px;"> 至 </span>
+            <div class="time" style="float:left;">
+              <el-form-item label="" prop="toDate">
+              <el-date-picker :editable='false' v-model="addForm.toDate" type="datetime"   placeholder="选择日期时间"></el-date-picker>
+            </el-form-item>
+            </div>
+            <div class="clearfix"></div>
+            <span class="tips" style="margin-top: 13px">会员领取优惠券后，将在该有效期内使用优惠券</span>
+          </el-form-item>
+          <el-form-item label="面额" prop="sureMoney">
+            <el-input placeholder="" v-model="addForm.sureMoney"></el-input>
+            <span class="tips">面额应为大于1的整数</span>
+          </el-form-item>
+          <el-form-item label="可发放总数" prop="issueLimitTotal">
+            <el-input placeholder="" v-model="addForm.issueLimitTotal"></el-input>
+            <span class="tips">填0不限制发放总数</span>
+          </el-form-item>
+          <el-form-item label="每人限领" prop="helpSelect">
+            <el-select v-model="addForm.helpSelect" placeholder="请选择">
+              <el-option v-for="select in addForm.selects" :key="select.id" :label="select.num" :value="select.id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="消费限额" prop="limitAmount">
+            <el-input placeholder="" v-model="addForm.limitAmount"></el-input>
+            <span class="tips">优惠券使用限额必须大于优惠券面额</span>
+          </el-form-item>
+          <el-form-item label="优惠券描述" prop="describe">
+            <el-input placeholder="" type="textarea" :rows="2" v-model="addForm.describe"></el-input>
+            <span class="tips">模版描述不能为空且小于200个字符</span>
+          </el-form-item>
+          <!--<el-form-item label="是否叠加使用" prop="position">-->
+            <!--<el-radio-group v-model="addForm.position">-->
+              <!--<el-radio v-for="(item, index) in addForm.positions" :key="item.index" :label="item.id">{{item.name}}</el-radio>-->
+            <!--</el-radio-group>-->
+          <!--</el-form-item>-->
+          <el-form-item label="优惠券图片" prop="couponImg">
+            <div class="img-container">
+              <img id="image" :src="addForm.couponImg" alt="" style="display:block;max-width: 275px;max-height: 275px;"  >
+              <label class="btn  btn-upload" for="inputImage" title="">
+                <input  type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif" @change="selectFile">
+                <span class="docs-tooltip" >选择文件<i class="el-icon-upload2"></i> </span>
+              </label>
+            </div>
+            <span class="tips">上传分类图片时，请上传宽度不低于220像素，高度不低于220像素的图片</span>
+          </el-form-item>
+        </div>
+      </el-form>
+    </div>
+
+    <!--新增优惠券结束-->
+    <!--编辑优惠券-->
+    <div id="editAdd"  style="display:none;">
+      <el-form method="post" id="dump-add-form" name="editForm" :model="editForm" ref="editForm" :rules="rules" label-width="25%" class="editAdd mt20">
+        <div class="ncap-form-default">
+          <el-form-item label="优惠券名称："  prop="">
+            <!--<el-input placeholder="" v-model="addForm.addNewName"></el-input>-->
+            <span>{{editForm.addNewName}}</span>
+          </el-form-item>
+          <el-form-item label="优惠券类型："  prop="">
+            <span>{{editForm.navType?'品牌优惠券':'通用优惠券'}}</span>
+          </el-form-item>
+          <el-form-item label="关联品牌："  prop="" v-show="editForm.navType">
+            <span>{{editForm.brandName}}</span>
+          </el-form-item>
+          <el-form-item label="有效期：" class="timeRange" style="width:80% !important;"  prop="">
+            <span>{{editForm.fromDate}}</span>
+          </el-form-item>
+          <el-form-item label="" class="timeRange toDate" style="width:80% !important;"  prop="">
+            <span v-show="editForm.fromDate!=''">至</span>
+            <span >{{editForm.toDate}}</span>
+          </el-form-item>
+          <el-form-item label="面额："  prop="">
+            <span>{{editForm.sureMoney}}</span>
+          </el-form-item>
+          <el-form-item label="可发放总数："  prop="">
+            <span>{{editForm.issueLimitTotal}}</span>
+          </el-form-item>
+          <el-form-item label="每人限领："  prop="">
+            <span>{{editForm.helpSelect}}</span>
+          </el-form-item>
+          <el-form-item label="消费限额："  prop="">
+            <span>{{editForm.limitAmount}}</span>
+          </el-form-item>
+          <el-form-item label="优惠券描述："  prop="">
+            <el-input placeholder="" type="textarea" :rows="2" v-model="editForm.describe"></el-input>
+          </el-form-item>
+          <el-form-item label="优惠券图片：" prop="">
+            <div class="img-container mt20">
+              <img class="image" :src="editForm.couponImg" alt=""  style="display:block;max-width: 275px;max-height: 275px;">
+            </div>
+          </el-form-item>
+        </div>
+      </el-form>
+    </div>
+
+    <!--编辑优惠券结束-->
+    <!--优惠券详情-->
+    <div class="cf" id="brandList" style="display:none;padding: 10px;">
+      <div class="grid-wrap">
+        <div class="productManger">
+          <div class="produtHead"  style="width: 100%;">
+            <ul>
+              <li style="width: 30%">订单编号</li>
+              <li style="width: 28%">下单时间</li>
+              <li>订单金额（元）</li>
+              <li style="width: 28%">订单状态</li>
+            </ul>
+          </div>
+          <div class="pruductList" style="width: 100%;">
+            <ul v-for="(brand,index) in brands" :class="{'active':brand.active}" @click="selectOrder(brand,brands)">
+              <li  style="width: 30%">{{brand.orderNumber }}</li>
+              <li style="width: 28%">{{brand.orderCreateTime }}</li>
+              <li>{{brand.payAmount }}</li>
+              <li style="width: 28%">{{brand.orderState }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--优惠券详情-->
+    <!-- 商品管理结束 -->
+    <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+  </div>
+  <div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+  <script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+  <script type="text/javascript" src="../../common/layui/layui.all.js"></script>
+  <script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="../../common/js/common.js"></script>
+  <script type="text/javascript" src="../../js/promotion/platformCoupons.js"></script>
+</body>
+
+</html>

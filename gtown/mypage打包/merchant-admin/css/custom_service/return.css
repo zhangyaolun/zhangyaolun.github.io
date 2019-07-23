@@ -1,0 +1,22 @@
+.steps .step-line{ width: 80%; margin: 30px auto 10px; height: 70px; }
+.steps .step-line:after{ content: ""; clear: both; display: block; }
+.steps .step-line li{ float: left; height: 10px; background: #ddd; position: relative; width: 30%; border-top: 2px solid #fff;  border-bottom: 2px solid #fff; font-size: 12px; text-align: center; }
+.steps .step-line li.active{ background: #01AAED; border-top:2px solid #ddd;  border-bottom:2px solid #ddd; }
+.steps .step-line li.active b{ background: #01AAED; color: #fff; border-color: #ddd; }
+.steps .step-line li b{     display: block;
+    width: 30px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 17px;
+    left: 0px;
+    margin-left: -5px;
+    position: absolute;
+    top: -13px;
+    border: 2px solid #fff; }
+.steps .step-line li b i{     display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 30px; }
+.steps .step-line li strong{ white-space: nowrap; position: absolute; left: -28px; top:25px; }
+.steps .step-line li span{white-space: nowrap; position: absolute; left: -35px; top:45px;}
+.steps .step-line li:last-child span{ left: -45px; }

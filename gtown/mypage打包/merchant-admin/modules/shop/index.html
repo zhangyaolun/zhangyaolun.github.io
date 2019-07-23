@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>泰康积分商城商家管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="../../static/css/layui.css" media="all" />
+    <link href="../../css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/shop/index.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/shop/mb.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/shop/product.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+<body>
+<header id="header">
+    <app-header curr="4"></app-header>
+</header>
+<aside id="content" v-cloak>
+    <col-nav curr="0" :nav="navData"></col-nav>
+
+    <div class="content_body">
+        <span class="layui-breadcrumb" lay-separator="-">
+            <a href="../index.html">首页</a>
+            <a href="./index.html">店铺</a>
+            <a><cite>店铺设置</cite></a>
+        </span>
+
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">店铺设置</li>
+                <li>店铺分类</li>
+                <li>店铺装修</li>
+            </ul>
+            <div class="layui-tab-content">
+                <!-- 店铺设置 -->
+                <div class="layui-tab-item layui-show">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺名称：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" :value="shopConfigParams.shopName" disabled class="layui-input" :style="{ border:'none' }" />
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺等级：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" :value="shopConfigParams.shopLevelName" disabled class="layui-input" :style="{ border:'none' }" />
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺logo：</label>
+                            <div class="layui-input-inline">
+                                <img :src="shopConfigParams.shopLogo" :style="{ display : 'block' , width : '200px' , height : '60px' , marginBottom : '10px' }" />
+                                <button type="button" class="layui-btn" id="upload1">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                                <p class="tip">此处为店铺页logo；<br />建议使用宽200像素*高60像素内的GIF或PNG透明图片；点击下方"确认提交"按钮后生效。</p>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺条幅：</label>
+                            <div class="layui-input-block" :style="{ marginLeft : '140px' }">
+                                <img :src="shopConfigParams.shopBanner" :style="{ display : 'block' , width : '100%' , height : '150px' , marginBottom : '10px' }" />
+                                <button type="button" class="layui-btn" id="upload2">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                                <p class="tip">此处为店铺条幅：<br />建议使用宽1200像素*高150像素的图片；点击下方"确认提交"按钮后生效。</p>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">二级域名：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" v-model="shopConfigParams.domain2name" class="layui-input" />
+                                <p class="tip" v-if="shopConfigParams.modifiedtimes == shopConfigParams.canmodifiedtimes">修改次数已达上限</p>
+                                <p class="tip" v-if="shopConfigParams.modifiedtimes != shopConfigParams.canmodifiedtimes">已修改{{ shopConfigParams.modifiedtimes }}次，还可修改{{ shopConfigParams.canmodifiedtimes }}次</p>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">QQ：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" v-model="shopConfigParams.qq" class="layui-input" />
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">旺旺：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" v-model="shopConfigParams.wangwang" class="layui-input" />
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电话：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" v-model="shopConfigParams.linkmanTel" class="layui-input" />
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="layui-btn" @click="configShop">确认提交</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- 店铺分类 -->
+                <div class="layui-tab-item">
+
+                        <div class="checkAll" v-show="!edit" v-bind:class="{ 'filter' : loading }">
+                            <div v-bind:style="{ textAlign:'right' }">
+                                <button class="layui-btn layui-btn-sm layui-btn-normal" @click="addGenre()"><i class="layui-icon">&#xe654;</i>添加分类</button>
+                            </div>
+
+                            <div v-if="genres.length != 0">
+                                <table class="layui-table" lay-skin="nob">
+                                    <thead>
+                                        <tr>
+                                            <th><label><input type="checkbox" class="check-all" @change="checkAll($event)"  v-model="checkedAll" />分类名称</label></th>
+                                            <th>排序</th>
+                                            <th>是否显示</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="(parent,index) in genres" class="genresBody">
+                                        <tr>
+                                            <th><label><input @change="getGroup( 1 , parent , index )" type="checkbox" v-model="parent.checked" :value="parent.id" /><b>{{ parent.name }}</b></label></th>
+                                            <td>{{ parent.sorting }}</td>
+                                            <td>{{ parent.status == 1 ? '是' : '否' }}</td>
+                                            <td>
+                                                <label class="icon-label" @click="toEdit( parent , true )"><i class="layui-icon edit" title="编辑">&#xe63c;</i>编辑</label>
+                                                <label class="icon-label" @click="delGenre( parent.id )"><i class="layui-icon edit" title="删除">&#xe640;</i>删除</label>
+                                                <label class="icon-label" @click="addGenre( parent )"><i class="layui-icon edit" title="下级">&#xe654;</i>下级</label>
+                                            </td>
+                                        </tr>
+                                        <tr v-for="( item , key ) in parent.child">
+                                            <td class="child"><label @change="getGroup( 2 , parent , key , item  )"><input type="checkbox" v-model="item.checked" :value="item.id" />{{ item.name }}</label></td>
+                                            <td>{{ item.sorting }}</td>
+                                            <td>{{ item.status == 1 ? '是' : '否' }}</td>
+                                            <td>
+                                                <label class="icon-label" @click="toEdit( item )"><i class="layui-icon edit" title="编辑">&#xe63c;</i>编辑</label>
+                                                <label class="icon-label" @click="delGenre( item.id )"><i class="layui-icon edit" title="删除">&#xe640;</i>删除</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="botm">
+                                    <span class="layui-breadcrumb" lay-separator="|">
+                                          <a href="javascript:void(0)">
+                                              <label><input type="checkbox" class="check-all" @change="checkAll($event)" v-model="checkedAll" />全选</label>
+                                          </a>
+                                          <a href="javascript:void(0)" @click="globalDel"><i class="layui-icon">&#xe640;</i>删除</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 编辑(新增条目) -->
+                        <form class="layui-form" v-show="edit && !isUpdate">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">分类名称：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" v-model="params.name" placeholder="请输入分类名称" autocomplete="off" class="layui-input" />
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">是否显示：</label>
+                                <div class="layui-input-inline">
+                                    <input type="radio" v-model="params.status" lay-filter="status" value="1" name="show" title="是" autocomplete="off" class="layui-input status1" checked />
+                                    <input type="radio" v-model="params.status" lay-filter="status" value="0" name="show" title="否" autocomplete="off" class="layui-input status0" />
+
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">上级分类：</label>
+                                <div class="layui-input-inline">
+
+                                    <select class="pSelect" name="parent" lay-filter="pSelect">
+                                        <!--<option v-for="genres in genres" :value="genres.id">{{ genres.name }}</option>-->
+                                    </select>
+                                    <p class="tip">提示：不选择就是添加一级分类</p>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">店铺分类排序：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" v-model="params.sorting" placeholder="请输入分类排序" autocomplete="off" class="layui-input" />
+                                    <p class="tip">提示：0-255之间，不填默认为0</p>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- 编辑（更新条目） -->
+                        <form class="layui-form" v-show="edit && isUpdate">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">分类名称：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" v-model="updateParams.name" placeholder="请输入分类名称" autocomplete="off" class="layui-input" />
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">是否显示：</label>
+                                <div class="layui-input-inline">
+                                    <input type="radio" v-model="updateParams.status" lay-filter="status" value="1" name="show" title="是" autocomplete="off" class="layui-input status1" checked />
+                                    <input type="radio" v-model="updateParams.status" lay-filter="status" value="0" name="show" title="否" autocomplete="off" class="layui-input status0" />
+
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">上级分类：</label>
+                                <div class="layui-input-inline">
+                                    <select name="parent" class="pSelect" lay-filter="pSelect">
+                                        <!--<option v-for="genres in genres" :value="genres.id">{{ genres.name }}</option>-->
+                                    </select>
+                                    <p class="tip">提示：不选择就是添加一级分类</p>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label imp">店铺分类排序：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" v-model="updateParams.sorting" placeholder="请输入分类排序" autocomplete="off" class="layui-input" />
+                                    <p class="tip">提示：0-255之间，不填默认为0</p>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="btn-group" v-show="edit">
+                            <button type="button" class="layui-btn" @click="submit">确认提交</button>
+                            <button type="button" class="layui-btn layui-btn-primary" @click="editBack">取消</button>
+                        </div>
+
+                    <!-- loading -->
+                    <app-loading v-if="loading"></app-loading>
+
+                    <!-- error -->
+                    <app-error v-if="genres.length == 0 && !loading && !edit"></app-error>
+                </div>
+
+
+                <!-- 店铺装修 -->
+                <div class="layui-tab-item">
+                        <!-- 模板管理 -->
+                        <div class="wrapper page">
+                            <!--<div class="fixed-bar">-->
+                                <!--<div class="item-title">-->
+                                    <!--<div class="subject">-->
+                                        <!--<h3>模板设置</h3>-->
+                                        <!--<h5>手机客户端首页/专题页模板设置</h5>-->
+                                    <!--</div>-->
+                                    <!--<ul class="tab-base nc-row">-->
+                                        <!--<li v-for="(nav,index) in productNav" :key="nav.index">-->
+                                            <!--<a :class="{'current':current==index}"><span>{{nav.title}}</span></a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="mb-special-layout">
+                                <div class="mb-item-box">
+                                    <div id="item_list" class="item-list" >
+                                        <div v-for="(item,index) in list"  @click="checkedTemplate(index)">
+                                            <div class="special-item adv_list"  :class="{'listActive':item.listActive,'unusable':!item.isEnable,'usable':item.isEnable}">
+                                                <div class="item_type">{{item.templateName}}</div>
+                                                <div id="item_edit_content">
+                                                    <div class="adv_list">
+                                                        <div  class="content" v-if="item.groupId!=='bannerNav'&& item.groupId!=='shopPromise' ">
+                                                            <div v-if="item.info.product.length>0" class="goods-list">
+                                                                <div  class="item" v-for="(product,order) in item.info.product">
+                                                                    <div class="goods-pic">
+                                                                        <img nctype="goods_image" :src="product.img" alt="">
+                                                                    </div>
+                                                                    <div class="goods-name">{{product.name}}</div>
+                                                                    <div class="goods-price">￥{{product.price}}</div></div>
+                                                            </div>
+                                                            <div  class="item" v-else> <img  :src="item.showImg" alt=""></div>
+                                                        </div>
+                                                        <div v-else class="content">
+                                                            <div v-if="item.info.imgList.length>0" class="nav-list" :class="{'banner-nav':item.groupId=='bannerNav'}">
+                                                                <div  class="item" v-for="(nav,order) in item.info.imgList">
+                                                                    <div class="nav-pic">
+                                                                        <img :src="nav.imgUrl" alt="">
+                                                                        <span class="navTitle">{{nav.imgText}}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div  class="item" v-else> <img  :src="item.showImg" alt=""></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="handle">
+                                                    <a  href="javascript:;" @click="moveUp(item)"><i class="fa fa-arrow-up" ></i>上移</a>
+                                                    <a  href="javascript:;" @click="moveDown(item)"><i class="fa fa-arrow-down" ></i>下移</a>
+                                                    <a v-show="item.isEnable"  href="javascript:;" @click="item.isEnable = !item.isEnable"><i class="fa fa-toggle-on"></i>启用</a>
+                                                    <a v-show="!item.isEnable"  href="javascript:;" @click="item.isEnable = !item.isEnable"><i class="fa fa-toggle-on"></i>禁用</a>
+                                                    <a  href="javascript:;" @click="editTemplate(item,index)"><i class="fa fa-pencil-square-o"></i>编辑</a>
+                                                    <a  href="javascript:;" @click="removeTemplate(item)"><i class="fa fa-trash-o"></i>删除</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="module-button">
+                                        <a  href="javascript:;" @click="saveTemplate()"><i class="fa fa-arrow-up" ></i>保存</a>
+                                        <!--<a  href="javascript:;" @click="preView()"><i class="fa fa-arrow-up" ></i>预览</a>-->
+                                    </div>
+                                </div>
+                                <div class="module-list">
+                                    <!--<div class="module_adv_list"> <span>广告条</span> <a  class="add" href="javascript:;" @click="insertSlideBanner('banner','广告条版块')"></a> </div>-->
+                                    <div class="module_home1"> <span>模块引导图</span> <a  class="add" href="javascript:;" @click="insertSlideBanner('templateImg','模块引导图')"></a> </div>
+                                    <!--<div class="module_home2"> <span>商城保障</span> <a  class="add" href="javascript:;" @click="insertSlideBanner('shopPromise','商城保障')"></a> </div>-->
+                                    <!--<div class="module_home3"> <span>快捷导航</span> <a  class="add" href="javascript:;" @click="insertSlideBanner('bannerNav','快捷导航')"></a> </div>-->
+                                    <div class="module_home4"> <span>商品3列表</span> <a  class="add" href="javascript:;" @click="insertSlideBanner('listThree','商品3列表')"></a> </div>
+                                    <div class="module_goods"> <span>商品2列表</span> <a  class="add" href="javascript:;" @click="insertSlideBanner('listTwo','商品2列表')"></a> </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 模板管理结束 -->
+
+                        <!--编辑banner-->
+                        <div id="editBanner" style="display: none;">
+                            <div class="index_block home1">
+                                <!--<h3>模型版块布局A</h3>-->
+                                <div class="title" v-show="!isBanner">
+                                    <h5>标题：</h5>
+                                    <input id="home1_title" type="text" class="txt w200"  value="" v-model="title">
+                                </div>
+                                <div  class="content">
+                                    <h5>内容：</h5>
+                                    <div  class="item" v-for="(item,index) in images">
+                                        <img nctype="image" :src="item.imgUrl" alt="">
+                                        <input v-show="isNavBanner"  type="text" value="" v-model="item.imgText" style="display: block; margin: 5px auto;" placeholder="对应文字" readonly="readonly">
+                                        <span class="editIcon">
+          <a  href="javascript:;" @click="editContent('编辑',item,index)"><i class="fa fa-pencil-square-o"></i>编辑</a>
+          <a  href="javascript:;" @click="removeContent(item)"  v-show="isBanner"><i class="fa fa-pencil-square-o"></i>删除
+        </a>
+        </span>
+                                        <div class="handle" v-show="isBanner">
+                                            <a  href="javascript:;" @click="moveUpBanner(item)"><i class="fa fa-arrow-up" ></i>上移</a>
+                                            <a  href="javascript:;" @click="moveDownBanner(item)"><i class="fa fa-arrow-down" ></i>下移</a>
+                                        </div>
+                                    </div>
+                                    <!--<div  class="item" v-show="images.length==0">-->
+                                    <!--<img nctype="image" :src="imgUrl" alt="">-->
+                                    <!--</div>-->
+                                </div>
+                                <a  class="ui-btn addBanner" href="javascript:;" @click="addNewBanner"  v-show="isBanner">添加元素</a>
+                            </div>
+                        </div>
+                        <!--编辑banner结束-->
+                        <!--编辑内容-->
+                        <div id="dialog_content" class="dialog_content" style="display: none;">
+                            <div class="s-tips"><i class="fa fa-lightbulb-o"></i>请按提示尺寸制作上传图片，已达到手机客户端及Wap手机商城最佳显示效果。</div>
+                            <el-form method="post"  name="addForm" :model="addForm" ref="addForm" label-position="left" label-width="30%" class="editAdd" style="width:100%">
+                                <div class="ncap-form-default">
+                                    <div class="upload-thumb mb20">
+                                        <img id="dialog_item_image" :src="addForm.uploadImgUrl" alt="" style="">
+                                    </div>
+                                    <el-form-item label="文字信息：" prop="imgText" v-show="isNavBanner">
+                                        <input type="text" class="ui-input"  autocomplete="off" placeholder="" v-model="addForm.imgText">
+                                    </el-form-item>
+                                    <el-form-item label="选择要上传的图片：" prop="uploadImgUrl">
+                                        <dl class="">
+                                            <!--<dt class="tit">选择要上传的图片：</dt>-->
+                                            <dd class="opt">
+                                                <input type="text" name="textfield" id="textfield" class="type-file-text" v-model="addForm.uploadImgUrl">
+                                                <label class="btn  btn-upload" for="inputImage" title="">
+                                                    <input  type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif" @change="selectFile">
+                                                    <span class="docs-tooltip" style="color:#fff !important;">选择文件<i class="el-icon-upload2"></i> </span>
+                                                </label>
+                                            </dd>
+                                        </dl>
+                                    </el-form-item>
+                                    <el-form-item label="操作类型：" prop="imgType">
+                                        <dl class="">
+                                            <dd class="opt">
+                                                <select id="dialog_item_image_type" name="" class="vatop" v-model="addForm.selectImgType">
+                                                    <option value="0">-请选择-</option>
+                                                    <!--<option value="keyword">关键字</option>-->
+                                                    <!--<option value="special">专题编号</option>-->
+                                                    <option value="goods">商品编号</option>
+                                                    <option value="url">链接</option>
+                                                </select>
+                                                <input id="dialog_item_image_data" type="text" class="txt w200 marginright marginbot vatop" v-model="addForm.imgType">
+                                                <p id="dialog_item_image_desc" class="notic">操作类型一共三种，对应点击以后的操作。</p>
+                                            </dd>
+                                        </dl>
+                                    </el-form-item>
+                                </div>
+                            </el-form>
+                        </div>
+                        <!--编辑内容结束-->
+                        <!--编辑商品板块-->
+                        <div id="editProductList" style="display: none;">
+                            <div class="mb-item-edit-content">
+                                <div class="index_block home1 goods-list">
+                                    <!--<h3>模型版块布局A</h3>-->
+                                    <div class="title">
+                                        <h5>标题：</h5>
+                                        <input id="home1Title" type="text" class="txt w200"  value="" v-model="title">
+                                    </div>
+                                    <div  class="content" style="width: 500px;">
+                                        <h5>内容：</h5>
+                                        <div  class="item" v-for="(item,index) in addGoodsList">
+                                            <div class="goods-pic">
+                                                <img width="220px" height="220px"  :src="item.img" alt="">
+                                            </div>
+                                            <div class="goods-name" >{{item.name}}</div>
+                                            <input  name="item_data[item][act_goods_name]" type="text"  v-model="item.shortName">
+                                            <div class="goods-price" >{{item.price}}</div>
+                                            <span class="editIcon">
+            <a  href="javascript:;" @click="removeGoods(item)" style="margin-right: 0"><i class="fa fa-pencil-square-o"></i>删除</a>
+        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--商品搜索-->
+                                <div class="search-goods">
+                                    <h5>商品关键字：</h5>
+                                    <input id="txt_goods_name" type="text" class="txt w200" name="" style="line-height:22px;" v-model="searchProduct">
+                                    <a id="btn_mb_special_goods_search" class="ncap-btn" href="javascript:;" style="vertical-align: top; margin-left: 5px;" @click="searchGoods()">搜索</a>
+                                    <div id="mb_special_goods_list" class="cf goods_list">
+                                        <div class="grid-wrap">
+                                            <div class="productManger" v-if="productLists.length>0">
+                                                <!-- 表头 -->
+                                                <div class="produtHead">
+                                                    <ul>
+                                                        <li>商品SPU</li>
+                                                        <li class="application">商品名称</li>
+                                                        <li>商品价格</li>
+                                                        <li>商品主图</li>
+                                                        <li>操作</li>
+                                                    </ul>
+                                                </div>
+                                                <!-- 表头结束 -->
+                                                <!-- 商品列表 -->
+                                                <div class="pruductList">
+                                                    <ul v-for="(item,index) in productLists" :class="{'active':item.active}" @click="selectOrder(item,index)">
+                                                        <li>{{item.SPU}}</li>
+                                                        <li class="application">{{item.name}}</li>
+                                                        <li>{{item.price}}</li>
+                                                        <li><img :src="item.img"> </li>
+                                                        <li><span class="btn-pass" @click.stop="addGoods(item)">添加</span></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- 商品列表结束 -->
+                                                <!--分页器-->
+                                                <div class="goodsPage">
+                                                    <el-pagination style="text-align: center" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="1" :page-sizes="[100, 200, 300, 400]"
+                                                                   :page-size="pagecount" layout=" prev, pager, next,sizes" :total="total">
+                                                    </el-pagination>
+                                                </div>
+                                                <!-- 分页器结束 -->
+                                            </div>
+                                            <div v-else style="text-align:center;margin:90px 0;">
+                                                暂无数据
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--商品列表-->
+                            </div>
+                        </div>
+                        <!--编辑商品板块结束-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+</body>
+<script src="../../static/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/vue.js" type="text/javascript"></script>
+<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/lodash.js/4.17.10/lodash.js"></script>
+<script type="text/javascript" src="../../js/common2.js"></script>
+<script src="../../js/request.js" type="text/javascript"></script>
+<script src="../../js/component/components.js" type="text/javascript"></script>
+<script src="../../js/common.js" type="text/javascript"></script>
+<script src="../../js/shop/index.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,302 @@
+{
+  "cmd_id": -140,
+  "status": 200,
+  "msg": "success",
+  "data": {
+    "module_data": [{
+      "slider_list": {
+        "item": [{
+          "image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180417\/1523949142716697.jpg",
+          "type": "url",
+          "data": "https:\/\/web.g-town.com.cn\/jhlksc\/fs\/index.html"
+        }, {
+          "image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180417\/1523949161461242.jpg",
+          "type": "url",
+          "data": "http:\/\/shop.g-town.com.cn\/tmpl\/miaosha_list.html?qazdfg=1523599666"
+        }, {
+          "image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180417\/1523949175548609.jpg",
+          "type": "url",
+          "data": "https:\/\/web.g-town.com.cn\/jhlksc\/amn\/index.html"
+        }, {
+          "image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180417\/1523949191207784.jpg",
+          "type": "url",
+          "data": "http:\/\/shop.g-town.com.cn\/tmpl\/pintuan_index.html?qazdfg=1521266111"
+        }]
+      }
+    }, {
+      "home1": {
+        "title": "",
+        "image": "http:\/\/jiansheyinhang.oss-cn-shanghai.aliyuncs.com\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180317\/1521266385130537.jpg",
+        "type": "url",
+        "data": "https:\/\/web.g-town.com.cn\/jhlksc\/fs\/index.html"
+      }
+    }, {
+      "goods": {
+        "item": [{
+          "goods_id": "588",
+          "goods_name": "富士（FUJIFILM）INSTAX 一次成像相机 拍立得 MINI迪斯尼TSUM TSUM 松松定制相机",
+          "act_goods_name": "富士INSTAX 拍立得 MINI迪斯尼",
+          "goods_promotion_price": "649.00",
+          "goods_fenqi_price": 54.08,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/86eed725c53de6350c89c5b0234cddf0\/10017\/6\/image\/20171122\/1511322362719208.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "2350",
+          "goods_name": "富士（FUJIFILM）INSTAX 一次成像相机 MINI90相机",
+          "act_goods_name": "",
+          "goods_promotion_price": "1188.00",
+          "goods_fenqi_price": 99,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180319\/1521436073721153.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1833",
+          "goods_name": "富士（FUJIFILM）INSTAX 一次成像相机 MINI9相机：冰霜蓝",
+          "act_goods_name": "",
+          "goods_promotion_price": "459.00",
+          "goods_fenqi_price": 38.25,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180206\/1517885744215128.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "0.50"
+        }],
+        "goods_count": 3,
+        "title": ""
+      }
+    }, {
+      "home1": {
+        "title": "",
+        "image": "http:\/\/jiansheyinhang.oss-cn-shanghai.aliyuncs.com\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180317\/1521267022118916.jpg",
+        "type": "url",
+        "data": "https:\/\/web.g-town.com.cn\/jhlksc\/amn\/index.html"
+      }
+    }, {
+      "goods": {
+        "item": [{
+          "goods_id": "2329",
+          "goods_name": "Emporio Armani 阿玛尼 男包手提包公文包单肩包 YEM823",
+          "act_goods_name": "",
+          "goods_promotion_price": "3280.00",
+          "goods_fenqi_price": 273.33,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180306\/1520320737828185.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "2322",
+          "goods_name": "Emporio Armani 阿玛尼 男士女士灰色印花牛皮手拿包 钱包 YEM474",
+          "act_goods_name": "",
+          "goods_promotion_price": "980.00",
+          "goods_fenqi_price": 81.67,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180306\/1520318643673331.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "2331",
+          "goods_name": "Emporio Armani 阿玛尼 铝镁合金 黑色 21寸 拉杆箱",
+          "act_goods_name": "",
+          "goods_promotion_price": "3680.00",
+          "goods_fenqi_price": 306.67,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180306\/1520321145232169.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }],
+        "goods_count": 3,
+        "title": ""
+      }
+    }, {
+      "home1": {
+        "title": "",
+        "image": "http:\/\/jiansheyinhang.oss-cn-shanghai.aliyuncs.com\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180317\/1521267114814578.jpg",
+        "type": "url",
+        "data": "https:\/\/web.g-town.com.cn\/jhlksc\/flp\/index.html"
+      }
+    }, {
+      "goods": {
+        "item": [{
+          "goods_id": "1906",
+          "goods_name": "飞利浦（PHILIPS）超薄智能自动扫地机器人FC8820\/81",
+          "act_goods_name": "",
+          "goods_promotion_price": "1590.00",
+          "goods_fenqi_price": 132.5,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180206\/1517906146221411.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1966",
+          "goods_name": "飞利浦（PHILIPS）Viva Collection智能电饭煲HD3157\/21",
+          "act_goods_name": "",
+          "goods_promotion_price": "299.00",
+          "goods_fenqi_price": 24.92,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180207\/1518005859838914.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1690",
+          "goods_name": "飞利浦(PHILIPS)烤面包机HD2582\/00",
+          "act_goods_name": "",
+          "goods_promotion_price": "335.00",
+          "goods_fenqi_price": 27.92,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20171215\/1513325054661527.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }],
+        "goods_count": 3,
+        "title": ""
+      }
+    }, {
+      "home1": {
+        "title": "",
+        "image": "http:\/\/jiansheyinhang.oss-cn-shanghai.aliyuncs.com\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180317\/1521267216338384.jpg",
+        "type": "url",
+        "data": "http:\/\/shop.g-town.com.cn\/tmpl\/product_list.html?cat_id=1&qazdfg=1521184631"
+      }
+    }, {
+      "goods": {
+        "item": [{
+          "goods_id": "257",
+          "goods_name": "博朗Braun 多功能手持式搅拌机 MQ325",
+          "act_goods_name": "",
+          "goods_promotion_price": "299.00",
+          "goods_fenqi_price": 24.92,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/86eed725c53de6350c89c5b0234cddf0\/10020\/6\/image\/20171121\/1511247637536697.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "0.50"
+        }, {
+          "goods_id": 1251,
+          "goods_name": "德龙Delonghi Icona复古系列 泵压式咖啡机 ECO310 甜蜜奶油色",
+          "act_goods_name": "",
+          "goods_promotion_price": "2080.00",
+          "goods_fenqi_price": 173.33,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/86eed725c53de6350c89c5b0234cddf0\/10020\/6\/image\/20171123\/1511444833507606.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "569",
+          "goods_name": "Miji 德国米技 EO9L 10升电烤箱家用 烘焙多功能",
+          "act_goods_name": "",
+          "goods_promotion_price": "249.00",
+          "goods_fenqi_price": 20.75,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/86eed725c53de6350c89c5b0234cddf0\/10019\/6\/image\/20171122\/1511320627206883.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1464",
+          "goods_name": "3M 空气净化器 家用KJ2025-SL 除pm2.5雾霾",
+          "act_goods_name": "",
+          "goods_promotion_price": "999.00",
+          "goods_fenqi_price": 83.25,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20171204\/1512377035268476.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": 1181,
+          "goods_name": "美国艾罗伯特（iRobot）智能拖地擦地机器人 Braava381",
+          "act_goods_name": "",
+          "goods_promotion_price": "2499.00",
+          "goods_fenqi_price": 208.25,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/86eed725c53de6350c89c5b0234cddf0\/10019\/6\/image\/20171123\/1511428284137418.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }],
+        "goods_count": 5,
+        "title": ""
+      }
+    }, {
+      "home1": {
+        "title": "",
+        "image": "http:\/\/jiansheyinhang.oss-cn-shanghai.aliyuncs.com\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180317\/1521267415140781.jpg",
+        "type": "url",
+        "data": "http:\/\/shop.g-town.com.cn\/tmpl\/product_list.html?cat_id=94&qazdfg=1521184734"
+      }
+    }, {
+      "goods": {
+        "item": [{
+          "goods_id": "2120",
+          "goods_name": "大疆（DJI）“晓”SPARK掌上智能无人机 高清航拍 自拍神器",
+          "act_goods_name": "",
+          "goods_promotion_price": "2899.00",
+          "goods_fenqi_price": 241.58,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10017\/6\/image\/20180226\/1519636717290286.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1970",
+          "goods_name": "Bose SoundSport Free 真无线蓝牙耳机：颜色随机",
+          "act_goods_name": "",
+          "goods_promotion_price": "1888.00",
+          "goods_fenqi_price": 157.33,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180208\/1518059920955388.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": 1960,
+          "goods_name": "kindle全新入门款升级版6英寸电子墨水触控显示屏电子书阅读器wifi黑色\/白色",
+          "act_goods_name": "",
+          "goods_promotion_price": "558.00",
+          "goods_fenqi_price": 46.5,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180207\/1518000527195510.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "0.50"
+        }, {
+          "goods_id": "2123",
+          "goods_name": "HUAWEI WATCH 2 华为第二代智能运动手表4G版 独立SIM卡通话 GPS心率FIRSTBEAT运动指导 NF",
+          "act_goods_name": "",
+          "goods_promotion_price": "1888.00",
+          "goods_fenqi_price": 157.33,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10017\/6\/image\/20180226\/1519637154568773.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "1.00"
+        }, {
+          "goods_id": "2345",
+          "goods_name": "JBL Pulse3 音乐脉动3 炫彩蓝牙小音箱 音响 低音炮 便携迷你音响 音箱 防水设计 典雅黑",
+          "act_goods_name": "",
+          "goods_promotion_price": "1788.00",
+          "goods_fenqi_price": 149,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180312\/1520849763386437.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "0.00"
+        }],
+        "goods_count": 5,
+        "title": ""
+      }
+    }, {
+      "home1": {
+        "title": "",
+        "image": "http:\/\/jiansheyinhang.oss-cn-shanghai.aliyuncs.com\/shop\/data\/upload\/media\/plantform\/00020e8a6780294db329d41fd9770968\/image\/20180317\/1521267513106824.jpg",
+        "type": "url",
+        "data": "http:\/\/shop.g-town.com.cn\/tmpl\/product_list.html?cat_id=459&qazdfg=1521184782"
+      }
+    }, {
+      "goods": {
+        "item": [{
+          "goods_id": 2005,
+          "goods_name": "Emporio Armani 阿玛尼 商务 时尚 双肩背包 Y3L015",
+          "act_goods_name": "",
+          "goods_promotion_price": "1280.00",
+          "goods_fenqi_price": 106.67,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180226\/1519627254477026.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1444",
+          "goods_name": "Emporio Armani 阿玛尼 牛皮可缩放双面腰带Y4S218",
+          "act_goods_name": "",
+          "goods_promotion_price": "999.00",
+          "goods_fenqi_price": 83.25,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180206\/1517919585928681.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "1931",
+          "goods_name": "外交官珍品细框拉杆箱 YH-6162-508",
+          "act_goods_name": "",
+          "goods_promotion_price": "368.00",
+          "goods_fenqi_price": 30.67,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180206\/1517907518713613.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "86",
+          "goods_name": "飞利浦\/PHILIPS 奢宠礼遇粉钻牙刷 HX9362\/67 粉色",
+          "act_goods_name": "",
+          "goods_promotion_price": "1099.00",
+          "goods_fenqi_price": 91.58,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/86eed725c53de6350c89c5b0234cddf0\/10011\/6\/image\/20171118\/1510978368133836.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "3.00"
+        }, {
+          "goods_id": "591",
+          "goods_name": "富士（FUJIFILM）INSTAX 一次成像相机 拍立得 HelloKitty特别定制版相机",
+          "act_goods_name": "",
+          "goods_promotion_price": "759.00",
+          "goods_fenqi_price": 63.25,
+          "goods_image": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/00020e8a6780294db329d41fd9770968\/10011\/6\/image\/20180206\/1517916499762859.jpg?x-oss-process=image\/resize,m_lfit,h_360,w_360",
+          "goods_fenyong": "0.50"
+        }],
+        "goods_count": 5,
+        "title": ""
+      }
+    }],
+    "site_logo": "http:\/\/img.g-town.com.cn\/shop\/data\/upload\/media\/plantform\/86eed725c53de6350c89c5b0234cddf0\/image\/20171023\/1508726988167471.png!240x60.png",
+    "sub_site_id": 0,
+    "subsite_is_open": 0,
+    "sub_site_name": ""
+  }
+}

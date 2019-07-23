@@ -1,0 +1,5 @@
+
+.treeBox{ width: 200px; height: 30px; line-height: 30px; border: 1px solid #ddd; padding: 0 10px; margin: 10px 0; position: relative; }
+#zTree{ width: 200px; height: 150px; overflow: auto;  float: left; background: #fff; border: 1px solid #ddd; position: absolute; top:30px; left:-1px; padding: 0 10px; z-index: 9; display: none;}
+.layui-table input[type=text]{ height: 30px; padding: 0 10px; width: 100px; }
+.layui-table input[type=text]:nth-child(2n){ width: 150px; }

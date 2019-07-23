@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品管理</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+
+<body>
+	<div id="app" class="hide">
+		<!-- 商品管理 -->
+		<div class="wrapper page">
+			<div class="fixed-bar">
+				<div class="item-title">
+					<div class="subject">
+						<h3>商品订单</h3>
+						<h5>商城实物商品交易订单查询及管理</h5>
+					</div>
+					<ul class="tab-base nc-row">
+						<li v-for="(nav,index) in productNav" :key="nav.index">
+							<a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 搜索条件 -->
+			<div class="mod-search cf" id="report-search">
+				<div class="l" id="filter-menu">
+					<el-form method="post" id="dump-setting-form" name="settingForm" :model="productForm" ref="productForm">
+						<ul class="ul-inline fix">
+							<li>
+								<el-form-item label="" prop="selectedOrderStatus">
+									<select class="select" name="city" lay-verify="required" v-model='productForm.selectedOrderStatus'>
+											<option value="0">全部</option>
+											<option value="Pay">待发货</option>
+											<option value="Delivering">待收货</option>
+											<option value="Received">已完成</option>
+										</select>
+								</el-form-item>
+							</li>
+							<li>
+								<el-form-item label="" prop="productName">
+									<span id="user"></span>
+									<input type="text" id="orderNum" name="common_name" class="ui-input ui-input-ph" placeholder="请输入订单编号..." autocomplete="off"
+									 v-model="productForm.productName">
+								</el-form-item>
+							</li>
+							<li>
+								<el-form-item label="" prop="reciverTel">
+									<input type="text" id="reciverTel" name="shop_name" class="ui-input ui-input-ph" placeholder="请输入收货人联系方式..." autocomplete="off"
+									 v-model="productForm.reciverTel">
+								</el-form-item>
+							</li>
+							<li>
+								<el-form-item label="" prop="shopName">
+									<span id="user2"></span>
+									<input type="text" id="shopName" name="common_name" class="ui-input ui-input-ph" placeholder="请输入店铺名称..." autocomplete="off"
+									 v-model="productForm.shopName">
+								</el-form-item>
+							</li>
+							<li>
+								<el-form-item label="" prop="payOrder">
+									<input type="text" id="payOrder" name="shop_name" class="ui-input ui-input-ph" placeholder="请输入商品货号" autocomplete="off"
+									 v-model="productForm.payOrder">
+								</el-form-item>
+							</li>
+							<li>下单日期:</li>
+							<li class="filterDate">
+								<el-form-item label="" prop="fromDate">
+									<el-date-picker :editable='false' v-model="productForm.fromDate" type="datetime"  value-format="timestamp" placeholder="选择日期时间"></el-date-picker>
+								</el-form-item>
+							</li>
+							<li>
+								<span>-</span>
+							</li>
+							<li>
+								<el-form-item label="" prop="toDate">
+									<el-date-picker :editable='false' v-model="productForm.toDate" type="datetime"  value-format="timestamp" placeholder="选择日期时间"></el-date-picker>
+								</el-form-item>
+							</li>
+						</ul>
+					</el-form>
+				</div>
+				<div class="fr">
+					<a class="ui-btn" id="search" @click="searchDate(0)" >查询<i class="layui-icon">&#xe615;</i></a>
+					<!--<a class="ui-btn" id="audit" @click="refresh(current)">刷新<i class="el-icon-refresh"></i></a>-->
+					<!--<a class="ui-btn" id="reaudit"  @click="exportSell()">渠道销售明细报表导出 <i class="layui-icon">&#xe61e;</i></a>-->
+					<!--<a class="ui-btn" id="btn-excel"  @click="exportSendStatus()">发货状态报表导出 <i class="layui-icon">&#xe61e;</i></a>-->
+				</div>
+			</div>
+			<!-- 搜索条件结束 -->
+
+			<!-- 表格数据渲染 -->
+			<div class="cf">
+				<div class="grid-wrap">
+					<div class="productManger orderManger" v-if='productLists.length > 0'>
+						<!-- 表头 -->
+						<div class="produtHead classifyHead">
+							<ul>
+								<!--<li class="listCheckbox"><input type="checkbox" v-model="selectedAll" @click="selectedAllProduct" :selected="selectedAll"></li>-->
+								<li>店铺编号</li>
+								<li class="shopWidth">店铺名称</li>
+								<li class="productWidth">订单编号</li>
+								<!--<li class="productWidth">支付单号</li>-->
+								<li class="productWidth">下单时间</li>
+								<!--<li class="productWidth">支付时间</li>-->
+								<!--<li>收货人</li>-->
+								<!--<li class="shopWidth">联系方式</li>-->
+								<!--<li class="productWidth">收货地址</li>-->
+								<!--<li class="shopWidth">商品编号</li>-->
+								<!--<li class="productWidth">商品名称</li>-->
+								<!--<li class="productWidth">规格</li>-->
+								<!--<li>单价</li>-->
+								<!--<li>购买数量</li>-->
+								<li>总金额</li>
+                <li>支付金额</li>
+                <!--<li>活动金额</li>-->
+								<!--<li>订单状态</li>-->
+								<li>物流运营商</li>
+								<li class="productWidth">物流单号</li>
+								<li></li>
+							</ul>
+						</div>
+						<!-- 表头结束 -->
+						<!-- 商品列表 -->
+						<div class="pruductList classifyList">
+							<ul v-for="(item,index) in productLists" :class="{'active':selectedAll|| item.active}" @click="selectOrder(item,index)">
+								<!--<li class="listCheckbox"><input type="checkbox" v-model="item.active" @click.stop="selectOrder(item,index)"></li>-->
+								<li>{{item.shopkeeperAccount }}</li>
+								<li class="shopWidth">{{item.shopName}}</li>
+								<li class="productWidth">{{item.orderNumber }}</li>
+								<!--<li class="productWidth">{{item.payorderNumber  }}</li>-->
+								<li class="productWidth">{{item.createTime  }}</li>
+								<!--<li class="productWidth">{{item.paymentTime  }}</li>-->
+								<!--<li>{{item.receiverName  }}</li>-->
+								<!--<li class="shopWidth">{{item.telephone }}</li>-->
+								<!--<li class="productWidth">{{item.receiverAddress }}</li>-->
+								<!--<li class="shopWidth">{{item.productNumber}}</li>-->
+								<!--<li class="productWidth">{{item.productName }}</li>-->
+								<!--<li class="productWidth">{{item.skuName }}</li>-->
+								<!--<li>{{(item.price/100).toFixed(2) }}</li>-->
+								<!--<li>{{item.count }}</li>-->
+                <li>{{(item.productTotalPrice /100).toFixed(2) }}</li>
+								<li>{{(item.orderPayment/100).toFixed(2) }}</li>
+                <!--<li>{{(item.activityPrice/100).toFixed(2) }}</li>-->
+								<!--<li>{{item.productStatusRemark }}</li>-->
+								<li>{{item.logisticsName}}</li>
+								<li class="productWidth">{{item.waybill}}</li>
+								<li @click.stop ="skewDetail(item)"><span class="isTrue">详情</span></li>
+							</ul>
+						</div>
+						<!-- 商品列表结束 -->
+					</div>
+					<div v-else style="text-align:center;margin:50px 0;">
+						暂无数据
+					</div>
+				</div>
+			</div>
+			<!-- 表格数据渲染结束 -->
+			<!-- 分页 -->
+			<div class="pagination" v-show="total>0">
+				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-sizes="[10, 20, 30, 40]"
+				 :page-size="pagecount" layout=" prev, pager, next,sizes" :total="total">
+				</el-pagination>
+			</div>
+			<!-- 分页器结束 -->
+		</div>
+		<!--查看订单详情-->
+		<div class="cf" id="brandList" style="display:none;padding: 10px;">
+			<el-form method="post" id="dump-add-form" name="addForm" :model="addForm" ref="addForm" label-width="30%" class=" editAdd mt20">
+				<div class="ncap-form-default">
+					<el-form-item label="收货人：">
+						<span>{{addForm.receiverName }}</span>
+					</el-form-item>
+					<el-form-item label="手机：">
+						<span>{{addForm.telephone }}</span>
+					</el-form-item>
+					<el-form-item label="收货地址：">
+						<span>{{addForm.address}}</span>
+					</el-form-item>
+					<el-form-item label="状态：">
+						<span>{{addForm.status}}</span>
+					</el-form-item>
+					<el-form-item label="订单号：">
+						<span>{{addForm.number}}</span>
+					</el-form-item>
+					<el-form-item label="下单时间：">
+						<span>{{addForm.createTime}}</span>
+					</el-form-item>
+					<el-form-item label="付款类型：">
+          <span>积分兑换</span>
+        </el-form-item>
+          <el-form-item label="订单备注：">
+            <span>{{addForm.buyerRemark }}</span>
+          </el-form-item>
+				</div>
+			</el-form>
+      <div id="mb_special_goods_list" class="cf goods_list">
+        <div class="grid-wrap">
+          <div class="productManger" v-if="products.length>0">
+            <!-- 表头 -->
+            <div class="produtHead">
+              <ul>
+                <li>商品图片</li>
+                <li class="application">商品名称</li>
+                <li>商品id</li>
+                <li>单价</li>
+                <li>数量</li>
+                <li>价格</li>
+                <li>重量</li>
+                <li>实付金额</li>
+              </ul>
+            </div>
+            <!-- 表头结束 -->
+            <!-- 商品列表 -->
+            <div class="pruductList" v-if="products.length>0">
+              <ul v-for="(item,index) in products" :class="{'active':item.active}" @click="selectOrder(item,index)">
+                <li><img :src="item.productLogo "></li>
+                <li class="application">{{item.productName}}</li>
+                <li>{{item.productId }}</li>
+                <li>￥{{(item.price /100).toFixed(2)}}</li>
+                <li>{{item.count }}</li>
+                <li>￥{{(item.totalPrice/100).toFixed(2)}}</li>
+                <li>{{item.commodityWeight }}</li>
+                <li>￥{{(item.payAmount /100).toFixed(2)}}</li>
+                <!--<li><span class="btn-pass" @click.stop="addGoods(item)">添加</span></li>-->
+              </ul>
+            </div>
+						<div v-else>
+							订单商品信息获取失败，请稍后重试！
+						</div>
+            <!-- 商品列表结束 -->
+          </div>
+          <div v-else style="text-align:center;margin:90px 0;">
+            暂无数据
+          </div>
+
+        </div>
+      </div>
+      <div class="detail">
+        <div class="total">商品总金额：￥{{(totalMoney/100).toFixed(2)}} </div>
+          <div>运费：￥0.00</div>
+          <div>优惠立减：￥0.00</div>
+          <div>积分兑换：{{scores}}</div>
+          <div class="payment">实付金额：￥{{(orderPayment/100).toFixed(2) }}</div>
+    </div>
+		</div>
+		<!--查看订单详情结束-->
+		<!-- 商品管理结束 -->
+		<div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+	</div>
+  </div>
+	<div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+	<script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+	<script type="text/javascript" src="../../common/layui/layui.all.js"></script>	
+	<script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../common/js/common.js"></script>
+	 <script type="text/javascript" src="../../js/transaction/productOrder.js"></script>
+</body>
+
+</html>

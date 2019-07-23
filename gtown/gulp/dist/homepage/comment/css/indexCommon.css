@@ -1,0 +1,20 @@
+/*优惠券领取*/
+.goods-search-list-nav ul{width:100%}
+.goods-search-list-nav ul li{width:34%!important}
+.goods-search-list-nav ul li:first-child{width:30%!important}
+.goods-search-list-nav ul li a,.ser-adv a{color:#3e3c3c}
+.fix-block-r{right:0!important;bottom:0!important;width:100%!important;background:#FE3E27!important;height:2rem!important;text-align:center}
+.fix-block-r a{display:block;width:auto;height:2rem;background:0 0;border-radius:0;line-height:2rem;color:#fff;font-size:.8rem}
+.mrule{width:88%;padding:1rem}
+.mrule p{font-family:微软雅黑;font-size:14px}
+.list .goods-secrch-list .integral-list{border:none!important;background:#fff}
+.list .goods-secrch-list .integral-info{margin-left:1rem!important;border-bottom:none!important;padding:0!important}
+.integral-list dl dt.goods-condition{width:70%;float:left;padding-bottom:.6rem;padding-top:.5rem}
+.integral-list dl dt.goods-condition span{width:100%;display:block;font-size:.7rem}
+.integral-list dl dt.goods-condition .rulename{color:#333!important}
+.integral-list dl dt.goods-condition .youxiaoqi{color:#A0A0A0!important;margin: .5rem 0;}
+.integral-list dl dt.goods-condition .lingqunum{color:#AEAEAE!important;margin-top:.3rem}
+.integral-list dl dd.goods-lingqu{width:30%;box-sizing:border-box;float:right;background:#ff3e28;padding:.5rem 0 .6rem .65rem}
+.integral-list dl dd.goods-lingqu h4{color:#fff!important;font-size:.7rem!important;margin-top:-.2rem!important}
+.integral-list dl dd.goods-lingqu h4 em{color:#fff!important;font-size:2rem!important}
+.btn-exchange{background:#fff!important;color:#FE3E27!important;border-radius:.5rem!important;margin-top:0!important}

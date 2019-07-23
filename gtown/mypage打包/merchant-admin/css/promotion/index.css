@@ -1,0 +1,32 @@
+
+#content .layui-table .edit{ cursor: pointer; }
+#content .detail-table{ margin: 30px 0 60px; }
+#content .detail-table tbody tr{ border-bottom: 1px darkgray dashed; height: 60px; }
+#content .detail-table tbody tr img{ width: 40px; }
+#content .detail-table tbody td:first-child { width: 20%;text-align: right; }
+#content .next-btn{ margin: 30px auto; display: block; }
+
+/*.add-table{ margin: 30px 0 60px; }*/
+.add-table tbody tr{ border-bottom: 1px darkgray dashed; }
+.add-table tbody td:first-child { width: 20%; text-align: right; }
+.add-table tbody td .tip{ font-size: 12px; color: #666; margin-top: 10px; }
+
+
+.inner-table tbody tr{ border-bottom: 1px darkgray solid; }
+.inner-table tbody td{ text-align: center; }
+.inner-table tbody td img{ width: 100px; height: 100px; }
+.inner-table tbody td p{ font-size: 12px; display:box; display:-webkit-box; -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical; }
+
+
+.add-form{ border:1px solid darkgray; padding: 20px 0; margin: 10px 0; overflow: hidden; position: relative; }
+.layui-form-item{ margin-bottom: 0; }
+.layui-form-label{ width: 120px; text-align: left;  }
+.next-btn{ display: block; margin: 30px auto 60px; }
+
+
+.collageGood{ width: 150px; height: auto; margin-bottom: 10px; border:1px solid #ddd; padding: 10px;  }
+.collageGood img{ width: 100%; max-width: 100%; margin-bottom: 10px; }
+.collageGood p{ font-size: 12px; line-height: 20px; }

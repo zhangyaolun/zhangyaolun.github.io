@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta name="screen-orientation" content="portrait"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/footprint.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+</head>
+<body>
+<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/weui.js"></script>
+<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+
+<div class="content" id="list" v-cloak>
+
+	<!--头部搜索-->
+	<header id="header" class="header nctouch-product-header fixed">
+		<div class="header-wrap homehederbfg center">
+			<div class="header-l">
+				<a href="javascript:history.go(-1)"> <i class="back back2"></i> </a>
+			</div>
+			<div class="header-title">
+				<h1>我的足迹</h1>
+			</div>
+			<div class="JS-header-edit colf" @click="footprintdel">清空</div>
+		</div>
+	</header>
+
+	<!--商品内容-->
+	<div class="nctouch-main-layout">
+		<div id="product_list" class="list footprint_list" v-if="norecordShow">
+			<section v-for="(item,i) in itemList" :id="item.common_id">
+				<div class="footprint_time borb1">{{item.dateStr}}</div>
+				<ul class="goods-secrch-list">
+					<li class="goods-item clearfix borb1 itemo" v-for="(itemo,k) in item.olist">
+						<!--:href="'product_detail.html?goods_id='+items.id"-->
+						<div class="goods-pic left" @click="footClick(itemo.linkId,itemo.productPageDto.status)">
+							<img :src="itemo.productPageDto.mainPic" alt="" class="disInputImg">
+							<!-- :src="items.mainPic" src="../../images/1@2x.png"-->
+							<span class="product_noStock" v-if="itemo.disabledInputTitle">{{itemo.disabledInputTitle}}</span>
+						</div>
+						<div class="goods-info right">
+							<div class="goods-name" @click="footClick(itemo.linkId,itemo.productPageDto.status)">{{itemo.productPageDto.name}}</div>
+							<div class="goods-sale">
+								<span class="goods-priceNew">{{itemo.productPageDto.minPrice | pricef}}<em></em></span>
+							</div>
+							<div class="footprint_add" @click="favorateFun(i,k)">
+								<img :src="itemo.collectedImg" alt="">
+							</div>
+							<div class="footprint_car" @click="addCart(i,k)">
+								<img src="../../images/gouwuche@2x.png" alt="">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<!--显示无数据-->
+		<div class="nctouch-norecord footprint" v-if="!norecordShow">
+			<div class="norecord-ico"><i></i></div>
+			<dl>
+				<dt>竟然一个脚印都没有留下</dt>
+				<dd>主人快去挑点宝贝，犒劳自己吧~</dd>
+			</dl>
+			<a href="../home/home.html" class="btn">随便逛逛</a>
+		</div>
+	</div>
+
+
+	<div class="pre-loading" v-show="preLoading"></div>
+
+	<!--回到顶部-->
+	<div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
+</div>
+<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/member/footprint.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!-- 发货设置 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>泰康积分商城商家管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="../../static/css/layui.css"  media="all" />
+    <link href="../../css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/logistics/deliver_config.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<header id="header">
+    <app-header curr="2"></app-header>
+</header>
+<aside id="content" v-cloak>
+    <col-nav curr="2" :nav="navData"></col-nav>
+
+    <div class="content_body">
+        <span class="layui-breadcrumb" lay-separator="-">
+            <a href="../index.html">首页</a>
+            <a href="./index.html">订单物流</a>
+            <a><cite>发货设置</cite></a>
+        </span>
+
+        <div class="layui-tab layui-tab-card" lay-filter="tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">地址库</li>
+                <li>默认物流公司</li>
+                <li>免运费额度</li>
+                <li>发货单打印设置</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div v-bind:style="{ textAlign : 'right' }">
+                        <button type="button" class="layui-btn layui-btn-sm" @click="configAddress( null )" v-show="!addNew"><i class="layui-icon">&#xe654;</i>新增地址</button>
+                    </div>
+                    <div :class="{ 'filter' : loading }">
+                        <table class="layui-table" lay-skin="nob" v-if="!addNew && list.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>是否默认</th>
+                                    <th>联系人</th>
+                                    <th>发货地址</th>
+                                    <th>联系方式</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in list">
+                                    <td>
+                                        <input type="radio" :checked="item.defaultAddress == 1" class="isDefault" name="default" :value="item.id" />默认
+                                    </td>
+                                    <td>{{ item.sellerLinkman }}</td>
+                                    <td>{{ item.sellerAddress }}</td>
+                                    <td>{{ item.sellerPhone }}</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-normal layui-btn-xs bottom" @click="configAddress( item )">
+                                            <i class="layui-icon cursor" title="编辑">&#xe642;</i>编辑
+                                        </button><br />
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs" @click="delModel( item )">
+                                            <i class="layui-icon cursor" title="删除">&#xe640;</i>删除
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- error -->
+                        <app-error v-if="list.length == 0 && !loading && !addNew"></app-error>
+                        <!-- loading -->
+                        <app-loading v-if="loading"></app-loading>
+                    </div>
+
+
+                    <!-- 新增地址 -->
+                    <form class="layui-form" v-if="addNew">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label imp">联系人：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" v-model="newAddParams.sellerLinkman" placeholder="请输入联系人" autocomplete="off" class="layui-input" />
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label imp">所在地区：</label>
+                            <div v-show="select">
+                                <div class="layui-input-inline">
+                                    <select class="prov" lay-filter="prov"></select>
+                                </div>
+                                <div class="layui-input-inline" v-show="city">
+                                    <select class="city" lay-filter="city"></select>
+                                </div>
+                                <div class="layui-input-inline" v-show="county">
+                                    <select class="county" lay-filter="county"></select>
+                                </div>
+                            </div>
+                            <div class="layui-input-inline" v-show="!select">
+                                <input type="text" class="layui-input" value="111" readonly disabled :style="{ border:'none' }" v-model="addStr" />
+                                <button type="button" class="layui-btn layui-btn-normal layui-btn-xs" @click="areaEdit">编辑</button>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label imp">街道地址：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" placeholder="请输入街道地址" autocomplete="off" class="layui-input" v-bind:style="{ width : '350px' }" v-model="newAddParams.sellerAddress" />
+                                <p class="tip">不必重复填写地区</p>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label imp">电话：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" maxlength="11" v-model="newAddParams.sellerPhone" placeholder="请输入电话" autocomplete="off" class="layui-input" />
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">公司：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" v-model="newAddParams.sellerCompany" placeholder="请输入公司名称" autocomplete="off" class="layui-input" />
+                            </div>
+
+                        </div>
+                    </form>
+
+
+                    <div class="btn-group" v-if="!addNew & list.length > 0">
+                        <button type="button" class="layui-btn" @click="updateDef">保存</button>
+                    </div>
+                    <div class="btn-group" v-if="addNew">
+                        <button type="button" class="layui-btn" @click="deliverAdd">保存</button>
+                        <button type="button" class="layui-btn layui-btn-primary" @click="back">取消</button>
+                    </div>
+
+                </div>
+
+                <!-- 默认物流公司 -->
+                <div class="layui-tab-item">
+                    <div class="layui-form-item">
+                        <table class="layui-table" lay-skin="nob">
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" align="center">物流公司</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <label v-for="item in expressList"><input class="checkbox" type="checkbox" :value="item.id" :data-symbol="item.name" />{{ item.name }}</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-group">
+                            <button type="button" class="layui-btn" @click="configData(1)">保存</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 免运费额度 -->
+                <div class="layui-tab-item">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <table class="layui-table" lay-skin="nob">
+                                <tbody>
+                                <tr>
+                                    <td class="imp" :style="{ width : '100px' }">免运费额度：</td>
+                                    <td>
+                                        <div class="layui-input-inline">
+                                            <input type="text" placeholder="请输入免运费额度" autocomplete="off" class="layui-input" v-model="defaultData.freeFreight" />
+                                            <p class="tip">默认为 0，表示不设置免运费额度，订单超出所填金额将免运费。</p>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="btn-group">
+                                <button type="button" class="layui-btn" @click="configData(2)">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 发货单打印设置 -->
+                <div class="layui-tab-item">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label imp">备注信息：</label>
+                            <div class="layui-input-inline layui-form-text" v-bind:style="{ width : '650px' }">
+                                <textarea name="desc" placeholder="请输入内容" class="layui-textarea" v-model="defaultData.remark"></textarea>
+                                <p class="tip">打印备注信息将出现在打印订单的下方位置，用于注明店铺简介或发货、退换货相关规则等；内容不要超过100字。</p>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label imp">印章图片：</label>
+                            <div class="layui-input-block layui-form-text">
+                                <img :src="defaultData.picAddress" class="localimg" />
+                                <button type="button" class="layui-btn" id="seal">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                                <p class="tip">印章图片将出现在打印订单的右下角位置，请选择120x120px大小透明GIF/PNG格式图片上传作为您店铺的电子印章使用。
+
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="btn-group">
+                        <button type="button" class="layui-btn uploadBtn" @click="configData(3)">保存</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</aside>
+</body>
+<script src="../../static/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/vue.js" type="text/javascript"></script>
+<script src="../../js/request.js" type="text/javascript"></script>
+<script src="../../js/component/components.js" type="text/javascript"></script>
+<script src="../../js/common.js" type="text/javascript"></script>
+<script src="../../js/logistics/deliver_config.js" type="text/javascript"></script>
+</html>

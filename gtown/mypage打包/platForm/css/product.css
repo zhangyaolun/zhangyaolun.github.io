@@ -1,0 +1,319 @@
+/* 全部商品样式 */
+#app .page .l ul li .ui-input{
+  height: 30px;
+  padding: 12px 5px;
+  line-height: 30px;
+  border:1px solid #E6E6E6;
+  border-radius:2px;
+
+}
+#app .page .l ul li .ui-input:hover{
+  border-color:rgb(255,155,39);
+}
+#app .page .l ul li .ui-input:focus{
+  border-color:rgb(255,155,39);
+}
+#app .page .l ul li .select{
+  height: 30px;
+  line-height: 30px;
+  margin-top: 1px;
+  width: 142px;
+  border:1px solid #E6E6E6;
+  border-radius:2px;
+}
+#app .page .l ul li .select:hover{
+  border-color:rgb(255,155,39);
+}
+#app .page .l ul li .select:focus{
+  border-color:rgb(255,155,39);
+}
+#app .page .l ul li i.ellipsis{
+  position: absolute;
+  top:-2px;
+  right: 5px;
+  cursor: pointer;
+}
+#app .brandTree{
+  /* display: none; */
+  position: absolute;
+  top:95px;
+  left: 804px;
+  width: 200px;
+  height: 200px;
+  overflow: auto;
+  border:1px solid #ccc;
+  background: #fff;
+  z-index: 110;
+}
+#app .brandTree .treeContent{
+  width: 200px;
+  overflow-y: auto;
+}
+
+
+#filter-menu .ui-datepicker-input{
+  width: 130px !important;
+}
+.mod-search .filterDate i{
+  /* margin: 0 0 0 -25px; */
+}
+/* 搜索样式 */
+ .ui-btn {
+  display: inline-block;
+  padding: 0 8px 0 10px;
+  line-height: 30px;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 2px;
+  background-color: #fff;
+  color: rgb(255,155,39);
+  border: 1px solid rgb(255,155,39);
+  vertical-align: middle;
+  cursor: pointer
+}
+
+ .ui-btn:hover{
+  /*color:#2299ee;*/
+}
+ .ui-btn i{
+  margin-left: 5px;
+}
+/* 搜索导出结束 */
+/* 头部 */
+#app .cf .grid-wrap{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border:1px solid #e2e2e2;
+}
+#app .cf .grid-wrap .productManger{
+  min-height: 500px;
+  overflow: auto;
+
+}
+ .cf .grid-wrap .productManger .produtHead{
+  height: 30px;
+  line-height: 30px;
+  background: #eeeeee;
+  border-bottom: 1px solid #e2e2e2;
+  color:#555;
+  width: 1800px;
+
+}
+.cf .grid-wrap .productManger .produtHead ul{
+  float: left;
+  width: inherit;
+}
+ .cf .grid-wrap .productManger .produtHead ul li{
+  font-weight: 700;
+}
+ .cf .grid-wrap .productManger .produtHead ul li, .cf .grid-wrap .productManger .pruductList ul li{
+display:block;
+width: 100px;
+border-right:1px solid #e2e2e2;
+text-align: center;
+float: left;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+
+/* 头部结束 */
+/* 商品列表 */
+ .cf .grid-wrap .productManger .pruductList{
+  width: 1800px;
+}
+
+ .cf .grid-wrap .productManger .pruductList ul:nth-of-type(even){
+  background: #F9F9F9;
+}
+
+ .cf .grid-wrap .productManger .pruductList ul:hover{
+  background:#f2f2ff;
+}
+
+ .cf .grid-wrap .productManger .pruductList ul.active{
+  background:#f2f2ff;
+}
+ .cf .grid-wrap .productManger .pruductList ul{
+   float: left;
+   border-bottom: 1px solid #e2e2e2;
+   width: inherit;
+ }
+ .cf .grid-wrap .productManger .pruductList ul li{
+  /* display:block;
+  width: 100px;
+  border-right:1px solid #e2e2e2;
+  text-align: center; */
+  height: 32px;
+  line-height: 32px;
+  /* float: left; */
+}
+.cf .grid-wrap .productManger .pruductList ul li:first-child span{
+  cursor: pointer;
+}
+.cf .grid-wrap .productManger .pruductList ul li span.isTrue{
+  background: rgb(255,155,39);
+  padding:5px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  color:#fff;
+  cursor:pointer;
+  font-weight: bold;
+
+}
+.cf .grid-wrap .productManger .pruductList ul li span.isFalse{
+  background: #999;
+  padding:5px 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  color:#fff;
+  cursor:pointer;
+  font-weight: bold;
+
+}
+.cf .grid-wrap .productManger .pruductList ul li span.redColor{
+  background: #ff3b30;
+}
+
+/* 品牌弹框 */
+.cf .grid-wrap .productManger .BrandDialog{
+  width: 100%;
+}
+.cf .grid-wrap .productManger .BrandDialog ul{
+  width: 100%;
+}
+.cf .grid-wrap .productManger .BrandDialog ul li{
+  width: inherit;
+}
+.cf .grid-wrap .productManger  .searchBrand{
+  border-bottom: 1px solid #e2e2e2;
+  margin-top: 8px;
+  padding-left: 10px;
+}
+.cf .grid-wrap .productManger  .searchBrand .ul-inline li input{
+  height: 30px;
+  line-height: 30px;
+  border-radius: 2px;
+  border:1px solid #e2e2e2;
+  padding: 5px;
+
+
+}
+/* 品牌弹框结束 */
+ .cf .grid-wrap .productManger .shopWidth{
+  width: 150px !important;
+}
+ .cf .grid-wrap .productManger .productWidth{
+  width:200px !important;
+}
+.cf .grid-wrap .productManger .productidWidth{
+    width:240px !important;
+}
+.cf .grid-wrap .productManger .listCheckbox{
+  width:25px !important;
+}
+.cf .grid-wrap .productManger .listCheckbox input{
+  margin: 0;
+}
+.cf .grid-wrap .productManger .listHandle{
+  width: 50px !important;
+}
+.cf .grid-wrap .productManger .orderWidth{
+  width: 255px !important;
+}
+.cf .grid-wrap .productManger .application{
+  width: 305px !important;
+}
+.cf .grid-wrap .productManger .productInvolve{
+  width: 405px !important;
+
+}
+/* 商品列表结束 */
+
+/* 品牌弹框列表 */
+.cf .grid-wrap .brandManger{
+  border:1px solid #e2e2e2;
+  overflow: auto;
+}
+.cf .grid-wrap .brandManger ul li.brandWidth{
+  width: 100%;
+  border-right: 0;
+}
+.cf .grid-wrap .brandManger .brandHead,.cf .grid-wrap .brandManger .brandList{
+  width: 100%;
+}
+.cf .grid-wrap .brandManger .brandHead ul,.cf .grid-wrap .brandManger .brandList ul{
+  width: inherit;
+}
+
+/*新增品牌弹框*/
+#add .el-form-item .el-form-item__content .dialogClassify{
+
+}
+#add .el-form-item .el-form-item__content .dialogClassify input.ui-input{
+  height: 35px;
+  line-height: 35px;
+  border:1px solid #dcdfe6;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding-left: 15px;
+  }
+#add .el-form-item .el-form-item__content .dialogClassify i.ellipsis{
+  margin-left: -30px;
+  cursor: pointer;
+}
+
+/*新增品牌弹框结束*/
+/* 品牌弹框列表结束 */
+/* 全部商品样式结束 */
+/* 分页样式 */
+.wrapper .pagination{
+  width: 100%;
+  text-align: center;
+}
+.wrapper .pagination .el-pagination{
+  /*margin-left: 30%;*/
+
+}
+/* 交易模块样式 */
+.cf .grid-wrap .orderManger .produtHead{
+  width: 3000px;
+}
+.cf .grid-wrap .orderManger .pruductList{
+  width: 3000px;
+}
+
+
+/* 会员  积分管理 */
+.el-form  .el-form-item .el-form-item__content .tips{
+  display: block;
+  font-size: 12px;
+  line-height: 17px;
+  color:#878dAC;
+  margin-top: 5px;
+
+}
+.editAdd  .el-form-item .el-form-item__content span{
+  font-size: 12px !important;
+  color:#333 !important;
+}
+.editAdd  .el-form-item{
+  margin-bottom: 0 !important;
+}
+/* 商家 商家入驻  幻灯片 */
+.sliderBanner .el-form  .el-form-item{
+  width: 80% !important;
+}
+
+#edui1{
+  z-index: 1 !important;
+}
+
+.layui-layer-btn .layui-layer-btn0{
+  border-color: rgb(255,155,39) !important;
+  background-color: rgb(255,155,39) !important;
+}

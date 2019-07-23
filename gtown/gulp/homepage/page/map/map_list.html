@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/member.css"/>
+</head>
+
+<body>
+<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/weui.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<div class="content" id="app" v-cloak>
+
+    <header id="header" class="header fixed"></header>
+
+    <div class="nctouch-main-layout mb20" style="margin-top: 2.1rem;">
+        <div class="nctouch-address-list" id="address_list">
+            <ul>
+
+                <li v-for="(item,i) in product">
+                    <dl>
+                        <dt>
+                            <span class="name whiteSpace">{{item.receiverName}}</span>
+                            <span class="phone">{{item.telephone}}</span>
+                            <span class="type" v-if="item.aliasName">{{item.aliasName}}</span>
+                        </dt>
+                        <dd>{{item.province}} {{item.city}} &nbsp;{{item.area}} {{item.address}}</dd>
+                    </dl>
+                    <div class="handle">
+                        <em>
+                            <img src="../../images/xuanzhong@2x.png" alt="" v-if="item.defaults==1">
+                            <div>{{item.defaults | currency}}</div>
+                        </em>
+                        <span>
+							<a href="javascript:void(0);" @click="oModAdress(i)">编辑</a>
+                            <a href="javascript:void(0);" class="deladdress" @click="deladdress(item.id,i)">删除</a>
+						</span>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <a class="btn-l defaults_new" href="map_new.html">新增地址</a>
+
+    <div class="pre-loading" v-show="preLoading"></div>
+
+
+    <div class="simple-dialog-wrapper" v-show="dialogWrapper">
+        <div class="s-dialog-mask"></div>
+        <div style="left: 50%; top: 50%; margin-left: -111px;" class="s-dialog-wrapper s-dialog-skin-red">
+            <div class="s-dialog-content">确认删除吗？</div>
+            <div class="s-dialog-btn-wapper">
+                <a href="javascript:void(0)" class="s-dialog-btn-ok" @click="btnTrue">确定</a>
+                <a href="javascript:void(0)" class="s-dialog-btn-cancel" @click="btnCancel">取消</a></div>
+        </div>
+    </div>
+
+    <div class="fix-block-r" @click="oBackTop" v-show="oBackTopFixed"></div>
+</div>
+<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/map/map_list.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

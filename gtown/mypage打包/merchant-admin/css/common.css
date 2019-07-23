@@ -1,0 +1,70 @@
+.left{ float: left;}
+.right{ float: right; }
+.imp:before{ content: "*"; color: red;  }
+.tip{ font-size: 12px; color: #666; margin-top: 10px; -white-space: nowrap; }
+.clearfix:after{ content:''; clear:both; display: block;}
+.btn-group{ text-align: center; clear: both; }
+.info{ background: darkkhaki; padding: 10px 20px; color: #fff; }
+.bottom{ margin-bottom: 3px; }
+[v-cloak]{ display: none; }
+.filter{ filter:blur(2px); -webkit-filter: blur(2px); -moz-filter:blur(2px); position: relative; line-height: initial;    min-height: 200px;}
+.cursor{ cursor: pointer; }
+
+.icon-label{ font-size: 12px; text-align: center; width: 28px; display: inline-block; cursor: pointer; }
+.icon-label i{ font-size: 18px;}
+
+#header{ position: fixed; width: 100%; z-index: 9999; }
+
+#content{ width: 96%; margin:0px auto 0; min-width: 1000px; padding-top: 60px; }
+#content:after{ content: ""; display: block; clear: both; }
+#content .imp:before{ content: "*"; color: red;  }
+#content .content_body{ padding: 10px 2%; float: left; width: 81%; height: auto; position: relative; }
+
+#nav{width: 15%; height: auto; line-height: 40px; padding: 10px 0px; background: #f2f2f2; min-height: 400px; }
+#nav a{ padding-left: 20px; display: block; border-left: 5px solid #f2f2f2;}
+#nav a.curr,#nav a:hover{ background: #fff; border-color: #50D1E4; color: #50D1E4;  }
+
+
+/* 图片空间弹窗 */
+#pic_room{ padding: 20px 30px; overflow: hidden; display: none; }
+#pic_room .img-box{ background: #fff; margin-bottom: 10px; height: 120px; overflow: hidden; }
+#pic_room .img-box .relavite{display: table-cell; vertical-align: middle; height: 120px; }
+#pic_room .img-box img{ width: 98%; max-width: 100%; cursor: pointer; box-sizing: border-box; }
+#pic_room .img-box img.checked{ box-sizing: border-box; border:2px solid red; }
+#pic_room .img-box .line-btns{ position: absolute; top:0; right: 0; font-size: 12px; padding: 0 5px; display: none; }
+#pic_room .img-box .line-btns span{ cursor: pointer; }
+#pic_room .img-box:hover .line-btns{ display: block; }
+/*#pic_room .layui-table tbody tr td:nth-child(1){ width: auto; }*/
+#pic_room p{ font-size: 12px; color: #c5c5c5; }
+#pic_room .layui-table[lay-skin=nob] td{ width: 18%; display: inline-block; padding: 9px 1%;}
+#pic_room .layui-table[lay-skin=nob] td label{ height: 18px; line-height: 18px; }
+#pic_room .layui-table[lay-skin=nob] td label span{ width: 80%; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;  }
+#pic_room .localimg img{ width: 100px; height: 100px; margin: 0 5px 10px 0; }
+#pic_paging{ float: right; }
+
+
+/* 售卖区域弹窗 */
+#region{ padding: 20px 30px; overflow: hidden; display: none;}
+#region table tbody tr{ border-bottom: 1px darkgrey dashed; }
+
+
+/* 物流选择规格模版 */
+#zone{ padding: 20px 30px; display: none; }
+#zone address{ font-size: 12px; font-style: normal;}
+#zone address:after{ content: ""; clear: both; display: block; }
+#zone address .left{ width: 10%; }
+#zone address .left:nth-child(2){ width: 90%; }
+#zone address span{ float: left; width: 155px; padding: 5px; position: relative; }
+#zone address span ins{ color: red; }
+#zone address span.curr{ background:#f2f2f2; border:1px solid #ddd;  }
+#zone address span i{ font-size: 12px; margin-left: 0px; cursor: pointer; }
+#zone address input[type=checkbox]{ float: left; margin-top: 2px; margin-right: 5px; }
+#zone address span .add_min{ position: absolute; border:1px solid #ddd; border-top:none; background: #f2f2f2; z-index: 10; padding: 0px 5px; overflow: hidden; width: calc( 100% - 15px); top:26px; left: -1px; }
+#zone address span .add_min label{ display: block; margin: 3px 0;}
+
+
+#loading{ width: 100%; height: 100%; position: absolute; top:0; left: 0; background: rgba(255,255,255,.4); font-size: 30px; color: white; text-align: center; line-height: initial; }
+#loading i{ font-size: 50px; width: 50px; height: 50px; position: absolute; top:50%; margin-top: -25px; left:50%; margin-left: -25px; color: #01AAED; }
+
+#error{ width: 100%; min-height: 200px; padding: 60px 0; text-align: center; font-size: 20px; color: #c2c2c2; line-height: 30px;}
+#error i{ font-size: 40px; }

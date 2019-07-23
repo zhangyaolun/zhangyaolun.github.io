@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/zTree/zTreeStyle.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+
+<body>
+<div id="app" class="hide">
+  <!-- 商品管理 -->
+  <div class="wrapper page">
+    <div class="fixed-bar">
+      <div class="item-title">
+        <div class="subject">
+          <h3>角色权限设置</h3>
+          <h5>管理商城用户的权限，以及权限组 </h5>
+        </div>
+        <ul class="tab-base nc-row">
+          <li v-for="(nav,index) in productNav" :key="nav.index" >
+            <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 表格数据渲染 -->
+    <!-- 搜索条件 -->
+    <div class="mod-search cf">
+      <div class="fr">
+        <a class="ui-btn" @click="addPower('新增权限')" v-if="userRights['insertAdminRoleInfo']">新增<i class="layui-icon">&#xe654;</i></a>
+        <a class="ui-btn" style="display:none" @click="getInfo(current)">刷新<i class="el-icon-refresh"></i></a>
+      </div>
+    </div>
+    <!-- 搜索条件结束 -->
+    <div class="cf">
+      <div class="grid-wrap">
+        <div class="productManger" v-if='users.length > 0'>
+          <!-- 表头 -->
+          <div class="produtHead classifyHead">
+            <ul>
+              <li>权限</li>
+              <li class="productWidth">角色名称</li>
+            </ul>
+          </div>
+          <!-- 表头结束 -->
+          <!-- 商品列表 -->
+          <div class="pruductList classifyList">
+            <ul v-for="(item,index) in users" :class="{'active':item.active}"
+                @click="selectOrder(item,users)">
+              <li>
+                <span title="详细设置授权信息" @click.stop="editDetail(item)" v-if="userRights['updateAdminRoleInfo']"><i class="layui-icon">&#xe642;</i></span>
+                <span title="删除" @click.stop="removeProduct(item.id)" v-if="userRights['deleteAdminRoleInfo']"><i class="layui-icon">&#xe640;</i></span>
+              </li>
+              <li class="productWidth">{{item.name}}</li>
+            </ul>
+          </div>
+          <!-- 商品列表结束 -->
+        </div>
+        <div v-else style="text-align:center;margin:50px 0;">
+          暂无数据
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 商品管理结束 -->
+  <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中...</div>
+</div>
+<div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中...</div>
+<script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+<script type="text/javascript" src="../../common/layui/layui.all.js"></script>
+<script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../common/zTree/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<!-- <script type="text/javascript" src="../../js/product.js"></script> -->
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      current: 0,
+      productNav: [{
+        index: 0,
+        title: '权限组'
+      }],
+      loading: true,
+      setProduct: false,
+      productForm: {
+        selectUser: '11',
+        searchContent: '',
+        fromDate: new Date() - 3600 * 1000 * 24 * 10,
+        toDate: new Date().getTime(),
+      },
+      users: [],
+      classifyId: '',
+      brandTreeShow: false,
+      selectedCity: 0,
+      selectedProductStatus: 0,
+      selectedExamine: 0,
+      productListLength: 1,
+      productLists: [],
+      productLists2:[],
+      selectedAll: false,
+      selectedProduct: true,
+      userRights:{},
+      // 分页
+      pagecount: 10,
+      pagenum: 1,
+      total: 0,
+      // 新增管理
+      editTrue: false,
+      addForm: {
+        addNewName: '',
+        userPwd: '',
+        authorityGroup: '',
+        groups: []
+
+      }
+    },
+    created: function () {
+      var _this = this;
+      // 获取本地权限
+      _this.userRights = getPows();
+    },
+    mounted: function () {
+      commonScript.appShowhide('app');
+      this.getInfo(0);
+    },
+    methods: {
+      // 页面初始加载数据
+      getInfo: function (index) {
+        var _this = this;
+        _this.current = index;
+        _this.loading = true;
+        // 获取角色信息
+        var admin = function (data) {
+          try {
+            switch (data.httpCode) {
+              case 200 :
+                  _this.loading = false;
+                if (data.result) {
+                  var result = data.result;
+                  _this.users = result;
+                }else {
+                  _this.users = [];
+                }
+                break;
+              default :
+                _this.$message.error({message: data.msg});
+            }
+          } catch (e) {
+            console.error("REQUEST ERROR ", e);
+          }
+        };
+        commonScript.doGet('/adminRolePurview/queryAdminRoleInfo', '', admin);
+
+      },
+
+      // 页面数据加载结束
+      // 单条数据选中
+      selectOrder: function (item, lists) {
+        var _this = this;
+        if (item.active === undefined || !item.active) {
+          _this.$set(item, 'active', true);
+        }else {
+          _this.$set(item, 'active', false);
+        }
+      },
+
+      // 新增用户权限结束
+      addPower: function () {
+        window.location.href = "addJurisdiction.html";
+
+      },
+      // 编辑用户权限结束
+      editDetail: function (item) {
+        window.location.href = "addJurisdiction.html?item="+item.id+'&name='+item.name;
+      },
+      // 删除角色
+      removeProduct: function (id) {
+        var _this = this;
+        _this.$confirm('你确定要删除吗?', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          var res = function(data){
+            try {
+              switch (data.httpCode) {
+                case 200 :
+                  _this.$message.success({ message: '删除成功！' })
+                  _this.getInfo(_this.current);
+                  break;
+                default :
+                  _this.$message.error({message: data.msg});
+              }
+            } catch (e) {
+              console.log("REQUEST ERROR ", e);
+            }
+          };
+          commonScript.doGet('/adminRolePurview/deleteAdminRoleInfo/'+ id, '', res);
+        }).catch((err) => {
+        });
+
+      },
+      // 删除单条数据结束
+
+      // 分页器
+      //每页显示多少条
+      handleSizeChange: function (val) {
+        this.pagecount = val;
+        this.getInfo(this.current);
+      },
+      //当前页及跳转到第几页
+      handleCurrentChange: function (val) {
+        this.pagenum = val;
+        this.getInfo(this.current);
+      }
+
+    }
+
+  })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+.content,body{background:#fff;height:100%}
+.recharge2-content-top{margin-top:2rem;padding:.6rem}
+.recharge2-content-top .pay_top{border-bottom:1px solid #E8E8E8;padding-bottom:1.5rem}
+.recharge2-content-top .pay_top img{width:4.5rem;height:4.5rem;margin-top:2rem}
+.recharge2-content-top .pay_top .title{margin:.5rem 0;font-weight:600;font-size:1rem}
+.recharge2-content-top .pay_top .title_pay{font-size:.6rem}
+.recharge2-content-top .pay_top .title_pay span{color:#f6402a;margin-left:.2rem}
+.recharge2-content-top .pay_top .title_pay span em{font-size:.8rem;font-weight:600}
+
+.recharge2-content-top .pay-head{font-size:.7rem;border-bottom:1px solid #E8E8E8;padding: .7rem 0;}
+.recharge2-content-top .pay-head .title{
+    width:20%;display: inline-block}
+
+.module-new{
+    margin-top: 2.5rem;
+    font-size:.8rem;
+}
+.module-new .btn_home{
+    background: #9ccd3c;
+    height:2rem;
+    line-height: 2rem;
+    width:94%;
+    margin:0 auto;
+    color: #fff;
+    border-radius: 20px;
+}
+.module-new .btn_order{
+    background: #fff;
+    height:2rem;
+    line-height: 2rem;
+    width:94%;
+    margin:1rem auto 0;
+    color: #9ccd3c;
+    border: 1px solid #9ccd3c;
+    border-radius: 20px;
+}

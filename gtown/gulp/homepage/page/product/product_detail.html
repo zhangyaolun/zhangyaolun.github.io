@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/swiper-4.1.6.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css?v=1"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_products_detail.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/productsDetail.css"/>
+</head>
+
+<body>
+<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../../lib/js/qrcode.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/tz_fly.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../lib/js/weui.js"></script>
+<script type="text/javascript" src="../../lib/js/iscroll.js"></script>
+<script src="../../lib/js/swiper.js" type="text/javascript" charset="utf-8"></script>
+
+<div class="content" id="list" v-cloak>
+
+    <!--详情头部-->
+    <header id="header_r" :class="[searchBarFixed?'posf header header':'transparent header headers']" v-if="!shopLowerFalg">
+        <div class="header-wrap-new" :class="[headerTabShow? 'show' : 'hide']">
+            <div class="header-l">
+                <a href="javascript:history.go(-1)"> <i class="back back3"></i> </a>
+            </div>
+            <div class="headers_img" @click="codeclick" v-if="!miaoshaShow">
+                <img src="../../images/back7.png" alt="" class="kefu_logo" >
+            </div>
+        </div>
+        <div class="header-wrap" :class="[!headerTabShow?'show':'hide']">
+            <div class="header-l"><a href="javascript:history.go(-1)"> <i class="back back2"></i> </a></div>
+            <ul class="header-nav">
+                <li :class="[header_navFalg==0?'cur':'']" @click="header_navFalg=0"><a href="#">商品</a><span></span></li>
+                <li :class="[header_navFalg==1?'cur':'']" @click="header_navFalg=1"><a href="#goods-detail-bottom" id="goodsBody">详情</a><span></span></li>
+                <li :class="[header_navFalg==2?'cur':'']" @click="header_navFalg=2" v-if="detailList.afterSale"><a href="#goods_sale">售后</a><span></span></li>
+            </ul>
+            <div class="headers_img kefu_logo_div" @click="codeclick" v-if="!miaoshaShow">
+                <img src="../../images/back7.png" alt="" class="kefu_logo">
+            </div>
+        </div>
+    </header>
+
+    <header id="header" class="header" v-if="shopLowerFalg">
+        <div class="header-wrap">
+            <div class="header-l">
+                <a href="javascript:history.go(-1)"> <i class="back back2"></i> </a>
+            </div>
+            <div class="header-title">
+                <h1 class="whiteSpace">商品详情'</h1>
+            </div>
+            <div class="kefu_logo_div" @click="codeclick">
+                <img src="../../images/back7.png" alt="" class="kefu_logo">
+            </div>
+        </div>
+    </header>
+
+    <div v-if="!shopLowerFalg">
+        <!--轮播图-->
+        <div class="swiper goods-detail-top">
+            <div class="swiper-container swiper-top-container swiper-container-new swiper-container-horizontal swiper-container-android goods-detail-pic">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="item in swiperList"><img :src="item"></div>
+                </div>
+                <div class="swiper-pagination" style="bottom: 0;"></div>
+            </div>
+        </div>
+
+        <div id="product_detail_html" style="position: relative; z-index: 1;">
+            <div class="goods-detail-cnt">
+                <!--秒杀显示-->
+                <div class="goods-detail-price sale-pri clearfix" v-show="miaoshaShow">
+                    <div class="left">
+                        <div class="activityPrice"><em>{{detailList.activityPrice | priceTofixed}}</em>元</div>
+                        <div class="originPrice">市场价：￥{{detailList.originalPrice | priceTofixeds}}</div>
+                    </div>
+                    <div class="right">
+                        <span>距离结束</span>
+                        <div class="time fnTimeCountDown" :data-end="miaosha_end_time">
+                        <span>
+                            <span class="day">00</span><strong></strong>
+                            <span class="hour">00</span><strong>:</strong>
+                            <span class="mini">00</span><strong>:</strong>
+                            <span class="sec">00</span><strong></strong>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="goods-detail-price" v-show="!miaoshaShow">
+                    <div class="price"><span>{{detailList.price | priceTofixed}}</span>元</div>
+                    <div class="originPrice">市场价：￥{{detailList.originPrice | priceTofixeds}}</div>
+                </div>
+                <div class="goods-detail-name" v-if="miaoshaShow">
+                    <div class="whiteSpace2">{{detailList.productInfo.name}}</div>
+                </div>
+                <div class="goods-detail-name" v-if="!miaoshaShow">
+                    <div class="whiteSpace2" >{{detailList.name}}</div>
+                </div>
+
+
+                <div class="goods-detail-items hide">
+                    <div class="itme-name" @click="MapCityClick">
+                        <span class="inline">送至</span>
+                        <img src="../../images/location@2x.png" alt="" class="map_img inline">
+                        <div class="area_name_map inline whiteSpace">{{area_name}}</div>
+                    </div>
+                    <div class="itme-name">
+                        <span class="inline">运费</span>
+                        <div class="area_name_map inline">免运费</div>
+                    </div>
+                    <div class="itme-name">
+                        <span class="inline">库存</span>
+                        <div class="area_name_map inline">{{detailList.stock | common_stock}}</div>
+                    </div>
+                </div>
+
+                <div class="goods-detail-items hide" @click="buyBtn(1,2)">
+                    <div class="itme-name">
+                        <span class="inline">已选</span>
+                        <div class="area_name_map inline whiteSpace">{{skuCombinationDescription}}</div>
+                        <i></i>
+                    </div>
+                </div>
+
+                <div class="goods-detail-items">
+                    <div class="itme-name">
+                        <span class="inline">{{sellerName}}</span>
+                    </div>
+                </div>
+
+                <div class="goods-detail-bottom bgf mt5" id="goods-detail-bottom" v-if="detailList.context" v-html="detailList.context"></div>
+                <div class="bgf mt5 pdb5" id="goods_sale" v-if="detailList.afterSale" v-html="detailList.afterSale">
+                    <!--<div class="goods_sale_top mt5">
+                        <div class="salec">厂家服务</div>
+                        <div class="sale_title">本产品全国联保，享受三包服务，质保期为：三个月质保</div>
+                    </div>
+                    <div class="goods_sale_top mt10">
+                        <div class="salec">泰康承诺</div>
+                        <div class="sale_title">京东平台卖家销售并发货的商品，由平台卖家提供发票和相应的售后服务。请您放心购买！</div>
+                        <div class="sale_title">注：因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与商城图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本商城没有及时更新，请大家谅解！ </div>
+                    </div>
+                    <div class="goods_sale_top mt10">
+                        <div class="salec">正品行货</div>
+                        <div class="sale_title">京东商城向您保证所售商品均为正品行货，京东自营商品开具机打发票或电子发票。 </div>
+                    </div>-->
+                </div>
+
+                <div class="goods-detail-foot block bgf clearfix">
+                    <div class="otreh-handle">
+                        <a href="../home/home.html" style="width:32% !important;" class="to_index"><i></i>
+                            <p>首页</p>
+                        </a>
+
+                        <a href="javascript:void(0);" style="width:32% !important;"
+                           :class="[favorateFalg?'collect pd-collect favorate':'collect pd-collect']"
+                           @click="favorateFun"><i></i>
+                            <p>收藏</p>
+                        </a>
+
+                        <a href="../shop/shopCar.html" class="cart" style="width:35% !important;"><i></i>
+                            <p>购物车</p><span id="cart_count" v-show="shopCarFalg"><sup>{{shopCarNum}}</sup></span></a>
+                    </div>
+                    <div class="buy-handle buy-handles bgf">
+                        <a href="javascript:void(0);" class="animation-up add-cart" @click="detailSpec=false">预订</a>
+                        <a href="javascript:void(0);" @click="codeclickf">分享</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mem_setUp" v-if="shopLowerFalg">
+        <div class="nctouch-norecord shopLower">
+            <div class="norecord-ico"><i></i></div>
+            <dl>
+                <dt>您查看的商品已下架</dt>
+                <dd>非常抱歉，看看其他的宝贝~</dd>
+            </dl>
+            <a href="../home/home.html" class="btn">随便逛逛</a>
+        </div>
+    </div>
+
+    <!--弹框-->
+    <div id="product_detail_spec_html" class="nctouch-bottom-mask" :class="[detailSpec?'hide down':'show up']" @touchmove.prevent>
+        <div class="nctouch-bottom-mask-bg" @click="detailClose"></div>
+        <div class="nctouch-bottom-mask-block">
+            <div class="nctouch-bottom-mask-top goods-options-info">
+                <div class="goods-pic">
+                    <img :src="shopData.img" id="Fly_images" v-if="detailList">
+                </div>
+                <div class="main">
+                    <div class="goods-price"><em>{{shopData.price | priceTofixed}}</em>元</div>
+                    <span class="whiteSpace2 name" v-if="shopData.name">{{shopData.name}}</span>
+                </div>
+                <a href="javascript:void(0);" class="nctouch-bottom-mask-close" @click="detailClose">X</a>
+            </div>
+            <div class="nctouch-bottom-mask-rolling" id="product_roll">
+                <div class="goods-options-stock" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);" >
+                    <dl class="spec JS-goods-specs clear" v-if="detailList.spuList" v-for="(spuList,p) in detailList.spuList" v-show="!miaoshaShow">
+                        <dt>{{spuList.titile}}</dt>
+                        <dd class="left" v-if="detailList.spuList[p].spuAttrList" v-for="(spuAttr,a) in detailList.spuList[p].spuAttrList">
+                            <a href="javascript:void(0);" :class="[spuAttr.defaults?'current':'']" @click="spuAttrClick(a,p)">{{spuAttr.description}}</a>
+                        </dd>
+                    </dl>
+                    <dl class="spec JS-goods-specs clear" v-show="miaoshaShow">
+                        <dt>已选</dt>
+                        <dd class="left" v-if="detailList.productInfo">
+                            <a href="javascript:void(0);" class="current">{{detailList.productInfo.skuName}}</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="goods-option-value clearfix">数量
+                <div class="value-box" v-show="!miaoshafictitiousType">
+                        <span class="minus" @click="reduceChang()">
+                            <a href="javascript:void(0);" >&nbsp;</a>
+                        </span>
+                    <span>
+                            <input type="number" min="1" class="buy-num buynum" v-model="datas.count" @input="inputChange" @blur="inputblur()">
+                        </span>
+                    <span class="add" @click="plusChang()">
+                            <a href="javascript:void(0);">&nbsp;</a>
+                        </span>
+                </div>
+                <div class="value-box value-boxs" v-show="miaoshafictitiousType">
+                    <span>1</span>
+                </div>
+            </div>
+            <div class="goods-option-foot">
+                <!--<div class="only-two-handle buy-handle">-->
+                    <!--<a href="javascript:void(0);" class="add-cart wp100" :class="[subFalg?'':'add-cartNo']" @click="addCart">确定</a>-->
+                   <!---->
+                <!--</div>-->
+                <div class="new_handle bgf clear">
+                    <a href="javascript:void(0);" class="left add-cart" :class="[stockFalg2?'':'add-cartNo']" @click="buyBtn(1)">加入购物车</a>
+                    <a href="javascript:void(0);" :class="[stockFalg?'right':'right add-cartNo']" @click="buyBtn(2)">立即购买</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--数据请求加载提示-->
+    <div class="pre-loading" v-show="preLoading"></div>
+
+    <div id="screen" v-if="codeBarFixed"></div>
+    <div id="qrcode_div" v-if="codeBarFixedc">
+        <div id="close_qr" style="padding-right: 41px;" >
+            <img src="../../images/btn_close.png" width="30" @click="btnClose">
+        </div>
+        <div id="code_img"><img :src="qrcodeImg" style="width: 100%;height: 100%;padding: 3%;box-sizing: border-box;"></div>
+
+    </div>
+    <div id="areaSelected"></div>
+
+    <div id="sellDiv" v-show="codeBarFixedf">
+        <div id="close_salesbutton" style="padding-right: 41px;">
+            <img src="../../images/btn_close.png" width="30" @click="btnClose">
+        </div>
+        <div id="sales_confirm" style="max-height: 606px;">
+            <div class="sellcontent">
+                <div class="sell_content_row1">
+                    <p class="sellp2 sellp3">操作提示</p>
+                    <p class="sellp2 zicol2" style="padding-bottom: .5rem;">您的分享能够帮助到那些需要帮助到人哦！</p>
+            </div>
+            </div>
+            <div class="dlg_commit_left dlg_commit_left2 fuzhilianjie">
+                <p style="border-right: 1px solid #fff;" @click="codeclickff()">分享</p>
+            </div>
+            <div class="dlg_commit_left dlg_commit_left2 erweima">
+                <p @click="codeclick()">二维码</p>
+            </div>
+        </div>
+    </div>
+    <div class="helper" style="height: 100%;display: block;" v-if="codeBarFixedj" @click="btnClose">
+        <div class="forward" @click="btnClose"></div>
+    </div>
+
+
+
+
+</div>
+
+
+<script src="../../comment/js/comment_html.js?v=4" type="text/javascript" charset="utf-8"></script>
+<script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/product/product_detail.js?v=3" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

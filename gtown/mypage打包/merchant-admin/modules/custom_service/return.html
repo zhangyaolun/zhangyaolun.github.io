@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自建商城</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="../../static/css/layui.css" rel="stylesheet" media="all" />
+    <link href="../../css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/custom_service/index.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/custom_service/return.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<header id="header">
+    <app-header curr="5"></app-header>
+</header>
+<aside id="content" v-cloak>
+    <col-nav curr="1" :nav="navData"></col-nav>
+
+    <div class="content_body">
+        <span class="layui-breadcrumb" lay-separator="-">
+             <a href="../index.html">首页</a>
+             <a href="./index.html">售后服务</a>
+             <a><cite>退货管理</cite></a>
+        </span>
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">退货管理</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show clearfix">
+                    <form class="layui-form" v-bind:style="{ textAlign : 'right' }" v-show="!detail">
+
+                        <div class="layui-input-inline" v-bind:style="{ textAlign : 'left' }">
+                            <select lay-filter="statu">
+                                <option value="">请选择状态</option>
+                                <option value="1">等待卖家审核</option>
+                                <option value="2">卖家审核通过</option>
+                                <option value="3">等待平台审核</option>
+                                <option value="4">退款/货完成</option>
+                                <option value="5">卖家审核未通过</option>
+                            </select>
+                        </div>
+
+                        <div class="layui-input-inline" v-bind:style="{ width : '150px' }">
+                            <input type="text" id="begin" placeholder="开始时间" autocomplete="off" class="layui-input" />
+                        </div>
+                        <div class="layui-input-inline" v-bind:style="{ width : '150px' }">
+                            <input type="text" id="end" placeholder="结束时间" autocomplete="off" class="layui-input" />
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="text" v-model="params.equalFields.orderId" placeholder="订单编号" autocomplete="off" class="layui-input" />
+                        </div>
+                        <button type="button" class="layui-btn" @click="search"><i class="layui-icon">&#xe615;</i>搜索</button>
+                        <button type="button" class="layui-btn" @click="search" :style="{ marginLeft : 0 }"><i class="layui-icon">&#x1002;</i></button>
+
+                    </form>
+
+                    <div v-show="!detail" :class="{ 'filter' : loading }">
+                        <div>
+                            <table class="layui-table" v-if="list.length > 0">
+                                <thead>
+                                    <tr>
+                                        <th>商品/订单号/退款号</th>
+                                        <th>退款金额</th>
+                                        <th>买家会员名</th>
+                                        <th>申请时间</th>
+                                        <th>处理状态</th>
+                                        <th>操作  </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="l in list">
+                                        <td>
+                                            <img :style="{ width : '20%' }" :src="l.orderRefundProductDto.productLogo" />
+                                            <div :style="{ float : 'right' , width : '78%' , overflow : 'hidden' }">
+                                                <a href="javascript:void(0)">{{ l.orderRefundProductDto.productName }}</a>
+                                                <p>订单编号:{{ l.orderId }}</p>
+                                                <p>退款编号:{{ l.refundNumber  }}</p>
+                                            </div>
+
+                                        </td>
+                                        <td>￥{{ l.applyRefundRmb  }}</td>
+                                        <td>{{ l.username  }}</td>
+                                        <td>{{ l.applyRefundTime  }}	</td>
+                                        <td v-if="l.sellerAgreeStatus == 1" >等待卖家审核</td>
+                                        <td v-if="l.sellerAgreeStatus == 2" >卖家审核通过</td>
+                                        <td v-if="l.sellerAgreeStatus == 3" >等待平台审核</td>
+                                        <td v-if="l.sellerAgreeStatus == 4" >退货/款完成</td>
+                                        <td v-if="l.sellerAgreeStatus == 5" >卖家审核未通过</td>
+                                        <td v-if="l.sellerAgreeStatus == 6" >平台审核未通过</td>
+                                        <td>
+                                            <button class="layui-btn layui-btn-normal layui-btn-xs" @click="goodStatus( l )">
+                                                <i class="layui-icon cursor" title="查看">&#xe63c;</i>查看
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="paging" class="right"></div>
+                        </div>
+
+                        <!-- error -->
+                        <app-error v-if="list && list.length == 0 && !loading"></app-error>
+                        <!-- loading -->
+                        <app-loading v-if="loading"></app-loading>
+
+                    </div>
+
+
+                    <!-- 查看详情 -->
+                    <div class="detail clearfix" v-show="detail">
+                        <div class="left steps" :style="{ width : '100%' }">
+                            <h3>退货服务</h3>
+                            <hr class="layui-bg-gray" />
+                            <ul class="step-line">
+                                <li :class="{ 'active' : currOrder.sellerAgreeStatus >= 1 }">
+                                    <b><i class="layui-icon layui-icon-ok">&#xe605;</i></b>
+                                    <strong>买家申请退款</strong>
+                                </li>
+                                <li :class="{ 'active' : currOrder.sellerAgreeStatus == 2 || currOrder.sellerAgreeStatus == 5 }">
+                                    <b><i class="layui-icon layui-icon-ok">&#xe605;</i></b>
+                                    <strong>商家处理退款申请</strong>
+                                </li>
+                                <li :class="{ 'active' : currOrder.sellerAgreeStatus !=2 || currOrder.sellerAgreeStatus !=5 }" v-if="currOrder.sellerAgreeStatus == 1">
+                                    <b><i class="layui-icon layui-icon-ok">&#xe605;</i></b>
+                                    <strong>买家退货给商家</strong>
+                                </li>
+                                <li :class="{ 'active' : currOrder.sellerAgreeStatus == 3 }" :style="{ width : '10px' }">
+                                    <b><i class="layui-icon layui-icon-ok">&#xe605;</i></b>
+                                    <strong>确认收款，平台审核</strong>
+                                </li>
+                            </ul>
+                            <h3>买家退货申请</h3>
+                            <hr class="layui-bg-gray" />
+                            <table class="layui-table">
+                                <tbody>
+                                <tr>
+                                    <td>退货编号：</td>
+                                    <td>{{ currOrder.refundNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <td>申请人（买家）：</td>
+                                    <td>{{ currOrder.username  }}</td>
+                                </tr>
+                                <tr>
+                                    <td>退货原因：</td>
+                                    <td>{{ currOrder.refundReason  }}</td>
+                                </tr>
+                                <tr>
+                                    <td>退货金额：</td>
+                                    <td>￥{{ currOrder.applyRefundRmb  }}</td>
+                                </tr>
+                                <tr>
+                                    <td>退货奖励金金额：</td>
+                                    <td>￥{{ currOrder.applyRewardRmb  }}</td>
+                                </tr>
+                                <tr>
+                                    <td>退货数量：</td>
+                                    <td>{{ currOrder.count }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img :style="{ width : '100px' }" :src="currOrder.orderRefundProductDto.productLogo" />
+                                    </td>
+                                    <td>
+                                        <p>{{ currOrder.orderRefundProductDto.productName  }}</p>
+                                        <p>￥{{ ( currOrder.orderRefundProductDto.price / 100 ).toFixed(2) }}</p>
+                                        <p>{{ currOrder.orderRefundProductDto.count }}</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr class="layui-bg-gray" />
+                            <h3>处理结果</h3>
+                            <table class="layui-table" lay-skin="nob">
+                                <tbody v-if="currOrder.sellerAgreeStatus == 2 || currOrder.sellerAgreeStatus == 5">
+                                    <tr>
+                                        <td>处理状态：</td>
+                                        <td v-if="currOrder.sellerAgreeStatus == 2">卖家已同意</td>
+                                        <td v-if="currOrder.sellerAgreeStatus == 5">卖家不同意</td>
+                                    </tr>
+                                    <tr>
+                                        <td>商家备注：</td>
+                                        <td>{{ currOrder.sellerDeal }}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody v-if="currOrder.sellerAgreeStatus == 1">
+                                    <tr>
+                                        <td>处理：</td>
+                                        <td>
+                                            <textarea v-model="currOrder.sellerDeal" cols="30" rows="10" :style="{ 'resize' : 'none' }">
+
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--<h3>确认收货</h3>-->
+                            <!--<div :style="{ 'padding-left' : '10%' , marginTop : '20px' }"><button class="layui-btn layui-btn-sm" type="button">已收到货</button></div>-->
+                            <div :style="{ 'text-align' : 'center' }" v-if="currOrder.sellerAgreeStatus == 1">
+                                <button class="layui-btn layui-btn-sm" type="button" @click="refundGood( 2 )">同意</button>
+                                <button class="layui-btn layui-btn-sm" type="button" @click="refundGood( 5 )">不同意</button>
+                            </div>
+                        </div>
+
+
+
+                        <!--<div class="right info" v-bind:style="{ width : '30%' }">-->
+                            <!--<h3>相关商品交易信息：</h3>-->
+                            <!--<table class="layui-table" lay-skin="nob">-->
+                                <!--<tbody>-->
+                                    <!--<tr>-->
+                                        <!--<td>收货人：</td>-->
+                                        <!--<td>测试</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>收货地址：</td>-->
+                                        <!--<td>上海 杨浦区 中盛广场9</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>联系电话：</td>-->
+                                        <!--<td>18621685371</td>-->
+                                    <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                            <!--<hr class="layui-bg-gray" />-->
+                            <!--<table class="layui-table" lay-skin="nob">-->
+                                <!--<tbody>-->
+                                    <!--<tr>-->
+                                        <!--<td>订单编号：</td>-->
+                                        <!--<td><a href="javascript:void(0)"> DD-10011-6-102-20180403161541-0001</a></td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>付款单号：</td>-->
+                                        <!--<td> U20180403041541879</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>付款方式：</td>-->
+                                        <!--<td>在线支付</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>下单时间：</td>-->
+                                        <!--<td>2018-04-03 16:15:41</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>付款时间：</td>-->
+                                        <!--<td>2018-04-03 16:18:23</td>-->
+                                    <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                            <!--<hr class="layui-bg-gray" />-->
+                            <!--<table class="layui-table" lay-skin="nob">-->
+                                <!--<tbody>-->
+                                    <!--<tr>-->
+                                        <!--<td>订单总额：</td>-->
+                                        <!--<td>￥199.00</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>退款金额：</td>-->
+                                        <!--<td>￥199.00</td>-->
+                                    <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</aside>
+</body>
+<script src="../../static/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/vue.js" type="text/javascript"></script>
+<script src="../../js/request.js" type="text/javascript"></script>
+<script src="../../js/component/components.js" type="text/javascript"></script>
+<script src="../../js/common.js" type="text/javascript"></script>
+<script src="../../js/custom_service/return.js" type="text/javascript"></script>
+</html>

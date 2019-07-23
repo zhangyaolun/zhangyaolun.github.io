@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/zTree/zTreeStyle.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app" class="hide">
+    <!-- 商品管理 -->
+    <div class="wrapper page">
+      <div class="fixed-bar">
+        <div class="item-title">
+          <div class="subject">
+            <h3>积分管理</h3>
+            <h5>商城会员积分管理及获取日志</h5>
+          </div>
+          <ul class="tab-base nc-row">
+            <li v-for="(nav,index) in productNav" :key="nav.index" @click="getInfo(index,initialData)">
+              <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div v-show="current == 0">
+        <!-- 搜索条件 -->
+        <div class="mod-search cf" id="report-search">
+          <div class="l" id="filter-menu">
+            <el-form method="post" id="dump-setting-form" name="settingForm" :model="productForm" ref="productForm">
+              <ul class="ul-inline fix">
+                <li>
+                  <el-form-item label="" prop="selectedMember">
+                    <select class="select" name="city" lay-verify="required" v-model='productForm.selectedMember'>
+                      <option value="0">会员id</option>
+                      <option value="1">会员名称</option>
+                    </select>
+                  </el-form-item>
+                </li>
+                <li>
+                  <el-form-item label="" prop="productName">
+                    <span id="user"></span>
+                    <input type="text" id="common_name" name="common_name" class="ui-input ui-input-ph" placeholder="请输入相关数据..." autocomplete="off"
+                      v-model="productForm.productName" key="productName-input">
+                  </el-form-item>
+                </li>
+                <li><a class="ui-btn" id="search" @click="searchProduct(current)">查询<i class="layui-icon">&#xe615;</i></a></li>
+              </ul>
+            </el-form>
+          </div>
+          <div class="fr">
+            <a class="ui-btn" id="audit" @click="refresh(current)">刷新<i class="el-icon-refresh"></i></a>
+            <a class="ui-btn" id="reaudit" style="display:none">用户消费报表导出 <i class="layui-icon">&#xe61e;</i></a>
+          </div>
+        </div>
+        <!-- 搜索条件结束 -->
+
+        <!-- 表格数据渲染 -->
+        <div class="cf">
+          <div class="grid-wrap">
+            <div class="productManger" v-if='productLists.length > 0'>
+              <!-- 表头 -->
+              <div class="produtHead classifyHead">
+                <ul>
+                  <li class="listHandle">操作</li>
+                  <li>积分id</li>
+                  <li>会员id</li>
+                  <li class="productWidth">会员名称</li>
+                  <li>积分</li>
+                  <li class="productWidth">操作时间</li>
+                  <li class="productWidth">操作描述</li>
+                  <li class="productWidth">管理员名称</li>
+                </ul>
+              </div>
+              <!-- 表头结束 -->
+              <!-- 商品列表 -->
+              <div class="pruductList classifyList">
+                <ul v-for="(item,index) in productLists" :class="{'active':item.active}" @click="selectOrder(item,productLists)">
+                  <li class="listHandle">--
+                    <!-- <span class=" ui-icon-pencil" title="审核" @click="examineUser(item.userId)"><i class="layui-icon">&#xe615;</i></span> -->
+                  </li>
+                  <li>{{item.scoreIdView }}</li>
+                  <li>{{item.userIdView  }}</li>
+                  <li class="productWidth">{{item.userName }}</li>
+                  <li>{{item.changePoints }}</li>
+                  <li class="productWidth">{{item.operationTime  }}</li>
+                  <li class="productWidth">{{item.operationDescription }}</li>
+                  <li class="productWidth">{{item.administratorName  }}</li>
+                </ul>
+              </div>
+              <!-- 商品列表结束 -->
+            </div>
+            <div v-else style="text-align:center;margin:50px 0;">
+              暂无数据
+            </div>
+          </div>
+        </div>
+        <!-- 表格数据渲染结束 -->
+        <!-- 分页 -->
+        <div class="pagination" v-show="total>0">
+          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-sizes="[10, 20, 30, 40]"
+            :page-size="pagecount" layout=" prev, pager, next,sizes" :total="total">
+          </el-pagination>
+        </div>
+        <!-- 分页器结束 -->
+      </div>
+      <!-- 规则设置 -->
+      <div v-show="current == 1&&userRights['queryMemberScoreSettingsInfo']">
+        <!-- <form method="post" enctype="multipart/form-data" id="points-setting-form" name="form" class="nice-validator n-yellow" novalidate="novalidate"> -->
+        <el-form :rules="setRules" :model="setRuleForm" ref="setRuleForm" label-width="30%">
+          <div class="ncap-form-default memberForm">
+            <div class="title">
+              <h3>会员日常获取经验值设定</h3>
+            </div>
+            <el-form-item label="会员注册" prop="userRegister">
+              <el-input placeholder="" v-model="setRuleForm.userRegister"></el-input>
+            </el-form-item>
+            <el-form-item label="会员每天登陆" prop="userLogin">
+              <el-input placeholder="" v-model="setRuleForm.userLogin"></el-input>
+            </el-form-item>
+            <el-form-item label="订单商品评论" prop="ordereValuate">
+              <el-input placeholder="" v-model="setRuleForm.ordereValuate"></el-input>
+            </el-form-item>
+            <div class="title">
+              <h3>会员购物并付款时经验值获取设定</h3>
+            </div>
+            <el-form-item label="消费额与赠送经验值比例" prop="userRecharge">
+              <el-input placeholder="" v-model="setRuleForm.userRecharge"></el-input>
+              <span class="tips">例:设置为10，表明消费10单位货币赠送1经验值</span>
+            </el-form-item>
+            <el-form-item label="每订单最多赠送经验值" prop="userOrder">
+              <el-input placeholder="" v-model="setRuleForm.userOrder"></el-input>
+              <span class="tips">例:设置为100，表明每订单赠送经验值最多为100经验值</span>
+            </el-form-item>
+            <!--<div class="bot"> <a href="javascript:void(0);" class="ui-btn ui-btn-sp submit-btn" @click="submitRules('setRuleForm')">确认提交</a></div>-->
+            <div class="bot" v-if="userRights['updateMemberScoreSettingsInfo']"><el-button class="submit-btn" @click="submitRules('setRuleForm')" :disabled="btnDisabled">确认提交</el-button></div>
+          </div>
+        </el-form>
+      </div>
+      <!-- 规则设置结束 -->
+      <!-- 积分增减 -->
+      <div v-show="current == 2" class="mt10">
+        <el-form :rules="scoreRules" :model="scoreForm" ref="scoreForm" label-width="30%">
+          <div class="ncap-form-default memberForm">
+            <el-form-item label="会员名称" prop="userName">
+              <el-input placeholder="" v-model="scoreForm.userName"></el-input>
+            </el-form-item>
+            <el-form-item label="增减类型" prop="isAddType">
+              <el-select v-model="scoreForm.isAddType" placeholder="">
+                <el-option value="0" label="增加">增加</el-option>
+                <el-option value="1" label="减少">减少</el-option>
+              </el-select>
+              <!-- <el-input placeholder="" v-model="scoreForm.isAddType"></el-input> -->
+            </el-form-item>
+            <el-form-item label="积分值" prop="scoreValue">
+              <el-input placeholder="" v-model="scoreForm.scoreValue"></el-input>
+            </el-form-item>
+            <el-form-item label="描述" prop="describe">
+              <el-input class="salename" type="textarea" placeholder="" :rows="3" v-model="scoreForm.describe"></el-input>
+            </el-form-item>
+            <div class="bot" v-if="userRights['updateMemberScoreSettingsInfo']"><el-button class="submit-btn" @click="submitScore('scoreForm')" :disabled="scoreBtnDisabled">确认提交</el-button></div>
+
+            <!--<div class="bot"> <a href="javascript:void(0);" class="ui-btn ui-btn-sp submit-btn" @click="submitScore('scoreForm')">确认提交</a></div>-->
+          </div>
+        </el-form>
+      </div>
+      <!-- 积分增减结束 -->
+    </div>
+
+    <!-- 商品管理结束 -->
+    <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+  </div>
+  <div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+  <script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+  <script type="text/javascript" src="../../common/layui/layui.js"></script>
+  <script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="../../common/zTree/jquery.ztree.core.js"></script>
+  <script type="text/javascript" src="../../common/js/common.js"></script>
+  <script type="text/javascript" src="../../js/member/memberScore.js"></script>
+</body>
+
+</html>

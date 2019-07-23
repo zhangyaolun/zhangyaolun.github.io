@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/zTree/zTreeStyle.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+
+<body>
+<div id="app" class="hide">
+  <!-- 商品管理 -->
+  <div class="wrapper page">
+    <div class="fixed-bar">
+      <div class="item-title">
+        <div class="subject">
+          <h3>快递公司</h3>
+          <h5>提供给商家可选择的物流快递公司</h5>
+        </div>
+        <ul class="tab-base nc-row">
+          <li v-for="(nav,index) in productNav" :key="nav.index" >
+            <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 搜索条件 -->
+    <div class="mod-search cf" id="report-search">
+      <div class="fr">
+        <a class="ui-btn" id="audit" @click="getInfo(0)">刷新<i class="el-icon-refresh"></i></a>
+      </div>
+    </div>
+    <!-- 搜索条件结束 -->
+
+    <!-- 表格数据渲染 -->
+    <div class="cf">
+      <div class="grid-wrap">
+        <div class="productManger" v-if='productLists.length > 0'>
+          <!-- 表头 -->
+          <div class="produtHead classifyHead">
+            <ul>
+              <li>操作</li>
+              <li class="shopWidth">快递公司</li>
+              <li>描述</li>
+              <li>状态</li>
+              <li>常用</li>
+            </ul>
+          </div>
+          <!-- 表头结束 -->
+          <!-- 商品列表 -->
+          <div class="pruductList classifyList">
+            <ul v-for="(item,index) in productLists" :class="{'active':item.active}" @click="selectOrder(item,productLists)">
+              <li>
+                <span class=" ui-icon-pencil" title="商品详情" @click.stop="showDetail(item)"><i class="layui-icon">&#xe642;</i></span>
+              </li>
+              <li class="shopWidth">{{item.name}}</li>
+              <li>{{item.description}}</li>
+              <li>{{item.state?'是':'否'}}</li>
+              <li>{{item.iscommon?'是':'否'}}</li>
+            </ul>
+          </div>
+          <!-- 商品列表结束 -->
+        </div>
+        <div v-else style="text-align:center;margin:50px 0;">
+          暂无数据
+        </div>
+      </div>
+    </div>
+    <!-- 表格数据渲染结束 -->
+    <!-- 分页 -->
+    <div class="pagination" v-show="total>0">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="1" :page-sizes="[10, 20, 30, 40]"
+                     :page-size="pagecount" layout=" prev, pager, next, jumper" :total="total">
+      </el-pagination>
+    </div>
+    <!-- 分页器结束 -->
+  </div>
+  <!-- 商品管理结束 -->
+
+  <div id="add"  style="display:none;">
+    <el-form method="post" id="dump-add-form" name="addForm" :model="addForm" ref="addForm" label-width="30%" class="editAdd mt20">
+      <div class="ncap-form-default">
+        <el-form-item label="物流公司">
+          <span>{{addForm.name}}</span>
+        </el-form-item>
+        <el-form-item label="物流描述">
+          <span>{{addForm.description}}</span>
+        </el-form-item>
+        <el-form-item label="状态" prop="status">
+          <dl class="">
+            <dd class="opt">
+              <div class="onoff">
+                <input id="IMStatus1"  value="1" type="radio" v-model="addForm.status">
+                <label title="开启" class="cb-enable " for="IMStatus1" :class="{'selected':addForm.status==1}">开启</label>
+                <input id="IMStatus0"  value="0" type="radio" v-model="addForm.status">
+                <label title="关闭" class="cb-disable " for="IMStatus0" :class="{'selected':addForm.status==0}">关闭</label>
+              </div>
+              <p class="notic"></p>
+            </dd>
+          </dl>
+        </el-form-item>
+        <el-form-item label="常用" prop="isUse">
+          <dl class="">
+            <dd class="opt">
+              <div class="onoff">
+                <input id="isUse1"  value="1" type="radio" v-model="addForm.isUse">
+                <label title="开启" class="cb-enable " for="isUse1" :class="{'selected':addForm.isUse==1}">开启</label>
+                <input id="isUse0"  value="0" type="radio" v-model="addForm.isUse">
+                <label title="关闭" class="cb-disable " for="isUse0" :class="{'selected':addForm.isUse==0}">关闭</label>
+              </div>
+              <p class="notic"></p>
+            </dd>
+          </dl>
+        </el-form-item>
+      </div>
+    </el-form>
+  </div>
+  <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+</div>
+<div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+<script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+<script type="text/javascript" src="../../common/layui/layui.all.js"></script>
+<script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../common/zTree/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      current: 0,
+      productNav: [{
+        index: 0,
+        title: '快递公司'
+      }],
+      loading: true,
+      productLists: [ ],
+      addForm:{
+        name:'',
+        description:'',
+        status:'1',
+        isUse:'1'
+      },
+      // 分页
+      pagecount: 10,
+      pagenum: 1,
+      total: 0,
+    },
+    mounted: function () {
+      // FastClick.attach(document.body);
+      commonScript.appShowhide('app');
+      this.getInfo(0);
+    },
+    methods: {
+      // 页面初始加载数据
+      getInfo: function (index) {
+        var _this = this;
+        _this.current = index;
+        _this.loading = true;
+        var res = function (data) {
+          _this.loading = false;
+          if(data.result){
+            var result = data.result.list;
+            if(result){
+              _this.productLists = result;
+
+            }else{
+              _this.productLists = [];
+
+            }
+            _this.total = data.result.total;
+          }
+        };
+        commonScript.getExpress(1,10000,res);
+      },
+      // 编辑快递公司
+      addClassify: function (title,id) {
+        var _this = this;
+        var layer = layui.layer;
+        layer.open({
+          title: title
+          , content: layui.jquery("#add")
+          , btn: ['确定', '取消']
+          , area: ['757px', '525px']
+          , type: 1
+          ,scrollbar: false
+          , yes: function () {
+            _this.addNewCalssigy(id);
+            layer.closeAll();
+          }
+          ,btn2: function(index, layero){
+            //按钮【取消】的回调
+            _this.$refs.addForm.resetFields();
+          }
+          ,cancel: function(){
+            //右上角关闭回调
+            _this.$refs.addForm.resetFields();
+          }
+        });
+      },
+      // 确定 新增 编辑 规格
+      addNewCalssigy:function(id){
+        var _this = this;
+        var data = {
+          "id": id,
+          "iscommon": _this.addForm.isUse * 1 ,
+          "state": _this.addForm.status * 1,
+          // "iscommon": true ,
+          // "state": true,
+        };
+          // 编辑 快递公司
+          var add = function (data) {
+            _this.getInfo(_this.current);
+          };
+          commonScript.doPost('/settingsInfo/updateExpressInfo',data,add);
+
+
+        _this.$refs.addForm.resetFields(); //点击确认后清空表单
+
+
+      },
+      // 编辑快递公司
+      showDetail:function(item){
+        var _this = this;
+        _this.addForm.name = item.name;
+        _this.addForm.description = item.description;
+        _this.addForm.status= item.state?'1':'0';
+        _this.addForm.isUse = item.iscommon?'1':'0';
+        _this.addClassify('编辑快递公司状态',item.id);
+      },
+
+      // 新增规格结束
+      // 单条数据选中
+      selectOrder: function (item,lists) {
+        var _this = this;
+        if(item.active===undefined||!item.active){
+          _this.$set(item, 'active', true);
+        }
+        commonScript.selected(item,lists);
+      },
+      // 分页器
+      //每页显示多少条
+      handleSizeChange: function (val) {
+        this.pagecount = val;
+        this.getInfo();
+      },
+      //当前页及跳转到第几页
+      handleCurrentChange: function (val) {
+        this.pagenum = val;
+        this.getInfo();
+      }
+
+    }
+
+  })
+</script>
+</body>
+
+</html>

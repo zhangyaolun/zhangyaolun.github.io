@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../../lib/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/usercenter.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/cropper.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/userCen.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_common.css" />
+</head>
+
+<body>
+    <script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../../lib/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../../lib/js/weui.js"></script>
+    <script type="text/javascript" src="../../lib/js/cropper.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../lib/js/iscroll.js"></script>
+    <script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <div class="content" id="app" v-cloak>
+        <!--头部搜索-->
+        <header id="header" class="fixed header"></header>
+
+        <div class="wrapper ">
+            <div class="clearfix">
+                <!--头像上传-->
+                <div class="aright">
+                    <div class="modal-backdrop fade in hide"></div>
+                    <div class="member_infor_content">
+
+                        <input type="hidden" name="form_submit" value="ok">
+                        <div class="ncm-default-form">
+                            <dl>
+                                <dt>头像预览：</dt>
+                                <dd>
+                                    <div class="user-avatar">
+
+                                        <div class="container" id="crop-avatar" style="margin-left: 0;">
+                                            <!-- Current avatar -->
+                                            <div class="avatar-view">
+                                                <img :src="queryData.logo" alt="头像" :id="queryData.id" class="upLogo">
+                                            </div>
+
+                                            <!-- Cropping modal -->
+                                            <div class="modal in" id="avatar-modal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <form class="avatar-form" action="/userSetting/upload" enctype="multipart/form-data" method="post" >
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close">×</button>
+                                                                <h4 class="modal-title" id="avatar-modal-label">修改头像</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="avatar-body">
+
+                                                                    <!-- Upload image and data -->
+                                                                    <div class="avatar-upload">
+                                                                        <input type="hidden" class="avatarData"  name="avatarData">
+                                                                        <label for="avatarInput">上传</label>
+                                                                        <input type="file" class="avatar-input" id="avatarInput" name="file" accept="image/jpeg,image/png,image/jpg,image/JPG,image/PNG,image/JPEG">
+                                                                    </div>
+
+                                                                    <!-- Crop and preview -->
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="avatar-wrapper"></div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row avatar-btns">
+                                                                        <div class="col-md-3">
+                                                                            <button type="submit" class="btn btn-primary btn-block avatar-save">上传</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.modal -->
+                                        </div>
+
+                                    </div>
+                                    <p class="hint mt5">完善个人信息资料，上传头像图片有助于您结识更多的朋友。<br><span style="color:orange;">头像默认尺寸为120x120像素，请根据系统操作提示进行裁剪并生效。</span>
+                                    </p>
+                                </dd>
+                            </dl>
+
+                            <dl class="bottom">
+                                <dd class="submit-border">
+                                    <div class="submit bbc_btns avatar_logo"  @click="itemImages">保存修改</div>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!--</form>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--数据请求加载提示-->
+        <div class="pre-loading" v-show="preLoading" style="top: 1.95rem;"></div>
+
+        <div id="areaSelected" @touchmove.prevent></div>
+    </div>
+    <script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../../lib/js/userMain.js" charset="utf-8"></script>
+    <script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/member/usercenter.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>泰康积分商城商家管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="../../static/css/layui.css" rel="stylesheet" media="all" />
+    <link href="../../static/zTreeStyle/zTreeStyle.css" type="text/css" rel="stylesheet" />
+    <link href="../../css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/goods/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<header id="header">
+    <app-header curr="1"></app-header>
+</header>
+<aside id="content" v-cloak>
+    <col-nav curr="1" :nav="navData"></col-nav>
+
+    <div class="content_body">
+        <span class="layui-breadcrumb" lay-separator="-">
+            <a href="../index.html">首页</a>
+            <a href="./index.html">商品</a>
+            <a><cite>仓库中的商品</cite></a>
+        </span>
+        <div class="layui-form" style="text-align: right;">
+
+            <div class="layui-input-inline" style="width: 20%; display: inline-block;">
+                <input type="text" placeholder="货号" v-model="sellerNo" autocomplete="off" class="layui-input" />
+            </div>
+            <div class="layui-input-inline" style="width: 20%; display: inline-block;">
+                <input type="text" name="title" v-model="name" placeholder="请输入商品" autocomplete="off" class="layui-input">
+
+            </div>
+            <button class="layui-btn" @click="search"><i class="layui-icon">&#xe615;</i>搜索</button>
+            <button class="layui-btn" @click="refresh"><i class="layui-icon">&#x1002;</i></button>
+            <a href="./publish.html" target="_blank"><button class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i>发布商品</button></a>
+        </div>
+        <div class="layui-tab layui-tab-card" lay-filter="tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="1">已下架的商品</li>
+                <li lay-id="6">待上架商品</li>
+                <li lay-id="2">上架未通过审核</li>
+                <li lay-id="3">上架审核中</li>
+                <!--<li lay-id="8">外部导入待上架商品</li>-->
+                <!--<li lay-id="3">等待审核的商品</li>-->
+                <!--<li lay-id="2">未通过审核的商品</li>-->
+                <!--<li lay-id="6">待发布的商品</li>-->
+                <!--<li lay-id="7">违规的商品</li>-->
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div :class="{ 'filter' : loading }">
+
+                        <div v-show="list.length > 0">
+                            <table class="layui-table" lay-skin="nob">
+                                <thead :style="{ borderBottom : '2px solid #fff' }">
+                                    <tr>
+                                        <th><label><input type="checkbox" class="first" @change="getAllGoods($event)" />商品名称</label></th>
+                                        <th>价格</th>
+                                        <th>库存</th>
+                                        <th>发布时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-for="item in list">
+                                    <tr :style="{ background : '#f2f2f2' }" class="goodsTr">
+                                        <th colspan="5"><input type="checkbox" :value="item.id" @change="check( $event )" />商品编号：{{ item.number }}</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div :style="{ float : 'left' }">
+                                                <!--<i class="layui-icon plus" @click="showBig( $event )">{{ big ? '&#xe625;' : '&#xe623;' }}</i>-->
+                                                <img :src="item.mainPic" alt="商品主图" :style="{ width : '100px' , height : '100px' }" />
+                                            </div>
+
+                                            <p>{{ item.name  }}<br />
+                                                <span v-for="(c,i) in item.classPath">{{ c.name }}&nbsp;&nbsp;<b v-if="i != item.classPath.length - 1">&gt;</b>&nbsp;&nbsp;</span>
+                                            </p>
+                                            <!--<div class="big-img" :style="{ display : 'none' }">-->
+                                                <!--<div class="box">-->
+                                                    <!--<img :src="item.mainPic" />-->
+                                                    <!--<p v-if="item.productSpu.length > 0">颜色: 卡通</p>-->
+                                                    <!--<p>编号: {{ item.number }}</p>-->
+                                                    <!--<p>价格: ￥{{ String( item.price ).tsToMoney() }}</p>-->
+                                                    <!--<p>库存: {{ item.stock }}</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </td>
+                                        <td>￥{{ String( item.price ).tsToMoney() }}</td>
+                                        <td>{{ item.stock  }}</td>
+                                        <td>{{ item.createTime  }}</td>
+                                        <td>
+                                            <a v-if="params.approvalType != 3 || params.approvalType == 1" :href="'./index.html?edit=1&id='+item.id">
+                                                <button class="layui-btn layui-btn-normal layui-btn-xs bottom">
+                                                    <i class="layui-icon cursor" title="编辑">&#xe642;</i>编辑
+                                                </button>
+                                            </a><br />
+                                            <button v-if="params.approvalType != 3 || params.approvalType == 1" class="layui-btn layui-btn-danger layui-btn-xs" @click="delGood( item )">
+                                                <i class="layui-icon cursor" title="删除">&#xe640;</i>删除
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="botm">
+                                <span class="layui-breadcrumb" lay-separator="|" v-if="params.approvalType != 3 || params.approvalType == 1">
+                                      <a href="javascript:void(0)"><input type="checkbox" class="last" @change="getAllGoods( $event )" />全选</a>
+                                      <a v-if="params.approvalType != 3" href="javascript:void(0)" @click="delGood( null )"><i class="layui-icon">&#xe640;</i>删除</a>
+                                      <a href="javascript:void(0)" @click="goodsUpLine"><i class="layui-icon">&#xe609;</i>上架</a>
+                                </span>
+
+                                <div id="paging"></div>
+
+                            </div>
+                        </div>
+                        <!-- error -->
+                        <app-error v-if="list && list.length == 0 && !loading"></app-error>
+                        <!-- loading -->
+                        <app-loading v-if="loading"></app-loading>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="zTree" v-show="false"></div>
+
+</aside>
+</body>
+<script src="../../static/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="../../static/jquery.ztree.core.min.js" type="text/javascript"></script>
+<script src="../../static/vue.js" type="text/javascript"></script>
+<script src="../../static/Extend.js" type="text/javascript"></script>
+<script src="../../js/request.js" type="text/javascript"></script>
+<script src="../../js/component/components.js" type="text/javascript"></script>
+<script src="../../js/common.js" type="text/javascript"></script>
+<script src="../../js/goods/storehouse.js" type="text/javascript"></script>
+</html>
+

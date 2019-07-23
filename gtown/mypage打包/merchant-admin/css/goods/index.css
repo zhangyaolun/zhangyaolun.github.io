@@ -1,0 +1,19 @@
+aside{ overflow: hidden; width: 90%; margin: 20px auto 0; }
+
+.layui-table tbody p{ line-height: 18px; color: #666; float: left; font-size: 12px; margin: 20px 0 0 5px; max-width: 300px; overflow: hidden; text-overflow: ellipsis;}
+.layui-table tbody p span{ color: #999; }
+
+.big-img{ clear: both; width: 200px; margin-top: 10px; margin-left: 16px; padding: 1%; }
+.big-img .box{ width:100%; height: auto; text-align: center; padding: 5px; border:1px solid #ccc; overflow: hidden; }
+.big-img .box p{ margin: 5px 0; float: inherit; line-height: 14px; max-width: 100%;}
+.big-img .box img{ display: block; width: 50%; margin: 0 auto; max-width: 100%; }
+
+.botm{ border-top:1px solid #ccc; border-bottom:1px solid #ccc; height: 60px; line-height: 60px; padding: 0 1%; }
+.botm .check-all{ float: left; margin: 24px 1px 0 0; }
+#paging{ float: right; }
+.layui-laypage{ margin: 0; }
+
+
+
+
+

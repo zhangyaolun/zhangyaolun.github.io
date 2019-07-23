@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>泰康积分商城商家管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="../static/css/layui.css" media="all" />
+    <link href="../css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<header id="header">
+    <app-header curr="0"></app-header>
+</header>
+<aside id="content" v-cloak>
+    <div class="top">
+        <!--<div class="top-left">-->
+            <!--<img :src="shopData.shopLogo" />-->
+            <!--<p class="config"><a target="_blank" href="./shop/index.html">编辑店铺设置</a> </p>-->
+        <!--</div>-->
+        <div class="top-right">
+            <h2>{{ userInfo.shopName }}
+                <!--<small>用户名 ： {{ shopData.sellerUsername }}</small>-->
+                <p>店铺类型：普通</p>
+                <p>最后登录：{{ new Date( userInfo.loginTime ).format("yyyy-MM-dd hh:mm:ss") }}</p>
+                <!--<p style="margin-right: 0;">ip地址：192.168.1.12</p>-->
+            </h2>
+            <!--<p>店铺等级：{{ shopData.shopLevelData.name }}</p>-->
+
+        </div>
+    </div>
+    <div class="detail">
+        <div class="detail-left">
+        <blockquote class="layui-elem-quote">销售情况统计</blockquote>
+        <small>按周期统计商家店铺的订单量和订单金额</small>
+
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>销量</th>
+                    <th>订单量</th>
+                    <th>订单金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>今日销量</td>
+                    <td>{{ homeData.todaySales  }}</td>
+                    <td>￥{{ String( ( homeData.todaySalesAmount / 100 ).toFixed(2) ).tsToMoney() }}</td>
+                </tr>
+                <tr>
+                    <td>周销量</td>
+                    <td>{{ homeData.weekSales  }}</td>
+                    <td>￥{{ String( ( homeData.weekSalesAmount / 100 ).toFixed(2).tsToMoney() ) }}</td>
+                </tr>
+                <tr>
+                    <td>月销量</td>
+                    <td>{{ homeData.monthSales }}</td>
+                    <td>￥{{ String( ( homeData.monthSalesAmount / 100 ).toFixed(2) ).tsToMoney() }}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <!--<div class="detail-left">-->
+            <!--<blockquote class="layui-elem-quote">店铺及商品提示</blockquote>-->
+            <!--<small>您需要关注的店铺信息以及待处理事项</small>-->
+            <!--<p class="tip">店铺商品发布情况： 1746 / {{ shopData.shopLevelData.templateCount }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图片空间使用： 11137 / {{ shopData.shopLevelData.pictureCount }}</p>-->
+
+            <!--<div class="basic">-->
+                <!--<a href="./goods/index.html" class="layui-btn layui-btn-primary">出售中的商品<span class="layui-badge">{{ homeData.sellProduct || 0 }}</span></a>-->
+                <!--<a href="./goods/storehouse.html?t=3" class="layui-btn layui-btn-primary">待审核商品<span class="layui-badge">{{ homeData.toExamineProduct || 0 }}</span></a>-->
+                <!--<a href="./goods/storehouse.html" class="layui-btn layui-btn-primary">仓库中的商品<span class="layui-badge">{{ homeData.warehouseProduct || 0 }}</span></a>-->
+                <!--<a href="./goods/storehouse.html?t=7" class="layui-btn layui-btn-primary">违规下架商品<span class="layui-badge">{{ homeData.irregularitiesProduct || 0 }}</span></a>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="detail-right">
+            <blockquote class="layui-elem-quote">交易提示</blockquote>
+            <small>您需要立即处理的交易订单</small>
+            <p class="tip">近期售出： 交易中的订单</p>
+            <div class="basic">
+                <!--<a href="./logistics/index.html?t=1" class="layui-btn layui-btn-primary">待付款订单<span class="layui-badge">{{ homeData.waitPayOrders || 0 }}</span></a>-->
+                <a href="./logistics/index.html?page=index" class="layui-btn layui-btn-primary">待发货订单<span class="layui-badge">{{ homeData.waitDeliverOrders || 0 }}</span></a>
+                <!--<a href="./custom_service/index.html" class="layui-btn layui-btn-primary">退款订单<span class="layui-badge">{{ homeData.refundOrders || 0 }}</span></a>-->
+                <!--<a href="./custom_service/return.html" class="layui-btn layui-btn-primary">退货订单<span class="layui-badge">{{ homeData.returnGoodsOrders || 0 }}</span></a>-->
+            </div>
+        </div>
+        <!--<hr />-->
+
+
+        <!--<div class="detail-right">-->
+            <!--<blockquote class="layui-elem-quote">单品销售排名</blockquote>-->
+            <!--<small>掌握30日内最热销的商品及时补充货源</small>-->
+            <!--<table class="layui-table">-->
+                <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>排名</th>-->
+                        <!--<th>商品信息</th>-->
+                        <!--<th>销量</th>-->
+                    <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody v-if="homeData.salesRankings && homeData.salesRankings.length">-->
+                    <!--<tr v-for="(item,index) in homeData.salesRankings">-->
+                        <!--<td>{{ index + 1 }}</td>-->
+                        <!--<td><a href="javascript:void(0)">{{ item.product_name }}</a></td>-->
+                        <!--<td>{{ item.count }}</td>-->
+                    <!--</tr>-->
+                <!--</tbody>-->
+                <!--<tbody v-if="homeData.salesRankings && !homeData.salesRankings.length">-->
+                <!--<tr>-->
+                    <!--<td colspan="3" align="center">(ノω<。)ノ))☆.。你瞅啥~~~</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+    <hr />
+    <p :style="{ textAlign : 'center' , fontSize : '12px' , color : '#999' }">一条不屈不挠的分割线</p>
+    </div>
+</aside>
+
+
+</body>
+<script src="../static/layui.all.js" charset="utf-8"></script>
+<script src="../static/vue.js" type="text/javascript"></script>
+<script src="../static/Extend.js" type="text/javascript"></script>
+<script src="../js/request.js" type="text/javascript"></script>
+<script src="../js/component/components.js" type="text/javascript"></script>
+<script src="../js/common.js" type="text/javascript"></script>
+<script src="../js/index.js" type="text/javascript"></script>
+</html>

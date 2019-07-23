@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta name="screen-orientation" content="portrait" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../lib/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/nctouch_products_detail.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/seckill_list.css" />
+		<link rel="stylesheet" type="text/css" href="../../lib/css/weui.css"/>
+	</head>
+
+	<body>
+		<script src="../../lib/js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/js/weui.js"></script>
+		<script src="../../lib/js/fastclick.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<div class="content" id="list" v-cloak>
+
+			<header id="header" class="favheader header fixed"></header>
+
+			<div class="wrapper newslist-wrapper" style="margin-top:2rem;" v-if="!divFalg">
+				<div class="new-skill-wrap" id="allmiaosha_showlist">
+
+					<div class="topfixed" id="topfixed">
+						<div style="position: relative;">
+							<ul class="week_tap_list">
+								<li class="week_alltop " :class="[seckill_index == 0?'week_cur':'']" @click="week_change_list(0)">抢购中<span></span></li>
+								<li class="week_alltop " :class="[seckill_index == 1?'week_cur':'']" @click="week_change_list(1)">即将开场<span></span></li>
+							</ul>
+						</div>
+					</div>
+
+					<div id="seckill-body1" class="allmiao seckill_0" :class="[seckill_index == 0?'show':'hide']" style=" background: url(http://img.g-town.com.cn/shop/data/upload/media/plantform/00020e8a6780294db329d41fd9770968/image/20180317/1521273518363601.jpg ); background-repeat: repeat;background-size: 100%;">
+
+						<div class="list-head" :class="[Seckillfalg?'show':'hide']">
+							<div class="time clearfix">
+								<span class="static-txt-end left" >距离活动结束仅剩</span>
+								<div class="timeText fnTimeCountDown clearfix " :data-end="SeckillList.endTimeStamp">
+									<em class="day">00</em>
+									<span class="time-separator">天</span>
+									<em class="hour">00</em>
+									<span class="time-separator">时</span>
+									<em class="mini">00</em>
+									<span class="time-separator">分</span>
+									<em class="sec">00</em>
+									<span class="time-separator">秒</span>
+								</div>
+							</div>
+						</div>
+						<div class="skill-hot" v-if="Seckillfalg">
+							<ul class="good-list bdr-b seckilling bgf">
+								<li class="bdr-bom" v-for="item in SeckillList.rule">
+									<a href="javascript:void (0);" @click="product_click(item.id,item.sale_count)">
+										<!--:href="'../product/product_detail.html?spikeProductId='+item.id+'&time='+SeckillList.beginTimeStamp+'|'+SeckillList.endTimeStamp" -->
+										<div class="skill-pic">
+											<div class="img">
+												<img :src="item.productInfo.mainPic" />
+												<!--:src="item.productInfo.mainPic" -->
+											</div>
+										</div>
+										<div class="skill-right">
+											<p class="g-title whiteSpace">{{item.productInfo.name}}</p>
+											<p class="g-title g_description whiteSpace">{{item.productInfo.description}}</p>
+											<div class="skill_bot_box clearfix">
+												<div class="skill_price_box">
+													<div class="f-s-12 activityPrice">秒杀价:&nbsp;<span>{{item.activityPrice | price}}</span></div>
+													<div class="f-s-12 originalPrice">
+														<span>市场价:&nbsp;{{item.originalPrice | originalprice}}</em></span>
+													</div>
+												</div>
+												<div class="skill_price_boxx">
+													<div class="skill_boxx_btn">去抢购</div>
+													<div class="g-jindu">
+														<div class="sale-count">剩余：<em>{{item.sale_count}}</em>件</div>
+														<div class="kill-progress">
+															<div class="skill-pro-bg" :style="'width:'+ item.pro_bg +'%;'"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div style="width:100%;" v-if="SeckillList.length==0">
+							<div class="nctouch-norecord seckill">
+								<div class="norecord-ico"><i></i></div>
+								<dl>
+									<dt>更多优惠 敬请期待</dt>
+									<dd>一大波好礼正在赶来的路上，耐心等待哦</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div id="seckill-body" class="allmiao seckill_1" :class="[seckill_index == 1?'show':'hide']">
+
+						<div style="width:100%;" v-if="!soonSeckillList.id">
+							<div class="nctouch-norecord seckill">
+								<div class="norecord-ico"><i></i></div>
+								<dl>
+									<dt>更多优惠 敬请期待</dt>
+									<dd>一大波好礼正在赶来的路上，耐心等待哦</dd>
+								</dl>
+							</div>
+						</div>
+						<div v-show="soonSeckillList.id" class="clearfix">
+							<div class="list-head clearfix" :class="[soonSecfalg?'show':'hide']">
+								<div class="time">
+									<div class="right timesoonSecki">{{soonSeckillList.beginTimeStamp | time}}</div>
+
+									<span class="static-txt-end right">活动开始时间：</span>
+								</div>
+
+							</div>
+							<div class="skill-hot" v-if="soonSecfalg">
+								<ul class="good-list bdr-b seckilling bgf">
+									<li class="bdr-bom" v-for="item in soonSeckillList.rule">
+										<a href="javascript:void(0);">
+											<div class="skill-pic">
+												<div class="img">
+													<img :src="item.productInfo.mainPic"/>
+													<!--:src="item.productInfo.mainPic"src="../../images/1@2x.png"  -->
+												</div>
+											</div>
+											<div class="skill-right">
+												<p class="g-title whiteSpace">{{item.productInfo.name}}</p>
+												<p class="g-title g_description whiteSpace">{{item.productInfo.description}}</p>
+												<div class="skill_bot_box clearfix">
+													<div class="skill_price_box">
+														<div class="f-s-12 activityPrice">秒杀价:&nbsp;<span>{{item.activityPrice | price}}</span></div>
+														<div class="f-s-12 originalPrice">
+															<span>市场价:&nbsp;{{item.originalPrice | originalprice}}</em></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="width:100%;" v-if="divFalg">
+				<div class="nctouch-norecord seckill">
+					<div class="norecord-ico"><i></i></div>
+					<dl>
+						<dt>更多优惠 敬请期待</dt>
+						<dd>一大波好礼正在赶来的路上，耐心等待哦</dd>
+					</dl>
+				</div>
+			</div>
+
+            <div class="pre-loading" v-show="preLoading"></div>
+
+			<div class="weui-preToast" v-show="preToast">
+				<div class="weui-toast"></div>
+			</div>
+		</div>
+
+		<script src="../../comment/js/comment_html.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../comment/js/getData.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/home/seckill_list.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

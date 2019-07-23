@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">  
+  <link rel="stylesheet" type="text/css" href="../../common/zTree/zTreeStyle.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app" class="hide">
+    <!-- 商品管理 -->
+    <div class="wrapper page">
+      <div class="fixed-bar">
+        <div class="item-title">
+          <div class="subject">
+            <h3>规格管理</h3>
+            <h5>商品规格的管理可用于商品类型设置</h5>
+          </div>
+          <ul class="tab-base nc-row">
+            <li v-for="(nav,index) in productNav" :key="nav.index" >
+              <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 搜索条件 -->
+      <div class="mod-search cf" id="report-search">        
+        <div class="fr">
+          <a class="ui-btn" id="addNew" @click="addClassify('新增规格')" v-if="userRights['insertSpecificationInfo']">新增一级规格<i class="layui-icon">&#xe654;</i></a>
+          <a class="ui-btn" id="audit" @click="getInfo(0)">刷新<i class="el-icon-refresh"></i></a>
+        </div>
+      </div>
+      <!-- 搜索条件结束 -->
+
+      <!-- 表格数据渲染 -->
+      <div class="cf">
+        <div class="grid-wrap">
+          <div class="productManger" v-if='productLists.length > 0'>
+            <!-- 表头 -->
+            <div class="produtHead classifyHead">
+              <ul>
+                <li>操作</li>
+                <li class="productWidth">ID</li>
+                <li class="productWidth">规格名称</li>
+                <li>排序</li>
+                <li>上级规格</li>
+              </ul>
+            </div>
+            <!-- 表头结束 -->
+            <!-- 商品列表 -->
+            <div class="pruductList classifyList">
+              <div v-for="(item,index) in productLists" style="width: 100%" >
+              <ul :class="{'active':item.active}" @click="selectOrder(item,productLists)">
+                <li>
+                  <span class=" ui-icon-pencil" title="修改" @click.stop="showDetail(item)" v-if="userRights['updateSpecificationInfo']"><i class="layui-icon">&#xe642;</i></span>
+                  <span class=" ui-icon-trash" title="删除" @click.stop="removeProduct(item.id)" v-if="userRights['deleteSpecificationInfo']"><i class="layui-icon">&#xe640;</i></span>
+                   <span class=" ui-icon-add" title="新增" @click.stop="addClassify('新增规格',item.id,item.name)" v-if="userRights['insertSpecificationInfo']"><i class="layui-icon">&#xe654;</i></span>
+                </li>
+                <li class="productWidth">{{item.idView}}</li>
+                <li class="productWidth Arrow">
+                  <i class="el-icon-caret-right" v-show="!item.showSpec" @click.stop="specShow(item)"></i>
+                  <i class="el-icon-caret-bottom" v-show="item.showSpec" @click.stop="specShow(item)"></i>
+                  {{item.name}}</li>
+                <li>{{item.sorting}}</li>
+                <li></li>
+              </ul>
+                <div v-for="(level2,index) in item.children" v-show="item.showSpec" style="width: 100%"  >
+                  <ul :class="{'active':level2.active}" @click="selectOrder(level2,item.children)">
+                    <li>
+                      <span class=" ui-icon-pencil" title="修改" @click.stop="showDetail(level2)" v-if="userRights['updateSpecificationInfo']"><i class="layui-icon">&#xe642;</i></span>
+                      <span class=" ui-icon-trash" title="删除" @click.stop="removeProduct(level2.id)" v-if="userRights['deleteSpecificationInfo']"><i class="layui-icon">&#xe640;</i></span>
+                    </li>
+                    <li class="productWidth">{{level2.idView}}</li>
+                    <li class="productWidth streetArrow" style="text-align: left">
+                      <i class="el-icon-star-on"></i>
+                      {{level2.name}}</li>
+                    <li>{{level2.sorting}}</li>
+                    <li>{{level2.pName}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- 商品列表结束 -->
+          </div>
+          <div v-else style="text-align:center;margin:50px 0;">
+            暂无数据
+          </div>
+        </div>
+      </div>
+      <!-- 表格数据渲染结束 -->
+      <!-- 分页 -->
+      <!--<div class="pagination" v-show="total>0">-->
+        <!--<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="1" :page-sizes="[10, 20, 30, 40]"-->
+          <!--:page-size="pagecount" layout=" prev, pager, next, jumper" :total="total">-->
+        <!--</el-pagination>-->
+      <!--</div>-->
+      <!-- 分页器结束 -->
+    </div>
+    <!-- 商品管理结束 -->
+
+    <!--新增规格-->
+    <div id="add"  style="display:none;">
+      <el-form method="post" id="dump-add-form" name="addForm" :model="addForm" :rules="rules" ref="addForm" label-width="30%" class="mt20">
+        <div class="ncap-form-default">
+          <el-form-item label="规格：" prop="addNewName">
+            <el-input placeholder="" v-model="addForm.addNewName" class="inputSlice"></el-input>
+          </el-form-item>
+          <el-form-item label="上级规格：" prop="parentSpec">
+          <el-input placeholder="" v-model="addForm.parentSpec" class="inputSlice" readonly="true"></el-input>
+        </el-form-item>
+          <el-form-item label="排序：" prop="userPwd">
+            <el-input placeholder="" v-model="addForm.userPwd" class="inputSlice"></el-input>
+          </el-form-item>
+        </div>
+      </el-form>
+    </div>
+
+    <!--新增规格结束-->
+    <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+  </div>
+  <div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中... </div>
+  <script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+	<script type="text/javascript" src="../../common/layui/layui.all.js"></script>  
+  <script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="../../common/zTree/jquery.ztree.core.js"></script>
+  <script type="text/javascript" src="../../common/js/common.js"></script>
+   <script type="text/javascript" src="../../js/product/productSpec.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>

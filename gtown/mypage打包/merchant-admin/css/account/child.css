@@ -1,0 +1,6 @@
+.layui-table tbody tr{ border-bottom: 1px solid #ddd; }
+.layui-table tbody tr td{ font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.layui-table tbody tr td i{ cursor: pointer; }
+
+.layui-form-label{ width: 110px; }
+.tip{ color: red; }

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>商品管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/zTree/zTreeStyle.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+  <script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+  <style>
+    .time{
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app" class="hide">
+  <!-- 商品管理 -->
+  <div class="wrapper page">
+    <div class="fixed-bar">
+      <div class="item-title">
+        <div class="subject">
+          <h3>广告位管理</h3>
+          <h5></h5>
+        </div>
+        <ul class="tab-base nc-row">
+          <li v-for="(nav,index) in productNav" :key="nav.index" >
+            <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 搜索条件 -->
+    <div class="mod-search cf" id="report-search">
+      <!--<div class="l" id="filter-menu">-->
+        <!--<el-form method="post" id="dump-setting-form" name="settingForm" :model="productForm" ref="productForm">-->
+          <!--<ul class="ul-inline fix">-->
+            <!--<li>-->
+              <!--<el-form-item label="" prop="selectedType">-->
+                <!--<select class="select" @change="selectType($event)">-->
+                    <!--<option value="20">请选择</option>-->
+                    <!--<option value="21">商品</option>-->
+                    <!--<option value="22">分类</option>-->
+                    <!--<option value="23">品牌</option>-->
+                <!--</select>-->
+              <!--</el-form-item>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<el-form-item label="" prop="brandName">-->
+                <!--<input type="text" id="brandName" name="common_name" class="ui-input ui-input-ph"-->
+                       <!--placeholder="请输入广告位名称" autocomplete="off"-->
+                       <!--v-model="selectParams.title">-->
+              <!--</el-form-item>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<el-form-item label="" prop="tag">-->
+                <!--<input type="text" id="tag" name="common_name" class="ui-input ui-input-ph"-->
+                       <!--placeholder="请输入标识" autocomplete="off"-->
+                       <!--v-model="selectParams.style">-->
+              <!--</el-form-item>-->
+            <!--</li>-->
+            <!--<li><a class="ui-btn" id="search" @click="searchProduct()">查询<i class="layui-icon">&#xe615;</i></a>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</el-form>-->
+      <!--</div>-->
+      <div class="fr">
+        <a class="ui-btn" id="addNew" @click="addClassify('新增广告位')" v-if="userRights['insertMobileAdvertisementInfo']">新增<i class="layui-icon">&#xe654;</i></a>
+        <!--<a  class="ui-btn" id="reaudit" @click="examineAds()">审核<i class="iconfont icon-btn04"></i></a>-->
+      </div>
+    </div>
+    <!-- 搜索条件结束 -->
+
+    <!-- 表格数据渲染 -->
+      <div class="cf">
+        <div class="grid-wrap">
+          <div class="productManger" v-if='productLists.length > 0'>
+            <!-- 表头 -->
+            <div class="produtHead classifyHead">
+              <ul>
+                <!--<li class="listCheckbox"><input type="checkbox" v-model="selectedAll" @click="selectedAllProduct"-->
+                                                <!--:selected="selectedAll"></li>-->
+                <!--<li class="productWidth">ID</li>-->
+                <li>操作</li>
+                <li class="productWidth">广告位名称</li>
+                <li>类型</li>
+                <li class="productWidth">生效时间</li>
+                <li class="productWidth">有效期限</li>
+                <li>状态</li>
+                <li class="productWidth">审核操作</li>
+              </ul>
+            </div>
+            <!-- 表头结束 -->
+            <!-- 商品列表 -->
+            <div class="pruductList classifyList">
+              <ul v-for="(item,index) in productLists" :class="{'active':item.active}"
+                  @click="selectOrder(item,productLists)">
+                <!--<li class="listCheckbox"><input type="checkbox" v-model="item.active" @click.stop="selectSignle(item)">-->
+                <!--</li>-->
+                <!--<li class="productWidth">{{item.id}}</li>-->
+                <li>
+                  <span class=" ui-icon-cart" title="修改" @click.stop="editCoupon(item)" v-if="userRights['updateMobileSpecialInfo']"><i class="layui-icon">&#xe642;</i></span>
+                  <span class=" ui-icon-trash" title="删除" @click.stop="removeProduct(item.id)" v-if="userRights['deleteMobileAdvertisementInfo']"><i class="layui-icon">&#xe640;</i></span>
+                </li>
+                <li class="productWidth">{{item.title}}</li>
+                <li>{{item.fastnewsCategory==21?"推荐分类":item.fastnewsCategory==22?"用户页活动":item.fastnewsCategory==23?"积分页活动":""}}</li>
+                <li class="productWidth">{{item.startTime }}</li>
+                <li class="productWidth">{{item.endTime}}</li>
+                <li>{{item.reviewStatus == 0?"新增":item.reviewStatus == 1?"已提交":item.reviewStatus == 2?"未通过":item.reviewStatus == 3?"通过":""}}</li>
+                <li class="productWidth">
+                  <!--<span class="btn-pass btn-normal isTrue" @click="getPass(item.id)" v-show="userRights['approvalMobileFastnewsInfo'] &&item.reviewStatus==0 " >审核</span>-->
+                  <span class="btn-pass btn-normal isTrue" @click="getPass(item.id)" v-show="item.reviewStatus==0 " >审核</span>
+                  <span class="btn-pass btn-normal isFalse redColor" @click="reject(item.id)" v-show="item.reviewStatus==0 " >拒绝</span>
+                  <!--<span class="btn-pass btn-normal isTrue" @click="showDetail(item)" v-if="userRights['updateMobileAdvertisementInfo']&&item.reviewStatus!=3 ">编辑</span>-->
+                  <!--<span class="Irregularities isFalse redColor" @click="removeProduct(item.id)" v-if="userRights['deleteMobileAdvertisementInfo']">删除</span>-->
+                </li>
+              </ul>
+            </div>
+            <!-- 商品列表结束 -->
+          </div>
+          <div v-else style="text-align:center;margin:50px 0;">
+            暂无数据
+          </div>
+        </div>
+      </div>
+
+    <!-- 表格数据渲染结束 -->
+    <!-- 分页 -->
+    <div class="pagination" v-show="total>0">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="1"
+                     :page-sizes="[10, 20, 30, 40]"
+                     :page-size="pagecount" layout=" prev, pager, next, sizes" :total="total">
+      </el-pagination>
+    </div>
+    <!-- 分页器结束 -->
+  </div>
+  <!-- 商品管理结束 -->
+  <!--新增广告位-->
+  <div id="add" style="display:none;">
+    <el-form method="post" name="addForm" :model="addForm" :rules="rules" ref="addForm" label-width="25%" class="mt20">
+      <div class="ncap-form-default">
+        <div v-if="editTrue">
+          <el-form-item label="类型：" prop="">
+            <span>{{editForm.adsType}}</span>
+          </el-form-item>
+          <el-form-item label="广告位名称：" class=""  prop="">
+            <span>{{editForm.addNewName}}</span>
+          </el-form-item>
+          <el-form-item label="排序：" class=""  prop="">
+            <span>{{editForm.sorting}}</span>
+          </el-form-item>
+          <el-form-item label="图片：" prop="">
+            <div class="img-container">
+              <img class="image" :src="editForm.categoryImg" alt=""
+                   style="display:block;max-width: 275px;max-height: 275px;">
+            </div>
+          </el-form-item>
+          <el-form-item label="有效期：" class="timeRange" style="width:80% !important;" prop="">
+            <span>{{editForm.fromDate}}</span>
+          </el-form-item>
+          <el-form-item label="" class="timeRange toDate" style="width:80% !important;" prop="">
+            <span v-show="editForm.fromDate!=''">至</span>
+            <span>{{editForm.toDate}}</span>
+          </el-form-item>
+          <el-form-item label="链接：" prop="" v-show="addForm.linkType=='1'">
+            <span>{{editForm.text}}</span>
+          </el-form-item>
+        </div>
+        <div v-else>
+        <el-form-item label="类型" prop="adsType">
+          <el-select v-model="addForm.adsType" placeholder="请选择">
+            <el-option v-for="type in addForm.adsTypes" :key="type.id" :label="type.name" :value="type.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="广告位名称" prop="addNewName">
+          <el-input placeholder="" v-model="addForm.addNewName"></el-input>
+        </el-form-item>
+        <el-form-item label="排序" prop="sorting">
+          <el-input placeholder="" v-model="addForm.sorting"></el-input>
+        </el-form-item>
+        <!--图片上传-->
+        <el-form-item label="图片:" prop="categoryImg">
+          <div class="img-container">
+            <img id="image" :src="addForm.categoryImg" alt="" style="display: block;max-width: 300px;max-height: 250px">
+            <label class="btn  btn-upload" for="inputImage" title="">
+              <input type="file" class="sr-only" id="inputImage" accept=".jpg,.jpeg,.png,.gif" @change="selectFile">
+              <span class="docs-tooltip">选择文件<i class="el-icon-upload2"></i> </span>
+            </label>
+          </div>
+        </el-form-item>
+
+        <el-form-item label="有效期" class="timeRange" style="width:80% !important;">
+          <div class="time" style="float:left;">
+            <el-form-item label="" prop="fromDate">
+              <el-date-picker :editable='false' v-model="addForm.fromDate" type="datetime"
+                              placeholder="选择日期时间"></el-date-picker>
+            </el-form-item>
+          </div>
+          <span style="float: left;margin:0 10px"> 至 </span>
+          <div class="time" style="float:left;">
+            <el-form-item label="" prop="toDate">
+              <el-date-picker :editable='false' v-model="addForm.toDate" type="datetime"
+                              placeholder="选择日期时间"></el-date-picker>
+            </el-form-item>
+          </div>
+          <div class="clearfix"></div>
+        </el-form-item>
+        <el-form-item label="" prop="linkType">
+          <el-select v-model="addForm.linkType" placeholder="请选择">
+            <el-option  label="链接" value="1"></el-option>
+              <el-option  label="内容" value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="URL" prop="url" v-show="addForm.linkType=='1'">
+          <el-input placeholder="" v-model="addForm.url"></el-input>
+        </el-form-item>
+        </div>
+        <div v-show="addForm.linkType=='2'">
+          <span style="display: block;width: 15%;float: left;text-align: right;padding-right: 12px;">内容</span>
+          <div id="editor" class="editor" style="width: 550px; height: 300px; float:left"></div>
+        </div>
+      </div>
+    </el-form>
+  </div>
+  <!--广告位结束-->
+  <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中...</div>
+</div>
+<div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中...</div>
+<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+<!--引入编辑器-->
+<script src="../../common/UEditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../common/UEditor/ueditor.all.js" type="text/javascript" charset="utf-8"> </script>
+<!--建议手动加载语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script src="../../common/UEditor/lang/zh-cn/zh-cn.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../../common/layui/layui.all.js"></script>
+<script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../common/zTree/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="../../common/js/getCategoryTree.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../js/mobile/advertising.js"></script>
+
+<script>
+  var ue = UE.getEditor('editor');
+</script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>店铺管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="../../common/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/bootstrap/css/bootstrap.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/global.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/css/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/product.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../css/productClassify.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../common/zTree/zTreeStyle.css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+  <style>
+    .el-form .el-form-item span.test{
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .el-form .el-form-item span.test:hover{
+      color:#ff0000;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app" class="hide">
+  <!-- 商品管理 -->
+  <div class="wrapper page">
+    <div class="fixed-bar">
+      <div class="item-title">
+        <div class="subject">
+          <h3>商家列表</h3>
+          <h5>管理商城店铺相关内容</h5>
+        </div>
+        <ul class="tab-base nc-row">
+          <li v-for="(nav,index) in productNav" :key="nav.index">
+            <a :class="{'current':current==index}"><span>{{nav.title}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 搜索条件 -->
+    <div class="mod-search cf" id="report-search">
+      <div class="l" id="filter-menu">
+        <el-form method="post" id="dump-setting-form" name="settingForm" :model="productForm" ref="productForm">
+          <ul class="ul-inline fix">
+            <li>
+              <el-form-item label="" prop="selectedMember">
+                <select class="select" name="city" lay-verify="required" v-model='productForm.selectedMember'>
+                  <option value="0">请选择</option>
+                  <option value="1">店主账号</option>
+                  <option value="2">店铺名称</option>
+                </select>
+              </el-form-item>
+            </li>
+            <li>
+              <el-form-item label="" prop="productName">
+                <span id="user"></span>
+                <input type="text" id="common_name" name="common_name" class="ui-input ui-input-ph"
+                       placeholder="请输入相关数据..." autocomplete="off"
+                       v-model="productForm.productName">
+              </el-form-item>
+            </li>
+            <li><a class="ui-btn" id="search" @click="searchDate(current)">查询<i class="layui-icon">&#xe615;</i></a></li>
+          </ul>
+        </el-form>
+      </div>
+      <div class="fr">
+        <a class="ui-btn" id="addNew" @click="addClassify('新增店铺')" v-if="userRights['saveShop']">新增店铺<i class="layui-icon">&#xe654;</i></a>
+        <a class="ui-btn" id="audit" @click="refresh(current)">刷新<i class="el-icon-refresh"></i></a>
+      </div>
+    </div>
+    <!-- 搜索条件结束 -->
+
+    <!-- 表格数据渲染 -->
+    <div class="cf">
+      <div class="grid-wrap">
+        <div class="productManger" v-if='productLists.length > 0'>
+          <!-- 表头 -->
+          <div class="produtHead classifyHead">
+            <ul>
+              <li>操作</li>
+              <li class="shopWidth">店主账号</li>
+              <li class="productWidth">店铺名称</li>
+              <li class="shopWidth">开店时间</li>
+              <li class="shopWidth">到期时间</li>
+              <li>当前状态</li>
+              <li>审核店铺</li>
+            </ul>
+          </div>
+          <!-- 表头结束 -->
+          <!-- 商品列表 -->
+          <div class="pruductList classifyList">
+            <ul v-for="(item,index) in productLists" :class="{'active':item.active}"
+                @click="selectOrder(item,productLists)">
+              <li>
+                <span class=" ui-icon-pencil" title="修改" v-show="current==0" @click.stop="showDetail(item)"  v-if="userRights['updateShop']"><i
+                  class="layui-icon">&#xe642;</i></span>
+              </li>
+              <li class="shopWidth">{{item.account}}</li>
+              <li class="productWidth">{{item.shopName}}</li>
+              <!--<li>{{item.shopLogo}}</li>-->
+              <!--<li>{{item.shopLevel}}</li>-->
+              <li class="shopWidth">{{item.createTime}}</li>
+              <li class="shopWidth">{{item.effectiveTime }}</li>
+              <li>{{item.status == 0?"新增":item.status == 1?"开店成功":"关店"}}</li>
+              <li>
+                <!--不为开店成功状态可以审核-->
+                <span class="btn-pass btn-normal isTrue" @click="passShop(item.id)" v-if="item.status==0&&userRights['checkShop']">审核</span>
+                <span class="btn-pass btn-normal isTrue redColor" @click="closeShop(item.id)" v-if="item.status==1&&userRights['checkShop']">禁用</span>
+              </li>
+            </ul>
+          </div>
+          <!-- 商品列表结束 -->
+        </div>
+        <div v-else style="text-align:center;margin:50px 0;">
+          暂无数据
+        </div>
+      </div>
+    </div>
+    <!-- 表格数据渲染结束 -->
+    <!-- 分页 -->
+    <div class="pagination" v-show="total>0">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage"
+                     :page-sizes="[10, 20, 30, 40]"
+                     :page-size="pagecount" layout=" prev, pager, next,sizes" :total="total">
+      </el-pagination>
+    </div>
+    <!-- 分页器结束 -->
+  </div>
+  <div id="add" style="display:none;">
+    <el-form method="post" id="dump-add-form" name="addForm" :model="addForm" ref="addForm" :rules="rules"
+             label-width="30%" class="mt20">
+        <el-form-item label="店主账号" prop="userName" v-if="!editTrue">
+          <el-input placeholder="" v-model="addForm.userName"></el-input>
+          <span class="tips">账号长度为6-16位，只能输入字母或数字。</span>
+          <span class="test" @click="checkAccount">检查帐号是否可用</span>
+        </el-form-item>
+      <el-form-item label="店主账号："  prop="userName" v-else>
+        <span>{{addForm.userName}}</span>
+      </el-form-item>
+        <el-form-item label="初始密码："  prop="userPsw">
+          <span>{{addForm.userPsw}}</span>
+        </el-form-item>
+        <el-form-item label="店铺名称" prop="shopName">
+          <el-input placeholder="" v-model="addForm.shopName"></el-input>
+        </el-form-item>
+        <el-form-item label="开店时间：" prop="openTime">
+          <span>{{addForm.openTime}}</span>
+        </el-form-item>
+        <el-form-item label="店铺描述" prop="shopDescribe">
+          <el-input placeholder="" v-model="addForm.shopDescribe"></el-input>
+        </el-form-item>
+        <el-form-item label="营业执照" prop="shopLicense">
+          <el-input placeholder="" v-model="addForm.shopLicense"></el-input>
+        </el-form-item>
+        <el-form-item label="ICP备案号" prop="shopICP">
+          <el-input placeholder="" v-model="addForm.shopICP"></el-input>
+        </el-form-item>
+        <el-form-item label="所在地址" prop="address">
+          <el-input placeholder="" v-model="addForm.address"></el-input>
+        </el-form-item>
+        <el-form-item label="店铺类型" prop="shopType">
+          <el-select class="select" name="city" v-model='addForm.shopType'>
+            <el-option value="1" label="普通">普通</el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="有效期至" prop="fromDate">
+          <el-date-picker :editable='false' v-model="addForm.fromDate" value-format="timestamp"
+                          type="datetime" placeholder="选择日期时间" :picker-options="pickerfromDate"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="电话" prop="phone">
+          <el-input placeholder="" v-model="addForm.phone"></el-input>
+        </el-form-item>
+        <el-form-item label="电子邮箱" prop="email">
+          <el-input placeholder="" v-model="addForm.email"></el-input>
+        </el-form-item>
+      <el-form-item label="状态" prop="status" v-if="editTrue">
+        <dl class="">
+          <dd class="opt">
+            <div class="onoff">
+              <input id="IMStatus1"  value="1" type="radio" v-model="addForm.status">
+              <label title="开启" class="cb-enable " for="IMStatus1" :class="{'selected':addForm.status==1}">开启</label>
+              <input id="IMStatus0"  value="0" type="radio" v-model="addForm.status">
+              <label title="关闭" class="cb-disable " for="IMStatus0" :class="{'selected':addForm.status==0}">关闭</label>
+            </div>
+            <p class="notic"></p>
+          </dd>
+        </dl>
+      </el-form-item>
+    </el-form>
+  </div>
+  <!-- 商品管理结束 -->
+  <div id="loadgif" class="loading" v-show="loading"><i class="el-icon-loading"></i>数据加载中...</div>
+</div>
+<div id="pageLoading" class="loading"><i class="el-icon-loading"></i>数据加载中...</div>
+<script src="../../common/js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+<script type="text/javascript" src="../../common/layui/layui.all.js"></script>
+<script type="text/javascript" src="https://jhapp.oss-cn-beijing.aliyuncs.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
+<script type="text/javascript" src="../../js/shop/shopManger.js"></script>
+
+</body>
+
+</html>
