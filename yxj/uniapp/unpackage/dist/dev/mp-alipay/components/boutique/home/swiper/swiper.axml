@@ -1,0 +1,1 @@
+<scroll-view class="bg-white nav text-center data-v-71164bb7" scroll-x><block a:for="{{tabList}}" a:for-item="item" a:for-index="index" a:key="index"><view class="{{(('cu-item data-v-71164bb7')+' '+(index==TabCur?'text-red cur':''))}}" data-id="{{index}}" data-event-opts="{{[['tap',[['tabSelect',['$event']]]]]}}" onTap="__e">{{item.title}}</view></block></scroll-view>

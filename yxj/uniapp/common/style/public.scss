@@ -1,0 +1,24 @@
+
+
+
+.ellipsis { // 文字溢出打点换行
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.fontSize15{
+	font-size: 30upx;
+}
+
+
+.mt10{
+	margin-top: 10upx;
+}
+
+.ml20{
+	margin-left: 20upx;
+}
+.mlr15{
+	margin: 0 15upx;
+}

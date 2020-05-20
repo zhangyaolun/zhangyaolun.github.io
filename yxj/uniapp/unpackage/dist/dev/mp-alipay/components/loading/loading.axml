@@ -1,0 +1,1 @@
+<block a:if="{{is_loading}}"><view class="loading-popup"><view class="cu-load load-modal"><image src="/static/img/loading-1-1.gif" mode="aspectFit"></image><view class="gray-text">{{toastMsg}}</view></view></view></block>

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "直播",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "h-swiper": "/components/recommond/home/swiper/swiper",
+    "h-live": "/components/recommond/home/live/live",
+    "h-follow": "/components/recommond/home/follow/follow"
+  }
+}
