@@ -1,0 +1,44 @@
+
+.custom-loading {
+  width: calc(100% - 210px);
+  height: 100%;
+  position: fixed;
+  left: 210px;
+  top: 50px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, .7);
+  overflow: hidden;
+}
+
+.hideSidebar /deep/ .custom-loading{
+  width: calc(100% - 54px);
+  left: 54px;
+}
+
+
+.mobile /deep/ .custom-loading{
+  width: 100%;
+  left: 0;
+}
+
+
+.custom-loading .custom-loading-round {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #409EFF;
+  border-left-color: transparent;
+  -webkit-animation:loading-rotate 1.5s linear infinite;
+  animation:loading-rotate 1.5s linear infinite;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+@-webkit-keyframes loading-rotate{100%{-webkit-transform:rotate(360deg);
+  transform:rotate(360deg)}}
+@keyframes loading-rotate{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
+@-webkit-keyframes loading-dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:90,150;stroke-dashoffset:-40px}100%{stroke-dasharray:90,150;stroke-dashoffset:-120px}}
+@keyframes loading-dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:90,150;stroke-dashoffset:-40px}100%{stroke-dasharray:90,150;stroke-dashoffset:-120px}}

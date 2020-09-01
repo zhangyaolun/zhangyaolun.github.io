@@ -1,0 +1,64 @@
+.formQuery {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: auto;
+
+  .el-form-item {
+    flex-basis: 33%;
+    min-width: 300px;
+
+    .el-input {
+      width: 100%;
+    }
+
+    .el-select {
+      width: 100%;
+    }
+
+    &:nth-last-child(2) {
+      width: 100%;
+      min-width: 465px;
+
+      .el-range-separator {
+        width: 20px;
+      }
+
+      .el-input__inner {
+        padding: 3px 7px;
+        width: 100% !important;
+      }
+
+      .el-range-input {
+        width: 42%;
+      }
+
+      .el-range__close-icon {
+        width: 10px;
+      }
+    }
+
+    &:last-child {
+      flex-basis: 100%;
+      min-width: 600px;
+    }
+  }
+
+  /deep/ .el-button {
+    margin-left: 15px;
+  }
+}
+
+.template-dialog {
+  /deep/ .el-input {
+    width: 50%;
+  }
+
+  .el-select {
+    width: 50%;
+
+    .el-input {
+      width: 100%;
+    }
+  }
+}
