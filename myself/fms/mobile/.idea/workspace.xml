@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ad89dc03-ea0c-4791-bcfd-f324f8cb74ce" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/api/group/brandGoods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/api/group/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/api/group/userApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/api/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/store/getters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/store/modules/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/store/modules/brandGoods/brandGoodsBrand.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/api/group/brandGoods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/api/group/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/api/group/userApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/api/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/store/getters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/store/modules/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/store/modules/brandGoods/brandGoodsBrand.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/filter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/validate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/e2e/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/e2e/plugins/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/e2e/specs/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/e2e/support/commands.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/e2e/support/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/example.spec.js" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1giOgrB70FBRyaoDyfeszZcqUSz" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/about" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/about" />
+      <recent name="$PROJECT_DIR$/src/pages/home/store/modules" />
+      <recent name="$PROJECT_DIR$/src/pages/home" />
+      <recent name="$PROJECT_DIR$/src/pages" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/views/home" />
+      <recent name="$PROJECT_DIR$/src/views/about" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/vmore/dist/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad89dc03-ea0c-4791-bcfd-f324f8cb74ce" name="默认更改列表" comment="" />
+      <created>1598594060641</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598594060641</updated>
+      <workItem from="1598594061833" duration="1294000" />
+      <workItem from="1598595832102" duration="2014000" />
+      <workItem from="1598600352699" duration="341000" />
+      <workItem from="1598602336220" duration="1014000" />
+      <workItem from="1598606416228" duration="3550000" />
+      <workItem from="1598839117038" duration="9000" />
+      <workItem from="1598852380546" duration="927000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

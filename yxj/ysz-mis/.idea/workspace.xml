@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ed2d69f7-64dc-4182-8faa-a33950e22e8a" name="默认更改列表" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="@zhangyaolun &lt;zhangyaolun@yxj.org.cn&gt;" />
+        <option value="z" />
+        <option value="这" />
+        <option value="zhangyaolun@yxj.org.cn" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="test" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Z14dDALOPPyE2V8LQ5isuGuTyn" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/js" />
+      <recent name="$PROJECT_DIR$/src/styles" />
+      <recent name="$PROJECT_DIR$/src/pages/medicalTools/medicalEditor/components" />
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src/store/modules/courseModule" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/styles" />
+      <recent name="$PROJECT_DIR$/src/pages/medicalTools/medicalEditor/components" />
+      <recent name="$PROJECT_DIR$/src/server/medicalTools" />
+      <recent name="$PROJECT_DIR$/src/store/modules/medicalTools" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed2d69f7-64dc-4182-8faa-a33950e22e8a" name="默认更改列表" comment="" />
+      <created>1583993351947</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583993351947</updated>
+      <workItem from="1583993353318" duration="82630000" />
+      <workItem from="1584502847133" duration="154589000" />
+      <workItem from="1585273456048" duration="179141000" />
+      <workItem from="1586482400272" duration="26903000" />
+      <workItem from="1586743548107" duration="32191000" />
+      <workItem from="1586918205002" duration="9006000" />
+      <workItem from="1587000709713" duration="10605000" />
+      <workItem from="1587087912327" duration="134006000" />
+      <workItem from="1587950275545" duration="800000" />
+      <workItem from="1587959334120" duration="403000" />
+      <workItem from="1587976188980" duration="16077000" />
+      <workItem from="1588059576483" duration="251000" />
+      <workItem from="1588061753887" duration="7000" />
+      <workItem from="1588068356697" duration="2721000" />
+      <workItem from="1588126860280" duration="158000" />
+      <workItem from="1588131151914" duration="2218000" />
+      <workItem from="1588139397840" duration="2000" />
+      <workItem from="1588139921730" duration="1102000" />
+      <workItem from="1588142254245" duration="205000" />
+      <workItem from="1588143341425" duration="12000" />
+      <workItem from="1588144586234" duration="141000" />
+      <workItem from="1588144805564" duration="778000" />
+      <workItem from="1588148432273" duration="1976000" />
+      <workItem from="1588152574400" duration="1754000" />
+      <workItem from="1588212215915" duration="79000" />
+      <workItem from="1588212339272" duration="4720000" />
+      <workItem from="1588226347787" duration="265000" />
+      <workItem from="1588227211039" duration="21749000" />
+      <workItem from="1588817128091" duration="262000" />
+      <workItem from="1588830835079" duration="271000" />
+      <workItem from="1588838658535" duration="17965000" />
+      <workItem from="1588991146957" duration="224000" />
+      <workItem from="1589018360335" duration="1116000" />
+      <workItem from="1589163475230" duration="296000" />
+      <workItem from="1589164933304" duration="3333000" />
+      <workItem from="1589178213105" duration="27000" />
+      <workItem from="1589192339549" duration="380000" />
+      <workItem from="1589272400593" duration="595000" />
+      <workItem from="1589284602639" duration="439000" />
+      <workItem from="1589420680784" duration="17738000" />
+      <workItem from="1589525606749" duration="205000" />
+      <workItem from="1589765250971" duration="6182000" />
+      <workItem from="1589858944984" duration="454000" />
+      <workItem from="1589860680260" duration="608000" />
+      <workItem from="1589871896936" duration="122000" />
+      <workItem from="1589957036010" duration="1069000" />
+      <workItem from="1590482092230" duration="86000" />
+    </task>
+    <task id="LOCAL-00070" summary="5.4药品详情开发提交数据处理">
+      <created>1587466279994</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1587466279994</updated>
+    </task>
+    <task id="LOCAL-00071" summary="5.4药品详情列表交互">
+      <created>1587624616383</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1587624616383</updated>
+    </task>
+    <task id="LOCAL-00072" summary="5.4药品编辑详情接口对接">
+      <created>1587625760864</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1587625760864</updated>
+    </task>
+    <task id="LOCAL-00073" summary="5.4药品编辑详情查询">
+      <created>1587629439854</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1587629439854</updated>
+    </task>
+    <task id="LOCAL-00074" summary="5.4药品编辑详情查询">
+      <created>1587643073814</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1587643073814</updated>
+    </task>
+    <task id="LOCAL-00075" summary="5.4药品编辑数据处理+开机动画安卓上传图片">
+      <created>1587713454978</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1587713454978</updated>
+    </task>
+    <task id="LOCAL-00076" summary="5.4药品编辑功能开发">
+      <created>1587720855948</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1587720855948</updated>
+    </task>
+    <task id="LOCAL-00077" summary="5.4药品编辑文件数据更改">
+      <created>1587724781488</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1587724781488</updated>
+    </task>
+    <task id="LOCAL-00078" summary="5.4药品编辑数据结构调整">
+      <created>1587869687770</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1587869687771</updated>
+    </task>
+    <task id="LOCAL-00079" summary="全局loading">
+      <created>1588043659747</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1588043659748</updated>
+    </task>
+    <task id="LOCAL-00080" summary="全局loading">
+      <created>1588044862783</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1588044862784</updated>
+    </task>
+    <task id="LOCAL-00081" summary="医药编辑loading">
+      <created>1588045193414</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1588045193414</updated>
+    </task>
+    <task id="LOCAL-00082" summary="loading层级更改">
+      <created>1588059784817</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1588059784817</updated>
+    </task>
+    <task id="LOCAL-00083" summary="药品编辑数据提交更改">
+      <created>1588138960301</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1588138960301</updated>
+    </task>
+    <task id="LOCAL-00084" summary="药品编辑数据提交更改">
+      <created>1588152203559</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1588152203559</updated>
+    </task>
+    <task id="LOCAL-00085" summary="药品编辑适配">
+      <created>1588152867173</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1588152867173</updated>
+    </task>
+    <task id="LOCAL-00086" summary="纠错返回查询">
+      <created>1588153442222</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1588153442222</updated>
+    </task>
+    <task id="LOCAL-00087" summary="入库时间字段更改">
+      <created>1588209904173</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1588209904173</updated>
+    </task>
+    <task id="LOCAL-00088" summary="时间显示到秒">
+      <created>1588215911130</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1588215911130</updated>
+    </task>
+    <task id="LOCAL-00089" summary="排序">
+      <created>1588218002168</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1588218002168</updated>
+    </task>
+    <task id="LOCAL-00090" summary="排序">
+      <created>1588226391166</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1588226391166</updated>
+    </task>
+    <task id="LOCAL-00091" summary="增加待编辑状态处理">
+      <created>1588240996441</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1588240996441</updated>
+    </task>
+    <task id="LOCAL-00092" summary="编辑器图片更改">
+      <created>1588245277372</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1588245277372</updated>
+    </task>
+    <task id="LOCAL-00093" summary="批量采纳提示">
+      <created>1588245692063</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1588245692063</updated>
+    </task>
+    <task id="LOCAL-00094" summary="滚动条">
+      <created>1588246064830</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1588246064830</updated>
+    </task>
+    <task id="LOCAL-00095" summary="滚动条">
+      <created>1588246497741</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1588246497741</updated>
+    </task>
+    <task id="LOCAL-00096" summary="编辑器滚动条优化">
+      <created>1588733706404</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1588733706405</updated>
+    </task>
+    <task id="LOCAL-00097" summary="列表暂无数据显示位置优化">
+      <created>1588743637276</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1588743637276</updated>
+    </task>
+    <task id="LOCAL-00098" summary="直播管理替换MP4功能">
+      <created>1588745826659</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1588745826659</updated>
+    </task>
+    <task id="LOCAL-00099" summary="5.3直播详情">
+      <created>1588747635906</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1588747635906</updated>
+    </task>
+    <task id="LOCAL-00100" summary="5.3话题操作增加回放状态">
+      <created>1588751955841</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1588751955841</updated>
+    </task>
+    <task id="LOCAL-00101" summary="5.3修改话题回放状态">
+      <created>1588843344943</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1588843344943</updated>
+    </task>
+    <task id="LOCAL-00102" summary="药品详情页上下线刷新">
+      <created>1588906331816</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1588906331816</updated>
+    </task>
+    <task id="LOCAL-00103" summary="接错标签更改">
+      <created>1588909282906</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1588909282906</updated>
+    </task>
+    <task id="LOCAL-00104" summary="纠错点击更改">
+      <created>1588909492868</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1588909492868</updated>
+    </task>
+    <task id="LOCAL-00105" summary="药品详情展示名增加空格">
+      <created>1588910488037</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1588910488037</updated>
+    </task>
+    <task id="LOCAL-00106" summary="编辑器word">
+      <created>1588916998764</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1588916998764</updated>
+    </task>
+    <task id="LOCAL-00107" summary="编辑器word">
+      <created>1588919337143</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1588919337143</updated>
+    </task>
+    <task id="LOCAL-00108" summary="编辑器粘贴触发">
+      <created>1588930614034</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1588930614034</updated>
+    </task>
+    <task id="LOCAL-00109" summary="视频上传阻止点击弹框以外的地方">
+      <created>1589018586520</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1589018586521</updated>
+    </task>
+    <task id="LOCAL-00110" summary=" 直播管理更改">
+      <created>1589168056139</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1589168056139</updated>
+    </task>
+    <task id="LOCAL-00111" summary=" 直播管理列表按钮优化">
+      <created>1589192460218</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1589192460219</updated>
+    </task>
+    <task id="LOCAL-00112" summary=" 直播管理详情按钮优化">
+      <created>1589285033380</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1589285033380</updated>
+    </task>
+    <task id="LOCAL-00113" summary=" 直播管理详情优化">
+      <created>1589424618116</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1589424618116</updated>
+    </task>
+    <task id="LOCAL-00114" summary="图片压缩优化">
+      <created>1589525635637</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1589525635637</updated>
+    </task>
+    <task id="LOCAL-00115" summary="医院省市区加所有">
+      <created>1589769219628</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1589769219628</updated>
+    </task>
+    <task id="LOCAL-00116" summary="医院省市区加所有">
+      <created>1589770892999</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1589770893000</updated>
+    </task>
+    <task id="LOCAL-00117" summary="医米流水时间到秒">
+      <created>1589773735492</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1589773735492</updated>
+    </task>
+    <task id="LOCAL-00118" summary="封号记录时间到秒">
+      <created>1589774271551</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1589774271551</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="增加待编辑状态处理" />
+    <MESSAGE value="编辑器图片更改" />
+    <MESSAGE value="批量采纳提示" />
+    <MESSAGE value="滚动条" />
+    <MESSAGE value="编辑器滚动条优化" />
+    <MESSAGE value="列表暂无数据显示位置优化" />
+    <MESSAGE value="直播管理替换MP4功能" />
+    <MESSAGE value="5.3直播详情" />
+    <MESSAGE value="5.3话题操作增加回放状态" />
+    <MESSAGE value="5.3修改话题回放状态" />
+    <MESSAGE value="药品详情页上下线刷新" />
+    <MESSAGE value="接错标签更改" />
+    <MESSAGE value="纠错点击更改" />
+    <MESSAGE value="药品详情展示名增加空格" />
+    <MESSAGE value="编辑器word" />
+    <MESSAGE value="编辑器粘贴触发" />
+    <MESSAGE value="视频上传阻止点击弹框以外的地方" />
+    <MESSAGE value=" 直播管理更改" />
+    <MESSAGE value=" 直播管理列表按钮优化" />
+    <MESSAGE value=" 直播管理详情按钮优化" />
+    <MESSAGE value=" 直播管理详情优化" />
+    <MESSAGE value="图片压缩优化" />
+    <MESSAGE value="医院省市区加所有" />
+    <MESSAGE value="医米流水时间到秒" />
+    <MESSAGE value="封号记录时间到秒" />
+    <option name="LAST_COMMIT_MESSAGE" value="封号记录时间到秒" />
+  </component>
+</project>
