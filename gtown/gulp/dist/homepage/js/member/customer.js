@@ -1,1 +1,0 @@
-new Vue({el:"#app",data:{type:"",detailContent:"",preLoading:!0},computed:{},mounted:function(){FastClick.attach(document.body);var t=this;commentJs.toastLoading("加载中..."),setTimeout(function(){t.getInfo()},10)},methods:{getInfo:function(){var e=this;o.homeNews(11,function(t){e.preLoading=!1})}}});

@@ -1,6 +1,0 @@
-.layui-table tbody tr{ border-bottom: 1px solid #ddd; }
-.layui-table tbody tr td{ font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
-.layui-table tbody tr td i{ cursor: pointer; }
-.custom-table tbody tr td label{ width: 25%;
-    display: block; float: left; margin: 5px 0; }
-.custom-table tbody tr td input[type=checkbox]{ float: left; margin-top: 3px; margin-right: 3px; }
