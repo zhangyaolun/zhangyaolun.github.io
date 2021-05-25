@@ -1,1 +1,0 @@
-<view><h-swiper vue-id="3a571050-1" swiperList="{{swiperList}}" onVueInit="__l"></h-swiper><h-live vue-id="3a571050-2" liveList="{{liveList}}" onVueInit="__l"></h-live><h-follow vue-id="3a571050-3" followList="{{followList}}" onVueInit="__l"></h-follow><loading vue-id="3a571050-4" onVueInit="__l"></loading></view>

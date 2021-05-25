@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "精品课",
-  "usingComponents": {
-    "loading": "/components/loading/loading",
-    "h-swiper": "/components/boutique/home/swiper/swiper"
-  }
-}

@@ -1,5 +1,0 @@
- <!--components/Dialog/dialog.wxml-->
-<view class='main_container plr clear'>
-   <image src='../../images/qita2@2x.png' class='main_img inBlock middle'/>
-   <view class='inBlock middle'>{{ content }}</view>
-</view>

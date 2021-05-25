@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "场馆预定",
-  "usingComponents": {
-    "main": "../../comment/mainComment/main",
-    "score": "../../comment/score/score"
-  }
-}

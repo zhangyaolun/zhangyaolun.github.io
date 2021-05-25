@@ -1,4 +1,0 @@
-<view class='icon_item' bindtap="bindcode">
-  <view class='icon' style="background: url('../../images/off.png') repeat-x;background-size: contain;"></view>
-  <view class='icon_suc' style="background: url('../../images/xing@2x.png');background-size: contain;width:{{num}}rpx;"></view>
-</view>
