@@ -1,0 +1,546 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>xpxtool 前端工具库</title>
+	<meta name="description" content="Documentation for xpxtool 前端工具库">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">xpxtool 前端工具库</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>xpxtool 前端工具库</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#xpxtool" id="xpxtool" style="color: inherit; text-decoration: none;">
+					<h1>xpxtool</h1>
+				</a>
+				<p><a href="https://www.npmjs.com/package/xpxtool"><img src="https://img.shields.io/npm/v/xpxtool" alt="NPM version"></a></p>
+				<p>Front end tool library for xpx.</p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<p>You can get xpxtool via <a href="https://www.npmjs.com/package/xpxtool">npm</a>.</p>
+				<pre><code>npm <span class="hljs-keyword">install</span> xpxtool -D
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#存储数据" id="存储数据" style="color: inherit; text-decoration: none;">
+					<h3>存储数据</h3>
+				</a>
+				<p>Storage</p>
+				<pre><code><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> xpxtool <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;xpxtool&#x27;</span>;
+
+xpxtool.setSessionStorage(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;123&#x27;</span>);
+</code></pre>
+				<p><a href="http://zhangyaolun.github.io/xpxtool/index.html">更多接口&gt;&gt;</a></p>
+				<a href="#develop" id="develop" style="color: inherit; text-decoration: none;">
+					<h2>Develop</h2>
+				</a>
+				<pre><code><span class="hljs-comment"># dev</span>
+npm <span class="hljs-builtin-name">run</span> dev
+
+<span class="hljs-comment"># build</span>
+npm <span class="hljs-builtin-name">run</span> build
+
+<span class="hljs-comment"># documentation</span>
+npm <span class="hljs-builtin-name">run</span> docs
+
+<span class="hljs-comment"># publish</span>
+npm <span class="hljs-builtin-name">run</span> release
+</code></pre>
+				<a href="#开发使用注释方法" id="开发使用注释方法" style="color: inherit; text-decoration: none;">
+					<h2>开发使用注释方法</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">名称</th>
+							<th align="center">作用</th>
+							<th align="center">备注</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">@param</td>
+							<td align="center">参数描述</td>
+							<td align="center">仅供类、接口、方法注释时使用。同一个注释块可同时出现多个param描述。</td>
+						</tr>
+						<tr>
+							<td align="center">@return</td>
+							<td align="center">返回描述</td>
+							<td align="center">仅供方法注释时使用。除void方法外其它所有方法必须有一个return描述。</td>
+						</tr>
+						<tr>
+							<td align="center">@throws</td>
+							<td align="center">异常描述</td>
+							<td align="center">零到多个。</td>
+						</tr>
+						<tr>
+							<td align="center">@exception</td>
+							<td align="center">异常描述</td>
+							<td align="center">零到多个。</td>
+						</tr>
+						<tr>
+							<td align="center">@author</td>
+							<td align="center">作者</td>
+							<td align="center">类和接口注释中必须有。可有零到多个。</td>
+						</tr>
+						<tr>
+							<td align="center">@version</td>
+							<td align="center">版本描述</td>
+							<td align="center">类和接口注释中必须有。零或一个。</td>
+						</tr>
+						<tr>
+							<td align="center">@see</td>
+							<td align="center">参考描述</td>
+							<td align="center">可有零到多个。</td>
+						</tr>
+						<tr>
+							<td align="center">@since</td>
+							<td align="center">起始版本</td>
+							<td align="center">只有一个。</td>
+						</tr>
+						<tr>
+							<td align="center">@serial</td>
+							<td align="center">序列化描述</td>
+							<td align="center">或@serialField或@serialData，可有多个</td>
+						</tr>
+						<tr>
+							<td align="center">@deprecated</td>
+							<td align="center">废除标志</td>
+							<td align="center">最多一个。</td>
+						</tr>
+				</tbody></table>
+				<a href="#browser" id="browser" style="color: inherit; text-decoration: none;">
+					<h2>browser</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">getBrowserType</td>
+							<td align="center">返回浏览器信息</td>
+						</tr>
+				</tbody></table>
+				<a href="#common" id="common" style="color: inherit; text-decoration: none;">
+					<h2>common</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">checkPermission</td>
+							<td align="center">判断权限</td>
+						</tr>
+						<tr>
+							<td align="center">compatibleExist</td>
+							<td align="center">不存在返回 ——</td>
+						</tr>
+						<tr>
+							<td align="center">debounce</td>
+							<td align="center">去抖</td>
+						</tr>
+						<tr>
+							<td align="center">deepClone</td>
+							<td align="center">深拷贝，支持常见类型</td>
+						</tr>
+						<tr>
+							<td align="center">generateRndNum</td>
+							<td align="center">生成随机数</td>
+						</tr>
+						<tr>
+							<td align="center">generateUniqueNum</td>
+							<td align="center">根据时间生成唯一标志的数字</td>
+						</tr>
+						<tr>
+							<td align="center">handleParam</td>
+							<td align="center">删除对象里面value值为null或&#39;&#39;的键值对</td>
+						</tr>
+						<tr>
+							<td align="center">digitUppercase</td>
+							<td align="center">现金额转大写</td>
+						</tr>
+						<tr>
+							<td align="center">stringfyQueryString</td>
+							<td align="center">对象序列化</td>
+						</tr>
+						<tr>
+							<td align="center">getQueryParam</td>
+							<td align="center">获取地址栏 ? 后面的参数</td>
+						</tr>
+				</tbody></table>
+				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
+					<h2>class</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">addClass</td>
+							<td align="center">节点添加指定class</td>
+						</tr>
+						<tr>
+							<td align="center">hasClass</td>
+							<td align="center">判断节点是否有指定class</td>
+						</tr>
+						<tr>
+							<td align="center">removeClass</td>
+							<td align="center">节点删除指定class</td>
+						</tr>
+				</tbody></table>
+				<a href="#exportxls" id="exportxls" style="color: inherit; text-decoration: none;">
+					<h2>exportXls</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">exportXls</td>
+							<td align="center">blob数据导出</td>
+						</tr>
+						<tr>
+							<td align="center">downFile</td>
+							<td align="center">blob数据excel下载</td>
+						</tr>
+				</tbody></table>
+				<a href="#math" id="math" style="color: inherit; text-decoration: none;">
+					<h2>math</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">addMath</td>
+							<td align="center">数字计算加法</td>
+						</tr>
+						<tr>
+							<td align="center">subMath</td>
+							<td align="center">数字计算减法</td>
+						</tr>
+						<tr>
+							<td align="center">mulMath</td>
+							<td align="center">数字计算乘法</td>
+						</tr>
+						<tr>
+							<td align="center">divMath</td>
+							<td align="center">数字计算除法</td>
+						</tr>
+						<tr>
+							<td align="center">floatFixed</td>
+							<td align="center">浮点数保留指定位</td>
+						</tr>
+				</tbody></table>
+				<a href="#regexp" id="regexp" style="color: inherit; text-decoration: none;">
+					<h2>regexp</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">isEmail</td>
+							<td align="center">判断是否为邮箱地址</td>
+						</tr>
+						<tr>
+							<td align="center">isIdCard</td>
+							<td align="center">判断是否为身份证号</td>
+						</tr>
+						<tr>
+							<td align="center">isPhoneNum</td>
+							<td align="center">判断是否为手机号</td>
+						</tr>
+						<tr>
+							<td align="center">isSpecialChar</td>
+							<td align="center">检查是否为特殊字符</td>
+						</tr>
+						<tr>
+							<td align="center">isRightBankCard</td>
+							<td align="center">验证银行卡号</td>
+						</tr>
+						<tr>
+							<td align="center">isRightCardDate</td>
+							<td align="center">验证信用卡有效期</td>
+						</tr>
+						<tr>
+							<td align="center">isRightSafeCode</td>
+							<td align="center">验证信用卡安全码</td>
+						</tr>
+						<tr>
+							<td align="center">getCheckPrice</td>
+							<td align="center">价格处理</td>
+						</tr>
+						<tr>
+							<td align="center">getCheckNumber</td>
+							<td align="center">数字处理</td>
+						</tr>
+						<tr>
+							<td align="center">keepDecimals</td>
+							<td align="center">价格向下取值保留2位小数</td>
+						</tr>
+						<tr>
+							<td align="center">regExpUtil</td>
+							<td align="center">正则</td>
+						</tr>
+				</tbody></table>
+				<a href="#scroll" id="scroll" style="color: inherit; text-decoration: none;">
+					<h2>scroll</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">getScrollTop</td>
+							<td align="center">获取滚动条距顶部的距离</td>
+						</tr>
+						<tr>
+							<td align="center">scrollTo</td>
+							<td align="center">设置滚动条距顶部的距离</td>
+						</tr>
+				</tbody></table>
+				<a href="#storage" id="storage" style="color: inherit; text-decoration: none;">
+					<h2>storage</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">setCookie</td>
+							<td align="center">设置 Cookie</td>
+						</tr>
+						<tr>
+							<td align="center">getCookie</td>
+							<td align="center">获取 Cookie</td>
+						</tr>
+						<tr>
+							<td align="center">delCookie</td>
+							<td align="center">删除 Cookie</td>
+						</tr>
+						<tr>
+							<td align="center">setSessionStorage</td>
+							<td align="center">存储数据到 sessionStorage</td>
+						</tr>
+						<tr>
+							<td align="center">getSessionStorage</td>
+							<td align="center">获取数据到 sessionStorage</td>
+						</tr>
+						<tr>
+							<td align="center">delSessionStorage</td>
+							<td align="center">删除数据 sessionStorage</td>
+						</tr>
+						<tr>
+							<td align="center">setLocalStorage</td>
+							<td align="center">存储数据到 localStorage</td>
+						</tr>
+						<tr>
+							<td align="center">getLocalStorage</td>
+							<td align="center">获取数据到 localStorage</td>
+						</tr>
+						<tr>
+							<td align="center">delLocalStorage</td>
+							<td align="center">删除数据 localStorage</td>
+						</tr>
+				</tbody></table>
+				<a href="#time" id="time" style="color: inherit; text-decoration: none;">
+					<h2>time</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">formatPassTime</td>
+							<td align="center">格式化${startTime}距现在的已过时间</td>
+						</tr>
+						<tr>
+							<td align="center">formatRemainTime</td>
+							<td align="center">格式化现在距${endTime}的剩余时间</td>
+						</tr>
+						<tr>
+							<td align="center">isLeapYear</td>
+							<td align="center">是否为闰年</td>
+						</tr>
+						<tr>
+							<td align="center">getMonthDays</td>
+							<td align="center">获取指定日期月份的总天数</td>
+						</tr>
+						<tr>
+							<td align="center">getChangeTime</td>
+							<td align="center">用于时间选择值转换</td>
+						</tr>
+						<tr>
+							<td align="center">getParseTime</td>
+							<td align="center">用于时间值格式化转换</td>
+						</tr>
+				</tbody></table>
+				<a href="#navigatorbridge" id="navigatorbridge" style="color: inherit; text-decoration: none;">
+					<h2>navigatorBridge</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">方法名</th>
+							<th align="center">描述</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">getUserAgent</td>
+							<td align="center">ios注册bridge</td>
+						</tr>
+						<tr>
+							<td align="center">callHandler</td>
+							<td align="center">ios注册bridge页面回调函数默认处理，实际使用callHandler，只限ios</td>
+						</tr>
+						<tr>
+							<td align="center">appBridge</td>
+							<td align="center">安卓/ios交互处理</td>
+						</tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_browser_.html">&quot;browser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_class_.html">&quot;class&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_.html">&quot;common&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_exportxls_.html">&quot;export<wbr>Xls&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_math_.html">&quot;math&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_navigatorbridge_.html">&quot;navigator<wbr>Bridge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_regexp_.html">&quot;regexp&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_scroll_.html">&quot;scroll&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_storage_.html">&quot;storage&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_time_.html">&quot;time&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
